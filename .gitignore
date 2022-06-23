@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+#mysql config information is hidden here
+application-config.properties

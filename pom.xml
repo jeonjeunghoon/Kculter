@@ -27,6 +27,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- mysql과 연동하기 위해서 사용하는 라이브러리-->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- mybatis를 사용하기 위해서 사용하는 라이브러리 -->
+		<dependency>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>2.1.4</version>
+		</dependency>		
 	</dependencies>
 
 	<build>
