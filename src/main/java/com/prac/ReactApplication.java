@@ -1,4 +1,4 @@
-package com.prac.react;
+package com.prac;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
