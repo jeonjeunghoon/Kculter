@@ -21,7 +21,7 @@ jdk - 11
 제가 FrontEnd는 frontend/kculter 폴더로 프로젝트를 생성하였기 때문에 해당 폴더에서 작업해주시면 됩니다.
 
 <br/><br/><br/>
-## FrontEnd 내에서 작업을 완료하시고 웹 서버에서 UI 확인해보고 싶으시다면 react/target 폴더내에 있는.jar 파일을 실행시켜주세요.
+## FrontEnd 내에서 작업을 완료하시고 웹 서버에서 UI 확인해보고 싶으시다면 react/target 폴더내에 있는 .jar 파일을 실행시켜주세요.
 <br/>
 제가 spring boot 프로젝트와 react 프로젝트를 같이 빌드할수 있도록 연동 시켜놨습니다. 
 <br/>
