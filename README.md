@@ -36,7 +36,7 @@ java -jar jar파일명
 <br/><br/><br/>
 ## FrontEnd내에서만 간단하게 작업한걸 확인해보고 싶으시다면 ``` frontend/kculter ``` 안에서 npm start 를 해주세요
 <br/>
-간단하게 UI만 확인해보고싶으시다면 ``` fronend/kculter 에서 ``` npm start ``` 를 해주시면 됩니다.
+간단하게 UI만 확인해보고싶으시다면 ``` fronend/kculter ``` 에서 ``` npm start ``` 를 해주시면 됩니다.
 
 <br/><br/><br/>
 ## 화면에서 아무것도 뜨지 않는다면 f12를 눌러서 console에 찍힌게 없는지 확인해 봅니다.
