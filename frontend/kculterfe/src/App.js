@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import NavBar from './navbar/NavBar';
-import Login from './login/Login';
+import Login from './login/LoginPage';
 import MainPage from './main/MainPage';
 
 function App() {
