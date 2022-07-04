@@ -52,7 +52,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.7.6</version>
+                <version>1.11.0</version>
                 <!-- frontend-maven-plugin Version -->
                 <configuration>
                     <workingDirectory>frontend/kculterfe</workingDirectory>

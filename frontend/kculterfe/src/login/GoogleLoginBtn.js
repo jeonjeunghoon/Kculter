@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
-import { GoogleLogin, googleLogout, GoogleOAuthProvider } from '@react-oauth/google';
 
 const clientId = "1027180645834-6ahbfkt1ghv57opj2cmiuf25sekcqcn8.apps.googleusercontent.com";
 
