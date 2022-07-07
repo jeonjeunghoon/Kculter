@@ -33,3 +33,6 @@ build/
 .vscode/
 #mysql config information is hidden here
 application-config.properties
+
+### api keys ###
+.env

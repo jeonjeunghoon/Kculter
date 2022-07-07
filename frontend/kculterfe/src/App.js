@@ -3,7 +3,7 @@ import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import NavBar from './navbar/NavBar';
 import Login from './login/LoginPage';
 import MainPage from './main/MainPage';
-import MapAPI from './map/MapAPI';
+import GoogleMap from './map/googleMap';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <NavBar/>
       	<Routes>
         	<Route path="/login" element={<Login/>}></Route>
-			<Route path="/mapAPI" element={<MapAPI/>}></Route>
+			<Route path="/googleMap" element={<GoogleMap/>}></Route>
         	<Route path="/" element={<MainPage/>}></Route>
       	</Routes>
     </BrowserRouter>
