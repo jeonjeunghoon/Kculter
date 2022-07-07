@@ -1,9 +1,5 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-    "google-map-react": "2.2.0",
-=======
->>>>>>> 37f9b43bd3eb682aa4e7b15aa53af1d47104626e
     "google-maps-react": "2.0.6",
     "react-router-dom": "6.3.0"
   }
