@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 const clientId = "1027180645834-6ahbfkt1ghv57opj2cmiuf25sekcqcn8.apps.googleusercontent.com";
 
@@ -16,6 +17,23 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
 
         console.log("email = "+ email);
         console.log("name = "+ name);
+
+        axios.post('/member/',{
+            email:email,
+            name:name
+        },
+        {
+            headers:{
+                'Content-type' : 'application/json',
+                'Accept' : 'application/json'
+            }
+        })
+        .then(function(res){
+            console.log(res);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
     }
 
     useEffect(()=>{
