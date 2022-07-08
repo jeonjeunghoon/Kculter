@@ -8,7 +8,7 @@ function MainPage(){
                 <h1>여기는 메인페이지</h1>
             </div>
 			<div>
-				<MapNav></MapNav>
+				<MapNav/>
 			</div>
         </>
     );
