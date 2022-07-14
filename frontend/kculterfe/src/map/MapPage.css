@@ -1,0 +1,25 @@
+.map-page {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 200px 1fr;
+}
+
+nav {
+	background-color: rgb(0,3,77);
+	/* text css */
+	color: white;
+	text-align: center;
+
+	grid-row: 1 / span 3;
+}
+
+header {
+	height: 50px;
+	text-align: start;
+}
+
+.search {
+	height: 50px;
+}
+
