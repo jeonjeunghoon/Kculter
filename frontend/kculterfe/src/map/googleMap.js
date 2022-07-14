@@ -20,6 +20,7 @@ function GoogleMap({ google, locations = [] }) {
             disableDefaultUI={true}
         >
 		<Marker 
+		  title={'The marker`s title will appear as a tooltip.'}
 		  name={'내 위치'}
 		  icon={{
 			url: 'https://logosandtypes.com/wp-content/uploads/2020/07/Koreaboo.svg',
@@ -27,7 +28,6 @@ function GoogleMap({ google, locations = [] }) {
         	scaledSize: new google.maps.Size(37, 37)
 		  }}/>
 		<Marker
-  		  title={'The marker`s title will appear as a tooltip.'}
   		  name={'원주삼육고등학교'}
   		  position={{lat: 37.3260009, lng: 127.9242271}}
 		  icon={{
