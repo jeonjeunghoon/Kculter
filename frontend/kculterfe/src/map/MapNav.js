@@ -12,7 +12,7 @@ const MapNav = () => {
 				대신 Link tag를 사용한다.
 
 				*/}
-				<Link to="googleMap">Go to Map</Link>
+				<Link to="MapPage">Go to MapPage</Link>
 			</nav>
 		</div>
 	);
