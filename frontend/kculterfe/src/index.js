@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+//   <React.StrictMode> Google Map 버전 이슈 때문에 주석 처리했습니다.
     <App />
-  </React.StrictMode>
+//   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
