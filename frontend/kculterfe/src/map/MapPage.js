@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MapPage.css';
-import GoogleMap from './GoogleMap';
+import GoogleMap from './googleMap';
 import { Link } from 'react-router-dom';
 
 const MapPage = () => {
