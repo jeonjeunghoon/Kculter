@@ -18,15 +18,9 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
         console.log("email = "+ email);
         console.log("name = "+ name);
 
-        axios.post('/member/',{
+        axios.post('/member',{
             email:email,
             name:name
-        },
-        {
-            headers:{
-                'Content-type' : 'application/json',
-                'Accept' : 'application/json'
-            }
         })
         .then(function(res){
             console.log(res);
