@@ -23,3 +23,13 @@ header {
 	height: 50px;
 }
 
+.marker {
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid black;
+	height: 30px;
+	width: 30px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}

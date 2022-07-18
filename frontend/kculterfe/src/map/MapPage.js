@@ -10,9 +10,13 @@ const MapPage = () => {
 	}
 
 	const center = {
-			lat: 37.3379297,
-			lng: 127.9269225
+		lat: 37.5758772,
+		lng: 126.9768121
 	};
+	navigator.geolocation.getCurrentPosition(pos => {
+		center.lat = pos.coords.latitude;
+		center.lng = pos.coords.longitude;
+	}) // 콜백 써야함
 
 	return (
 		<div className='map-page'>
@@ -28,12 +32,12 @@ const MapPage = () => {
 				</Link>
 				<input
 					type='text'
-					value='SEARCH'
+					value={search}
 					onChange={onChange}
 				/>
 			</div>
 			<div className='content'>
-				<GoogleMap center={center}/>
+				<GoogleMap center={center} />
 			</div>
 		</div>
 	);
