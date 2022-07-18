@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MapPage.css';
-import GoogleMap from './googleMap';
-import { Link } from 'react-router-dom';
+import GoogleMap from './GoogleMap';
+import { Link, useLocation } from 'react-router-dom';
 
 const MapPage = () => {
 	const [search, setSearch] = useState("");
@@ -9,14 +9,8 @@ const MapPage = () => {
 		setSearch(e.target.value);
 	}
 
-	const center = {
-		lat: 37.5758772,
-		lng: 126.9768121
-	};
-	navigator.geolocation.getCurrentPosition(pos => {
-		center.lat = pos.coords.latitude;
-		center.lng = pos.coords.longitude;
-	}) // 콜백 써야함
+	const location = useLocation();
+	const { center } = location.state;
 
 	return (
 		<div className='map-page'>
