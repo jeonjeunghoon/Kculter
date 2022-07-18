@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MapPage.css';
-import GoogleMap from './googleMap';
-import { Link } from 'react-router-dom';
+import GoogleMap from './GoogleMap';
+import { Link, useLocation } from 'react-router-dom';
 
 const MapPage = () => {
 	const [search, setSearch] = useState("");
@@ -9,10 +9,8 @@ const MapPage = () => {
 		setSearch(e.target.value);
 	}
 
-	const center = {
-			lat: 37.3379297,
-			lng: 127.9269225
-	};
+	const location = useLocation();
+	const { center } = location.state;
 
 	return (
 		<div className='map-page'>
@@ -28,12 +26,12 @@ const MapPage = () => {
 				</Link>
 				<input
 					type='text'
-					value='SEARCH'
+					value={search}
 					onChange={onChange}
 				/>
 			</div>
 			<div className='content'>
-				<GoogleMap center={center}/>
+				<GoogleMap center={center} />
 			</div>
 		</div>
 	);
