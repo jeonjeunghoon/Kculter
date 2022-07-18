@@ -1,16 +1,16 @@
-package main.java.com.prac.react.model.dto;
+package com.prac.react.model.dto;
 
 public class Member{
     private int memberNum;
     private String email;
-    private String name;
+    private String mb_name;
 
-    public void Member(){}
+    public Member(){}
 
-    public void Member(int memberNum, String email, String name){
+    public Member(int memberNum, String email, String mb_name){
         this.memberNum = memberNum;
         this.email = email;
-        this.name = name;
+        this.mb_name = mb_name;
     }
     public int getMemberNum() {
         return this.memberNum;
@@ -29,11 +29,11 @@ public class Member{
     }
 
     public String getName() {
-        return this.name;
+        return this.mb_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String mb_name) {
+        this.mb_name = mb_name;
     }
 
     @Override
