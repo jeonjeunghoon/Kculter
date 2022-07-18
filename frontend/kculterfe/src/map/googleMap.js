@@ -34,7 +34,7 @@ function GoogleMap(props) {
 		center: props.center,
 		zoom: 15,
 	};
-
+	
 	return (
 	  // Important! Always set the container height explicitly
 	  <div style={{ height: '100vh', width: '100vw' }}>
