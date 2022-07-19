@@ -25,14 +25,16 @@ public class MemberController {
     }
 
     @PostMapping("member")
-    public int SignInMember(@RequestBody Member member){
+    public Member SignInMember(@RequestBody Member member){
         //여기서는 일단 로그인 버튼을 누른 사용자가 우리 사이트에 회원가입된 사용자인지 체크할것입니다.
-        
-        if(ms.checkMember(member.getEmail()) > 0){ //이미 우리 회원일때 접근
-
+        int check  = ms.checkMember(member.getEmail());
+        if(check > 0){ //이미 우리 회원일때 접근
+            //이미 우리 회원이라면 여기서 얻은 Member 정보를 가지고 메인페이지로 이동을 해야한다.
+            return member;
         }else{//처음 가입할때 접근
-
+            //우리 회원이 아니라면 아니라고 false를 주고 이제 회원가입 페이지로 이동을 해야한다.
+            member.setCheckMember(false);
+            return member;
         }
-        return 1;
     }
 }
