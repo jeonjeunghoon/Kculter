@@ -1,5 +1,6 @@
 package com.prac.react.service;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +19,11 @@ public class MemberServiceTest {
     Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 
     @Test
+    @DisplayName("특정 아이디의 유무를 확인하는 테스트") 
     void testCheckMember() {
         //given
         //새로운 멤버로 임의로 인스턴스를 생성한다.
-        Member mb = new Member(0,"hankgood95@naver.com","이욱재");
+        Member mb = new Member(0,"hankgood95@gmail.com","이욱재",false);
 
         //when
         //이사람 아이디로 실제로 존재하는지 체크를 한다.
