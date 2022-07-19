@@ -22,7 +22,8 @@ import com.prac.react.service.MemberServiceTest;
 
 
 
-@WebMvcTest(MemberController.class) // Controller를 테스트 해보려면 위 어노테이션을 사용해야지만 된다.
+@WebMvcTest(MemberController.class) // Controller를 테스트 해보려면 위 어노테이션을 사용해야지만 된다. 이 어노테이션은 단위 테스트를 위한 어노테이션이다.
+//단위 테스트는 특정 부분만의 코드를 확인하는 테스트로써 특정코드만 즉 여기선 컨트롤러 코드만 테스트 해볼수가 있다.
 public class MemberControllerTest {
 
     @Autowired
@@ -36,7 +37,7 @@ public class MemberControllerTest {
 
     @Test
     @DisplayName("Controller의 요청왔을때의 단위테스트") // 회원이 로그인 버튼을 눌렀을때를 가정
-    void testSignInMember() throws Exception {
+    void TestLoginMember() throws Exception {
         // given
         Member mb = new Member(1, "hankgood95@gmail.com", "이욱재", true);
 
