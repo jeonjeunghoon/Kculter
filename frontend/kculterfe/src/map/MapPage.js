@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const MapNav = () => {
 	return (
-		<nav>
+		<nav className="map-nav">
 			
 		</nav>
 	);
@@ -13,7 +13,7 @@ const MapNav = () => {
 
 const MapHeader = () => {
 	return (
-		<header>
+		<header className="map-header">
 			<h4>HEADER</h4>
 		</header>
 	);
@@ -26,7 +26,7 @@ const MapSearch = () => {
 	}
 
 	return (
-		<div className='search'>
+		<div className='map-search'>
 			<Link to='/'>
 				<button>Go Back</button>
 			</Link>
@@ -44,7 +44,7 @@ const MapContent = () => {
 	const { center } = location.state;
 
 	return (
-		<div className='content'>
+		<div className='map-content'>
 			<GoogleMap center={center} />
 		</div>
 	);

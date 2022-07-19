@@ -1,5 +1,5 @@
 import React from 'react';
-import MapNav from '../map/MapNav';
+import MapLink from '../map/MapLink';
 
 function MainPage(){
     return(
@@ -8,7 +8,7 @@ function MainPage(){
                 <h1>여기는 메인페이지</h1>
             </div>
 			<div>
-				<MapNav/>
+				<MapLink/>
 			</div>
         </>
     );
