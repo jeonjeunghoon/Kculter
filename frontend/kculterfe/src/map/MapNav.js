@@ -25,12 +25,12 @@ const MapNav = () => {
 			}
 		}
 	}
-	const run = (async() => {
+	const run = async() => {
 		const { lat, lng } = await getGps();
 		center.lat = lat;
 		center.lng = lng;
-		console.log(center);
-	})();
+	};
+	run();
 
 	return (
 		<div style={{border: '1px solid black'}}>
