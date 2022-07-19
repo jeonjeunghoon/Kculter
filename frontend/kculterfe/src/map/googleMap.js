@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import './MapPage.css';
 
+const CurrentMarker = props => {
+	return (
+		<div className='current-marker'/>
+	);
+}
+
 const Marker = props => {
 	const markerProps = {
 		key: props.key, // 키 ex: BTS
@@ -44,13 +50,9 @@ function GoogleMap(props) {
 		  defaultZoom={defaultProps.zoom}
 		  yesIWantToUseGoogleMapApiInternals
 		>
-		<Marker
-			key={'Current'}
-			locate={'내 위치'}
-			text={'내 위치다'}
+		<CurrentMarker
 			lat={defaultProps.center.lat}
 			lng={defaultProps.center.lng}
-			src={'https://toppng.com/uploads/preview/related-wallpapers-sky-blue-dot-11563201472gexfknmfyt.png'}
 		/>
 		<Marker
 			key={'BTS'}
