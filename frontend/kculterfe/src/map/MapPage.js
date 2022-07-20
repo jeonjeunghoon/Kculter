@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MapPage.css';
-import GoogleMap from './googleMap';
+import GoogleMap from './GoogleMap';
 import { Link, useLocation } from 'react-router-dom';
 
 const MapNav = () => {
