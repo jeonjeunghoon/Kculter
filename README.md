@@ -36,11 +36,9 @@ java -jar jar파일명
 간단하게 UI만 확인해보고싶으시다면 
 
 ``` frontend/kculter ``` 
-
 에서 
 
 ``` npm start ```
-
 를 해주시면 됩니다.
 
 <br/><br/><br/>
