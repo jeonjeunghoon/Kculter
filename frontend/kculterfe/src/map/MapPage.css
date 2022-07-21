@@ -57,11 +57,16 @@
 	margin-right: 10px;
 }
 
-.map-header .right img {
+.map-header .right .logo {
 	height: 30px;
-	width: 25px;
-	margin-top: 10px;
+	width: 30px;
 	margin-right: 10px;
+}
+
+.map-header .right .menu {
+	height: 20px;
+	width: 20px;
+	margin-top: 5px;
 }
 
 .map-search {
@@ -77,8 +82,12 @@
 	margin-left: 10px;
 }
 
+.map-search .left input {
+	border-radius: 10px;
+	margin-left: 10px;
+}
+
 .map-search .right {
-	color: blue;
 	margin-left: auto;
 	margin-right: 10px;
 }

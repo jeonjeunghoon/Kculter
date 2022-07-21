@@ -9,7 +9,7 @@ import SignUpPage from './signup/SignUpPage';
 function App() {
   return (
     <BrowserRouter>
-      {/* <NavBar/> */}
+      <NavBar/>
       	<Routes>
         	<Route path="/login" element={<Login/>}></Route>
 			    <Route path="/MapPage" element={<MapPage/>}></Route>

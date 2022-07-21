@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './MapPage.css';
 import GoogleMap from './GoogleMap';
 import { Link, useLocation } from 'react-router-dom';
+import MapSelect from './MapSelect';
 
 const MapNav = () => {
 	return (
@@ -62,13 +63,14 @@ const MapHeader = () => {
 				<p>Map</p>
 			</div>
 			<div className="right">
-				<img
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png"
-					alt="Kculter logo"
+				<img className="logo"
+					src="https://upload.wikimedia.org/wikipedia/commons/2/22/Transparent_letter_K_in_a_red_circle.png"
+					alt="logo"
 				/>
-				<div className="list">
-					<p>list</p>
-				</div>
+				<img className="menu"
+					src="https://www.freeiconspng.com/thumbs/menu-icon/menu-icon-24.png"
+					alt="menu"
+				/>
 			</div>
 		</header>
 	);
@@ -84,7 +86,7 @@ const MapSearch = () => {
 		<div className='map-search'>
 			<div className="left">
 				<Link to='/'>
-					<button>Go Back</button>
+					<button>&lt;</button>
 				</Link>
 				<input
 					type='text'
@@ -93,7 +95,7 @@ const MapSearch = () => {
 				/>
 			</div>
 			<div className="right">
-				right
+				<MapSelect />
 			</div>
 		</div>
 	);
