@@ -37,7 +37,6 @@ java -jar jar파일명
 
 ``` frontend/kculter ``` 
 에서 
-
 ``` npm start ```
 를 해주시면 됩니다.
 
