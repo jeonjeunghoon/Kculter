@@ -6,7 +6,7 @@
 일단 지금까지는 제가 master 로 코드를 올렸는데 각자 branch를 생성하여서 코딩 해주시길 바랍니다.
 
 <br/><br/><br/>
-## push 후 꼭 master 브랜치에 merge를 해주세요.
+## 본인 브랜치에서 push 후 꼭 master 브랜치에 merge를 해주세요.
 <br/>
 본인의 브랜치를 생성하셔서 본인의 브랜치에 push를 해주셨다면 master 브랜치에서 merge를 꼭 해주셔야지만 
 <br/>
