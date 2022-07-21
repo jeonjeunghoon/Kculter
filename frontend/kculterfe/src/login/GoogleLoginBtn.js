@@ -52,7 +52,6 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
             {theme:"outline", size:"large"}
         )
     },[]);
-
     return(
         <div>
             <div id="signinDiv"></div>
