@@ -11,7 +11,7 @@ const Layout = () => {
 			<SideNav />
 			<Header />
 			<Search />
-			<Outlet />
+			<Outlet className='body'/>
 		</div>
 	);
 }

@@ -46,6 +46,10 @@ header .left img {
 	margin-right: 10px;
 }
 
+header .left p {
+	margin-top: 10px;
+}
+
 header .right {
 	display: flex;
 	margin-left: auto;
@@ -92,4 +96,8 @@ header .right .menu {
 .search .right {
 	margin-left: auto;
 	margin-right: 10px;
+}
+
+.body {
+	background-color: #eeeeee;
 }
