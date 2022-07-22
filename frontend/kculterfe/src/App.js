@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
-import NavBar from './navbar/NavBar';
+import NavBar from './navbar/NavBar'; //이건 무슨 네브바? 
 import Login from './login/LoginPage';
 import MainPage from './main/MainPage';
 import MapPage from './map/MapPage';
