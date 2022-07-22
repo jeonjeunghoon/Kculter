@@ -1,6 +1,7 @@
 import React from 'react';
 import MapLink from '../map/MapLink';
 import MyPageLink from '../myPage/MyPageLink';
+import ConcertPageLink from '../concertPage/concertPageLink';
 import './MainPage.css';
 
 function MainPage() {
@@ -13,6 +14,9 @@ function MainPage() {
 			</div>
             <div>
 				<MyPageLink/>
+			</div>
+            <div>
+				<ConcertPageLink/>
 			</div>
         </>
     );
