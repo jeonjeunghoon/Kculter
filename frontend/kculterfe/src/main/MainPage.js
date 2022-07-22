@@ -1,7 +1,8 @@
 import React from 'react';
 import MapLink from '../map/MapLink';
+import MyPageLink from '../myPage/MyPageLink';
 
-function MainPage(){
+function MainPage() {
     return(
         <>
             <div style={{border:'1px solid black'}}>
@@ -9,6 +10,9 @@ function MainPage(){
             </div>
 			<div>
 				<MapLink/>
+			</div>
+            <div>
+				<MyPageLink/>
 			</div>
         </>
     );
