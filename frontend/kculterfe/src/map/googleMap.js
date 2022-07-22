@@ -38,7 +38,7 @@ function GoogleMap(props) {
 	// 내 위치 담을거
 	const defaultProps = {
 		center: props.center,
-		zoom: 15,
+		zoom: props.zoom
 	};
 	return (
 	  // Important! Always set the container height explicitly
