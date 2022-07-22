@@ -34,11 +34,10 @@ const MapLink = () => {
 		lng: 0
 	};
 	console.log("MainPage <- 여기서 위치 정보 받아야 함")
-	GetCurPos(center);
+	GetCurPos(center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
 
 	return (
 		<nav style={{border: '1px solid black'}}>
-			<h3>MAP Link</h3>
 			<Link to="MapPage"
 				state={{center: center}
 			}>Go to MapPage</Link>

@@ -23,8 +23,6 @@ const Marker = props => {
 			style={{backgroundImage: markerProps.src}}
 			onClick={(e) => {
 				e.preventDefault();
-
-				// togle 기능
 				isMarkerOn === false ? setIsMarkerOn(true) : setIsMarkerOn(false);
 			}}
 		/>
@@ -38,7 +36,7 @@ function GoogleMap(props) {
 	// 내 위치 담을거
 	const defaultProps = {
 		center: props.center,
-		zoom: 15,
+		zoom: props.zoom
 	};
 	return (
 	  // Important! Always set the container height explicitly
