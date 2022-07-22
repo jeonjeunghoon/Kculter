@@ -23,8 +23,6 @@ const Marker = props => {
 			style={{backgroundImage: markerProps.src}}
 			onClick={(e) => {
 				e.preventDefault();
-
-				// togle 기능
 				isMarkerOn === false ? setIsMarkerOn(true) : setIsMarkerOn(false);
 			}}
 		/>
