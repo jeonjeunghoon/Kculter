@@ -1,10 +1,7 @@
 import React from 'react';
 import MapLink from '../map/MapLink';
-<<<<<<< HEAD
 import MyPageLink from '../myPage/MyPageLink';
-=======
 import './MainPage.css';
->>>>>>> 69948e761bb3654292c755ef0dc5070dec0b797b
 
 function MainPage() {
     return(
