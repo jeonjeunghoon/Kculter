@@ -32,7 +32,7 @@ const Marker = props => {
 	);
 }
 
-function GoogleMap(props) {
+function GoogleMapApi(props) {
 	// GoogleMap을 사용하기 위한 api키
 	const apiKey = process.env.REACT_APP_GOOGLE_MAP_KEY;
 	
@@ -75,4 +75,4 @@ function GoogleMap(props) {
 	);
 }
 
-export default GoogleMap;
+export default GoogleMapApi;

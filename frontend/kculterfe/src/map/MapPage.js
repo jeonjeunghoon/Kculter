@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MapPage.css';
-import GoogleMap from './GoogleMap';
+import GoogleMapApi from './GoogleMapApi';
 import { Link, useLocation } from 'react-router-dom';
 
 const MapPage = () => {
@@ -10,7 +10,7 @@ const MapPage = () => {
 
 	return (
 		<div className='map-page'>
-			<GoogleMap center={center} zoom={zoom} />
+			<GoogleMapApi center={center} zoom={zoom} />
 		</div>
 	);
 }
