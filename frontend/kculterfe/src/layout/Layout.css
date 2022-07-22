@@ -1,6 +1,4 @@
 .layout {
-	border: 5px solid red;
-	
 	display: grid;
 	height: 100vh;
 	width: 100vw;
@@ -9,9 +7,7 @@
 }
 
 .side-nav {
-	border: 5px solid orange;
 	color: white;
-	
 	display: flex;
 	flex-direction: column;
 	background-color: rgb(0,3,77);
@@ -32,9 +28,8 @@
 }
 
 header {
-	border: 5px solid yellow;
-
 	display: flex;
+	background-color: white;
 	align-items: center;
 	min-height: 40px;
 }
@@ -58,9 +53,17 @@ header .right {
 }
 
 header .right .logo {
+	margin-right: 10px;
+	background: no-repeat;
+	/* border: none; */
+	/* width: 30px; */
+	/* height: 30px; */
+	cursor: pointer;
+}
+
+header .right .logo-img {
 	height: 30px;
 	width: 30px;
-	margin-right: 10px;
 }
 
 header .right .menu {
@@ -70,8 +73,7 @@ header .right .menu {
 }
 
 .search {
-	border: 5px solid green;
-
+	background-color: #eeeeee;
 	display: flex;
 	align-items: center;
 	min-height: 40px;
