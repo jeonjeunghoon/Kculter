@@ -5,9 +5,9 @@ import myImg from './logo192.png';
 
 function SidePage() {
     return (
-        <div class="">
+        <div>
             <Card className="text-center text-white border-0 bg-primary">
-                <Card.Body className="">
+                <Card.Body >
                     <Card.Title className="pt-3">MY PAGE</Card.Title>
                     <Card.Img src={myImg} style={{ width: '4rem'}} className="pt-3"></Card.Img>
                     <Card.Subtitle className="pt-2">조현진</Card.Subtitle>

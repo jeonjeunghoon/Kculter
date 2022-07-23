@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
+import './MBody.css';
 
 function MBody() {
     return (
-        <>
+        <div className='my-body'>
             <Container className="mx-6">
                 <Card className="mx-5 my-3 border-0 border-bottom bg-light">
                     My map Like list
@@ -75,7 +76,7 @@ function MBody() {
                     </Row>
                 </Card>
             </Container>
-        </>
+        </div>
     )
 }
 
