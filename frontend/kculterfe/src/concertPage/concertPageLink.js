@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MapLink() {
+function ConcertPageLink() {
 	return (
 		<nav style={{border: '1px solid black'}}>
-			<Link to="MyPage">Go to MyPage</Link>
+			<Link to="ConcertPage">Go to ConcertPage</Link>
 		</nav>
 	);
 }
 
-export default MapLink;
+export default ConcertPageLink;

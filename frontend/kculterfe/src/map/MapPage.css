@@ -1,16 +1,15 @@
-.map-page {
-	border: 5px solid blue;
-}
-
 .marker {
 	background-color: white;
 	border-radius: 8px;
 	border: 1px solid black;
-	height: 30px;
-	width: 30px;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
+	cursor: pointer;
+	/* height: 30px;
+	width: 30px; */
+}
+
+.marker .marker-img {
+	height: 20px;
+	width: 20px;
 }
 
 .current-marker {
