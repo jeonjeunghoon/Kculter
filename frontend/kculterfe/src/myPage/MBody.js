@@ -1,19 +1,20 @@
 import React from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col} from 'react-bootstrap';
 import './MBody.css';
 
 function MBody() {
     return (
-        <div className='my-body'>
-            <Container className="mx-6">
-                <Card className="mx-5 my-3 border-0 border-bottom bg-light">
-                    My map Like list
-                </Card>
+        <div id='my-body'>
+            <Container>
+                <div className="my-3 body-navbar">
+                    <button href="#" className="px-5 body-navbtn">My map</button>
+                    <button href="#" className="px-5 body-navbtn">Like list</button>
+                </div>
                 <Card className="mx-5 mb-3">
                     <Row>
-                        <Col sm={2}>
-                            <div class="bg-primary" style={{ height: '13rem' }}>
-                                <p className="mx-3 py-2">
+                        <Col sm={2} className="bg-primary">
+                            <div>
+                                <p className="mx-2 py-2">
                                     01.<br />First day
                                 </p>
                                 <p className="mx-3 position-absolute bottom-0">
@@ -24,8 +25,13 @@ function MBody() {
                         <Col sm={10}>
                             <Row className="mx-5">
                                 <Col className="py-5">
-                                    <Card style={{ width: '6rem', height: '6rem' }}>
-                                        EXO
+                                    <Card className="body-card">
+                                        <Card.Img variant="top" src="./logo192.png" style={{ height: '6em' }}/>
+                                        <Card.Body className="body-card-body">
+                                            <Card.Title className="text-center">
+                                                World cup
+                                            </Card.Title>
+                                        </Card.Body>
                                     </Card>
                                 </Col>
                                 <Col className="py-5">
@@ -44,9 +50,9 @@ function MBody() {
                 </Card>
                 <Card className="mx-5">
                     <Row>
-                        <Col sm={2}>
-                            <div class="bg-primary" style={{ height: '13rem' }}>
-                                <p className="mx-3 py-2">
+                        <Col sm={2} className="bg-primary">
+                            <div>
+                                <p className="mx-2 py-2">
                                     02.<br />Second day
                                 </p>
                                 <p className="mx-3 position-absolute bottom-0">
