@@ -1,0 +1,38 @@
+[
+    {
+        "title": "IDOL",
+        "childrens": [
+            {
+                "title": "BTS",
+                "path": "/"
+            },
+            {
+                "title": "ICON",
+                "path": "/about"
+            },
+            {
+                "title": "BLACKPINK"
+            },
+            {
+                "title": "BLACKPINK"
+            }
+        ]
+    },
+    {
+        "title": "STATUS",
+        "childrens": [
+            {
+                "title": "DURING",
+                "path": "/login"
+            },
+            {
+                "title": "SCHEDULE",
+                "path": "/register"
+            },
+            {
+                "title": "DONE",
+                "path": "/forgot-password"
+            }
+        ]
+    }
+]
