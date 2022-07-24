@@ -8,14 +8,14 @@ import MyPage from './myPage/MyPage';
 import MapPage from './map/MapPage';
 import Layout from './layout/Layout';
 import ConcertPage from './concertPage/concertPage';
-import ManagerMain from './manager/ManagerMain'
+import ManagerMain from './manager/ManagerMain';
 
 function App() {
   return (
     <BrowserRouter>
 		{/* <NavBar/> */}
 		<Routes>
-			<Route path="/manager" element={<ManagerMain/>}></Route>
+			<Route path="/manager/*" element={<ManagerMain/>}></Route>
 			<Route path="/" element={<MainPage/>}></Route>
 			<Route path="/login" element={<Login/>}/>
 			<Route path="/signup" element={<SignUpPage/>}/>	
