@@ -8,6 +8,7 @@ import MyPage from './myPage/MyPage';
 import MapPage from './map/MapPage';
 import Layout from './layout/Layout';
 import ConcertPage from './concertPage/concertPage';
+<<<<<<< HEAD
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
 
