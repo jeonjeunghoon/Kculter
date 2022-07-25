@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleLoginBtn from './GoogleLoginBtn';
+import GoogleLoginBtn from '../container/GoogleLoginBtn';
 
 
 function LoginPage(){
