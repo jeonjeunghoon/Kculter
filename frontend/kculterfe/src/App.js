@@ -8,6 +8,7 @@ import MyPage from './myPage/MyPage';
 import MapPage from './map/MapPage';
 import Layout from './layout/Layout';
 import ConcertPage from './concertPage/concertPage';
+import IdolListPage from './IdolListPage/IdolListPage';
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
 
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/MapPage" element={<MapPage />} />
 				<Route path="/MyPage" element={<MyPage/>}/>  {/* myPage 추가 */}
 				<Route path="/ConcertPage" element={<ConcertPage/>}/>
+				<Route path="/IdolListPage" element={<IdolListPage/>}/>
 			</Route>
 			<Route path="*" element={<NotFound />} />
 		</Routes>

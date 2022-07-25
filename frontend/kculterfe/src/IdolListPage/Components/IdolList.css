@@ -1,0 +1,28 @@
+
+.Card-container{
+	display: table;
+}
+
+.Row{
+	content: "";
+	display: table-row;
+}
+
+.Column{
+	display: table-column;
+	float: left;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+	.Card-container{
+		display: block;
+	}
+
+	.Column {
+	  width: 100%;
+	  display: block;
+	  margin-bottom: 10px;
+	}
+}
