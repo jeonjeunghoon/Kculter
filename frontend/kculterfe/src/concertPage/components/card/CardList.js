@@ -1,3 +1,4 @@
+import React from 'react';
 import CardItem from './CardItem';
 import items from '../data/card.json'
 

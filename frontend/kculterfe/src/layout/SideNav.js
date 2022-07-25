@@ -1,3 +1,5 @@
+import React from 'react';
+
 const SideNav = () => {
 	return (
 		<nav className="side-nav">
