@@ -33,7 +33,6 @@ const MapLink = () => {
 		lat: 0,
 		lng: 0
 	};
-	console.log("MainPage <- 여기서 위치 정보 받아야 함")
 	GetCurPos(center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
 
 	return (

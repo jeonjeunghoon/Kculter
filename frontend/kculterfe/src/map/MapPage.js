@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MapPage.css';
 import GoogleMapApi from './GoogleMapApi';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const MapPage = () => {
 	const location = useLocation();

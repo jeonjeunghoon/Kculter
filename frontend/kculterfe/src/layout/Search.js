@@ -1,5 +1,5 @@
-import SelectBar from './SelectBar';
 import React, { useState } from 'react';
+import SelectBar from './SelectBar';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
