@@ -1,110 +1,15 @@
-.map-page {
-	border: 5px solid red;
-	
-	display: grid;
-	height: 100vh;
-	width: 100vw;
-	grid-template-columns: 1fr 3fr;
-	grid-template-rows: 1fr 1fr 6fr;
-}
-
-.map-nav {
-	border: 5px solid orange;
-	color: white;
-	
-	display: flex;
-	flex-direction: column;
-	background-color: rgb(0,3,77);
-	min-width: 200px;
-	grid-row: 1 / span 4;
-}
-
-.map-nav .idol {
-	display: flex;
-	justify-content: center;
-	margin-right: 30px;
-}
-
-.map-nav .idol img {
-	height: 30px;
-	width: 30px;
-	margin-top: 10px;
-}
-
-.map-header {
-	border: 5px solid yellow;
-
-	display: flex;
-	align-items: center;
-	min-height: 40px;
-}
-
-.map-header .left {
-	display: flex;
-	margin-left: 10px;
-}
-
-.map-header .left img {
-	height: 30px;
-	width: 30px;
-	margin-top: 10px;
-	margin-right: 10px;
-}
-
-.map-header .right {
-	display: flex;
-	margin-left: auto;
-	margin-right: 10px;
-}
-
-.map-header .right .logo {
-	height: 30px;
-	width: 30px;
-	margin-right: 10px;
-}
-
-.map-header .right .menu {
-	height: 20px;
-	width: 20px;
-	margin-top: 5px;
-}
-
-.map-search {
-	border: 5px solid green;
-
-	display: flex;
-	align-items: center;
-	min-height: 40px;
-}
-
-.map-search .left {
-	color: red;
-	margin-left: 10px;
-}
-
-.map-search .left input {
-	border-radius: 10px;
-	margin-left: 10px;
-}
-
-.map-search .right {
-	margin-left: auto;
-	margin-right: 10px;
-}
-
-.map-content {
-	border: 5px solid blue;
-}
-
 .marker {
 	background-color: white;
 	border-radius: 8px;
 	border: 1px solid black;
-	height: 30px;
-	width: 30px;
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
+	cursor: pointer;
+	/* height: 30px;
+	width: 30px; */
+}
+
+.marker .marker-img {
+	height: 20px;
+	width: 20px;
 }
 
 .current-marker {

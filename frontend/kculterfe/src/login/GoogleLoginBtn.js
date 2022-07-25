@@ -26,6 +26,7 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
         .then(function(res){
             const member = res.data;
             console.log(member);
+            //이거 이전에 member가 관리자인지 체크를 해야함. 관리자라면 관리자 페이지로 이동을 해야함
             if(member.checkMember){ //true 즉 기존 회원이라면 해당 정보를 가지고 메인 페이지로 이동
                 
             }else{ //false 즉 기존 회원이 아니라면 회원 가입 페이지로 이동
