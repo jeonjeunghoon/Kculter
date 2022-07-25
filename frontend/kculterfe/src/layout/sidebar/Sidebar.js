@@ -5,7 +5,12 @@ import './sidebar.css';
 export default function Sidebar() {
 	return (
 		<div className="sidebar">
-			<h1 align='center'>FILTER</h1>
+			<i className="bi-chevron-left"></i>
+			<i className="bi-filter-circle">Filter</i>
+			<i className="bi-person-circle"></i>
+			
+			<br></br>
+			<br></br>
 			{ items.map((item, index) => <SidebarItem key={index} item={item} {...item} />)}
 		</div>
 	)
