@@ -16,7 +16,7 @@ const Marker = props => {
 		center: [props.lat, props.lng], // 위치 좌표 ex: 33.91 127.12
 		src: props.src, // 마커 이미지
 	};
-	const [isMarkerOn, setIsMarkerOn] = useState(false); // 토글 기능
+	const [isMarkerOn, setIsMarkerOn] = useState(false); // 토글
 
 	return (
 		<button className='marker'
@@ -27,7 +27,8 @@ const Marker = props => {
 		>
 			<img className='marker-img'
 				src={markerProps.src}
-				alt='idol-logo' />
+				alt='idol-logo'
+			/>
 		</button>
 	);
 }
