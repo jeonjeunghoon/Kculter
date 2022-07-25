@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import SearchBox from './SearchBox';
 import Dotenv from 'dotenv';
 import './MapPage.css';
 
@@ -44,15 +45,51 @@ function GoogleMapApi(props) {
 		center: props.center,
 		zoom: props.zoom
 	};
+
+	//
+	const [apiReady, setApiReady] = useState(false);
+	const [map, setMap] = useState(null);
+	const [googlemaps, setGooglemaps] = useState(null);
+
+	// 화면 크기에 따른 줌 설정
+	if (window.screen.width >= 768) {
+		defaultProps.zoom = 15;
+	}
+
+	const apiIsLoaded = (map, maps) => {
+		// map과 maps 개체가 로드되었다면 각각의 state 값에 넣어준다.
+		if (map && maps) {
+			setApiReady(true);
+			setMap(map);
+			setGooglemaps(maps);
+		}
+	}
+
 	return (
 	  // Important! Always set the container height explicitly
 	  <div style={{ height: '100%', width: '100%' }}>
+		{apiReady && googlemaps && 
+			<SearchBox
+				map={map}
+				mapApi={googlemaps}
+			/>
+		}
 		<GoogleMapReact
-		  bootstrapURLKeys={{ key: `${apiKey}` }}
+			bootstrapURLKeys={{
+				key: `${apiKey}`,
+				libraries: 'places',
+			}}
 		  defaultCenter={defaultProps.center}
 		  defaultZoom={defaultProps.zoom}
-		//   yesIWantToUseGoogleMapApiInternals
+
+		// map, maps 개체에 접근하기 위해 반드시 true로 설정해야 한다.
+		  yesIWantToUseGoogleMapApiInternals
+
+		// map은 지도 객체, maps에는 api object가 들어있다.
+		onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
 		>
+
+		{/* Marker 컴포넌트 */}
 		<CurrentMarker
 			lat={defaultProps.center.lat}
 			lng={defaultProps.center.lng}

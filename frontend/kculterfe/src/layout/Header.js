@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 const Header = () => {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
-	const [title, setTitle] = useState('Main');
+	const [title, setTitle] = useState(null);
 	const location = useLocation();
 
 	useEffect(() => {
@@ -25,7 +24,7 @@ const Header = () => {
 				setTitle('Error');
 				// setImg('');
 		}
-	});
+	}, []);
 
 	return (
 		<header>
