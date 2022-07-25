@@ -1,0 +1,43 @@
+.main {
+	display: grid;
+	grid-template-columns: 260px 1fr;
+	height: 100vh;
+	width: 100vw;
+}
+
+.bodyGrid{
+	display: grid;
+	border: #000 solid;
+	grid-template-rows: 60px auto;
+}
+
+.concertNavbar {
+	border: #000 solid;
+}
+
+.pageBody{
+	display: grid;
+	grid-template-rows: 50px auto;
+	border: #000 solid;
+	background-color: rgb(222, 218, 218);
+}
+
+.option{
+	border:#000 solid;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.search{
+	display: flex;
+}
+
+.sortBtn{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.cardLink {
+	text-decoration: none;
+	color: #000;
+}
