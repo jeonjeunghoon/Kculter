@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
 		{/* <NavBar/> */}
 		<Routes>
-			<Route path="/manager/*" element={<ManagerMain/>}></Route>
+			<Route path="/manager/*" element={<ManagerMain/>}></Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
 			<Route path="/" element={<MainPage/>}></Route>
 			<Route path="/login" element={<Login/>}/>
 			<Route path="/signup" element={<SignUpPage/>}/>	
