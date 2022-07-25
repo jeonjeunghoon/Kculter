@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -24,8 +25,6 @@ const Header = () => {
 				setTitle('Error');
 				// setImg('');
 		}
-		console.log(location);
-		console.log(title);
 	});
 
 	return (

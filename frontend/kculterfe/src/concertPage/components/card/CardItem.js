@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Jeju from '../../jeju.jpg';
 

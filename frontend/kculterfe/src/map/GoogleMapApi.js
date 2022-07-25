@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import Dotenv from 'dotenv';
 import './MapPage.css';
 
 const CurrentMarker = props => {
@@ -35,6 +36,7 @@ const Marker = props => {
 
 function GoogleMapApi(props) {
 	// GoogleMap을 사용하기 위한 api키
+	Dotenv.config();
 	const apiKey = process.env.REACT_APP_GOOGLE_MAP_KEY;
 	
 	// 내 위치 담을거
@@ -49,7 +51,7 @@ function GoogleMapApi(props) {
 		  bootstrapURLKeys={{ key: `${apiKey}` }}
 		  defaultCenter={defaultProps.center}
 		  defaultZoom={defaultProps.zoom}
-		  yesIWantToUseGoogleMapApiInternals
+		//   yesIWantToUseGoogleMapApiInternals
 		>
 		<CurrentMarker
 			lat={defaultProps.center.lat}

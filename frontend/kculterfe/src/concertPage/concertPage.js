@@ -1,3 +1,4 @@
+import React from 'react';
 import './concertPage.css';
 import Sidebar from './components/sidebar/Sidebar';
 import CardList from './components/card/CardList';

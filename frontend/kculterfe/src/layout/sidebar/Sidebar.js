@@ -1,3 +1,4 @@
+import React from 'react';
 import SidebarItem from "./SidebarItem"
 import items from "./sidebar.json"
 import './sidebar.css';
