@@ -1,0 +1,20 @@
+#my-body {
+    /* 뒷 배경을 가리기 위한 임시 방책 */
+    background-color: #eeeeee;
+}
+
+#my-body button {
+    border: 0;
+    color: gray;
+}
+
+#my-body .body-navbar {
+    border-bottom: 1px solid gray;
+    margin-left: 2.35em;
+    margin-right: 3em;
+}
+
+#my-body .body-navbtn:hover {
+    border-bottom: 2px solid red;
+    color: gray;
+}

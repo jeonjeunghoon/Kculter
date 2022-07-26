@@ -4,7 +4,7 @@ import NavBar from './navbar/NavBar'; //이건 무슨 네브바? << 임시 네�
 import Login from './login/presentation/LoginPage';
 import MainPage from './main/MainPage';
 import SignUpPage from './signup/SignUpPage';
-import MyPage from './myPage/MyPage';
+import MyPage from './myPage/page/MyPage';
 import MapPage from './map/MapPage';
 import Layout from './layout/Layout';
 import ConcertPage from './concertPage/concertPage';

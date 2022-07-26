@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
-import "./Card.css"
+import "../../styles/Card.css"
 import CardList from './CardList';
 
 function BoxCardItem({ props }) {

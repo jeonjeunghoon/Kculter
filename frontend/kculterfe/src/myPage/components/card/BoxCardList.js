@@ -1,7 +1,6 @@
 import React from 'react';
 import BoxCardItem from './BoxCardItem';
-import items from '../data/card.json'
-import { Row, Col } from 'react-bootstrap';
+import items from '../../data/card.json'
 
 function BoxCardList() {
 	return (
