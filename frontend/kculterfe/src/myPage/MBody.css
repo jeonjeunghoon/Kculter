@@ -18,13 +18,3 @@
     border-bottom: 2px solid red;
     color: gray;
 }
-
-#my-body .body-card {
-    width: 8em;
-}
-
-#my-body .body-card-body {
-    background-color: gainsboro;
-    padding-top: 0.5em;
-    padding-bottom: 0;
-}

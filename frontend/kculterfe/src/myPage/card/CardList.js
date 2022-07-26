@@ -1,12 +1,17 @@
 import React from 'react';
 import CardItem from './CardItem';
 import items from '../data/card.json'
+import { Row, Col } from 'react-bootstrap';
 
-function CardList() {
+function CardList({ props }) {
 	return (
-		<div>
-			{ items.map((item, index) => <CardItem key={index} props={item} {...item} />)}
-		</div>
+		<>
+			<Col sm={10}>
+				<Row className="mx-5">
+					{ props.map((item, index) => <CardItem key={index} props={item} {...item} />)}
+				</Row>
+			</Col>
+		</>
 	)
 }
 

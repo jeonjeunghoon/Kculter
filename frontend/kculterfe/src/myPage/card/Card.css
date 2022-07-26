@@ -1,0 +1,15 @@
+.cardList {
+	display: grid;
+	flex-wrap: wrap;
+}
+
+#my-body .body-card {
+    width: 8em;
+    margin-right: 4rem;
+}
+
+#my-body .body-card-body {
+    background-color: gainsboro;
+    padding-top: 0.5em;
+    padding-bottom: 0;
+}
