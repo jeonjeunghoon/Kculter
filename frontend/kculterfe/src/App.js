@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import NavBar from './navbar/NavBar'; //이건 무슨 네브바? << 임시 네브바라서 나중에 지울 예정입니다.
-import Login from './login/LoginPage';
+import Login from './login/presentation/LoginPage';
 import MainPage from './main/MainPage';
 import SignUpPage from './signup/SignUpPage';
 import MyPage from './myPage/MyPage';
@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
 		{/* <NavBar/> */}
 		<Routes>
-			<Route path="/manager/*" element={<ManagerMain/>}></Route>
+			<Route path="/manager/*" element={<ManagerMain/>}></Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
 			<Route path="/" element={<MainPage/>}></Route>
 			<Route path="/login" element={<Login/>}/>
 			<Route path="/signup" element={<SignUpPage/>}/>	

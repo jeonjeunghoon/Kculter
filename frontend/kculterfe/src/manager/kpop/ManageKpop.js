@@ -1,11 +1,11 @@
 import React from 'react';
+import InfoForm from '../common/InfoForm';
 
 
 function ManageKpop(){
+
     return(
-        <div style={{border:"1px solid black"}}>
-            <h1>여기는 kpop 관리</h1>
-        </div>
+        <InfoForm/>
     );
 }
 export default ManageKpop;

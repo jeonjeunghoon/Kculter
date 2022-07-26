@@ -1,11 +1,9 @@
 import React from 'react';
-
+import InfoForm from '../common/InfoForm';
 
 function ManageCulture(){
     return(
-        <div style={{border:"1px solid black"}}>
-            <h1>여기는 문화체험 관리</h1>
-        </div>
+        <InfoForm/>
     );
 }
 export default ManageCulture;
