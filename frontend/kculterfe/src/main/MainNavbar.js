@@ -1,10 +1,21 @@
 import React, {useState } from 'react';
 import {Link} from 'react-router-dom';
+import './MainNavbar.css';
+import { Button } from './Button';
 
 function MainNavbar() {
     const [click, setClick] = useState(false);
+    const [button, setButton] = useState(true)
 
     const handleClick =() => setClick(!click);
+    const showButton = () => {
+        if (window.innerWidth <= 960){
+            setButton(false);
+        }
+        else{
+            setButton(true);
+        }
+    };
     return (
     
            <nav className='navbar'>
@@ -16,27 +27,23 @@ function MainNavbar() {
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'}/> 
                </div>
                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                   <li className='nav-item'>
-                      <Link to='/' className='nav-links'>
-                        HOME
-                      </Link> 
-                       </li>
                        <li className='nav-item'>
-                      <Link to='/' className='nav-links'>
+                      <Link to='/ConcertPage' className='nav-links'>
                         CONCERT
                       </Link> 
                        </li>
                        <li className='nav-item'>
-                      <Link to='/' className='nav-links'>
-                        Login
+                      <Link to='/LoginPage' className='nav-links'>
+                        LOGIN
                       </Link> 
                        </li>
                        <li className='nav-item'>
-                      <Link to='/' className='nav-links'>
+                      <Link to='/Mypage' className='nav-links'>
                         MYPAGE
                       </Link> 
                        </li>
                </ul>
+               {button && <Button buttonStyle = 'btn--outline'>SIGNUP</Button>}
             </div>
         </nav>
     )
