@@ -15,6 +15,7 @@ const GetGps = async() => {
 			lng: pos.coords.longitude
 		};
 	} else {
+		console.log('geolocation X');
 		return {
 			lat: 37.5758772,
 			lng: 126.9768121
