@@ -1,0 +1,34 @@
+[
+	{
+		"id": "0",
+		"title": "BTS",
+		"imgurl": "btsimg",
+		"likenum": "14",
+		"spotnum": "27",
+		"mappath": "./"
+	},
+	{
+		"id": "1",
+		"title": "BLACKPINK",
+		"imgurl": "IdolListPage/Data/photo/blackpink.jpg",
+		"likenum": "14",
+		"spotnum": "27",
+		"mappath": "./"
+	},
+	{
+		"id": "2",
+		"title": "PSY",
+		"imgurl": "psyimg",
+		"likenum": "14",
+		"spotnum": "27",
+		"mappath": "./"
+	},
+	{
+		"id": "3",
+		"title": "TWICE",
+		"imgurl": "twiceimg",
+		"likenum": "14",
+		"spotnum": "27",
+		"mappath": "./"
+	}
+]

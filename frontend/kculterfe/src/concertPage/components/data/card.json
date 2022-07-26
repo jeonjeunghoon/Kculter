@@ -1,7 +1,7 @@
 [
 	{
 		"title": "concert1",
-		"img": "../../jeju.jpg",
+		"img": "./heart.png",
 		"date": "220520220527",
 		"path": "./"
 	},
