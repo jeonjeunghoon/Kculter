@@ -84,7 +84,6 @@ function GoogleMapApi(props) {
 
 		// map, maps 개체에 접근하기 위해 반드시 true로 설정해야 한다.
 		  yesIWantToUseGoogleMapApiInternals
-
 		// map은 지도 객체, maps에는 api object가 들어있다.
 		onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
 		>
