@@ -9,12 +9,15 @@
 }
 
 #my-body .body-navbar {
+    background-color: #eeeeee;
     border-bottom: 1px solid gray;
-    margin-left: 2.35em;
+    border-top: none;
+    border-right: none;
+    border-bottom-right-radius: 0px;
+    margin-left: 2.3em;
     margin-right: 3em;
 }
 
 #my-body .body-navbtn:hover {
-    border-bottom: 2px solid red;
-    color: gray;
+    color: red;
 }
