@@ -51,11 +51,6 @@ function GoogleMapApi(props) {
 	const [map, setMap] = useState(null);
 	const [googlemaps, setGooglemaps] = useState(null);
 
-	// 화면 크기에 따른 줌 설정
-	if (window.screen.width >= 768) {
-		defaultProps.zoom = 15;
-	}
-
 	const apiIsLoaded = (map, maps) => {
 		// map과 maps 개체가 로드되었다면 각각의 state 값에 넣어준다.
 		if (map && maps) {
