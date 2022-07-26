@@ -1,0 +1,86 @@
+[
+	{
+		"dayNum": "01.",
+		"dayStr": "First day",
+		"card": [
+			{
+				"title": "BTS1",
+				"place": "World cup1",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS2",
+				"place": "World cup2",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS3",
+				"place": "World cup3",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS4",
+				"place": "World cup4",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS5",
+				"place": "World cup5",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS6",
+				"place": "World cup6",
+				"img": "../logo192.png",
+				"path": "./"
+			}
+		]
+	},
+		{
+		"dayNum": "02.",
+		"dayStr": "Second day",
+		"card": [
+			{
+				"title": "BTS1",
+				"place": "World cup1",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS2",
+				"place": "World cup2",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS3",
+				"place": "World cup3",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS4",
+				"place": "World cup4",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS4",
+				"place": "World cup4",
+				"img": "../logo192.png",
+				"path": "./"
+			},
+			{
+				"title": "BTS4",
+				"place": "World cup4",
+				"img": "../logo192.png",
+				"path": "./"
+			}
+		]
+	}
+]

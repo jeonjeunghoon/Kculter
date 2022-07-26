@@ -1,5 +1,5 @@
 import React from 'react';
-import MBody from './MBody';
+import MBody from '../components/MBody';
 
 function MyPage() {
   return (

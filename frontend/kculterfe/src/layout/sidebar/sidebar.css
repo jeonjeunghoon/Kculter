@@ -5,6 +5,12 @@
 	grid-row: 1 / span 4;
 }
 
+.name {
+	color: #0074ff;
+	text-align: center;
+	font-size: 20px;
+}
+
 i.bi-filter-circle {
 	display: block;
 	text-align: center;

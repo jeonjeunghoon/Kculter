@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './navbar/Navbar';
 import ManageKpop from './kpop/ManageKpop';
 import ManageCulture from './culture/ManageCulture';
