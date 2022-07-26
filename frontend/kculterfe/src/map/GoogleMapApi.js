@@ -38,7 +38,11 @@ const Marker = props => {
 function GoogleMapApi(props) {
 	// GoogleMap을 사용하기 위한 api키
 	Dotenv.config();
-	const apiKey = process.env.REACT_APP_GOOGLE_MAP_KEY;
+	const bootProps = {
+		apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
+		language: props.language,
+		region: props.region,
+	}
 	
 	// 내 위치 담을거
 	const defaultProps = {
@@ -76,7 +80,9 @@ function GoogleMapApi(props) {
 		}
 		<GoogleMapReact
 			bootstrapURLKeys={{
-				key: `${apiKey}`,
+				key: bootProps.apiKey,
+				language: bootProps.language,
+				region: bootProps.region,
 				libraries: 'places',
 			}}
 		  defaultCenter={defaultProps.center}
