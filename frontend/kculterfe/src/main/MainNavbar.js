@@ -43,7 +43,7 @@ function MainNavbar() {
                       </Link> 
                        </li>
                </ul>
-               {button && <Button buttonStyle = 'btn--outline'>SIGNUP</Button>}
+               {button && <Button buttonStyle = 'btn--outline'>SIGNUP!</Button>}
             </div>
         </nav>
     )
