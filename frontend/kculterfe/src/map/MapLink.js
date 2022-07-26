@@ -35,8 +35,8 @@ const MapLink = () => {
 			lat: 0,
 			lng: 0
 		},
-		language: 'ru',
-		region: 'ru',
+		language: 'ko',
+		region: 'ko',
 		zoom: 15,
 	}
 	GetCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
