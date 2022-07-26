@@ -1,6 +1,6 @@
 import React from 'react';
 import BoxCardItem from './BoxCardItem';
-import items from '../../data/card.json'
+import items from '../../data/myMap.json'
 
 function BoxCardList() {
 	return (

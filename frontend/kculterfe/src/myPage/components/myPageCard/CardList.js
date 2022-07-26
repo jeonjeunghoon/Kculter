@@ -1,6 +1,5 @@
 import React from 'react';
 import CardItem from './CardItem';
-import items from '../../data/card.json'
 import { Row, Col } from 'react-bootstrap';
 
 function CardList({ props }) {

@@ -1,9 +1,9 @@
 import React from 'react';
-import MBody from '../components/MBody';
+import MyMapBody from '../components/MyMapBody';
 
 function MyPage() {
   return (
-    <MBody />
+    <MyMapBody />
   );									
 }
 
