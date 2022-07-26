@@ -1,4 +1,5 @@
 #my-body {
+    /* 뒷 배경을 가리기 위한 임시 방책 */
     background-color: #eeeeee;
 }
 
@@ -16,14 +17,4 @@
 #my-body .body-navbtn:hover {
     border-bottom: 2px solid red;
     color: gray;
-}
-
-#my-body .body-card {
-    width: 8em;
-}
-
-#my-body .body-card-body {
-    background-color: gainsboro;
-    padding-top: 0.5em;
-    padding-bottom: 0;
 }
