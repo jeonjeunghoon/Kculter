@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MapPage.css';
 import GoogleMapApi from './GoogleMapApi';
 import { useLocation } from 'react-router-dom';
 
 const MapPage = () => {
 	const location = useLocation();
-	const { center } = location.state;
-	const [zoom, setZoom] = useState(15);
 
 	return (
 		<div className='map-page'>
-			<GoogleMapApi center={center} zoom={zoom} />
+			<GoogleMapApi
+				center={location.state.center}
+				language={location.state.language}
+				region={location.state.region}
+				zoom={location.state.zoom}
+			/>
 		</div>
 	);
 }

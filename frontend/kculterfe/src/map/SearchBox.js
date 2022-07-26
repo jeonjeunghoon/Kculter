@@ -27,7 +27,7 @@ const SearchBox = ({ map, mapApi }) => {
 		// 검색한 장소를 화면에 렌더링
 		if (place.geometry.viewport) {
 			map.fitBounds(place.geometry.viewport);
-			// 아래 코드없을 때 구글에서 정한 default 줌으로 표시됨
+			// 아래의 코드가 없을 때 구글에서 정한 default 줌으로 표시됨
 			// map.setZoom(15);
 		} else {
 			map.setCenter(place.geometry.location);

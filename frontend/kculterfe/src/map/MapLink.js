@@ -15,6 +15,7 @@ const GetGps = async() => {
 			lng: pos.coords.longitude
 		};
 	} else {
+		console.log('geolocation X');
 		return {
 			lat: 37.5758772,
 			lng: 126.9768121
@@ -26,20 +27,33 @@ const GetCurPos = async(center) => {
 	const { lat, lng } = await GetGps();
 	center.lat = lat;
 	center.lng = lng;
-};
+}
 
 const MapLink = () => {
-	const center = {
-		lat: 0,
-		lng: 0
-	};
-	GetCurPos(center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
+	const defaultProps = {
+		center: {
+			lat: 0,
+			lng: 0
+		},
+		language: 'ko',
+		region: 'ko',
+		zoom: 15,
+	}
+	GetCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
 
 	return (
 		<nav style={{border: '1px solid black'}}>
-			<Link to="MapPage"
-				state={{center: center}
-			}>Go to MapPage</Link>
+			<Link
+				to='MapPage'
+				state={{
+					center: defaultProps.center,
+					language: defaultProps.language,
+					region: defaultProps.region,
+					zoom: defaultProps.zoom
+				}}
+			>
+			Go to MapPage
+			</Link>
 		</nav>
 	);
 }
