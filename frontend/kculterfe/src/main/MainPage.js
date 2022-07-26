@@ -4,15 +4,17 @@ import MyPageLink from '../myPage/page/MyPageLink';
 import ConcertPageLink from '../concertPage/concertPageLink';
 import IdolListPageLink from '../IdolListPage/IdolListPageLink';
 import './MainPage.css';
+import MainNavbar from '../main/MainNavbar';
+import LoginPage from '../login/LoginPage';
+import LoginLink from '../login/LoginLink';
 
 function MainPage() {
     return(
         <>
-            <div style={{border:'1px solid black'}}>
-            </div>
-			<div>
-				<MapLink/>
-			</div>
+            <MainNavbar/>
+            <div>
+                <LoginLink/>
+                </div>
             <div>
 				<MyPageLink/>
 			</div>
