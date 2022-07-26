@@ -23,9 +23,6 @@ function MainNavbar() {
                <Link to="/" className ='navbar-logo' >
                    K-culter  <i className='fab fa-typo3' />
                </Link>
-               <div className='menu-icon' onClick={handleClick}>
-                    <i className={click ? 'fas fa-times' : 'fas fa-bars'}/> 
-               </div>
                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                        <li className='nav-item'>
                       <Link to='/ConcertPage' className='nav-links'>
@@ -33,13 +30,13 @@ function MainNavbar() {
                       </Link> 
                        </li>
                        <li className='nav-item'>
-                      <Link to='/LoginPage' className='nav-links'>
-                        LOGIN
+                      <Link to='/Mypage' className='nav-links'>
+                      MYPAGE
                       </Link> 
                        </li>
                        <li className='nav-item'>
-                      <Link to='/Mypage' className='nav-links'>
-                        MYPAGE
+                      <Link to='/Login' className='nav-links'>
+                        LOGIN
                       </Link> 
                        </li>
                </ul>
