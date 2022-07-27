@@ -1,5 +1,4 @@
 .navbar {
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +28,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 60vw;
+  width: 80vw;
   justify-content: end;
   margin-right: 2rem;
 }
