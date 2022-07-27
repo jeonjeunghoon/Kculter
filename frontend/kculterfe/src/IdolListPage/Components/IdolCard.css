@@ -66,3 +66,58 @@ h3,p{
 	margin: 0;
 	padding: 0;
 }
+
+.modal-header{
+	overflow: hidden;
+	position: relative;
+	height: 30rem;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.modal-header img{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	opacity: 0.5;
+}
+
+.modal-title {
+	color: white;
+	font-weight: bold;
+	font-size: xx-large;
+	position: absolute;
+	top: 30%;
+}
+
+.modal-body {
+	display: flex;
+	justify-content: left;
+}
+
+.modal-paragraph {
+	width: 70%;
+}
+
+.modal-info {
+	width: 20%;
+	text-align: right;
+}
+
+.modal-info *{
+	width: 80%;
+	display: flex;
+	justify-content: right;
+	align-items: right;
+	margin: 3px;
+}
+
+.modal-like-num img {
+	width: 1.3rem;
+}
+
+.modal-spot-num img {
+	width: 1.3rem;
+}
