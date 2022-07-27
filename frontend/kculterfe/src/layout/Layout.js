@@ -3,14 +3,14 @@ import { Outlet } from 'react-router-dom';
 import './Layout.css';
 import SideNav from './sidebar/Sidebar';
 import Header from './Header';
-import Search from './Search';
+// import Search from './Search';
 
 const Layout = () => {
 	return (
 		<div className='layout'>
 			<SideNav />
 			<Header />
-			<Search />
+			{/* <Search /> */}
 			<Outlet className='body'/>
 		</div>
 	);

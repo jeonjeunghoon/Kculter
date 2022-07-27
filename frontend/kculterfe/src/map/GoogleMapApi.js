@@ -62,55 +62,60 @@ function GoogleMapApi(props) {
 
 	return (
 	  // Important! Always set the container height explicitly
-		<div style={{ height: '100%', width: '100%' }}>
+		<div className='map-render'>
 
-			{/* SearchBox 렌더링 컴포넌트 */}
-			{apiReady && googlemaps && 
-				<SearchBox
+			{/* 상단 Search Bar 컴포넌트 */}
+			<div className='search-bar'>
+				{/* SearchBox 렌더링 컴포넌트 */}
+				{apiReady && googlemaps && 
+					<SearchBox className='search-box'
 					map={map}
 					mapApi={googlemaps}
-				/>
-			}
+					/>
+				}
+			</div>
 
 			{/* 맵 렌더링 컴포넌트 */}
-			<GoogleMapReact
-				bootstrapURLKeys={{
-					key: defaultProps.apiKey,
-					language: defaultProps.language,
-					region: defaultProps.region,
-					libraries: 'places',
-				}}
-				defaultCenter={defaultProps.center}
-				defaultZoom={defaultProps.zoom}
-
-				// map, maps 개체에 접근하기 위해 반드시 true로 설정해야 한다.
-				yesIWantToUseGoogleMapApiInternals
-				// map은 지도 객체, maps에는 api object가 들어있다.
-				onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
-			>
-
-			{/* Marker 컴포넌트 */}
-			<CurrentMarker
-				lat={defaultProps.center.lat}
-				lng={defaultProps.center.lng}
-			/>
-			<Marker
-				key={'BTS'}
-				locate={'광화문'}
-				text={'BTS is World Class!'}
-				lat={37.5758772}
-				lng={126.9768121}
-				src={'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png'}
-			/>
-			<Marker
-				key={'BlackPink'}
-				locate={'경복궁'}
-				text={'BlackPink is World Class!'}
-				lat={37.579617}
-				lng={126.977041}
-				src={'https://tl.vhv.rs/dpng/s/493-4931814_blackpink-blink-jisoo-jenny-lisa-rose-kpop-stickers.png'}
-			/>
-			</GoogleMapReact>
+			<div className='google-map'>
+				<GoogleMapReact
+					bootstrapURLKeys={{
+						key: defaultProps.apiKey,
+						language: defaultProps.language,
+						region: defaultProps.region,
+						libraries: 'places',
+					}}
+					defaultCenter={defaultProps.center}
+					defaultZoom={defaultProps.zoom}
+				
+					// map, maps 개체에 접근하기 위해 반드시 true로 설정해야 한다.
+					yesIWantToUseGoogleMapApiInternals
+					// map은 지도 객체, maps에는 api object가 들어있다.
+					onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
+				>
+				
+				{/* Marker 컴포넌트 */}
+				<CurrentMarker
+					lat={defaultProps.center.lat}
+					lng={defaultProps.center.lng}
+				/>
+				<Marker
+					key={'BTS'}
+					locate={'광화문'}
+					text={'BTS is World Class!'}
+					lat={37.5758772}
+					lng={126.9768121}
+					src={'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png'}
+				/>
+				<Marker
+					key={'BlackPink'}
+					locate={'경복궁'}
+					text={'BlackPink is World Class!'}
+					lat={37.579617}
+					lng={126.977041}
+					src={'https://tl.vhv.rs/dpng/s/493-4931814_blackpink-blink-jisoo-jenny-lisa-rose-kpop-stickers.png'}
+				/>
+				</GoogleMapReact>
+			</div>
 		</div>
 	);
 }
