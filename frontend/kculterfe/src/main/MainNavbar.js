@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './MainNavbar.css';
 import { Button } from './Button';
 import MapLink from '../map/MapLink';
+import logo from '../src_asset/logo.png';
 
 function MainNavbar() {
     return (
@@ -10,13 +11,9 @@ function MainNavbar() {
            <nav className='navbar'>
            <div className='navbar-container'>
                <Link to="/" className ='navbar-logo' >
-                   K-culter  <i className='fab fa-typo3' />
+                   <img src={logo}></img>
                </Link>
                <ul className='nav-menu'>
-                      {/* Map을 위한 임시 컴포넌트 */}
-					   <li>
-						<MapLink />
-					   </li>
                        <li className='nav-item'>
                       <Link to='/ConcertPage' className='nav-links'>
                         CONCERT
