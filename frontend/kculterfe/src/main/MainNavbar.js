@@ -2,6 +2,7 @@ import React, {useState } from 'react';
 import {Link} from 'react-router-dom';
 import './MainNavbar.css';
 import { Button } from './Button';
+import MapLink from '../map/MapLink';
 
 function MainNavbar() {
     const [click, setClick] = useState(false);
@@ -39,6 +40,12 @@ function MainNavbar() {
                         LOGIN
                       </Link> 
                        </li>
+
+					   {/* Map을 위한 임시 컴포넌트 */}
+					   <li>
+						<MapLink />
+					   </li>
+
                </ul>
                {button && <Button buttonStyle = 'btn--outline'>SIGNUP!</Button>}
             </div>
