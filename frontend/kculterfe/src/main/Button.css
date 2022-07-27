@@ -1,7 +1,4 @@
 .main-btn {
-  top: 478px;
-  left: 75%;
-  position: relative;
   cursor: pointer;
 }
 
@@ -9,7 +6,6 @@
   padding: 1px 55px;
   font-size: 23px;
   color: #0759fc;
-  position: absolute;
   border: none;
   background-color: transparent;
   border: solid 2px #0759fc;
