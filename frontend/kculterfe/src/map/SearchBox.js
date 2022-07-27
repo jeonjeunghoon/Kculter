@@ -65,7 +65,7 @@ const SearchBox = ({ map, mapApi }) => {
 
 	return (
 		<input
-			className='search-box-input'
+			className='search-box'
 			ref={input}
 			type='text'
 			placeholder='Search !'

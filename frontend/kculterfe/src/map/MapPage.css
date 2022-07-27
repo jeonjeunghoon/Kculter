@@ -1,12 +1,6 @@
-.map-page {
-	background-color: #eeeeee;
-}
-
 .map-render {
 	display: flex;
 	flex-direction: column;
-	flex-grow: 1 5;
-	background-color: #eeeeee;
 	height: 100%;
 	width: 100%;
 }
@@ -16,39 +10,51 @@
 	flex-grow: 1;
 	min-height: 40px;
 	align-items: center;
-
 }
 
 .map-render .google-map {
 	flex-grow: 20;
 }
 
-.search-box-input {
+.search-box {
 	height: 20px;
 	width: 100px;
 	margin-left: 10px;
-	border: solid 3px black;
+	border: solid 2px rgba(0, 0, 0, 0.2);
 	border-radius: 8px;
+}
+
+.filter {
+	display: flex;
+	margin: 0 10px 0 auto;
 }
 
 .marker {
-	background-color: white;
+	background-color: rgba(255, 255, 255, 1);
 	border-radius: 8px;
-	border: 1px solid black;
+	border: 1px solid rgba(0, 0, 0, 1);
 	cursor: pointer;
-	/* height: 30px;
-	width: 30px; */
 }
 
 .marker .marker-img {
-	height: 20px;
-	width: 20px;
+	height: 40px;
+	width: 40px;
 }
 
-.current-marker {
+.current-marker-out {
+	display: flex;
+	background-color: rgba(202, 219, 246, 0.6);
+	height: 40px;
+	width: 40px;
 	border-radius: 50%;
-	border: 1px solid black;
-	height: 10px;
-	width: 10px;
-	background: blue;
+}
+
+.current-marker-in {
+	margin: auto;
+	height: 15px;
+	width: 15px;
+	background: rgba(28, 115, 233, 1);
+	border: 2px solid rgba(255, 255, 255, 1);
+	border-radius: 50%;
+	box-shadow: 0 0 16px rgba(200, 200, 200, 1);
 }

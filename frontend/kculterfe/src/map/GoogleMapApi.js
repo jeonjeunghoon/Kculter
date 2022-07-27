@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import SearchBox from './SearchBox';
 import Dotenv from 'dotenv';
+
 import './MapPage.css';
+import SearchBox from './SearchBox';
+import Filter from './Filter';
 
 const CurrentMarker = props => {
 	return (
-		<div className='current-marker'/>
+		<div className='current-marker-out'>
+			<div className='current-marker-in' />
+		</div>
 	);
 }
 
@@ -64,15 +68,17 @@ function GoogleMapApi(props) {
 	  // Important! Always set the container height explicitly
 		<div className='map-render'>
 
-			{/* 상단 Search Bar 컴포넌트 */}
+			{/* Search Bar 컴포넌트 */}
 			<div className='search-bar'>
-				{/* SearchBox 렌더링 컴포넌트 */}
+				{/* Search Box 컴포넌트 */}
 				{apiReady && googlemaps && 
-					<SearchBox className='search-box'
-					map={map}
-					mapApi={googlemaps}
+					<SearchBox
+						map={map}
+						mapApi={googlemaps}
 					/>
 				}
+				{/* filter 컴포넌트 */}
+				<Filter />
 			</div>
 
 			{/* 맵 렌더링 컴포넌트 */}

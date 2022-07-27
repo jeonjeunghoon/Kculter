@@ -10,8 +10,7 @@ const Layout = () => {
 		<div className='layout'>
 			<SideNav />
 			<Header />
-			{/* <Search /> */}
-			<Outlet className='body'/>
+			<Outlet />
 		</div>
 	);
 }
