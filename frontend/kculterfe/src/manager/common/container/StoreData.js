@@ -9,9 +9,18 @@ function StoreData(props){
 
         const url = window.location.href;
         console.log(url);
+
+        const fmd = new FormData();
+        fmd.append('formValue',props.sendData.formValue);
+        fmd.append('file',props.sendData.file);
+
         if(url.includes('kpop')){
             console.log('kpop 저장할거얌');
-            axios.post('/manager/kpopinfo',props.sendData)
+            axios.post('/manager/kpopinfo',fmd,{
+                headers:{
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
             .then(function(res){
                 console.log(res);
                 alert("서버 저장 완료!");
@@ -22,7 +31,11 @@ function StoreData(props){
             })
         }else if(url.includes('culture')){
             console.log('culture 저장할거얌');
-            axios.post('/manager/cultureinfo',props.sendData)
+            axios.post('/manager/cultureinfo',fmd,{
+                headers:{
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
             .then(function(res){
                 console.log(res);
                 alert("서버 저장 완료!");
