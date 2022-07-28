@@ -9,7 +9,7 @@ export default function Sidebar() {
 			<i className="bi-chevron-left"></i>
 			<i className="bi-filter-circle">Filter</i>
 			<i className="bi-person-circle"></i>
-			
+			<div className="name">홍길동</div>
 			<br></br>
 			<br></br>
 			{ items.map((item, index) => <SidebarItem key={index} item={item} {...item} />)}

@@ -5,6 +5,15 @@
 <br/>
 일단 지금까지는 제가 master 로 코드를 올렸는데 각자 branch를 생성하여서 코딩 해주시길 바랍니다.
 
+
+<br/><br/><br/>
+## 본인 브랜치에서 push 전 master 브랜치에서 pull을 받아주세요.
+<br/>
+본인의 브랜치를 생성하셔서 본인의 브랜치에 push하기전 master를 pull 받아주세요.
+<br/>
+push하기전 pull을 받으면 충돌할 가능성이 적어지니 pull 꼭 받아주세용.
+
+
 <br/><br/><br/>
 ## 본인 브랜치에서 push 후 꼭 master 브랜치에 merge를 해주세요.
 <br/>

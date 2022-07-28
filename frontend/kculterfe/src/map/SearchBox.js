@@ -1,9 +1,12 @@
 import React, { useEffect, useCallback, useRef } from 'react';
+import './MapPage.css';
 
-const SearchBox = ({mapApi}) => {
-	// useRef는 .current 프로퍼티에 변경 가능한 값을 담고 있는 '상자'다.
-	// useRef는 특정 DOM을 선택해야 하는 상황에서 DOM Selector 함수를 사용해 DOM을 선택한다.
+const SearchBox = ({ map, mapApi }) => {
+	// useRef는 DOM Selector 함수를 사용해 DOM을 선택한다.
+	// React에서 state로만 해결할 수 없고, DOM을 반드시 직접 건드려야 할 때 사용한다.
 	// useRef 객체의 .current 값은 우리가 원하는 DOM을 가르키게 된다.
+	// 아래의 <input ref={input} 과 같은 형식을 사용했다. 아래에서 선언한 [변수_input]을 ref 에 넣은 것인데
+	// 이런 식으로 작성하면 [변수_input]은 [DOM_input]에 접근할 수 있게 되는 것이다. 
 	const input = useRef(null);
 	const searchBox = useRef(null);
 
@@ -11,16 +14,25 @@ const SearchBox = ({mapApi}) => {
 	// useCallback은 콜백의 메모이제이션된 버전을 반환한다.
 	// 메모이제이션된 버전은 두 번째 인자(배열)인 의존성이 변경되었을 때에만 변경된다.
 	// 이것은 불필요한 렌더링을 방지하기 위해 참조의 동일성에 의존적인 최적화된 자식 컴포넌트에 콜백을 전달할 때 유용하다.
-	// 아래의 함수는 장소를 검색했을 때 해당 장소의 위도 경도 값을 얻는다.
+	
+	// SearchBox에 input이 들어왔을 때 실행되는 함수
 	const handleOnPlacesChanged = useCallback(() => {
 		console.log(searchBox.current.getPlaces());
-		const places = searchBox.current.getPlaces();
-		if (places) {
-			// 잘못된 인풋이 들어와서 오류 발생할 때 아래 로그를 주석 처리하면 된다.
-			console.log(
-				places[0].geometry.location.lat(),
-				places[0].geometry.location.lng()
-			);
+		const selected = searchBox.current.getPlaces();
+		const { 0: place } = selected;
+		// 없는 장소
+		if (!place) {
+			alert('잘못된 입력입니다.');
+			return;
+		}
+		// 검색한 장소를 화면에 렌더링
+		if (place.geometry.viewport) {
+			map.fitBounds(place.geometry.viewport);
+			// 아래의 코드가 없을 때 구글에서 정한 default 줌으로 표시됨
+			// map.setZoom(15);
+		} else {
+			map.setCenter(place.geometry.location);
+			map.setZoom(15);
 		}
 	}, [searchBox]);
 
@@ -28,29 +40,35 @@ const SearchBox = ({mapApi}) => {
 	// Side Effect는 component가 렌더링된 이후에 비동기로 처리되어야 하는 부수적인 효과를 뜻한다.
 	useEffect(() => {
 		if (!searchBox.current && mapApi) {
-			console.log('컴포넌트 생성');
+			console.log('Search Box 연결');
+			// 구글 Search Box와 연결
 			searchBox.current = new mapApi.places.SearchBox(input.current);
+
+			// places_changed는 google maps에서 제공하는 이벤트다.
+			// 두 번째 파라미터는 SearchBox 값이 들어왔을 때 동작할 함수
 			searchBox.current.addListener("places_changed", handleOnPlacesChanged);
 		}
 
 		// 컴포넌트가 화면에서 사라질 때 (cleanup 함수)
 		return() => {
 			if (mapApi) {
-				console.log('컴포넌트 제거');
+				console.log('Search Box 제거');
 				searchBox.current = null;
 				mapApi.event.clearInstanceListeners(searchBox);
 			}
 		};
-	}, [mapApi, handleOnPlacesChanged]);
+
 	// 두 번째 인자는 deps로 useEffect 안에서 사용하는 상태나 props가 있다면 deps 안에 넣어야 한다. 왜냐하면 이게 규칙임
 	// 만약 규칙을 어길 경우 useEffect에 등록한 함수가 실행될 때 최신 props 혹은 상태를 가르키지 않는다.
 	// 또한 deps 파라미터를 생략하게 되면 컴포넌트가 리렌더링 될 때마다 호출이 된다.
+	}, [mapApi, handleOnPlacesChanged]);
 
 	return (
 		<input
+			className='search-box'
 			ref={input}
-			type="text"
-			placeholder='Search Box'
+			type='text'
+			placeholder='Search !'
 		/>
 	);
 }

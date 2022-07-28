@@ -12,7 +12,7 @@ const Header = () => {
 				setTitle('Map');
 				// setImg('');
 				break;
-			case '/MyPage':
+			case '/Mypage':
 				setTitle('My Page');
 				// setImg('');
 				break;

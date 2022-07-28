@@ -14,7 +14,7 @@ const Search = () => {
 				<Link to='/'>
 					<button>&lt;</button>
 				</Link>
-				<input // 검색창 form 알아보기
+				<input
 					type='text'
 					value={search}
 					onChange={onChange}

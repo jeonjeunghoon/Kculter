@@ -1,28 +1,13 @@
 
-.Card-container{
-	display: table;
+.CardContainer{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
 }
 
-.Row{
-	content: "";
-	display: table-row;
-}
-
-.Column{
-	display: table-column;
+.CardDiv{
+	display: 0;
 	float: left;
 	margin-left: 1rem;
 	margin-right: 1rem;
-}
-
-@media screen and (max-width: 800px) {
-	.Card-container{
-		display: block;
-	}
-
-	.Column {
-	  width: 100%;
-	  display: block;
-	  margin-bottom: 10px;
-	}
 }
