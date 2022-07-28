@@ -19,7 +19,7 @@ function InfoForm(props){
         <Form>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label style={{color : 'white'}} id="label1">{props.label} 이름</Form.Label>
-                <Form.Control style={{width:'30%'}} onChange={e => setName(e.target.value)}/>
+                <Form.Control style={{width:'30%'}} onChange={e => setName(e.target.value)}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDec">
