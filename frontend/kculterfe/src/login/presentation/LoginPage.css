@@ -1,0 +1,34 @@
+.login-con {
+  position: relative;
+  display: flex;
+}
+
+.login-con img {
+  width: 100%;
+}
+
+.login-div {
+  border-radius: 5%;
+  background-color: azure;
+  padding: 250px 80px;
+  top: 200px;
+  left: 500px;
+  position: absolute;
+}
+
+.login-top {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+
+.login-logo img {
+  height: 5rem;
+}
+
+.login-div img {
+  height: 5rem;
+}
+
+.login-black {
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useRef } from 'react';
+import './MapPage.css';
 
 const SearchBox = ({ map, mapApi }) => {
 	// useRef는 DOM Selector 함수를 사용해 DOM을 선택한다.
@@ -64,9 +65,10 @@ const SearchBox = ({ map, mapApi }) => {
 
 	return (
 		<input
+			className='search-box'
 			ref={input}
-			type="text"
-			placeholder='Search Box'
+			type='text'
+			placeholder='Search !'
 		/>
 	);
 }

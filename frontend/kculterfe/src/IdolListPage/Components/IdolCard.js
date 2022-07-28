@@ -29,19 +29,37 @@ function IdolCard({item}) {
 						</div>
 						<div className="spot-num">
 							<img src='spot.png' />
-							<p>{item.spotnum}<br></br>Likes</p>
+							<p>{item.spotnum}<br></br>Spots</p>
 						</div>
 					</div>
 				</div>
 			</a>
 
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-				<Modal.Title>{item.title}</Modal.Title>
+			<Modal 
+				show={show}
+				onHide={handleClose}
+				size="lg"
+			>
+				<Modal.Header closeButton className="modal-header">
+					<img src={blackpinkpimg} />
+					<Modal.Title className="modal-title">{item.title}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
-					{item.likenum} likes
-					{item.spotnum} spots
+				<Modal.Body className="modal-body">
+					<div className="modal-paragraph">
+						<p>BTS, also known as the Bangtan Boys, is a South Korean boy band that was formed in 2010 and debuted in 2013 under Big Hit Entertainment.[5] The septet—consisting of members Jin, Suga, J-Hope, RM, Jimin, V, and Jungkook—co-writes and co-produces much of their own output.</p>
+					</div>
+					<div className="modal-info">
+						<div className="modal-like-num">
+							<img src='heart.png' />
+							<p>{item.likenum} Likes</p>
+						</div>
+						<div className="modal-spot-num">
+							<img src='spot.png' />
+							<p>{item.spotnum} Spots</p>
+						</div>					
+					</div>
+
+
 				</Modal.Body>
 				<Modal.Footer>
 				<Button variant="secondary" onClick={handleClose}>

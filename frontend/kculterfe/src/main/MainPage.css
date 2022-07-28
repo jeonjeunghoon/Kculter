@@ -1,14 +1,25 @@
-body {
-  background-image: url(../src_asset/메인홈.png);
-  background-size: cover;
+.main-con {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
 }
-.logo {
-  height: 30px;
-  width: 30px;
-  margin-right: 10px;
-  background: no-repeat;
-  /* border: none; */
-  /* width: 30px; */
-  /* height: 30px; */
-  cursor: pointer;
+.main-con img {
+  width: 100%;
+}
+.MainNav {
+  width: 100%;
+}
+
+.maindiv {
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+.mainbtn {
+  position: absolute;
+  top: 575px;
+  left: 1060px;
 }

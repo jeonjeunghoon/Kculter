@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import MapLink from '../map/MapLink';
+
 const Header = () => {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
 	const [title, setTitle] = useState(null);
@@ -12,7 +14,7 @@ const Header = () => {
 				setTitle('Map');
 				// setImg('');
 				break;
-			case '/MyPage':
+			case '/Mypage':
 				setTitle('My Page');
 				// setImg('');
 				break;
@@ -35,6 +37,7 @@ const Header = () => {
 				/>
 				<p>{title}</p>
 			</div>
+			<MapLink />
 			<div className='right'>
 				<Link to='/'>
 					<button className='logo'>
