@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -29,17 +30,41 @@ const GetCurPos = async(center) => {
 	center.lng = lng;
 }
 
+const GetLang = props => {
+	let input = prompt('언어 코드 입력');
+	if (input) {
+		props.language = input;
+		props.region = input;
+	} else {
+		props.language = 'en';
+		props.region = 'en';
+	}
+}
+
+const GetTourApi = () => {
+	axios({
+		//request
+		method: 'get',
+		url: 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode',
+		responseType: 'type'
+	}).then(function (response) {
+		console.log(response);
+	})
+}
+
 const MapLink = () => {
 	const defaultProps = {
 		center: {
 			lat: 0,
 			lng: 0
 		},
-		language: 'ko',
-		region: 'ko',
+		language: null,
+		region: null,
 		zoom: 15,
 	}
 	GetCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
+	// GetLang(defaultProps); // 언어 설정 함수
+	GetTourApi(); // TourApi 호출
 
 	return (
 		<nav style={{border: '1px solid black'}}>
