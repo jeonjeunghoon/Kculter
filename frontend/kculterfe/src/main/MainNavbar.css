@@ -22,7 +22,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 80vw;
+  width: 85vw;
   justify-content: end;
   margin-right: 2rem;
 }
@@ -43,6 +43,7 @@
 }
 
 .nav-links:hover {
+  color: #ff59f6;
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
