@@ -11,9 +11,9 @@ import { Button } from './Button';
 function MainPage() {
     return(
         <div className='main-con'>
-            <img src={mainimg} />
-             <div className='maindiv'> 
-                 <MainNavbar className='MainNav'/>
+          <img src={mainimg} />
+            <div className='maindiv'> 
+              <MainNavbar className='MainNav'/>
               </div>
         <div className='mainbtn'>
            <Button/>
