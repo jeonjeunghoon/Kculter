@@ -1,5 +1,8 @@
 package com.prac.react.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,8 @@ import com.prac.react.model.dto.Culture;
 public class ManagerController{
     //로그를 찍어보기 위해서 만든 인스턴스
     Logger logger = LoggerFactory.getLogger(ManagerController.class);
+    Date date = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); //파일명을 현재시간으로 바꿔주기 위해서 사용하는 인스턴스입니다.
 
     @PostMapping("/cultureinfo")
     public int insertCultureInfo(@RequestBody Culture culture){
@@ -23,9 +28,11 @@ public class ManagerController{
 
         //여기서 이제 해야할것은 받은 파일명을 다른 파일명으로 저장을 해줘야함
         //그러기 위해선 파일명을 변경해주는 작업이 진행되어야 함
+        int extension = culture.getFileName().lastIndexOf("."); //확장자 명이 시작되는 위치
+        String newFileName = sdf.format(date) + culture.getFileName().substring(extension); //바뀐이름.확장자 이렇게 바뀌게 됨
+        logger.info("changed file name : "+newFileName);
 
-        int standard = culture.getFileName().lastIndexOf("\\");
-        logger.info(Integer.toString(standard));
+        //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
 
         return 200;
     }
@@ -34,6 +41,14 @@ public class ManagerController{
     public int insertKpopInfo(@RequestBody Celebrity celeb){
         logger.info("kpop 저장 들어옴");
         logger.info("celeb : "+ celeb.toString());
+
+        int extension = celeb.getFileName().lastIndexOf("."); //확장자 명이 시작되는 위치
+        String newFileName = sdf.format(date) + celeb.getFileName().substring(extension);//바뀐이름.확장자 이렇게 바뀌게 됨
+        logger.info("changed file name : "+newFileName);
+
+        //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
+
+
         return 200;
     }
 }
