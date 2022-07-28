@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +26,10 @@ public class ManagerControllerTest {
     @Test
     void testInsertCultureInfo() throws Exception{
         // given
-        Culture culture = new Culture(0,"한복체험",0,1,"한복체험하는곳이다.","C:\\fakepath\\매트릭스.png");
+        Culture culture = new Culture(0,"한복체험",0,1,"한복체험하는곳이다.","");
+        //매개변수 뜻은 키값,파일명, MIME TYPE, 파일 구성데이터 를 뜻한다.
+        MockMultipartFile image = new MockMultipartFile("files", "imagefile.jpeg", "image/jpeg", "<<jpeg data>>".getBytes());
+
 
         String requestBody = obm.writeValueAsString(culture);
         mvc.perform(post("/manager/cultureinfo")

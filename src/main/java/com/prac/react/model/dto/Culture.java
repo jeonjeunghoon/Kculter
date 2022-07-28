@@ -6,18 +6,18 @@ public class Culture {
     private int likeCount;
     private int status;
     private String explain;
-    private String fileName;
+    private String fileUrl;
     
     public Culture() {
     }
 
-    public Culture(int cultNum, String name, int likeCount, int status, String explain, String fileName) {
+    public Culture(int cultNum, String name, int likeCount, int status, String explain, String fileUrl) {
         this.cultNum = cultNum;
         this.name = name;
         this.likeCount = likeCount;
         this.status = status;
         this.explain = explain;
-        this.fileName = fileName;
+        this.fileUrl = fileUrl;
     }
 
     public int getCultNum() {
@@ -60,12 +60,12 @@ public class Culture {
         this.explain = explain;
     }
 
-    public String getFileName() {
-        return this.fileName;
+    public String getFileUrl() {
+        return this.fileUrl;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Culture {
             ", likeCount='" + getLikeCount() + "'" +
             ", status='" + getStatus() + "'" +
             ", explain='" + getExplain() + "'" +
-            ", fileName='" + getFileName() + "'" +
+            ", fileUrl='" + getFileUrl() + "'" +
             "}";
     }
 }
