@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const GetPos = () => {
 	return new Promise((resolve, reject) => {
@@ -41,15 +41,55 @@ const GetLang = props => {
 	}
 }
 
-const GetTourApi = () => {
-	axios({
-		//request
-		method: 'get',
-		url: 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode',
-		responseType: 'type'
-	}).then(function (response) {
-		console.log(response);
-	})
+const GetAreaCodeApi = () => {
+	let xhr = new XMLHttpRequest();
+	let url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay'; /* 필수 항목 URL */
+	let queryParams = '?' + encodeURIComponent('serviceKey') + '='+'3Z%2FYQWOyIAR89XtBFrgHdHGxDwSP12fVxUYyqy5VxpHHRNUVhYp3U9ptrdhgHFQ8OnEmPidWt4MZl%2BZlv70L%2Bw%3D%3D'; /*Service Key*/
+	
+	// 다른 api와 비교하여 이 부분만 작성법이 다르다.
+	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('Kculter'); /**/
+	queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent('1'); /**/
+	
+	xhr.open('GET', url + queryParams);
+	xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+	};
+
+	xhr.send('');
+}
+
+const GetStayApi = props => {
+	let xhr = new XMLHttpRequest();
+	let url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay'; /* 필수 항목 URL */
+	let queryParams = '?' + encodeURIComponent('serviceKey') + '='+'3Z%2FYQWOyIAR89XtBFrgHdHGxDwSP12fVxUYyqy5VxpHHRNUVhYp3U9ptrdhgHFQ8OnEmPidWt4MZl%2BZlv70L%2Bw%3D%3D'; /*Service Key*/
+	
+	// 다른 api와 비교하여 이 부분만 작성법이 다르다.
+	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
+	queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
+	queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
+	queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('sigunguCode') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('hanOk') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('benikia') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('goodStay') + '=' + encodeURIComponent(''); /**/
+	queryParams += '&' + encodeURIComponent('modifiedtime') + '=' + encodeURIComponent(''); /**/
+	
+	xhr.open('GET', url + queryParams);
+	xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+	};
+
+	xhr.send('');
 }
 
 const MapLink = () => {
@@ -62,9 +102,12 @@ const MapLink = () => {
 		region: null,
 		zoom: 15,
 	}
+	const [areaCode, setAreaCode] = useState('B02010100');
+	
 	GetCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
 	// GetLang(defaultProps); // 언어 설정 함수
-	GetTourApi(); // TourApi 호출
+	GetAreaCodeApi(); // 지역코드 API 호출
+	GetStayApi(areaCode); // 숙박 API 호출
 
 	return (
 		<nav style={{border: '1px solid black'}}>
