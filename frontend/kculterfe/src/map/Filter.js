@@ -39,7 +39,7 @@ const options = [
 	{value: 'mcthemax', label: 'MC THE MAX'}
 ];
 
-const Filter = () => {
+function Filter() {
 	return (
 		<Select className='filter'
 			styles={customStyles}

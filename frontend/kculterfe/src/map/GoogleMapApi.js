@@ -6,38 +6,8 @@ import './MapPage.css';
 import SearchBox from './SearchBox';
 import Filter from './Filter';
 
-const CurrentMarker = props => {
-	return (
-		<div className='current-marker-out'>
-			<div className='current-marker-in' />
-		</div>
-	);
-}
-
-const Marker = props => {
-	const markerProps = {
-		key: props.key, // 키 ex: BTS
-		locate: props.locate, // 위치 ex: 광화문
-		text: props.text, // 위치 정보 ex: BTS is World Class
-		center: [props.lat, props.lng], // 위치 좌표 ex: 33.91 127.12
-		src: props.src, // 마커 이미지
-	};
-	const [isMarkerOn, setIsMarkerOn] = useState(false); // 토글
-
-	return (
-		<button className='marker'
-			onClick={(e) => {
-				e.preventDefault();
-				isMarkerOn === false ? setIsMarkerOn(true) : setIsMarkerOn(false);
-			}}
-		>
-			<img className='marker-img'
-				src={markerProps.src}
-				alt='idol-logo'
-			/>
-		</button>
-	);
-}
+import MyMarker from './MyMarker';
+import CurrentMarker from './CurrentMarker';
 
 function GoogleMapApi(props) {
 	Dotenv.config();
@@ -104,7 +74,7 @@ function GoogleMapApi(props) {
 					lat={defaultProps.center.lat}
 					lng={defaultProps.center.lng}
 				/>
-				<Marker
+				<MyMarker
 					key={'BTS'}
 					locate={'광화문'}
 					text={'BTS is World Class!'}
@@ -112,7 +82,7 @@ function GoogleMapApi(props) {
 					lng={126.9768121}
 					src={'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png'}
 				/>
-				<Marker
+				<MyMarker
 					key={'BlackPink'}
 					locate={'경복궁'}
 					text={'BlackPink is World Class!'}
