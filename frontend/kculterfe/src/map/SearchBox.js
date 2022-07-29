@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import './MapPage.css';
 
-function SearchBox({ map, mapApi }) {
+function SearchBox({ map, mapApi, setLocation }) {
 	// useRef는 DOM Selector 함수를 사용해 DOM을 선택한다.
 	// React에서 state로만 해결할 수 없고, DOM을 반드시 직접 건드려야 할 때 사용한다.
 	// useRef 객체의 .current 값은 우리가 원하는 DOM을 가르키게 된다.
@@ -17,14 +17,22 @@ function SearchBox({ map, mapApi }) {
 	
 	// SearchBox에 input이 들어왔을 때 실행되는 함수
 	const handleOnPlacesChanged = useCallback(() => {
-		console.log(searchBox.current.getPlaces());
 		const selected = searchBox.current.getPlaces();
 		const { 0: place } = selected;
+		
 		// 없는 장소
 		if (!place) {
 			alert('잘못된 입력입니다.');
 			return;
 		}
+
+		// 위치기반 숙소 정보를 표시하기 위한 값 설정
+		const location = {
+			lat: place.geometry.location.lat(),
+			lng: place.geometry.location.lng()
+		};
+		setLocation(location);
+
 		// 검색한 장소를 화면에 렌더링
 		if (place.geometry.viewport) {
 			map.fitBounds(place.geometry.viewport);

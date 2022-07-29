@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Dotenv from 'dotenv';
 
@@ -8,6 +8,8 @@ import Filter from './Filter';
 
 import MyMarker from './MyMarker';
 import CurrentMarker from './CurrentMarker';
+
+import * as TourApi from './TourApi';
 
 function GoogleMapApi(props) {
 	Dotenv.config();
@@ -19,6 +21,24 @@ function GoogleMapApi(props) {
 		center: props.center,
 		zoom: props.zoom
 	};
+
+	// 위치기반 정보를 위한 값들
+	const [location, setLocation] = useState(props.center);
+	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
+	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
+	useEffect(() => {
+		if (!location) {
+			return;
+		}
+		
+		/*
+		
+		TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
+		TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
+		// 받아온 숙소 정보를 이용해 마커 및 호버링된 컴포넌트 등을 만들어야 한다.
+		
+		*/
+	}, [location]);
 
 	// Search Box를 위한 값들
 	const [apiReady, setApiReady] = useState(false);
@@ -45,6 +65,7 @@ function GoogleMapApi(props) {
 					<SearchBox
 						map={map}
 						mapApi={googlemaps}
+						setLocation={setLocation}
 					/>
 				}
 				{/* filter 컴포넌트 */}
