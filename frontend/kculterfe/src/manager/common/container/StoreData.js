@@ -12,7 +12,7 @@ function StoreData(props){
 
         const fmd = new FormData();
         fmd.append('formValue',props.sendData.formValue);
-        fmd.append('file',props.sendData.file);
+        fmd.append('file',props.sendData.file)
 
         if(url.includes('kpop')){
             console.log('kpop 저장할거얌');
