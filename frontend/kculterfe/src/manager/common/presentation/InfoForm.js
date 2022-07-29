@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Form from 'react-bootstrap/Form';
 import StoreData from '../container/StoreData';
-import StoreInAws from '../container/StoreInAws';
 
 
 function InfoForm(props){
