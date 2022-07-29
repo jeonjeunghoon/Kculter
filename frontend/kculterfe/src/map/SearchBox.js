@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import './MapPage.css';
 
-const SearchBox = ({ map, mapApi }) => {
+function SearchBox({ map, mapApi }) {
 	// useRef는 DOM Selector 함수를 사용해 DOM을 선택한다.
 	// React에서 state로만 해결할 수 없고, DOM을 반드시 직접 건드려야 할 때 사용한다.
 	// useRef 객체의 .current 값은 우리가 원하는 DOM을 가르키게 된다.
