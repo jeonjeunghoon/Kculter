@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
-import { Card, Button, Modal } from 'react-bootstrap';
+import { Card, Button, Modal, Container, Row, Col } from 'react-bootstrap';
 import Jeju from '../../jeju.jpg';
+import './concertCard.css';
 
-
-function CardItem({item}) {
+function CardItem(item) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	return (
 		<>
-			<a className='cardLink' onClick={handleShow}>
-				<Card style={{ width: '18rem' }}>
-					<Card.Img variant="top" src={Jeju} />
-					<Card.Body>
-						<Card.Title>{item.title}</Card.Title>
-						<Card.Text>
-							{item.date}
-						</Card.Text>
-						<Button variant="primary" href={item.path}>Go somewhere</Button>
-					</Card.Body>
-				</Card>
-			</a>
+			<Card className='concertCard' style={{ width: '12rem', height: '20rem'}} onClick={handleShow}>
+				<Card.Img variant="top" src={Jeju} style={{height: '15rem'}}/>
+				<Card.Body>
+					<Container>
+						<Row>
+							<Card.Title>{item.title}</Card.Title>
+						</Row>
+						<Row>
+							<Col>
+								<Card.Text>{item.date}</Card.Text>
+							</Col>
+								<div className='conertLikeBtn'></div>
+							<Col>
+							</Col>
+						</Row>
+						
+					</Container>
+				</Card.Body>
+			</Card>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>

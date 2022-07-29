@@ -4,10 +4,8 @@ import CardList from './components/card/CardList';
 
 function concertPage() {
   return (
-    <div className="body">
-      <div className='cardList'>
+    <div className="concertBody">
         <CardList></CardList>
-      </div>
     </div>
   );
 }
