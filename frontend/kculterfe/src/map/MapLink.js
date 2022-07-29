@@ -7,18 +7,16 @@ import * as TourApi from './TourApi';
 function MapLink() {
 	const defaultProps = {
 		center: {
-			lat: 0,
-			lng: 0
+			lat: 37.5758772,
+			lng: 126.9768121
 		},
 		language: null,
 		region: null,
 		zoom: 15,
 	}
 	
-	SetUserInfo.setCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
+	// SetUserInfo.setCurPos(defaultProps.center); // 현재 위치 좌표 받아오기 (비동기 이슈 해결 X)
 	// SetUserInfo.setLanguage(defaultProps); // 언어 설정 함수
-	TourApi.getAreaCode(); // 지역코드 API 호출
-	TourApi.getStay(); // 숙박 API 호출
 
 	return (
 		<nav style={{border: '1px solid black'}}>
