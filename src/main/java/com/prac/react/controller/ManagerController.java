@@ -24,7 +24,7 @@ public class ManagerController{
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); //파일명을 현재시간으로 바꿔주기 위해서 사용하는 인스턴스입니다.
 
     @PostMapping("/cultureinfo")
-    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart MultipartFile mpf){
+    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf){
         logger.info("문화 저장 들어옴");
         logger.info("culture : "+ culture.toString());
         logger.info("culture : "+ mpf.toString()); //여기서 에러가 났음

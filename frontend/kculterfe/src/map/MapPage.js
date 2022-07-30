@@ -3,7 +3,7 @@ import './MapPage.css';
 import GoogleMapApi from './GoogleMapApi';
 import { useLocation } from 'react-router-dom';
 
-const MapPage = () => {
+function MapPage() {
 	const location = useLocation();
 
 	return (

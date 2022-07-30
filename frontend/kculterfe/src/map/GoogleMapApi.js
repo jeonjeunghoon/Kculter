@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Dotenv from 'dotenv';
 
@@ -6,38 +6,10 @@ import './MapPage.css';
 import SearchBox from './SearchBox';
 import Filter from './Filter';
 
-const CurrentMarker = props => {
-	return (
-		<div className='current-marker-out'>
-			<div className='current-marker-in' />
-		</div>
-	);
-}
+import MyMarker from './MyMarker';
+import CurrentMarker from './CurrentMarker';
 
-const Marker = props => {
-	const markerProps = {
-		key: props.key, // 키 ex: BTS
-		locate: props.locate, // 위치 ex: 광화문
-		text: props.text, // 위치 정보 ex: BTS is World Class
-		center: [props.lat, props.lng], // 위치 좌표 ex: 33.91 127.12
-		src: props.src, // 마커 이미지
-	};
-	const [isMarkerOn, setIsMarkerOn] = useState(false); // 토글
-
-	return (
-		<button className='marker'
-			onClick={(e) => {
-				e.preventDefault();
-				isMarkerOn === false ? setIsMarkerOn(true) : setIsMarkerOn(false);
-			}}
-		>
-			<img className='marker-img'
-				src={markerProps.src}
-				alt='idol-logo'
-			/>
-		</button>
-	);
-}
+import * as TourApi from './TourApi';
 
 function GoogleMapApi(props) {
 	Dotenv.config();
@@ -49,6 +21,24 @@ function GoogleMapApi(props) {
 		center: props.center,
 		zoom: props.zoom
 	};
+
+	// 위치기반 정보를 위한 값들
+	const [location, setLocation] = useState(props.center);
+	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
+	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
+	useEffect(() => {
+		if (!location) {
+			return;
+		}
+		
+		/*
+		
+		TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
+		TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
+		// 받아온 숙소 정보를 이용해 마커 및 호버링된 컴포넌트 등을 만들어야 한다.
+		
+		*/
+	}, [location]);
 
 	// Search Box를 위한 값들
 	const [apiReady, setApiReady] = useState(false);
@@ -75,6 +65,7 @@ function GoogleMapApi(props) {
 					<SearchBox
 						map={map}
 						mapApi={googlemaps}
+						setLocation={setLocation}
 					/>
 				}
 				{/* filter 컴포넌트 */}
@@ -104,7 +95,7 @@ function GoogleMapApi(props) {
 					lat={defaultProps.center.lat}
 					lng={defaultProps.center.lng}
 				/>
-				<Marker
+				<MyMarker
 					key={'BTS'}
 					locate={'광화문'}
 					text={'BTS is World Class!'}
@@ -112,7 +103,7 @@ function GoogleMapApi(props) {
 					lng={126.9768121}
 					src={'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png'}
 				/>
-				<Marker
+				<MyMarker
 					key={'BlackPink'}
 					locate={'경복궁'}
 					text={'BlackPink is World Class!'}
