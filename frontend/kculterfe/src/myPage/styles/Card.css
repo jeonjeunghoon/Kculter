@@ -1,6 +1,10 @@
-.cardList {
-	display: grid;
-	flex-wrap: wrap;
+#my-body .cardList {
+	display: flex;
+	grid-template-columns: repeat(5, 1fr);
+	row-gap: 20px;
+	column-gap: 20px;
+	justify-content: space-between;
+	overflow-y: auto;
 }
 
 #my-body .body-card {

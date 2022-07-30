@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import "../../styles/Card.css"
 
 function CardItem({ props }) {
 	return (
 		<>
-			<Col className="py-5">
+			<div className="py-5">
 				<Card className="body-card">
 					<Card.Img variant="top" src={ props.img } style={{ height: '6em' }}/>
 					<Card.Body className="body-card-body">
@@ -14,7 +14,7 @@ function CardItem({ props }) {
 						</Card.Title>
 					</Card.Body>
 				</Card>
-			</Col>
+			</div>
 		</>
 	);
 }
