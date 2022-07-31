@@ -17,7 +17,7 @@ import com.prac.react.model.dto.Mysql;
 @SpringBootTest
 public class MySqlConnectionTest {
     private final String DRIVER = "com.mysql.jdbc.Driver"; //mysql 드라이버 생성 주소?
-	private final String URL = "jdbc:mysql://weather-server.ck0dubnafyoy.ap-northeast-2.rds.amazonaws.com:3306/weather"; //mysql 주소
+	private final String URL = "jdbc:mysql://weather-server.ck0dubnafyoy.ap-northeast-2.rds.amazonaws.com:3306/kculter"; //mysql 주소
 	
 	@Autowired
 	Mysql mysql;
