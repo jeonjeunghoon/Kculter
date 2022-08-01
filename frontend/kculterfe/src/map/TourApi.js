@@ -1,56 +1,70 @@
+import axios from 'axios';
+
+const serviceKey = process.env.REACT_APP_TOURAPI_KO /* 서비스 KEY */
+
 export function locationBasedList(location, setAreaCode, setSigunguCode) {
-	let xhr = new XMLHttpRequest();
-	let url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList'; /* 서비스 URL */
-	let queryParams = '?' + encodeURIComponent('serviceKey') + '='+'3Z%2FYQWOyIAR89XtBFrgHdHGxDwSP12fVxUYyqy5VxpHHRNUVhYp3U9ptrdhgHFQ8OnEmPidWt4MZl%2BZlv70L%2Bw%3D%3D'; /*Service Key*/
+	const url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList'; /* 서비스 URL */
 
-	// 다른 api와 비교하여 이 부분만 작성법이 다르다.
-	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
-	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
-	queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
-	queryParams += '&' + encodeURIComponent('contentTypeId') + '=' + encodeURIComponent('15'); /**/
-	queryParams += '&' + encodeURIComponent('mapX') + '=' + encodeURIComponent(location.lng); /**/
-	queryParams += '&' + encodeURIComponent('mapY') + '=' + encodeURIComponent(location.lat); /**/
-	queryParams += '&' + encodeURIComponent('radius') + '=' + encodeURIComponent('1000'); /**/
-	queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
-	queryParams += '&' + encodeURIComponent('modifiedtime') + '=' + encodeURIComponent(''); /**/
-
-	xhr.open('GET', url + queryParams);
-	xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-	};
-
-	xhr.send('');
+	axios.get(url + '?serviceKey=' + serviceKey, {
+		params: {
+			numOfRows: '10',
+			pageNo: '1',
+			MobileOS: 'ETC',
+			MobileApp: 'Kculter',
+			arrange: 'A',
+			contentTypeId: '15',
+			mapX: location.lng,
+			mapY: location.lat,
+			radius: '1000',
+			listYN: 'Y',
+			modifiedtime: '',
+		}
+	})
+	.then((response) => {
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+		for (let j = 0; j < response.data.response.body.items.item.length; j++) {
+			console.log(response.data.response.body.items.item[j]);
+			setAreaCode(response.data.response.body.items.item[j].areacode);
+			setSigunguCode(response.data.response.body.items.item[j].sigungucode);
+		}
+	})
+	.catch((error) => {
+		console.log(error);
+	})
 }
 
 export function getStay(areaCode, sigunguCode) {
-	let xhr = new XMLHttpRequest();
-	let url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay'; /* 필수 항목 URL */
-	let queryParams = '?' + encodeURIComponent('serviceKey') + '='+'3Z%2FYQWOyIAR89XtBFrgHdHGxDwSP12fVxUYyqy5VxpHHRNUVhYp3U9ptrdhgHFQ8OnEmPidWt4MZl%2BZlv70L%2Bw%3D%3D'; /*Service Key*/
+	const url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay'; /* 서비스 URL */
 	
-	// 다른 api와 비교하여 이 부분만 작성법이 다르다.
-	queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
-	queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-	queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
-	queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('Kculter'); /**/
-	queryParams += '&' + encodeURIComponent('arrange') + '=' + encodeURIComponent('A'); /**/
-	queryParams += '&' + encodeURIComponent('listYN') + '=' + encodeURIComponent('Y'); /**/
-	queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent(areaCode); /**/
-	queryParams += '&' + encodeURIComponent('sigunguCode') + '=' + encodeURIComponent(sigunguCode); /**/
-	queryParams += '&' + encodeURIComponent('hanOk') + '=' + encodeURIComponent(''); /**/
-	queryParams += '&' + encodeURIComponent('benikia') + '=' + encodeURIComponent(''); /**/
-	queryParams += '&' + encodeURIComponent('goodStay') + '=' + encodeURIComponent(''); /**/
-	queryParams += '&' + encodeURIComponent('modifiedtime') + '=' + encodeURIComponent(''); /**/
-	
-	xhr.open('GET', url + queryParams);
-	xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        console.log('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-	};
-
-	xhr.send('');
+	axios.get(url + '?serviceKey=' + serviceKey, {
+		params: {
+			numOfRows: '10',
+			pageNo: '1',
+			MobileOS: 'ETC',
+			MobileApp: 'Kculter',
+			arrange: 'A',
+			listYN: 'Y',
+			areaCode: '',
+			sigunguCode: '',
+			hanOk: '',
+			benikia: '',
+			goodStay: '',
+			modifiedtime: '',
+		}
+	})
+	.then((response) => {
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+		for (let j = 0; j < response.data.response.body.items.item.length; j++) {
+			console.log(response.data.response.body.items.item[j]);
+		}
+	})
+	.catch((error) => {
+		console.log(error);
+	})
 }

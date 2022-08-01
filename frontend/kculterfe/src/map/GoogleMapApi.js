@@ -26,19 +26,32 @@ function GoogleMapApi(props) {
 	const [location, setLocation] = useState(props.center);
 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
 	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
-	useEffect(() => {
-		if (!location) {
-			return;
-		}
-		
-		/*
-		
-		TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
-		TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
+	
+	/*
+
+		// async, await로 areacode, sigungucode를 설정해야 한다.
 		// 받아온 숙소 정보를 이용해 마커 및 호버링된 컴포넌트 등을 만들어야 한다.
 		
-		*/
+	*/
+	
+	useEffect(() => {
+		console.log('location: ', location);
+		// TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
 	}, [location]);
+
+	useEffect(() => {
+		console.log('Before: ', areaCode, sigunguCode);
+		const fetchData = async () => {
+			try {
+				const result = await TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
+				console.log(result);
+				console.log('After: ', areaCode, sigunguCode);
+			} catch(e) {
+				console.log(e);
+			}
+    };
+    fetchData();
+  }, []);
 
 	// Search Box를 위한 값들
 	const [apiReady, setApiReady] = useState(false);
