@@ -10,7 +10,7 @@ function CardItem(item) {
 	const handleShow = () => setShow(true);
 	return (
 		<>
-			<Card className='concertCard' style={{ width: '12rem', height: '20rem'}} onClick={handleShow}>
+			<Card className='concertCard' style={{ width: '20rem', height: '22rem'}} onClick={handleShow}>
 				<Card.Img variant="top" src={Jeju} style={{height: '15rem'}}/>
 				<Card.Body>
 					<Container>
