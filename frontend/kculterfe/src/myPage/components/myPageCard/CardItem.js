@@ -5,7 +5,7 @@ import "../../styles/Card.css"
 function CardItem({ props }) {
 	return (
 		<>
-			<div className="py-5">
+			<div className="mx-1 my-5">
 				<Card className="body-card">
 					<Card.Img variant="top" src={ props.img } style={{ height: '6em' }}/>
 					<Card.Body className="body-card-body">

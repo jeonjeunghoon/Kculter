@@ -1,10 +1,6 @@
 #my-body .cardList {
 	display: flex;
-	grid-template-columns: repeat(5, 1fr);
-	row-gap: 20px;
-	column-gap: 20px;
-	justify-content: space-between;
-	overflow-y: auto;
+	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
 }
 
 #my-body .body-card {
@@ -12,8 +8,16 @@
     margin-right: 4rem;
 }
 
+#my-body .body-card:hover {
+    width: 8em;
+    margin-right: 4rem;
+	color: blueviolet;
+	background: blueviolet;
+	opacity: 0.9;
+}
+
 #my-body .body-card-body {
-    background-color: gainsboro;
+    background: gainsboro;
     padding-top: 0.5em;
     padding-bottom: 0;
 }
