@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ReactDom from 'react-dom';
 import GoogleMapReact from 'google-map-react';
-import Dotenv from 'dotenv';
 
 import './MapPage.css';
 import SearchBox from './SearchBox';
@@ -12,7 +12,6 @@ import CurrentMarker from './CurrentMarker';
 import * as TourApi from './TourApi';
 
 function GoogleMapApi(props) {
-	Dotenv.config();
 	const defaultProps = {
 		// GoogleMap을 사용하기 위한 api키
 		apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
@@ -26,41 +25,36 @@ function GoogleMapApi(props) {
 	const [location, setLocation] = useState(props.center);
 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
 	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
-	
-	/*
+
+	useEffect(() => {
+		console.log('Before: ', location, areaCode, sigunguCode);
+		/*
 
 		// async, await로 areacode, sigungucode를 설정해야 한다.
 		// 받아온 숙소 정보를 이용해 마커 및 호버링된 컴포넌트 등을 만들어야 한다.
 		
-	*/
-	
-	useEffect(() => {
-		console.log('location: ', location);
-		// TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
-	}, [location]);
-
-	useEffect(() => {
-		console.log('Before: ', areaCode, sigunguCode);
+		*/
 		const fetchData = async () => {
-			try {
-				const result = await TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
-				console.log(result);
-				console.log('After: ', areaCode, sigunguCode);
-			} catch(e) {
-				console.log(e);
-			}
-    };
-    fetchData();
-  }, []);
+			// const res1 = await TourApi.locationBasedList(location, setAreaCode, setSigunguCode); // location 값을 이용해 지역코드 및 시군구코드 불러오기
+			// const res2 = await TourApi.getStay(areaCode, sigunguCode); // 지역 코드와 시군구 코드를 이용해 주변의 숙소를 검색한다.
+			// console.log('res1: ', res1);
+			// console.log('res2: ', res2);
+			console.log('After: ', location, areaCode, sigunguCode);
+		}
+		fetchData();
+	}, [location]);
 
 	// Search Box를 위한 값들
 	const [apiReady, setApiReady] = useState(false);
 	const [map, setMap] = useState(null);
 	const [googlemaps, setGooglemaps] = useState(null);
 
+	const controlButtonDiv = document.createElement('div');
+
 	const apiIsLoaded = (map, maps) => {
 		// map과 maps 개체가 로드되었다면 각각의 state 값에 넣어준다.
 		if (map && maps) {
+			map.controls[maps.ControlPosition.TOP_RIGHT].push(controlButtonDiv);
 			setApiReady(true);
 			setMap(map);
 			setGooglemaps(maps);
