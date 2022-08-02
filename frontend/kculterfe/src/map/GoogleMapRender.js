@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
 	getGeocode,
 	getLatLng,
@@ -14,20 +14,15 @@ import {
 import '@reach/combobox/styles.css';
 
 function GoogleMapRender() {
-	const { isLoaded } = useLoadScript({
+	const { isLoaded } = useJsApiLoader({
+		id: 'google-map-script',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
 		libraries: ['places'],
 	});
 
-	if (!isLoaded) {
-		return (
-			<div>
-				Loading ...
-			</div>
-		);
-	}
-
-	return <Map />;
+	return (
+		isLoaded ? <Map /> : <div>Loading ...</div>
+	);
 }
 
 function Map() {
