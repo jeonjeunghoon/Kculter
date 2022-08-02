@@ -6,14 +6,24 @@
 #my-body .body-card {
     width: 8em;
     margin-right: 4rem;
+	position: relative;
 }
 
-#my-body .body-card:hover {
-    width: 8em;
+#my-body .body-card-hover {
+    width: 7.95em;
+	height: 8.5em;
+	position: absolute;
     margin-right: 4rem;
-	color: blueviolet;
-	background: blueviolet;
-	opacity: 0.9;
+	opacity: 0;
+}
+
+#my-body .body-card-hover:hover {
+    width: 7.85em;
+	height: 8.45em;
+	background: fuchsia;
+	position: absolute;
+	cursor: pointer;
+	opacity: 0.8;
 }
 
 #my-body .body-card-body {
