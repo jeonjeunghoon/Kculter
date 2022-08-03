@@ -12,7 +12,8 @@
 	font-size: 20px;
 }
 
-i.bi-filter-circle {
+.sidebarTitle {
+	cursor:default;
 	display: block;
 	text-align: center;
 	font-size: 40px;
@@ -45,10 +46,6 @@ i.bi-filter-circle {
 }
 .sidebar-item:hover{
 	background-color: rgba(255, 255, 255, .1);
-}
-
-.bi-filter-circle {
-	cursor:default;
 }
 
 .sidebar-title{

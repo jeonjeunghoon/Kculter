@@ -1,48 +1,26 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import './Layout.css';
-import ConcertSideNav from './sidebar/concertPageSidebar/Sidebar';
-import MySideNav from './sidebar/myPageSidebar/Sidebar';
-import IdolListSideNav from './sidebar/idolListPageSidebar/Sidebar';
-import MapSideNav from './sidebar/mapPageSidebar/Sidebar';
+import SideNav from './sidebar/Sidebar';
+import concertItem from "./sidebar/concertPage/sidebar.json";
+import idolListItem from "./sidebar/idolListPage/sidebar.json";
+import mapItem from "./sidebar/mapPage/sidebar.json";
+import myPageItem from "./sidebar/myPage/sidebar.json";
 import Header from './Header';
 // import Search from './Search';
 
 const Layout = () => {
 	const location = useLocation();
-	console.log(location);
-	if (location.pathname == '/ConcertPage')
-		return (
-			<div className='layout'>
-				<ConcertSideNav />
-				<Header />
-				<Outlet />
-			</div>
-		);
-	else if (location.pathname == '/Mypage')
-		return (
-			<div className='layout'>
-				<MySideNav />
-				<Header />
-				<Outlet />
-			</div>
-		);
-	else if (location.pathname == '/MapPage')
-		return (
-			<div className='layout'>
-				<MapSideNav />
-				<Header />
-				<Outlet />
-			</div>
-		);
-	else if (location.pathname == '/IdolListPage')
-		return (
-			<div className='layout'>
-				<IdolListSideNav />
-				<Header />
-				<Outlet />
-			</div>
-		);
+	return (
+		<div className='layout'>
+			{location.pathname == "/ConcertPage" && <SideNav pageidx={0} items={concertItem}/>}
+			{location.pathname == "/IdolListPage" && <SideNav pageidx={1} items={idolListItem}/>}
+			{location.pathname == "/MapPage" && <SideNav pageidx={2} items={mapItem}/>}
+			{location.pathname == "/Mypage" && <SideNav pageidx={3} items={myPageItem}/>}
+			<Header />
+			<Outlet />
+		</div>
+	);
 }
 
 export default Layout;

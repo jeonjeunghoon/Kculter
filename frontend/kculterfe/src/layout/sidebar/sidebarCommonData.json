@@ -1,0 +1,26 @@
+[
+    {
+		"page":	[
+			{
+				"title": "Concert",
+				"icon": "bi-filter-circle"
+			},
+			{
+				"title": "IdolList",
+				"icon": ""
+			},
+			{
+				"title": "Map",
+				"icon": ""
+			},
+			{
+				"title": "MyPage",
+				"icon": ""
+			}
+		]
+    },
+	{
+		"name": "홍길동",
+		"img": ""
+	}
+]
