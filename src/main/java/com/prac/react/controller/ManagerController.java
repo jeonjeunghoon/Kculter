@@ -1,13 +1,11 @@
 package com.prac.react.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
 @RestController
@@ -24,9 +23,13 @@ public class ManagerController{
     Logger logger = LoggerFactory.getLogger(ManagerController.class);
 
     private S3FileUploadService sfu;
+    private ManagerService ms;
 
-    public ManagerController(S3FileUploadService sfu){
-        this.sfu = sfu; //의존성 주입
+    //의존성 주입
+    @Autowired
+    public ManagerController(S3FileUploadService sfu,ManagerService ms){
+        this.sfu = sfu;
+        this.ms = ms; 
     }
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
@@ -34,22 +37,39 @@ public class ManagerController{
     public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("문화 저장 들어옴");
         logger.info("culture : "+ culture.toString());
-        logger.info("culture : "+ mpf.toString()); 
 
         //의존성 주입 받은 S3FileUploadService 를 가지고 aws s3에 이미지 파일을 저장한다.
-        String imageUrl = sfu.uploadtoS3(mpf,"/culter-img");
+        String imageUrl = sfu.uploadtoS3(mpf,"/culture-img");
+        logger.info("imageUrl : "+ imageUrl);
+        //이제 이미지 url을 받아왔으니 이제 이미지 url + Culture값을 DB에 저장하자.
 
-        return 200;
+        culture.setFileUrl(imageUrl); //문화 체험에 대한 imageUrl 설정
+        
+        int result = ms.insertCulture(culture);
+
+        if(result > 0){ //데이터가 잘 입력 됐을때
+            return 200;
+        }else{ //데이터가 잘 들어가지 않았을때
+            return 500;
+        }
     }
 
     @PostMapping("/kpopinfo")
-    public int insertKpopInfo(@RequestBody Celebrity celeb){
+    public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("kpop 저장 들어옴");
         logger.info("celeb : "+ celeb.toString());
 
         //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
+        String imageUrl = sfu.uploadtoS3(mpf,"/kpop-img");
+        logger.info("imageUrl : "+ imageUrl);
 
+        celeb.setFileUrl(imageUrl);
+        int result = ms.insertKpop(celeb);
 
-        return 200;
+        if(result > 0){ //데이터가 잘 입력 됐을때
+            return 200;
+        }else{ //데이터가 잘 들어가지 않았을때
+            return 500;
+        }
     }
 }

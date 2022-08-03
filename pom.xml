@@ -70,7 +70,13 @@
             <artifactId>s3mock_2.12</artifactId>
             <version>0.2.4</version>
             <scope>test</scope>
-        </dependency>          
+        </dependency>
+        <!-- jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>                  
     </dependencies>
 
     <build>
