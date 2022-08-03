@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prac.react.model.dao.ManagerDao">
+	<!-- 문화 체험 입력 -->
+	<insert id="insertCulture" parameterType="Culture">
+		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
+		insert into culture (cultNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
+	</insert>
+	<insert id="insertKpop" parameterType="Celebrity">
+		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
+		insert into celebrities (celebNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
+	</insert>	
+</mapper>

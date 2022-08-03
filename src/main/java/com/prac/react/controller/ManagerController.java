@@ -1,12 +1,11 @@
 package com.prac.react.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,47 +13,63 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.service.ManagerService;
+import com.prac.react.service.S3FileUploadService;
 
 @RestController
 @RequestMapping("manager")
 public class ManagerController{
     //로그를 찍어보기 위해서 만든 인스턴스
     Logger logger = LoggerFactory.getLogger(ManagerController.class);
-    Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); //파일명을 현재시간으로 바꿔주기 위해서 사용하는 인스턴스입니다.
+
+    private S3FileUploadService sfu;
+    private ManagerService ms;
+
+    //의존성 주입
+    @Autowired
+    public ManagerController(S3FileUploadService sfu,ManagerService ms){
+        this.sfu = sfu;
+        this.ms = ms; 
+    }
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
     @PostMapping("/cultureinfo")
-    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf){
+    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("문화 저장 들어옴");
         logger.info("culture : "+ culture.toString());
-        logger.info("culture : "+ mpf.toString()); 
 
-        //일단은 오리지널 파일명을 받아오자.
-        String originalFileName = mpf.getOriginalFilename();
-        logger.info("original file name : "+ originalFileName);
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-        //저장될 파일명을 현재날짜시분초로 변경한다.
-        String savedFileName = sdf.format(date)+extension;
-        logger.info(savedFileName);
+        //의존성 주입 받은 S3FileUploadService 를 가지고 aws s3에 이미지 파일을 저장한다.
+        String imageUrl = sfu.uploadtoS3(mpf,"/culture-img");
+        logger.info("imageUrl : "+ imageUrl);
+        //이제 이미지 url을 받아왔으니 이제 이미지 url + Culture값을 DB에 저장하자.
 
-        //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
+        culture.setFileUrl(imageUrl); //문화 체험에 대한 imageUrl 설정
+        
+        int result = ms.insertCulture(culture);
 
-        return 200;
+        if(result > 0){ //데이터가 잘 입력 됐을때
+            return 200;
+        }else{ //데이터가 잘 들어가지 않았을때
+            return 500;
+        }
     }
 
     @PostMapping("/kpopinfo")
-    public int insertKpopInfo(@RequestBody Celebrity celeb){
+    public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("kpop 저장 들어옴");
         logger.info("celeb : "+ celeb.toString());
 
-        int extension = celeb.getFileUrl().lastIndexOf("."); //확장자 명이 시작되는 위치
-        String newFileName = sdf.format(date) + celeb.getFileUrl().substring(extension);//바뀐이름.확장자 이렇게 바뀌게 됨
-        logger.info("changed file name : "+newFileName);
-
         //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
+        String imageUrl = sfu.uploadtoS3(mpf,"/kpop-img");
+        logger.info("imageUrl : "+ imageUrl);
 
+        celeb.setFileUrl(imageUrl);
+        int result = ms.insertKpop(celeb);
 
-        return 200;
+        if(result > 0){ //데이터가 잘 입력 됐을때
+            return 200;
+        }else{ //데이터가 잘 들어가지 않았을때
+            return 500;
+        }
     }
 }
