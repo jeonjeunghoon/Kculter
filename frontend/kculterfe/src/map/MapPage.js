@@ -1,15 +1,17 @@
 import React from 'react';
+import { useJsApiLoader } from '@react-google-maps/api';
+import Map from './Map';
 import './MapPage.css';
-import GoogleMapRender from './GoogleMapRender';
-import { useLocation } from 'react-router-dom';
 
-function MapPage() {
-	const location = useLocation();
+function MapPage(props) {
+	const { isLoaded } = useJsApiLoader({
+		id: 'map-page',
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
+		libraries: ['places'],
+	});
 
 	return (
-		<div className='map-page'>
-			<GoogleMapRender />
-		</div>
+		isLoaded ? <Map /> : <div>Loading ...</div>
 	);
 }
 
