@@ -1,6 +1,7 @@
 package com.prac.react.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -30,13 +31,13 @@ public class ManagerController{
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
     @PostMapping("/cultureinfo")
-    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf){
+    public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("문화 저장 들어옴");
         logger.info("culture : "+ culture.toString());
         logger.info("culture : "+ mpf.toString()); 
 
         //의존성 주입 받은 S3FileUploadService 를 가지고 aws s3에 이미지 파일을 저장한다.
-        String imageUrl = sfu.uploadtoS3(mpf,"\\culter-img\\");
+        String imageUrl = sfu.uploadtoS3(mpf,"/culter-img");
 
         return 200;
     }
