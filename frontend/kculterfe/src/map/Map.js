@@ -1,21 +1,43 @@
 import React, {
 	useState,
-	useEffect,
 } from 'react';
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, InfoWindow } from '@react-google-maps/api';
 import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
+import CurrentInfoWindow from './CurrentInfoWindow';
+import { handleOnLoad } from './handleOnLoad';
 import * as TourApi from './TourApi';
 
+
 function Map() {
+	// 공식 구글맵 api object
+	const google = window.google;
+
+	// 구글맵 api 설정
 	const [center, setCenter] = useState({ lat: 37.5758772, lng: 126.9768121 });
+	const options = {
+		minZoom: 2,
+		mapTypeControl: false,
+		streetViewControl: false,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_TOP,
+		}
+	};
+
+	// 검색창
 	const [selected, setSelected] = useState(null);
+
+	// 현재위치버튼
+	const [current, setCurrent] = useState(false);
+	const [browserHasGeolocation, setBrowserHasGeolocation] = useState(false);
+	const [geoService, setGeoService] = useState(false);
 
 //
 
 // TourApi.locationBasedList();
 // TourApi.getStay();
+
 // const [location, setLocation] = useState(center);
 // 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
 // 	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
@@ -39,7 +61,7 @@ function Map() {
 // 		fetchData();
 // 	}, [location]);
 
-//
+	console.log(current);
 
 	return (
 		<div className='map-container'>
@@ -48,15 +70,23 @@ function Map() {
 				setCenter={setCenter}
 				setSelected={setSelected}
 			/>
-
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				zoom={3}
-				center={center}
+				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setBrowserHasGeolocation, setGeoService)}
 				mapContainerClassName='map-container'
+				options={options}
+				zoom={15}
+				center={center}
 			>
 				{/* 마커클러스터와 마커 */}
 				<MapMarker />
+				{/* 현재위치 infoWindow */}
+				<CurrentInfoWindow
+					center={center}
+					current={current}
+					browserHasGeolocation={browserHasGeolocation}
+					geoService={geoService}
+				/>
 			</GoogleMap>
 
 			{/* 숙소 카드 */}
