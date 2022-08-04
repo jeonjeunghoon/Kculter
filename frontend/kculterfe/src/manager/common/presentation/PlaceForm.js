@@ -1,17 +1,25 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import StoreData from '../container/StoreData';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { useLocation } from "react-router";
 
 
 function PlaceForm(props){
 
+    const location = useLocation();
+
+    const [keyNum,setKeyNum] = useState();
     const [name,setName] = useState();
     const [explain,setExp] = useState();
     const [latitude,setLatitude] = useState();
     const [longitude, setLongitude] = useState();
     const [address, setAddress] = useState();
     const [file,setFile] = useState();
+    const list = location.state.list;
+
+    //반복으로 특정 컴포넌트를 만들기 위해서 사용
+    //매새변수로는 list와 같이 특정 배열이나 이런것들을 넣어준다.
+    const mapList = list.map((list) => (<option key={list.keyNum} value={list.keyNum}>{list.name}</option>)) 
 
     const formValue = {
         name : name,
@@ -25,18 +33,17 @@ function PlaceForm(props){
         file : file
     }
 
+    const showSelected = (event) => {
+        console.log("키값 : "+event.target.value);
+        setKeyNum(event.target.value);
+    }
+
     return(
         <Form>
-
-            <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">{props.type}</Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>            
+            {/* 위에서 만든 map const를 그대로 출력을 해준다.*/}
+            <Form.Select onChange={showSelected} style={{width : '30%'}}>
+                {mapList}
+            </Form.Select>      
             <hr/>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">{props.label} 이름</Form.Label>
