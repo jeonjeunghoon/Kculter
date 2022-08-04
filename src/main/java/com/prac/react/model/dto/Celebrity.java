@@ -1,7 +1,7 @@
 package com.prac.react.model.dto;
 
 public class Celebrity {
-    private int celebNum;
+    private int keyNum;
     private String name;
     private int likeCount;
     private int status;
@@ -11,8 +11,8 @@ public class Celebrity {
     public Celebrity() {
     }
 
-    public Celebrity(int celebNum, String name, int likeCount, int status, String explain, String fileUrl) {
-        this.celebNum = celebNum;
+    public Celebrity(int keyNum, String name, int likeCount, int status, String explain, String fileUrl) {
+        this.keyNum = keyNum;
         this.name = name;
         this.likeCount = likeCount;
         this.status = status;
@@ -20,12 +20,12 @@ public class Celebrity {
         this.fileUrl = fileUrl;
     }
 
-    public int getCelebNum() {
-        return this.celebNum;
+    public int getKeyNum() {
+        return this.keyNum;
     }
 
-    public void setCelebNum(int celebNum) {
-        this.celebNum = celebNum;
+    public void setKeyNum(int keyNum) {
+        this.keyNum = keyNum;
     }
 
     public String getName() {
@@ -71,7 +71,7 @@ public class Celebrity {
     @Override
     public String toString() {
         return "{" +
-            " celebNum='" + getCelebNum() + "'" +
+            " celebNum='" + getKeyNum() + "'" +
             ", name='" + getName() + "'" +
             ", likeCount='" + getLikeCount() + "'" +
             ", status='" + getStatus() + "'" +
