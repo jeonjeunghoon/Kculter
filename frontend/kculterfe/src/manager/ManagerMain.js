@@ -9,8 +9,8 @@ function ManagerMain(){
         <div style={{border:"1px solid black"}}>
             <NavBar/>
             <Routes>
-                <Route path="/kpop" element={<ManageKpop/>}></Route>
-                <Route path="/culture" element={<ManageCulture/>}></Route>
+                <Route path="/kpop/*" element={<ManageKpop/>}></Route>
+                <Route path="/culture/*" element={<ManageCulture/>}></Route>
             </Routes>
         </div>
     );
