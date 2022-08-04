@@ -1,5 +1,4 @@
 import React from 'react';
-import MapLink from '../map/MapLink';
 import MyPageLink from '../myPage/page/MyPageLink';
 import ConcertPageLink from '../concertPage/concertPageLink';
 import IdolListPageLink from '../IdolListPage/IdolListPageLink';

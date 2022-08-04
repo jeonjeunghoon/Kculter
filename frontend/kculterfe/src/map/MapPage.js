@@ -1,7 +1,9 @@
 import React from 'react';
-import { useJsApiLoader } from '@react-google-maps/api';
-import Map from './Map';
-import './MapPage.css';
+import {
+	useJsApiLoader
+} from '@react-google-maps/api';
+import MapRender from './presentation/MapRender';
+import './style/MapPage.css';
 
 function MapPage(props) {
 	const { isLoaded } = useJsApiLoader({
@@ -11,7 +13,7 @@ function MapPage(props) {
 	});
 
 	return (
-		isLoaded ? <Map /> : <div>Loading ...</div>
+		isLoaded ? <MapRender /> : <div>Loading ...</div>
 	);
 }
 

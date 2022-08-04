@@ -6,11 +6,11 @@ import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
 import CurrentInfoWindow from './CurrentInfoWindow';
-import { handleOnLoad } from './handleOnLoad';
-import * as TourApi from './TourApi';
+import { handleOnLoad } from '../container/handleOnLoad';
+import * as TourApi from '../api/TourApi';
 
 
-function Map() {
+function MapRender() {
 	// 공식 구글맵 api object
 	const google = window.google;
 
@@ -30,7 +30,7 @@ function Map() {
 
 	// 현재위치버튼
 	const [current, setCurrent] = useState(false);
-	const [browserHasGeolocation, setBrowserHasGeolocation] = useState(false);
+	const [loaded, setLoaded] = useState(false);
 	const [geoService, setGeoService] = useState(false);
 
 //
@@ -61,8 +61,6 @@ function Map() {
 // 		fetchData();
 // 	}, [location]);
 
-	console.log(current);
-
 	return (
 		<div className='map-container'>
 			{/* 검색창 */}
@@ -72,7 +70,7 @@ function Map() {
 			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setBrowserHasGeolocation, setGeoService)}
+				onLoad={map => handleOnLoad(map, setCenter, current, setCurrent, setGeoService, setLoaded)}
 				mapContainerClassName='map-container'
 				options={options}
 				zoom={15}
@@ -84,7 +82,7 @@ function Map() {
 				<CurrentInfoWindow
 					center={center}
 					current={current}
-					browserHasGeolocation={browserHasGeolocation}
+					loaded={loaded}
 					geoService={geoService}
 				/>
 			</GoogleMap>
@@ -95,4 +93,4 @@ function Map() {
 	)
 }
 
-export default Map;
+export default MapRender;

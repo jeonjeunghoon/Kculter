@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, {
+	useState,
+} from 'react';
+import {
+	Link,
+} from 'react-router-dom';
+import { updateHeader } from '../container/updateHeader';
 
-import MapLink from '../map/MapLink';
+import MapLink from '../../../map/tmp/MapLink';
 
-const Header = () => {
+function Header() {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
 	const [title, setTitle] = useState(null);
-	const location = useLocation();
 
-	useEffect(() => {
-		switch (location.pathname) {
-			case '/MapPage':
-				setTitle('Map');
-				// setImg('');
-				break;
-			case '/Mypage':
-				setTitle('My Page');
-				// setImg('');
-				break;
-			case '/ConcertPage':
-				setTitle('Concert');
-				// setImg('');
-				break;
-			default:
-				setTitle('Error');
-				// setImg('');
-		}
-	}, []);
-
+	updateHeader(setTitle, setImg);
 	return (
 		<header>
 			<div className='left'>

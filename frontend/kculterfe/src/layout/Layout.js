@@ -1,16 +1,20 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import {
+	Outlet,
+	useLocation
+} from 'react-router-dom';
 import './Layout.css';
 import SideNav from './sidebar/Sidebar';
 import concertItem from "./sidebar/concertPage/sidebar.json";
 import idolListItem from "./sidebar/idolListPage/sidebar.json";
 import mapItem from "./sidebar/mapPage/sidebar.json";
 import myPageItem from "./sidebar/myPage/sidebar.json";
-import Header from './Header';
+import Header from './header/presentation/Header';
 // import Search from './Search';
 
 const Layout = () => {
 	const location = useLocation();
+
 	return (
 		<div className='layout'>
 			{location.pathname == "/ConcertPage" && <SideNav pageidx={0} items={concertItem}/>}

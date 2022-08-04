@@ -21,10 +21,10 @@ const SearchBox = ({ setCenter, setSelected }) => {
 		clearSuggestions,
 	} = usePlacesAutocomplete();
 
-	const handleSelect = async (address) => {
+	async function handleSelect (address) {
 		setValue(address, false);
 		clearSuggestions();
-
+	
 		const results = await getGeocode({ address });
 		const { lat, lng } = getLatLng(results[0]);
 		setSelected({ lat, lng });

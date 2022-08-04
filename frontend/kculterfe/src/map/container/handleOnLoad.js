@@ -1,37 +1,38 @@
-const google = window.google;
 
-function handleCurrent(map, setCenter, setCurrent, setBrowserHasGeolocation, setGeoService) {
+function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded) {
 	const locationButton = document.createElement('button');
+	const google = window.google;
+
 	locationButton.textContent = 'Pan to Current Location';
 	locationButton.classList.add('custom-map-control-button');
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 	locationButton.addEventListener("click", () => {
 		// Try HTML5 geolocation.
+		setCurrent(true);
     if (navigator.geolocation) {
-			setCurrent(true);
-			setBrowserHasGeolocation(true);
-      navigator.geolocation.getCurrentPosition(
+			navigator.geolocation.getCurrentPosition(
 				(position) => {
 					const pos = {
 						lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-					setGeoService(true);
 					setCenter(pos);
-        },
+					setGeoService(true);
+					setLoaded(true);
+				},
         () => {
 					setGeoService(false);
+					setLoaded(true);
         }
       );
     } else {
-			setCurrent(true);
-			setBrowserHasGeolocation(false);
 			setGeoService(false);
+			setLoaded(true);
     }
   });
 }
 
-export function handleOnLoad (map, setCenter, setCurrent, setBrowserHasGeolocation, setGeoService) {
+export function handleOnLoad (map, setCenter, current, setCurrent, setGeoService, setLoaded) {
 	// 현재 위치 버튼
-	handleCurrent(map, setCenter, setCurrent, setBrowserHasGeolocation, setGeoService);
+	handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded);
 };

@@ -2,7 +2,6 @@ import React, {useState } from 'react';
 import {Link} from 'react-router-dom';
 import './MainNavbar.css';
 import { Button } from './Button';
-import MapLink from '../map/MapLink';
 import logo from '../src_asset/logo.png';
 
 function MainNavbar() {
