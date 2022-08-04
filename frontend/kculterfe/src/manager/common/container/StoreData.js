@@ -30,7 +30,7 @@ function StoreData(props){
         fmd.append('file',props.sendData.file)
 
         if(url.includes('kpop')){
-            console.log('kpop 저장할거얌');
+            console.log('kpop 저장!');
             axios.post('/manager/kpopinfo',fmd,{
                 headers:{
                     'Content-Type' : 'multipart/form-data'
@@ -44,6 +44,7 @@ function StoreData(props){
             .catch(function(error){
                 console.log(error);
             })
+
         }else if(url.includes('culture')){
             console.log('culture 저장할거얌');
             axios.post('/manager/cultureinfo',fmd,{

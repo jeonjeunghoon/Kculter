@@ -11,7 +11,7 @@ function InfoForm(props){
 
     const formValue = {
         name : name,
-        explain, explain
+        explain : explain
     }
     const sendData = {
         formValue : formValue,
