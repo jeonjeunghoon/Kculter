@@ -5,9 +5,9 @@ import {
 } from '@react-google-maps/api';
 
 function MapMarker() {
-	// const image = {
-	// 	url: 'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png',
-	// };
+	const image = {
+		url: 'https://lh3.googleusercontent.com/-FzskTh6S9uI/YbVqhdkz-NI/AAAAAAAABhY/H7HgifUO4gsk8vHrXW6OG2uV72F1c47vACNcBGAsYHQ/s1600/1639279211589306-0.png',
+	};
 
 	const locations = [
 		{ lat: 37.5758772, lng: 126.9768121 },
@@ -50,6 +50,7 @@ function MapMarker() {
 			{(clusterer) => 
 				locations.map((location) => (
 					<Marker
+						image={image}
 						key={createKey(location)}
 						position={location}
 						clusterer={clusterer}

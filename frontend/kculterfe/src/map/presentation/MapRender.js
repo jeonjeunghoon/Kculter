@@ -1,14 +1,17 @@
 import React, {
 	useState,
+	useRef,
 } from 'react';
 import { GoogleMap, InfoWindow } from '@react-google-maps/api';
 import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
 import CurrentInfoWindow from './CurrentInfoWindow';
-import { handleOnLoad } from '../container/handleOnLoad';
+import {
+	handleOnLoad,
+	handleCenterChanged,
+} from '../container/handleOnLoad';
 import * as TourApi from '../api/TourApi';
-
 
 function MapRender() {
 	// 공식 구글맵 api object
@@ -33,7 +36,8 @@ function MapRender() {
 	const [loaded, setLoaded] = useState(false);
 	const [geoService, setGeoService] = useState(false);
 
-//
+	// 맵 center 값
+	const [mapref, setMapRef] = useState(null);
 
 // TourApi.locationBasedList();
 // TourApi.getStay();
@@ -70,10 +74,12 @@ function MapRender() {
 			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				onLoad={map => handleOnLoad(map, setCenter, current, setCurrent, setGeoService, setLoaded)}
+				onLoad={map => handleOnLoad(map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef)}
 				mapContainerClassName='map-container'
 				options={options}
 				zoom={15}
+				// onLoad={handleOnLoad}
+      	onCenterChanged={() => handleCenterChanged(mapref)}
 				center={center}
 			>
 				{/* 마커클러스터와 마커 */}
