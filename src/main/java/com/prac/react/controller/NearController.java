@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/near/")
 public class NearController {
 
+
 }

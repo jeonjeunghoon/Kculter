@@ -39,12 +39,12 @@ function MapRender() {
 	// 맵 center 값
 	const [mapref, setMapRef] = useState(null);
 
-// TourApi.locationBasedList();
-// TourApi.getStay();
+	const [areacode, setAreacode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
+	const [sigungucode, setSigungucode] = useState(1); // 시군구 코드
 
-// const [location, setLocation] = useState(center);
-// 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
-// 	const [sigunguCode, setSigunguCode] = useState(1); // 시군구 코드
+	TourApi.locationBasedList(center, setAreacode, setSigungucode);
+	TourApi.getStay(areacode, sigungucode);
+
 
 // 	useEffect(() => {
 // 		console.log('Before: ', location, areaCode, sigunguCode);
