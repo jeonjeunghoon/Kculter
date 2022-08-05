@@ -16,7 +16,7 @@ function InfoForm(props){
     const sendData = {
         formValue : formValue,
         file : file,
-        dataType : 'notplace'
+        dataType : 'notplace' //장소추가인지 아닌지 확인하기 위해
     }
 
     return(

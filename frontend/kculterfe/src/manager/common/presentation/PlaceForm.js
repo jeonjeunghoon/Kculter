@@ -34,7 +34,7 @@ function PlaceForm(props){
     const sendData = {
         formValue : formValue,
         file : file,
-        dataType: 'place'
+        dataType: 'place' //장소추가인지 아닌지 확인하기 위해
     }
 
     const showSelected = (event) => {

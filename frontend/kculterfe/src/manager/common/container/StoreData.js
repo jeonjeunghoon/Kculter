@@ -28,14 +28,15 @@ function StoreData(props){
         
         fmd.append('formValue',blob);
         fmd.append('file',props.sendData.file)
-        
+
         if(props.sendData.dataType == "place"){
+            //장소 추가라면 진입
 
             console.log("장소 추가 간다잇");
             console.log(props.sendData.formValue);
 
         }else if(props.sendData.dataType == "notplace"){
-
+            //장소 추가 아니라면 진입
             if(url.includes('kpop')){
                 console.log("셀럽 추가");
                 axios.post('/manager/kpopinfo',fmd,{
