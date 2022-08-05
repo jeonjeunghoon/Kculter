@@ -1,11 +1,20 @@
-export function handleCenterChanged(mapref) {
+import axios from 'axios';
+
+export function handleCenterChanged(mapref, setCenter) {
 	if (mapref) {
 		const newCenter = mapref.getCenter();
-		console.log(newCenter.lat(), newCenter.lng());
+		const newLat = newCenter.lat();
+		const newLng = newCenter.lng();
+	
+		setCenter({
+			lat: newLat,
+			lng: newLng,
+		})
 	}
+	// axios.get('');
 };
 
-export function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded) {
+export function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef) {
 	const locationButton = document.createElement('button');
 	const google = window.google;
 

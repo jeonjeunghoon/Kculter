@@ -2,7 +2,7 @@ import React, {
 	useState,
 	useRef,
 } from 'react';
-import { GoogleMap, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
@@ -64,6 +64,7 @@ function MapRender() {
 // 		}
 // 		fetchData();
 // 	}, [location]);
+	console.log(center);
 
 	return (
 		<div className='map-container'>
@@ -78,12 +79,13 @@ function MapRender() {
 				mapContainerClassName='map-container'
 				options={options}
 				zoom={15}
-				// onLoad={handleOnLoad}
-      	onCenterChanged={() => handleCenterChanged(mapref)}
+				onDragEnd={() => handleCenterChanged(mapref, setCenter)}
 				center={center}
 			>
 				{/* 마커클러스터와 마커 */}
-				<MapMarker />
+				<MapMarker
+					center={center}
+				/>
 				{/* 현재위치 infoWindow */}
 				<CurrentInfoWindow
 					center={center}
