@@ -1,12 +1,16 @@
 import React, {
 	useState,
+	useRef,
 } from 'react';
 import { GoogleMap, InfoWindow } from '@react-google-maps/api';
 import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
 import CurrentInfoWindow from './CurrentInfoWindow';
-import { handleOnLoad } from '../container/handleOnLoad';
+import {
+	handleOnLoad,
+	handleCenterChanged,
+} from '../container/handleOnLoad';
 import * as TourApi from '../api/TourApi';
 
 function MapRender() {
@@ -32,10 +36,11 @@ function MapRender() {
 	const [loaded, setLoaded] = useState(false);
 	const [geoService, setGeoService] = useState(false);
 
-//
+	// 맵 center 값
+	const [mapref, setMapRef] = useState(null);
 
-TourApi.locationBasedList();
-TourApi.getStay();
+// TourApi.locationBasedList();
+// TourApi.getStay();
 
 // const [location, setLocation] = useState(center);
 // 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
@@ -69,10 +74,12 @@ TourApi.getStay();
 			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				onLoad={map => handleOnLoad(map, setCenter, current, setCurrent, setGeoService, setLoaded)}
+				onLoad={map => handleOnLoad(map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef)}
 				mapContainerClassName='map-container'
 				options={options}
 				zoom={15}
+				// onLoad={handleOnLoad}
+      	onCenterChanged={() => handleCenterChanged(mapref)}
 				center={center}
 			>
 				{/* 마커클러스터와 마커 */}

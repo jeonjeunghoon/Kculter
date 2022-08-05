@@ -1,4 +1,11 @@
-function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded) {
+export function handleCenterChanged(mapref) {
+	if (mapref) {
+		const newCenter = mapref.getCenter();
+		console.log(newCenter.lat(), newCenter.lng());
+	}
+};
+
+export function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded) {
 	const locationButton = document.createElement('button');
 	const google = window.google;
 
@@ -31,7 +38,8 @@ function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLo
   });
 }
 
-export function handleOnLoad (map, setCenter, current, setCurrent, setGeoService, setLoaded) {
+export function handleOnLoad (map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef) {
 	// 현재 위치 버튼
 	handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded);
+	setMapRef(map);
 };
