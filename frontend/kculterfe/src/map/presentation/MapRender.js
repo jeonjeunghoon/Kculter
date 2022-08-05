@@ -9,7 +9,6 @@ import CurrentInfoWindow from './CurrentInfoWindow';
 import { handleOnLoad } from '../container/handleOnLoad';
 import * as TourApi from '../api/TourApi';
 
-
 function MapRender() {
 	// 공식 구글맵 api object
 	const google = window.google;
@@ -35,8 +34,8 @@ function MapRender() {
 
 //
 
-// TourApi.locationBasedList();
-// TourApi.getStay();
+TourApi.locationBasedList();
+TourApi.getStay();
 
 // const [location, setLocation] = useState(center);
 // 	const [areaCode, setAreaCode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.

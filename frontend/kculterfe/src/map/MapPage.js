@@ -13,7 +13,11 @@ function MapPage(props) {
 	});
 
 	return (
-		isLoaded ? <MapRender /> : <div>Loading ...</div>
+		isLoaded
+			?
+				<MapRender />
+			:
+				<div>Loading ...</div>
 	);
 }
 

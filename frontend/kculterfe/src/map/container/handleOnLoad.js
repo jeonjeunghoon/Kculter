@@ -1,4 +1,3 @@
-
 function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded) {
 	const locationButton = document.createElement('button');
 	const google = window.google;
