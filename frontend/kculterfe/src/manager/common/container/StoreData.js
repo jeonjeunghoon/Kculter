@@ -31,9 +31,21 @@ function StoreData(props){
 
         if(props.sendData.dataType == "place"){
             //장소 추가라면 진입
-
             console.log("장소 추가 간다잇");
-            console.log(props.sendData.formValue);
+            
+            axios.post('/manager/kpopinfo',fmd,{
+                headers:{
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+            .then(function(res){
+                console.log(res);
+                alert("서버 저장 완료!");
+                window.location.reload();
+            })
+            .catch(function(error){
+                console.log(error);
+            })            
 
         }else if(props.sendData.dataType == "notplace"){
             //장소 추가 아니라면 진입
