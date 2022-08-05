@@ -8,11 +8,12 @@ function PlaceForm(props){
 
     const location = useLocation();
 
+    const [placeType,setPlaceType] = useState();
     const [keyNum,setKeyNum] = useState();
     const [name,setName] = useState();
     const [explain,setExp] = useState();
-    const [latitude,setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
+    const [lat,setLatitude] = useState();
+    const [long, setLongitude] = useState();
     const [address, setAddress] = useState();
     const [file,setFile] = useState();
     const list = location.state.list;
@@ -22,19 +23,27 @@ function PlaceForm(props){
     const mapList = list.map((list) => (<option key={list.keyNum} value={list.keyNum}>{list.name}</option>)) 
 
     const formValue = {
+        placeTypeKey : placeType, //kpop = 1 문화체험 = 2
+        keyNum : keyNum, // 각타입 키 값
         name : name,
         explain : explain,
-        latitude : latitude,
-        longitude : longitude,
+        lat : lat,
+        long : long,
         address : address
     }
     const sendData = {
         formValue : formValue,
-        file : file
+        file : file,
+        dataType: 'place'
     }
 
     const showSelected = (event) => {
-        console.log("키값 : "+event.target.value);
+        if(props.label.includes("Kpop")){
+            //1이면
+            setPlaceType(1);
+        }else if(props.label.includes("문화 체험")){
+            setPlaceType(2);
+        }
         setKeyNum(event.target.value);
     }
 
@@ -42,6 +51,7 @@ function PlaceForm(props){
         <Form>
             {/* 위에서 만든 map const를 그대로 출력을 해준다.*/}
             <Form.Select onChange={showSelected} style={{width : '30%'}}>
+                <option value="none">=== 선택 ===</option>
                 {mapList}
             </Form.Select>      
             <hr/>
