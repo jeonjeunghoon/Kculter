@@ -9,5 +9,11 @@
 	<insert id="insertKpop" parameterType="Celebrity">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
 		insert into celebrities (celebNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
+	</insert>
+	<insert id="insertPlace" parameterType="Place">
+		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
+		insert into places (placeNum,placeType,placeTypeKey,lat,lng,status,name,`explain`,address,fileUrl) 
+		values (null, #{placeType}, #{placeTypeKey},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
 	</insert>	
+		
 </mapper>

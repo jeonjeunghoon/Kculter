@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -14,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.model.dto.Place;
 import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
@@ -72,5 +72,20 @@ public class ManagerController{
         }else{ //데이터가 잘 들어가지 않았을때
             return 500;
         }
+    }
+
+    @PostMapping("/place")
+    public int insertPlace(@RequestPart("formValue") Place place,@RequestPart("file") MultipartFile mpf) throws IOException{
+        String url = "";
+        
+        if(place.getPlaceType() == 1){ //kpop이라면 진입
+            url = sfu.uploadtoS3(mpf, "kpop-place-img");
+        }else{//culture이라면 진입
+            url = sfu.uploadtoS3(mpf, "culture-place-img");
+        }
+
+        place.setFileUrl(url);
+        int result = ms.insertPlace(place);
+        return result;
     }
 }
