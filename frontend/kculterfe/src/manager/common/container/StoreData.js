@@ -28,39 +28,48 @@ function StoreData(props){
         
         fmd.append('formValue',blob);
         fmd.append('file',props.sendData.file)
+        
+        if(props.sendData.dataType == "place"){
 
-        if(url.includes('kpop')){
-            console.log('kpop 저장!');
-            axios.post('/manager/kpopinfo',fmd,{
-                headers:{
-                    'Content-Type' : 'multipart/form-data'
-                }
-            })
-            .then(function(res){
-                console.log(res);
-                alert("서버 저장 완료!");
-                window.location.reload();
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+            console.log("장소 추가 간다잇");
+            console.log(props.sendData.formValue);
 
-        }else if(url.includes('culture')){
-            console.log('culture 저장할거얌');
-            axios.post('/manager/cultureinfo',fmd,{
-                headers:{
-                    'Content-Type' : 'multipart/form-data'
-                }
-            })
-            .then(function(res){
-                console.log(res);
-                alert("서버 저장 완료!");
-                window.location.reload();
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+        }else if(props.sendData.dataType == "notplace"){
+
+            if(url.includes('kpop')){
+                console.log("셀럽 추가");
+                axios.post('/manager/kpopinfo',fmd,{
+                    headers:{
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                })
+                .then(function(res){
+                    console.log(res);
+                    alert("서버 저장 완료!");
+                    window.location.reload();
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+    
+            }else if(url.includes('culture')){
+                console.log('체험 추가 간다잇');
+                axios.post('/manager/cultureinfo',fmd,{
+                    headers:{
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                })
+                .then(function(res){
+                    console.log(res);
+                    alert("서버 저장 완료!");
+                    window.location.reload();
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+            }
         }
+
         console.log(props.sendData);
     }
     return(

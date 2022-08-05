@@ -15,7 +15,8 @@ function InfoForm(props){
     }
     const sendData = {
         formValue : formValue,
-        file : file
+        file : file,
+        dataType : 'notplace'
     }
 
     return(
@@ -35,9 +36,7 @@ function InfoForm(props){
                 <Form.Control style={{width : '30%'}} type="file" onChange={e => setFile(e.target.files[0])}/>
             </Form.Group>
             {/*API 호출을 담당할 Container Component 호출*/}
-            <StoreData variant="primary" type="submit" sendData={sendData}>
-                Submit
-            </StoreData> 
+            <StoreData variant="primary" type="submit" sendData={sendData}></StoreData> 
       </Form>
     );
 }
