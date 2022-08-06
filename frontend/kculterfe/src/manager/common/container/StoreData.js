@@ -33,7 +33,7 @@ function StoreData(props){
             //장소 추가라면 진입
             console.log("장소 추가 간다잇");
             
-            axios.post('/manager/kpopinfo',fmd,{
+            axios.post('/manager/place',fmd,{
                 headers:{
                     'Content-Type' : 'multipart/form-data'
                 }
