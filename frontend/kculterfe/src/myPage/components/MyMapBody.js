@@ -3,9 +3,11 @@ import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 import '../styles/MBody.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
+import styles from '../styles/BodyNav.module.css';
 
 function MyMapBody() {
     const [viewMyMap, setLikeList] = useState(true)
+    const [isMyMap, setIsLikeList] = useState(true)
 
     return (
         <div id='my-body'>
@@ -13,10 +15,16 @@ function MyMapBody() {
             <Card className="mb-3 body-navbar">
                 <Row>
                     <Col sm={2} className="px-0 text-center" id='my-body'>
-                        <button onClick={() => setLikeList(true) } className="body-navbtn">My map</button>
+                        <button onClick={() => {
+                            setLikeList(true)
+                            setIsLikeList(true)}
+                        } className={styles.navbtn}>My map</button>
                     </Col>
                     <Col sm={2} className="px-0 text-center" id='my-body'>
-                        <button onClick={() => setLikeList(false) } className="body-navbtn">Like list</button>
+                        <button onClick={() => {
+                            setLikeList(false)
+                            setIsLikeList(false)}
+                        } className={styles.navbtn}>Like list</button>
                     </Col>
                 </Row>
             </Card>
