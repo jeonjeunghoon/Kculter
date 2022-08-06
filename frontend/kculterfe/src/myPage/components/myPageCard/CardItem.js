@@ -10,7 +10,7 @@ function CardItem({ props }) {
 	const handleShow = () => setShow(true);
 	return (
 		<>
-			<div className="mx-1 my-5">
+			<div className="my-4">
 				<Card className="body-card">
 					{/* 카드 호버 기능 */}
 					<Card className="body-card-hover text-center" onClick={handleShow}>

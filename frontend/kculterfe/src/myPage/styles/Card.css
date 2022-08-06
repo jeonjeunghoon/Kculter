@@ -3,9 +3,22 @@
 	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
 }
 
+#my-body .date {
+	text-align: right;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+#my-body .date-span{
+	border: 2px solid gray;
+	color: blue;
+	padding: 6px;
+}
+
 #my-body .body-card {
     width: 8em;
-    margin-right: 4rem;
+    margin-left: 50px;
+    margin-right: 50px;
 	position: relative;
 }
 
