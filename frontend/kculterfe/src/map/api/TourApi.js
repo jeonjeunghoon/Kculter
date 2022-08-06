@@ -1,5 +1,4 @@
 import axios from 'axios';
-import jsonp from 'jsonp';
 
 const serviceKey = process.env.REACT_APP_TOURAPI_KO /* 서비스 KEY */
 
