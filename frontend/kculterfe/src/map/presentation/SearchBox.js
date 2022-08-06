@@ -12,12 +12,15 @@ import {
 } from '@reach/combobox';
 import '@reach/combobox/styles.css';
 
-const SearchBox = ({ setCenter, setSelected }) => {
+const SearchBox = ({ setCenter, setSelected, setZoom }) => {
 	const {
 		ready,
 		value,
 		setValue,
-		suggestions: { status, data },
+		suggestions: {
+			status,
+			data,
+		},
 		clearSuggestions,
 	} = usePlacesAutocomplete();
 
@@ -29,6 +32,7 @@ const SearchBox = ({ setCenter, setSelected }) => {
 		const { lat, lng } = getLatLng(results[0]);
 		setSelected({ lat, lng });
 		setCenter({ lat, lng });
+		setZoom(15);
 	}
 
 	return (

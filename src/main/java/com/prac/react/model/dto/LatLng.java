@@ -2,9 +2,9 @@ package com.prac.react.model.dto;
 
 public class LatLng {
 	// 위도 y축
-	private long lat;
+	private double lat;
 	// 경도 x축
-	private long lng;
+	private double lng;
 
 	@Override
 	public String toString() {
@@ -14,7 +14,7 @@ public class LatLng {
 				"}";
 	}
 
-	public LatLng(long lat, long lng) {
+	public LatLng(double lat, double lng) {
 		this.lat = lat;
 		this.lng = lng;
 	}
@@ -22,19 +22,19 @@ public class LatLng {
 	public LatLng() {
 	}
 
-	public long getLat() {
+	public double getLat() {
 		return this.lat;
 	}
 
-	public void setLat(long lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
-	public long getLng() {
+	public double getLng() {
 		return this.lng;
 	}
 
-	public void setLng(long lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 
