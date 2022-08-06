@@ -8,28 +8,19 @@ export function handleCenterChanged(mapref, setCenter) {
 			lng: newCenter.lng(),
 		}
 		setCenter(newPos);
+		const json = JSON.stringify(newPos);
+		axios.get('/near/stay?lat='+newPos.lat+'&lng='+newPos.lng)
+    .then(function(res){
+			alert('통신 완료');
+    })
+    .catch(function(error){
+        console.log(error);
+        alert("서버 통신 실패");
+    })
 	}
-	// axios.get('/near/stay', newPos)
-  //   .then(function(res){
-  //       const list = res.data;
-  //       if(list == null){
-  //           alert("입력된 Kpop 스타가 없습니다. \n Kpop 스타부터 입력하세요");
-  //           window.location.href="/manager/kpop"
-  //       }else{
-  //           navigate(props.url,{ //경로는 props.url로 보내고
-  //               state : { //데이터로는 
-  //                   list : list //list 값 보냄
-  //               }
-  //           });
-  //       }
-  //   })
-  //   .catch(function(error){
-  //       console.log(error);
-  //       alert("서버 통신 실패");
-  //   })
 };
 
-export function handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef) {
+export function handleCurrent(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus) {
 	const locationButton = document.createElement('button');
 	const google = window.google;
 
@@ -47,6 +38,7 @@ export function handleCurrent(map, setCenter, current, setCurrent, setGeoService
             lng: position.coords.longitude,
           };
 					setCenter(pos);
+					setFocus(pos);
 					setGeoService(true);
 					setLoaded(true);
 				},
@@ -62,8 +54,8 @@ export function handleCurrent(map, setCenter, current, setCurrent, setGeoService
   });
 }
 
-export function handleOnLoad (map, setCenter, current, setCurrent, setGeoService, setLoaded, setMapRef) {
+export function handleOnLoad (map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef) {
 	// 현재 위치 버튼
-	handleCurrent(map, setCenter, current, setCurrent, setGeoService, setLoaded);
+	handleCurrent(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus);
 	setMapRef(map);
 };
