@@ -45,6 +45,12 @@
     padding-bottom: 0;
 }
 
+#my-body .card-idol {
+	color: blue;
+	text-align: center;
+	margin-top: 8px;
+}
+
 .card-container{
 	width: 20rem;
 	height: 16rem;

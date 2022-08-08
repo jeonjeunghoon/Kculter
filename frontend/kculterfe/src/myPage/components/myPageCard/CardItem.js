@@ -21,13 +21,16 @@ function CardItem({ props }) {
 						</div>
 					</Card>
 					{/* 아이돌 카드 */}
-					<Card.Img variant="top" src={ props.img } style={{ height: '6em' }}/>
+					<Card.Img variant="top" src={ props.img } style={{ height: '7em' }}/>
 					<Card.Body className="body-card-body">
 						<Card.Title className="text-center">
-							{ props.title }
+							{ props.place }
 						</Card.Title>
 					</Card.Body>
 				</Card>
+				<div className="card-idol">
+					{ props.title }
+				</div>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>
