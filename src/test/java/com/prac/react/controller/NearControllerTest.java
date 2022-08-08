@@ -23,13 +23,10 @@ public class NearControllerTest {
 	@Test
 	void testGetGeoInfo() throws Exception {
 		// given
-		LatLng latlng = new LatLng(123, 37);
+		String url = "/near/stay?lat=127&lng=37&address=test";
 
-		String json = obm.writeValueAsString(latlng);
 		// when
-		mvc.perform(get("/near/stay")
-				.content(json)
-				.contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get(url))
 				.andExpect(status().isOk()) // status가 200이고
 				.andDo(print()); // 요청받은것들으 print 해라
 	}
