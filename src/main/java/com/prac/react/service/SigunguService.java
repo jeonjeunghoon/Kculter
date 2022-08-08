@@ -9,16 +9,22 @@ import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prac.react.model.dto.area_code_response.AreaCode;
+import com.prac.react.model.dto.area_code_response.Item;
 
 @Service
 public class SigunguService {
 
-	private String serviceKey = "=3Z%2FYQWOyIAR89XtBFrgHdHGxDwSP12fVxUYyqy5VxpHHRNUVhYp3U9ptrdhgHFQ8OnEmPidWt4MZl%2BZlv70L%2Bw%3D%3D";
+	@Value("${tourapi.key}")
+	private String serviceKey;
 
 	Logger logger = LoggerFactory.getLogger(SigunguService.class);
 
-	public void getSigungu() throws IOException {
+	public String getSigungu(String sigungu) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/KorService/areaCode");
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
@@ -29,25 +35,44 @@ public class SigunguService {
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("Kculter", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
-		URL url = new URL(urlBuilder.toString());
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Content-type", "application/json");
-		System.out.println("Response code: " + conn.getResponseCode());
-		BufferedReader rd;
-		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+		//String Builder로 url을 형성
+
+		URL url = new URL(urlBuilder.toString()); //위의 StringBuilder로 실제 url을 구성
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //위에서 만든 url 인스턴스를 가지고 connection open하기
+		conn.setRequestMethod("GET"); //http method 설정
+		conn.setRequestProperty("Content-type", "application/json"); //content-type 설정
+		logger.info("Response code: " + conn.getResponseCode()); 
+		BufferedReader rd; //api reponse 데이터를 담기 위한 BufferedReader 생성
+		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) { //응답코드가 200대 일때
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream())); 
+			//connection에서 데이터 일거오고 그걸 InputStreamReader를 통해서 읽고 그리고 그걸 버퍼에다가 잠시 담는다.
 		} else {
 			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			//에러로그를 버퍼에다가 잠시 담음
 		}
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(); //String객체를 생성
 		String line;
-		while ((line = rd.readLine()) != null) {
-			sb.append(line);
+		while ((line = rd.readLine()) != null) { 
+			//버퍼에 담긴 데이터를 한줄단위로 읽어들여 line에 집어 넣고 해당 line이 null이 아니라면 진입
+			sb.append(line); //String 객체에 계속해서 추가해줌
 		}
-		rd.close();
-		conn.disconnect();
-		String tmp = sb.toString();
-		System.out.println(tmp);
+		rd.close(); //BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
+		conn.disconnect(); //연결 해제
+
+		ObjectMapper obm = new ObjectMapper(); //json String을 Object로 변환하기 위해
+		AreaCode ac = obm.readValue(sb.toString(), AreaCode.class);
+
+		String code = "";
+
+		for(Item item : ac.getResponse().getBody().getItems().getItem()){
+			if(item.getName().equals(sigungu)){
+				code = item.getCode();
+				break;
+			}
+		}
+
+		return code;
+		
 	}
 }

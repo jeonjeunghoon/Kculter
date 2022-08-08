@@ -32,8 +32,8 @@ public class NearController {
 		logger.info(latLng.toString());
 
 		String[] arr = address.split(" ");
-		logger.info(arr[2]);
+		logger.info("Sigungu name : "+arr[2]);
 
-		ss.getSigungu();
+		String sigunguCode = ss.getSigungu(arr[2]);
 	}
 }
