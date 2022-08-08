@@ -1,6 +1,7 @@
 package com.prac.react.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.LatLng;
+import com.prac.react.model.dto.Stay;
 import com.prac.react.service.SearchStayService;
 import com.prac.react.service.SigunguService;
 
@@ -30,7 +32,7 @@ public class NearController {
 	}
 
 	@GetMapping("stay")
-	public void getGeoInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng,
+	public List<Stay> getGeoInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng,
 			@RequestParam("address") String address) throws IOException {
 
 		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng), address);
@@ -42,6 +44,8 @@ public class NearController {
 		//시군구 코드를 가져온다
 		String sigunguCode = ss.getSigungu(arr[2]);
 
+		List<Stay> nearStayList = sss.getNearStay(sigunguCode);
 
+		return nearStayList;
 	}
 }
