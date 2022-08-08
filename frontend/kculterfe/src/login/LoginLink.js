@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const LoginLink = () => {
     return (
-        <nav style={{border: '1px solid black'}}>
+        <nav>
             <Link to="LoginPage">LOGIN</Link>
         </nav>
     );
