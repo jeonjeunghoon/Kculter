@@ -7,14 +7,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prac.react.model.dto.area_code_response.AreaCode;
-import com.prac.react.model.dto.area_code_response.Item;
 
 @Service
 public class SigunguService {
@@ -25,6 +23,9 @@ public class SigunguService {
 	Logger logger = LoggerFactory.getLogger(SigunguService.class);
 
 	public String getSigungu(String sigungu) throws IOException {
+
+		String code = "";
+
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/KorService/areaCode");
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
@@ -34,6 +35,7 @@ public class SigunguService {
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("Kculter", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+		//서울의 areacode가 1임
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
 
 		//String Builder로 url을 형성
@@ -60,14 +62,19 @@ public class SigunguService {
 		rd.close(); //BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
 		conn.disconnect(); //연결 해제
 
-		ObjectMapper obm = new ObjectMapper(); //json String을 Object로 변환하기 위해
-		AreaCode ac = obm.readValue(sb.toString(), AreaCode.class);
+		JSONObject json = new JSONObject(sb.toString());
+		JSONObject response = json.getJSONObject("response");
+		JSONObject body = response.getJSONObject("body");
+		JSONObject items = body.getJSONObject("items");
+		JSONArray item = items.getJSONArray("item");
 
-		String code = "";
-
-		for(Item item : ac.getResponse().getBody().getItems().getItem()){
-			if(item.getName().equals(sigungu)){
-				code = item.getCode();
+		for(int i = 0; i<item.length();i++){
+			JSONObject obj = item.getJSONObject(i);
+			logger.info("rnum : "+obj.getString("rnum"));
+			logger.info("code : "+obj.getString("code"));
+			logger.info("name : "+obj.getString("name"));
+			if(obj.getString("name").equals(sigungu)){
+				code = obj.getString("name");
 				break;
 			}
 		}
