@@ -1,6 +1,11 @@
+import React, {
+	useState,
+} from 'react';
 import axios from 'axios';
 
 export function handleCenterChanged(mapref, setCenter) {
+	const google = window.google;
+
 	if (mapref) {
 		const newCenter = mapref.getCenter();
 		const newPos = {
@@ -8,15 +13,24 @@ export function handleCenterChanged(mapref, setCenter) {
 			lng: newCenter.lng(),
 		}
 		setCenter(newPos);
-		const json = JSON.stringify(newPos);
-		axios.get('/near/stay?lat='+newPos.lat+'&lng='+newPos.lng)
-    .then(function(res){
-			alert('통신 완료');
-    })
-    .catch(function(error){
-        console.log(error);
-        alert("서버 통신 실패");
-    })
+
+		// reverse geocoder
+		const geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'latLng': newPos}, (result, status) => {
+			if (status !== google.maps.GeocoderStatus.OK) {
+				alert(status);
+			}
+			if (status == google.maps.GeocoderStatus.OK) {
+				const address = result[0].formatted_address;
+				axios.get('/near/stay?lat='+newPos.lat+'&lng='+newPos.lng+'&address='+address)
+				.then(function(res){
+					console.log(res, '통신 완료');
+    		})
+    		.catch(function(error){
+					console.log(error, "서버 통신 실패");
+    		})
+			}
+		});
 	}
 };
 

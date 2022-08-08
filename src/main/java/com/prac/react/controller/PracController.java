@@ -9,7 +9,7 @@ import com.prac.react.service.PracService;
 @RequestMapping("/prac/")
 public class PracController {
 	private PracService ps;
-	
+
 	public PracController(PracService ps) {
 		super();
 		this.ps = ps;
