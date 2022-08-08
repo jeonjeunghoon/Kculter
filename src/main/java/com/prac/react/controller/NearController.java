@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.LatLng;
+import com.prac.react.service.SearchStayService;
 import com.prac.react.service.SigunguService;
 
 @RestController
@@ -19,9 +21,12 @@ public class NearController {
 	Logger logger = LoggerFactory.getLogger(NearController.class);
 
 	private SigunguService ss;
+	private SearchStayService sss;
 
-	public NearController(SigunguService ss) {
+	@Autowired
+	public NearController(SigunguService ss, SearchStayService sss) {
 		this.ss = ss;
+		this.sss = sss;
 	}
 
 	@GetMapping("stay")
@@ -33,7 +38,10 @@ public class NearController {
 
 		String[] arr = address.split(" ");
 		logger.info("Sigungu name : "+arr[2]);
-
+		
+		//시군구 코드를 가져온다
 		String sigunguCode = ss.getSigungu(arr[2]);
+
+
 	}
 }
