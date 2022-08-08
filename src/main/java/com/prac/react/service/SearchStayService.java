@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,28 +16,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
-public class SigunguService {
+import com.prac.react.model.dto.Stay;
 
-	@Value("${tourapi.key}")
+@Service
+public class SearchStayService {
+    
+    Logger logger = LoggerFactory.getLogger(SigunguService.class);
+    
+    @Value("${tourapi.key}")
 	private String serviceKey;
 
-	Logger logger = LoggerFactory.getLogger(SigunguService.class);
-
-	public String getSigungu(String sigungu) throws IOException {
-
-		String code = "";
+    public List<Stay> getNearStay(String sigungu) throws IOException{
+        List<Stay> stayList = new ArrayList<>();
 
 		StringBuilder urlBuilder = new StringBuilder(
-				"http://apis.data.go.kr/B551011/KorService/areaCode");
+				"http://apis.data.go.kr/B551011/EngService/searchStay");
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
 				+ serviceKey);
-		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("30", "UTF-8"));
-		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("25", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("Kculter", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
-		//서울의 areacode가 1임
+        //서울의 areacode 가 1
+        urlBuilder.append("&" + URLEncoder.encode("sigunguCode", "UTF-8") + "=" + URLEncoder.encode(sigungu, "UTF-8"));
+		//받아온 시군구 코드로 api 호출
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
 
 		//String Builder로 url을 형성
@@ -62,24 +66,34 @@ public class SigunguService {
 		rd.close(); //BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
 		conn.disconnect(); //연결 해제
 
-		JSONObject json = new JSONObject(sb.toString());
+        JSONObject json = new JSONObject(sb.toString());
 		JSONObject response = json.getJSONObject("response");
 		JSONObject body = response.getJSONObject("body");
 		JSONObject items = body.getJSONObject("items");
 		JSONArray item = items.getJSONArray("item");
 
-		for(int i = 0; i<item.length();i++){
+        for(int i = 0; i<item.length();i++){
 			JSONObject obj = item.getJSONObject(i);
-			logger.info("rnum : "+obj.getString("rnum"));
-			logger.info("code : "+obj.getString("code"));
-			logger.info("name : "+obj.getString("name"));
-			if(obj.getString("name").equals(sigungu)){
-				code = obj.getString("code");
-				break;
-			}
+
+            Stay stay = new Stay();
+            stay.setAddr1(obj.getString("addr1"));
+            stay.setAddr2(obj.getString("addr2"));
+            stay.setAreaCode(obj.getString("areacode"));
+            stay.setSigunguCode(obj.getString("sigungucode"));
+            stay.setRepresentImg(obj.getString("firstimage"));
+            stay.setSumnail(obj.getString("firstimage2"));
+            stay.setLng(Double.parseDouble(obj.getString("mapx"))); //경도
+            stay.setLat(Double.parseDouble(obj.getString("mapy"))); //위도
+            stay.setTel(obj.getString("tel"));
+            stay.setTitle(obj.getString("title"));
+
+            logger.info("Stay : "+stay.toString());
+
+            stayList.add(stay);
+
 		}
 
-		return code;
-		
-	}
+        return stayList;
+    }
+    
 }
