@@ -32,7 +32,7 @@ public class NearController {
 	}
 
 	@GetMapping("stay")
-	public List<Stay> getGeoInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng,
+	public List<Stay> getNearStayInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng,
 			@RequestParam("address") String address) throws IOException {
 
 		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng), address);
