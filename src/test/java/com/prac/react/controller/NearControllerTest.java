@@ -1,17 +1,15 @@
 package com.prac.react.controller;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prac.react.model.dto.LatLng;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(NearController.class)
 public class NearControllerTest {
@@ -23,7 +21,7 @@ public class NearControllerTest {
 	@Test
 	void testGetGeoInfo() throws Exception {
 		// given
-		String url = "/near/stay?lat=127&lng=37&address=test";
+		String url = "/near/stay?lat=127&lng=37&address=대한민국 서울특별시 강동구";
 
 		// when
 		mvc.perform(get(url))
