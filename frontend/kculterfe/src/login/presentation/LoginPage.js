@@ -11,13 +11,19 @@ import Loginlogo from '../presentation/Loginlogo';
 function LoginPage(){
     return(
         <div className='login-con'>
-          <img src={loginimg} />
-          <div className='login-top'>
-          <Loginlogo className='loginNav'/>
+          <img src={loginimg} /> 
+          <div className='login-top'> 
+          <Loginlogo className='loginNav'/> 
           </div>
             <div className='login-div'>
                 <div className='login-black'>
                     <img src={loginblack}></img>
+                </div>
+                <div className='inpult-nav'>
+                    <input className='input-css' 
+                        placeholder='E-mail'/>
+                    <input className='input-css'
+                    placeholder='Password'/>
                 </div>
                 <div>
                   <GoogleLoginBtn/>

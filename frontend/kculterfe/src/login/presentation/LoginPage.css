@@ -9,10 +9,10 @@
 
 .login-div {
   border-radius: 5%;
-  background-color: azure;
-  padding: 250px 80px;
-  top: 200px;
-  left: 500px;
+  background-color: #ffff;
+  padding: 250px 100px;
+  top: 180px;
+  left: 510px;
   position: absolute;
 }
 
@@ -31,4 +31,29 @@
 }
 
 .login-black {
+  position: absolute;
+  bottom: 77%;
+  right: 10%;
+  display: flex;
+}
+
+.login-black img {
+  height: 7rem;
+  width: 21rem;
+}
+
+.inpult-nav {
+  position: absolute;
+  bottom: 50%;
+  right: 13%;
+}
+
+.input-id {
+}
+
+.input-css {
+  padding: 0.8em 3em;
+  display: block;
+  margin-bottom: 5px;
+  border-radius: 10%;
 }
