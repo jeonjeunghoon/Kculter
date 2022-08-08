@@ -4,9 +4,9 @@ import items from '../../data/myMap.json'
 
 function BoxCardList() {
 	return (
-		<>
+		<div>
 			{ items.map((item, index) => <BoxCardItem key={index} props={item} {...item} />)}
-		</>
+		</div>
 	)
 }
 

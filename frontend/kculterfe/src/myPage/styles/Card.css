@@ -51,6 +51,13 @@
 	margin-top: 8px;
 }
 
+.btn {
+	border-radius: 50%;
+	margin-bottom: 0.5em;
+	margin-right: 0.5em;
+	color: white;
+}
+
 .card-container{
 	width: 20rem;
 	height: 16rem;

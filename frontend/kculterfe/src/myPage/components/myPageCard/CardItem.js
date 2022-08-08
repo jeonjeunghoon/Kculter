@@ -21,10 +21,12 @@ function CardItem({ props }) {
 						</div>
 					</Card>
 					{/* 아이돌 카드 */}
-					<Card.Img variant="top" src={ props.img } style={{ height: '7em' }}/>
+					<Card.Img variant="top" className="px-4 py-1 m-auto" src={ props.img } style={{ height: '6em', width: '8em' }}/>
 					<Card.Body className="body-card-body">
 						<Card.Title className="text-center">
-							{ props.place }
+							<span className="small">
+								{ props.place }
+							</span>
 						</Card.Title>
 					</Card.Body>
 				</Card>
