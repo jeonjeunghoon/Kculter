@@ -71,7 +71,7 @@ public class SigunguService {
 
 		for (int i = 0; i < item.length(); i++) {
 			JSONObject obj = item.getJSONObject(i);
-			logger.info("rnum : " + obj.getString("rnum"));
+			logger.info("rnum : " + obj.getNumber("rnum"));
 			logger.info("code : " + obj.getString("code"));
 			logger.info("name : " + obj.getString("name"));
 			if (obj.getString("name").equals(sigungu)) {
