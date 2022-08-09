@@ -15,6 +15,9 @@ export default function NavBar() {
         <SListItems>
           <SListAnchor to="/manager/culture">문화체험</SListAnchor>
         </SListItems>
+        <SListItems>
+          <SListAnchor to="/manager/concert">콘서트</SListAnchor>
+        </SListItems>        
       </SListWrapper>
     </SNavBar>
   );

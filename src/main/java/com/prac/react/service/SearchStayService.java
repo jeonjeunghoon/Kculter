@@ -31,8 +31,7 @@ public class SearchStayService {
 
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/EngService/searchStay");
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"="
-				+ serviceKey);
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"="+ serviceKey);
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("25", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("Kculter", "UTF-8"));
@@ -74,7 +73,7 @@ public class SearchStayService {
 
         for(int i = 0; i<item.length();i++){
 			JSONObject obj = item.getJSONObject(i);
-
+			
             Stay stay = new Stay();
             stay.setAddr1(obj.getString("addr1"));
             stay.setAddr2(obj.getString("addr2"));

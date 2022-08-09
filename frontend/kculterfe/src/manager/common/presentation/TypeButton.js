@@ -8,9 +8,9 @@ function TypeButton(props) {
     const placeUrl ="/manager/"+props.goto+"/place";
     const url = "/manager/"+props.goto
   return (
-    <ButtonGroup aria-label="Basic example">
+    <ButtonGroup>
         <Link to ={url}> 
-            <Button variant="primary">{props.label}</Button> 
+            <button>{props.label}</button> 
         </Link>     
         <GetListData url={placeUrl} label={props.label}></GetListData>    
     </ButtonGroup>

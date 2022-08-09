@@ -30,8 +30,7 @@ public class SigunguService {
 
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/KorService/areaCode");
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"="
-				+ serviceKey);
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"=" + serviceKey);
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("30", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));
