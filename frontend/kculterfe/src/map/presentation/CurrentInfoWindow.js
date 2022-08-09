@@ -20,7 +20,8 @@ function CurrentInfoWindow({ center, focus, current, geoService, loaded }) {
 						>
 							<h6>The Geolocation service failed.</h6>
 						</InfoWindow>
-			: <></>
+			:
+				<></>
 	);
 }
 

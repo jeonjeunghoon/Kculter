@@ -12,7 +12,7 @@ import {
 } from '@reach/combobox';
 import '@reach/combobox/styles.css';
 
-const SearchBox = ({ setCenter, setSelected, setZoom }) => {
+const SearchBox = ({ setCenter, setZoom }) => {
 	const {
 		ready,
 		value,
@@ -30,7 +30,6 @@ const SearchBox = ({ setCenter, setSelected, setZoom }) => {
 	
 		const results = await getGeocode({ address });
 		const { lat, lng } = getLatLng(results[0]);
-		setSelected({ lat, lng });
 		setCenter({ lat, lng });
 		setZoom(15);
 	}

@@ -35,9 +35,6 @@ function MapRender() {
 		},
 	};
 
-	// 검색창
-	const [selected, setSelected] = useState(null);
-
 	// 현재위치버튼
 	const [current, setCurrent] = useState(false);
 	const [loaded, setLoaded] = useState(false);
@@ -47,27 +44,30 @@ function MapRender() {
 	// 맵 center 값
 	const [mapref, setMapRef] = useState(null);
 
-	console.log('위도 경도', center);
+	// 숙소 데이터
+	const [stayData, setStayData] = useState(null);
 
 	return (
 		<div className='map-container'>
 			{/* 검색창 */}
 			<SearchBox
 				setCenter={setCenter}
-				setSelected={setSelected}
 				setZoom={setZoom}
 			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef, setZoom)}
+				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
 				mapContainerClassName='map-container'
 				options={options}
 				zoom={zoom}
-				onDragEnd={() => handleCenterChanged(mapref, setCenter)}
+				onDragEnd={() => handleCenterChanged(mapref, setCenter, setStayData)}
 				center={center}
 			>
 				{/* 마커클러스터와 마커 */}
-				<MapMarker />
+				<MapMarker
+					stayData={stayData}
+					setCenter={setCenter}
+				/>
 				{/* 현재위치 infoWindow */}
 				<CurrentInfoWindow
 					focus={focus}
@@ -79,7 +79,10 @@ function MapRender() {
 			</GoogleMap>
 
 			{/* 숙소 카드 */}
-			<Stay />
+			<Stay
+				stayData={stayData}
+				setCenter={setCenter}
+			/>
 		</div>
 	)
 }
