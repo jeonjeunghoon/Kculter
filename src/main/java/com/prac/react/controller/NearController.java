@@ -39,9 +39,9 @@ public class NearController {
 		logger.info(latLng.toString());
 
 		String[] arr = address.split(" ");
-		logger.info("Sigungu name : "+arr[2]);
-		
-		//시군구 코드를 가져온다
+		logger.info("Sigungu name : " + arr[2]);
+
+		// 시군구 코드를 가져온다
 		String sigunguCode = ss.getSigungu(arr[2]);
 
 		List<Stay> nearStayList = sss.getNearStay(sigunguCode);

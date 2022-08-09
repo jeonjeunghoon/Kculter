@@ -16,14 +16,22 @@ function MapRender() {
 	const google = window.google;
 
 	// 구글맵 api 설정
-	const [center, setCenter] = useState({ lat: 37.5758772, lng: 126.9768121 });
-	const [zoom, setZoom] = useState(15);
+	const [center, setCenter] = useState({ lat: 37.566535, lng: 126.9779692 });
+	const [zoom, setZoom] = useState(10);
 	const options = {
-		minZoom: 2,
 		mapTypeControl: false,
 		streetViewControl: false,
 		zoomControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_TOP,
+		},
+		minZoom: 10,
+		restriction: {
+			latLngBounds: {
+        north: 80,
+        south: -80,
+				east: 180,
+        west: -180
+			},
 		},
 	};
 
@@ -39,12 +47,8 @@ function MapRender() {
 	// 맵 center 값
 	const [mapref, setMapRef] = useState(null);
 
-	// const [areacode, setAreacode] = useState(1); // 지역코드: 강남구를 기본 값으로 둔다.
-	// const [sigungucode, setSigungucode] = useState(1); // 시군구 코드
-	// TourApi.locationBasedList(center, setAreacode, setSigungucode);
-	// TourApi.getStay(areacode, sigungucode);
-
 	console.log('위도 경도', center);
+
 	return (
 		<div className='map-container'>
 			{/* 검색창 */}
@@ -63,9 +67,7 @@ function MapRender() {
 				center={center}
 			>
 				{/* 마커클러스터와 마커 */}
-				<MapMarker
-					center={center}
-				/>
+				<MapMarker />
 				{/* 현재위치 infoWindow */}
 				<CurrentInfoWindow
 					focus={focus}
