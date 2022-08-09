@@ -41,7 +41,7 @@ function StoreData(props){
             .then(function(res){
                 console.log(res);
                 alert("서버 저장 완료!");
-                window.location.reload();
+                window.location.href="/manager";
             })
             .catch(function(error){
                 console.log(error);
@@ -86,7 +86,7 @@ function StoreData(props){
         console.log(props.sendData);
     }
     return(
-        <Button variant="primary" type="submit" onClick={check}>제출</Button>
+        <button type="submit" onClick={check}>제출</button>
     );
 }
 export default StoreData;
