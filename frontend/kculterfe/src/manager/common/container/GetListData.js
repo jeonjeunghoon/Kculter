@@ -49,7 +49,7 @@ function GetListData(props){
         }
     }
     return(
-        <Button variant="primary" onClick={getList}>{props.label} 장소</Button>
+        <button onClick={getList}>{props.label} 장소</button>
     );
 }
 export default GetListData;
