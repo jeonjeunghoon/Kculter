@@ -31,7 +31,7 @@ public class SearchStayService {
 
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/EngService/searchStay");
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"="
 				+ serviceKey);
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("25", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));

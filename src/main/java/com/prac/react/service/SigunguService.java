@@ -26,9 +26,11 @@ public class SigunguService {
 
 		String code = "";
 
+		logger.info("ServiceKey : "+serviceKey);
+
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/B551011/KorService/areaCode");
-		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")+"="
 				+ serviceKey);
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("30", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
@@ -37,7 +39,6 @@ public class SigunguService {
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		//서울의 areacode가 1임
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
-
 		//String Builder로 url을 형성
 
 		URL url = new URL(urlBuilder.toString()); //위의 StringBuilder로 실제 url을 구성
@@ -61,6 +62,8 @@ public class SigunguService {
 		}
 		rd.close(); //BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
 		conn.disconnect(); //연결 해제
+
+		logger.info("response : "+sb.toString());
 
 		JSONObject json = new JSONObject(sb.toString());
 		JSONObject response = json.getJSONObject("response");
