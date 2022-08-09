@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Link } from "react-router-dom";
 import GetListData from '../container/GetListData';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function TypeButton(props) {
     const placeUrl ="/manager/"+props.goto+"/place";
@@ -10,7 +11,7 @@ function TypeButton(props) {
   return (
     <ButtonGroup>
         <Link to ={url}> 
-            <button>{props.label}</button> 
+            <Button>{props.label}</Button> 
         </Link>     
         <GetListData url={placeUrl} label={props.label}></GetListData>    
     </ButtonGroup>
