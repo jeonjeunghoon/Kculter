@@ -21,8 +21,8 @@ public class SigunguServiceTest {
 	@Test
 	void testGetAreacode() throws IOException {
 		// when
-		String code = as.getSigungu("송파구"); 
+		String code = as.getSigungu("송파구");
 		// then
-		logger.info("AreaCode : "+code);
+		logger.info("AreaCode : " + code);
 	}
 }

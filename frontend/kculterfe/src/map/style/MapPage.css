@@ -16,28 +16,31 @@
 	padding: 0.5rem;
 }
 
-/* 작업 중 */
-.current-location {
-	position: absolute;
-	z-index: 10;
-	width: 45px;
-	height: 45px;
-	margin-left: auto;
+.stay-container {
+	position: fixed;
+	top: 70%;
+	right: 15px;
+	height: 150px;
+	width: 67%;
+	background-color: rgba(0, 0, 0, 0);
 }
 
-.stay-container {
+.stay-box {
 	display: flex;
-	position: absolute;
-	margin-left: 3px;
-	top: 80%;
-	width: 67%;
 	justify-content: space-around;
+}
+
+.stay-card {
+	display: flex;
+	flex-direction: column;
+	background-color: whitesmoke;
 }
 
 .stay-container button {
 	width: 150px;
 	height: 150px;
-	background-color: rgba(0, 0, 0, 0);
+	align-self: center;
+	background-color: rgba(255, 255, 255, 0);
 	border: rgba(0, 0, 0, 0);
 }
 
