@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Outlet,
 	useLocation
@@ -10,6 +10,8 @@ import idolListItem from "./sidebar/idolListPage/sidebar.json";
 import mapItem from "./sidebar/mapPage/sidebar.json";
 import myPageItem from "./sidebar/myPage/sidebar.json";
 import Header from './header/presentation/Header';
+import Resize from './ResizeComponent';
+
 // import Search from './Search';
 
 const Layout = () => {
@@ -17,6 +19,7 @@ const Layout = () => {
 
 	return (
 		<div className='layout'>
+			<Resize/>
 			{location.pathname == "/ConcertPage" && <SideNav pageidx={0} items={concertItem}/>}
 			{location.pathname == "/IdolListPage" && <SideNav pageidx={1} items={idolListItem}/>}
 			{location.pathname == "/MapPage" && <SideNav pageidx={2} items={mapItem}/>}
