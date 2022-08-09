@@ -62,14 +62,7 @@ public class SigunguService {
 		}
 		rd.close(); // BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
 		conn.disconnect(); // 연결 해제
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 		logger.info("response : " + sb.toString());
-=======
->>>>>>> hoon
-=======
->>>>>>> hoon
 
 		JSONObject json = new JSONObject(sb.toString());
 		JSONObject response = json.getJSONObject("response");
