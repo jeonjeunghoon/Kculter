@@ -1,0 +1,49 @@
+.Signup-header {
+  font-size: 35px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  color: #f4029b;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  border-bottom: 1px solid #f4029b;
+}
+
+#form-div {
+  padding: 200px 200px;
+  position: relative;
+}
+
+#modal-body {
+}
+
+#btn-check {
+  margin-top: 10px;
+  border: none;
+  background-color: #f4029b;
+  color: #ffff;
+}
+
+.cp-btn {
+  position: absolute;
+  left: 75%;
+  bottom: 2%;
+}
+
+.form-1 {
+  position: absolute;
+  left: 14%;
+  bottom: 7%;
+}
+
+.form-2 {
+  position: absolute;
+  left: 60%;
+  bottom: 34.5%;
+}
+
+form.label {
+}

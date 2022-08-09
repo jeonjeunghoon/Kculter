@@ -13,6 +13,7 @@ import ConcertPage from './concertPage/concertPage';
 import IdolListPage from './IdolListPage/IdolListPage';
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
+import ForgotPwd from './login/presentation/ForgotPwd';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/manager/*" element={<ManagerMain/>}></Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
 				<Route path="/" element={<MainPage/>}></Route>
 				<Route path="/login" element={<Login/>}/>
+				<Route path="/login/forgotpwd" element={<ForgotPwd/>}/>
 				<Route path="/signup" element={<SignUpPage/>}/>	
 				<Route element={<Layout />}> {/* 중첩 라우팅입니다. 레이아웃(헤더와 사이드네비)로 감싸는 컴포넌트(메인페이지를 제외한 모든 페이지)는 이 사이에 넣어주세요 */}
 					<Route path="/MapPage" element={<MapPage />} />
