@@ -16,7 +16,78 @@ function PlaceForm(props){
     const [long, setLongitude] = useState();
     const [address, setAddress] = useState();
     const [file,setFile] = useState();
+
     const list = location.state.list;
+
+    const [nameDis, setNameDis] = useState(false);
+    const [expDis, setExpDis] = useState(false);
+    const [fileDis, setFileDis] = useState(false);
+    const [latDis, setLatDis] = useState(false);
+    const [longDis,setLongDis] = useState(false);
+    const [addDis, setAddDis] = useState(false);
+    const [typeDis, setTypeDis] = useState(false);
+
+    const changedName = (e) => {
+        const check = e.target.value
+        if(check != ""){
+            setNameDis(true);
+        }else{
+            setNameDis(false);
+        }
+        setName(e.target.value);
+    }
+
+    const changedExp = (e) => {
+        const check = e.target.value
+        if(check != ""){
+            setExpDis(true);
+        }else{
+            setExpDis(false);
+        }
+        setExp(e.target.value);
+    }
+
+    const changedFile = (e) => {
+        const check = e.target.value;
+        if(check != ""){
+            setFileDis(true);
+        }else{
+            setFileDis(false);
+        }
+        setFile(e.target.files[0]);
+    }
+
+    const changedLng = (e) => {
+        const check = e.target.value;
+        if(check != ""){
+            setLongDis(true);
+        }else{
+            setLongDis(false);
+        }
+        setLongitude(e.target.value);
+    }
+
+    const changedLat = (e) => {
+        const check = e.target.value;
+        if(check != ""){
+            setLatDis(true);
+        }else{
+            setLatDis(false);
+        }
+        setLatitude(e.target.value);
+    }
+
+    const changedAdd = (e) => {
+        const check = e.target.value;
+        if(check != ""){
+            setAddDis(true);
+        }else{
+            setAddDis(false);
+        }
+        setAddress(e.target.value);
+    }
+
+
 
     //반복으로 특정 컴포넌트를 만들기 위해서 사용
     //매새변수로는 list와 같이 특정 배열이나 이런것들을 넣어준다.
@@ -38,11 +109,19 @@ function PlaceForm(props){
     }
 
     const showSelected = (event) => {
+        const check = event.target.value;
+        
         if(props.label.includes("Kpop")){
             //1이면
             setPlaceType(1);
         }else if(props.label.includes("문화 체험")){
             setPlaceType(2);
+        }
+
+        if(check != ""){ //뭔가 들어갔으면 진입
+            setTypeDis(true);
+        }else{
+            setTypeDis(false);
         }
         setKeyNum(event.target.value);
     }
@@ -50,44 +129,52 @@ function PlaceForm(props){
     return(
         <Form>
             {/* 위에서 만든 map const를 그대로 출력을 해준다.*/}
-            <Form.Select onChange={showSelected} style={{width : '30%'}}>
-                <option value="none">=== 선택 ===</option>
-                {mapList}
-            </Form.Select>      
-            <hr/>
+            <Form.Group className="mb-3" controlId="formName">
+                <Form.Label id="label1">유형 선택</Form.Label> 
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: typeDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Select onChange={showSelected} style={{width : '30%'}}>
+                    <option value="">=== 선택 ===</option>
+                    {mapList}
+                </Form.Select>  
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">{props.label} 이름</Form.Label>
-                <Form.Control style={{width:'30%'}} onChange={e => setName(e.target.value)}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width:'30%'}} onChange={changedName}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDec">
                 <Form.Label>{props.label} 설명</Form.Label>
-                <Form.Control style={{width : '30%'}} as="textarea" rows={3} onChange={e => setExp(e.target.value)}/>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: expDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} as="textarea" rows={3} onChange={changedExp}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDec">
                 <Form.Label>{props.label} 위도</Form.Label>
-                <Form.Control style={{width : '30%'}} onChange={e => setLatitude(e.target.value)}/>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} onChange={changedLat}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDec">
                 <Form.Label>{props.label} 경도</Form.Label>
-                <Form.Control style={{width : '30%'}} onChange={e => setLongitude(e.target.value)}/>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} onChange={changedLng}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDec">
                 <Form.Label>{props.label} 영문 주소</Form.Label>
-                <Form.Control style={{width : '30%'}} onChange={e => setAddress(e.target.value)}/>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} onChange={changedAdd}/>
             </Form.Group>                                    
 
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>{props.label} 사진</Form.Label>
-                <Form.Control style={{width : '30%'}} type="file" onChange={e => setFile(e.target.files[0])}/>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: fileDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} type="file" onChange={changedFile}/>
             </Form.Group>
             {/*API 호출을 담당할 Container Component 호출*/}
-            <StoreData variant="primary" type="submit" sendData={sendData}>
-                Submit
-            </StoreData> 
+            <StoreData disabled={(nameDis&&expDis&&fileDis&&latDis&&longDis&&addDis&&typeDis)} sendData={sendData}></StoreData>
       </Form>
     );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function StoreData(props){
-
     const check = (event) => {
         event.preventDefault();
 
@@ -80,13 +80,17 @@ function StoreData(props){
                 .catch(function(error){
                     console.log(error);
                 })
+            }else if(url.includes('concert')){
+                console.log('콘서트 추가 간다잇');
+                console.log("콘서트 정보 : "+props.sendData.formValue);
+                event.preventDefault();
             }
         }
 
         console.log(props.sendData);
     }
     return(
-        <button type="submit" onClick={check}>제출</button>
+        <Button disabled={!props.disabled} variant="primary" type="submit" onClick={check}>제출</Button>
     );
 }
 export default StoreData;

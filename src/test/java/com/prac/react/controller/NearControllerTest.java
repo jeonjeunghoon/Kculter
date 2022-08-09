@@ -7,9 +7,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prac.react.service.SearchStayService;
+import com.prac.react.service.SigunguService;
+
 
 @WebMvcTest(NearController.class)
 public class NearControllerTest {
@@ -17,6 +21,10 @@ public class NearControllerTest {
 	MockMvc mvc;
 	@Autowired
 	ObjectMapper obm; // 클래스 형식 즉 json 형식으로 된 request를 String으로 변환 시켜주기 위해서 사용하는 인스턴스
+	@MockBean
+	private SigunguService ss;
+	@MockBean
+	private SearchStayService sss;
 
 	@Test
 	void testGetGeoInfo() throws Exception {

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import {useNavigate} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function GetListData(props){
 
@@ -49,7 +50,7 @@ function GetListData(props){
         }
     }
     return(
-        <button onClick={getList}>{props.label} 장소</button>
+        <Button onClick={getList}>{props.label} 장소</Button>
     );
 }
 export default GetListData;
