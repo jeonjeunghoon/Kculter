@@ -6,6 +6,7 @@ import {
 import markerData from '../data/markerData.json';
 
 function MapMarker() {
+	const service = new window.google.maps.places.PlacesService();
 	return (
 		<MarkerClusterer>
 			{clusterer => 
