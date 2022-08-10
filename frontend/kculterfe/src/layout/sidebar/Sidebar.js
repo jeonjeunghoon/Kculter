@@ -17,6 +17,7 @@ export default function Sidebar(props) {
 			<br></br>
 			<br></br>
 			<br></br>
+			<br></br>
 			{ props.items.map((item, index) => <SidebarItem key={index} item={item} {...item} />)}
 		</div>
 	)
