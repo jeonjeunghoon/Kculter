@@ -5,8 +5,8 @@ import {
 	Link,
 } from 'react-router-dom';
 import { updateHeader } from '../container/updateHeader';
-
 import MapLink from '../../../map/tmp/MapLink';
+import OffCanvasSidebar from '../../sidebar/offCanvasSidebar/offCanvasSidebar';
 
 function Header() {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
@@ -16,6 +16,7 @@ function Header() {
 	return (
 		<header>
 			<div className='left'>
+				<OffCanvasSidebar/>
 				<img
 					src={img}
 					alt='logo'
