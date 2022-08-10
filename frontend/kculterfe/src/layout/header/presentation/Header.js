@@ -6,11 +6,7 @@ import {
 	Link,
 	useLocation,
 } from 'react-router-dom';
-<<<<<<< HEAD
-import { updateHeader } from '../container/updateHeader';
-=======
 
->>>>>>> 7d72d1a (Del: updateHeader.js)
 import MapLink from '../../../map/tmp/MapLink';
 import OffCanvasSidebar from '../../sidebar/offCanvasSidebar/offCanvasSidebar';
 
