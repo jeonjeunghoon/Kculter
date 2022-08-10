@@ -7,29 +7,28 @@ import btsimg from '../Data/photo/bts.jpg'
 import psyimg from '../Data/photo/psy.png'
 import twiceimg from '../Data/photo/twice.jpg'
 
-function IdolCard({item}) {
+function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const imgurl = item.imgurl;
 	return (
 		<>
 			<a className='cardLink' onClick={handleShow}>
 				<div className="card-container">
 					<div className="image-container">
-						<img src={blackpinkpimg} />
-						<div className="image-title"><h3>{item.title}</h3></div>
+						<img src={path_photo} />
+						<div className="image-title"><h3>{title}</h3></div>
 					</div>
 					<div className="card-content">
 						<div className="like-num">
 							<img src='heart.png' />
-							<p>{item.likenum}<br></br>Likes</p>
+							<p>{num_like}<br></br>Likes</p>
 						</div>
 						<div className="spot-num">
 							<img src='spot.png' />
-							<p>{item.spotnum}<br></br>Spots</p>
+							<p>{num_spot}<br></br>Spots</p>
 						</div>
 					</div>
 				</div>
@@ -41,8 +40,8 @@ function IdolCard({item}) {
 				size="lg"
 			>
 				<Modal.Header closeButton className="modal-header">
-					<img src={blackpinkpimg} />
-					<Modal.Title className="modal-title">{item.title}</Modal.Title>
+					<img src={path_photo} />
+					<Modal.Title className="modal-title">{title}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="modal-body">
 					<div className="modal-paragraph">
@@ -51,14 +50,13 @@ function IdolCard({item}) {
 					<div className="modal-info">
 						<div className="modal-like-num">
 							<img src='heart.png' />
-							<p>{item.likenum} Likes</p>
+							<p>{num_like} Likes</p>
 						</div>
 						<div className="modal-spot-num">
 							<img src='spot.png' />
-							<p>{item.spotnum} Spots</p>
+							<p>{num_spot} Spots</p>
 						</div>					
 					</div>
-
 
 				</Modal.Body>
 				<Modal.Footer>
@@ -66,7 +64,7 @@ function IdolCard({item}) {
 					Close
 				</Button>
 				<Button variant="primary" onClick={handleClose}>
-					Save Changes
+					Find BTS Spots
 				</Button>
 				</Modal.Footer>
 			</Modal>
