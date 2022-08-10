@@ -2,6 +2,8 @@ package com.prac.react.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prac.react.model.dto.Celebrity;
+import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
 import com.prac.react.model.dto.Place;
 
@@ -59,5 +62,19 @@ public class ManagerServiceTest {
         //then
         logger.info("result : "+ result);
         assertEquals(result,1);
+    }
+
+    @Test
+    void insertConcert(){
+        //given
+        Concert concert = new Concert(0, "test", new Date(), "test", 0, new Date(),
+         "test", "test");
+
+         //when
+         int result = ms.insertConcert(concert);
+
+         //then
+         logger.info("result : "+ result);
+         assertEquals(result,1);
     }
 }

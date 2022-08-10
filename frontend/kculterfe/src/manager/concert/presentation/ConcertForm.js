@@ -6,12 +6,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function ConcertForm(props){
 
+    const [starName,setStar] = useState("");
     const [name,setName] = useState("");
     const [explain,setExp] = useState("");
     const [file,setFile] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
+    const [starDis,setStarDis] = useState(false);
     const [nameDis, setNameDis] = useState(false);
     const [expDis, setExpDis] = useState(false);
     const [fileDis, setFileDis] = useState(false);
@@ -23,13 +25,24 @@ function ConcertForm(props){
         name : name,
         explain : explain,
         startDate : startDate,
-        endDate : endDate
+        endDate : endDate,
+        startName : starName
     }
 
     const sendData = {
         formValue : formValue,
         file : file,
         dataType : 'notplace' //장소추가인지 아닌지 확인하기 위해
+    }
+
+    const changedStar = (e) => {
+        const check = e.target.value
+        if(check != ""){
+            setStarDis(true);
+        }else{
+            setStarDis(false);
+        }
+        setStar(e.target.value);
     }
 
     const changedName = (e) => {
@@ -105,6 +118,12 @@ function ConcertForm(props){
     return(
         <Form>
             <Form.Group className="mb-3" controlId="formName">
+                <Form.Label id="label1">가수(그룹)명</Form.Label>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: starDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width:'30%'}} onChange={changedStar}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
+            </Form.Group>            
+
+            <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">{props.label} 이름</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
                 <Form.Control style={{width:'30%'}} onChange={changedName}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
@@ -130,7 +149,7 @@ function ConcertForm(props){
                 <Form.Control style={{width : '30%'}} type="file" onChange={changedFile}/>
             </Form.Group>
             {/*API 호출을 담당할 Container Component 호출*/}
-            <StoreData disabled={(nameDis&&expDis&&sdDis&&edDis&&fileDis)} sendData={sendData}></StoreData>
+            <StoreData disabled={(starDis&&nameDis&&expDis&&sdDis&&edDis&&fileDis)} sendData={sendData}></StoreData>
       </Form>
     );
 }

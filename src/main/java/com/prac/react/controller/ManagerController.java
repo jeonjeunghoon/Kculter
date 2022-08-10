@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.prac.react.model.dto.Celebrity;
+import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
 import com.prac.react.model.dto.Place;
 import com.prac.react.service.ManagerService;
@@ -76,6 +77,9 @@ public class ManagerController{
 
     @PostMapping("/place")
     public int insertPlace(@RequestPart("formValue") Place place,@RequestPart("file") MultipartFile mpf) throws IOException{
+        
+        logger.info("Place : "+place.toString());
+        
         String url = "";
         
         if(place.getPlaceType() == 1){ //kpop이라면 진입
@@ -86,6 +90,17 @@ public class ManagerController{
 
         place.setFileUrl(url);
         int result = ms.insertPlace(place);
+        return result;
+    }
+
+    @PostMapping("/concert")
+    public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
+        logger.info(concert.toString())
+
+        String url = "";
+        url = sfu.uploadtoS3(mpf, "/concert");
+        concert.setImageUrl(url);
+        int result = ms.insertConcert(concert);
         return result;
     }
 }
