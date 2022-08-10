@@ -1,0 +1,22 @@
+.forgot-header {
+  font-size: 35px;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #1755d1;
+  font-weight: bold;
+}
+
+#forgot-body {
+  padding: 50px 50px;
+  background-color: #00044a;
+}
+
+#forgot-email {
+  color: #ffff;
+}
+
+.for-text {
+  color: #6c757d;
+  font-size: 14px;
+}
