@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {
 	useState,
 	useEffect,
@@ -47,6 +48,13 @@ function Header() {
 				<p>{title}</p>
 			</div>
 			<MapLink />
+			<button
+				onClick={() => {
+					axios.get('/course/test')
+					.then(res => console.log(res))
+					.catch(error => console.log(error))
+				}}
+			/>
 			<div className='right'>
 				<Link to='/'>
 					<button className='logo'>
