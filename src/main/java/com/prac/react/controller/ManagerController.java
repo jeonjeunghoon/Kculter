@@ -95,7 +95,7 @@ public class ManagerController{
 
     @PostMapping("/concert")
     public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
-        logger.info(concert.toString());
+        logger.info(concert.toString())
 
         String url = "";
         url = sfu.uploadtoS3(mpf, "/concert");

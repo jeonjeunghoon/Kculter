@@ -1,8 +1,7 @@
 
 .CardContainer{
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-start;
+	display: grid;
+	grid-template-columns: auto;
 }
 
 .CardDiv{
@@ -10,4 +9,12 @@
 	float: left;
 	margin-left: 1rem;
 	margin-right: 1rem;
+}
+
+@media (min-width: 900px) {
+	.CardContainer { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+	.CardContainer { grid-template-columns: repeat(3, 1fr); }
 }
