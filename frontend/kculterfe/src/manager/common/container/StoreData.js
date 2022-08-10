@@ -83,7 +83,7 @@ function StoreData(props){
             }else if(url.includes('concert')){
                 console.log('콘서트 추가 간다잇');
                 console.log("콘서트 정보 : "+props.sendData.formValue);
-                event.preventDefault();
+                //이제 여기서 concert를 넘겨줘야함
             }
         }
 

@@ -4,16 +4,19 @@
 	<!-- 문화 체험 입력 -->
 	<insert id="insertCulture" parameterType="Culture">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
-		insert into culture (cultNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
+		insert into culture (keyNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
 	</insert>
 	<insert id="insertKpop" parameterType="Celebrity">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
-		insert into celebrities (celebNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
+		insert into celebrities (keyNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
 	</insert>
 	<insert id="insertPlace" parameterType="Place">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
 		insert into places (placeNum,placeType,placeTypeKey,lat,lng,status,name,`explain`,address,fileUrl) 
 		values (null, #{placeType}, #{placeTypeKey},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
 	</insert>	
-		
+	<insert id="insertConcert" parameterType="Concert">
+		insert into concerts (concertNum,address,startDate,celebName,status,endDate,`explain`,imageUrl) 
+		values (null, #{address}, #{startDate},#{celebName},#{status},#{endDate},#{explain},#{imageUrl})		
+	</insert>
 </mapper>
