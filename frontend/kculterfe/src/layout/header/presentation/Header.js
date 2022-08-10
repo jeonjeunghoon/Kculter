@@ -1,10 +1,16 @@
 import React, {
 	useState,
+	useEffect,
 } from 'react';
 import {
 	Link,
+	useLocation,
 } from 'react-router-dom';
+<<<<<<< HEAD
 import { updateHeader } from '../container/updateHeader';
+=======
+
+>>>>>>> 7d72d1a (Del: updateHeader.js)
 import MapLink from '../../../map/tmp/MapLink';
 import OffCanvasSidebar from '../../sidebar/offCanvasSidebar/offCanvasSidebar';
 
@@ -12,7 +18,28 @@ function Header() {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
 	const [title, setTitle] = useState(null);
 
-	updateHeader(setTitle, setImg);
+	const location = useLocation();
+
+	useEffect(() => {
+		switch (location.pathname) {
+			case '/MapPage':
+				setTitle('Map');
+				// setImg('');
+				break;
+			case '/Mypage':
+				setTitle('My Page');
+				setImg('');
+				break;
+			case '/ConcertPage':
+				setTitle('Concert');
+				setImg('');
+				break;
+			default:
+				setTitle('Error');
+				setImg('');
+		}
+	}, []);
+
 	return (
 		<header>
 			<div className='left'>
