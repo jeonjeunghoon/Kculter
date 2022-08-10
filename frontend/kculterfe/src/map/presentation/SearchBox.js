@@ -31,6 +31,7 @@ const SearchBox = ({ setCenter, setZoom }) => {
 		const results = await getGeocode({ address });
 		const { lat, lng } = getLatLng(results[0]);
 		setCenter({ lat, lng });
+		const service = new window.google.maps.places.PlacesService();
 		setZoom(15);
 	}
 
@@ -39,7 +40,7 @@ const SearchBox = ({ setCenter, setZoom }) => {
 		<Combobox onSelect={handleSelect}>
 			<ComboboxInput
 				value={value}
-				onChange={(e) => setValue(e.target.value)}
+				onChange={e => setValue(e.target.value)}
 				disabled={!ready}
 				className='combobox-input'
 				placeholder='Search an address'
