@@ -18,7 +18,6 @@ function reverseGeocode(newPos, setStayData) {
 			alert(status);
 		}
 		if (status == google.maps.GeocoderStatus.OK) {
-			console.log(result);
 			const address = result[0].formatted_address;
 			axios.get('/near/stay?lat='+newPos.lat+'&lng='+newPos.lng+'&address='+address)
 			.then(function(res){
@@ -34,7 +33,7 @@ function reverseGeocode(newPos, setStayData) {
 
 export function handleCenterChanged(mapref, setCenter, setStayData) {
 	if (mapref) {
-		reverseGeocode(getNewPos(mapref, setCenter), setStayData);
+		// reverseGeocode(getNewPos(mapref, setCenter), setStayData);
 	}
 };
 
