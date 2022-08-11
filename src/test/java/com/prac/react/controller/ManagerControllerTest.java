@@ -97,7 +97,7 @@ public class ManagerControllerTest {
         MockMultipartFile image = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
 
         MockMultipartFile json = new MockMultipartFile("formValue", "","application/json", 
-        "{\"name\": \"이욱재\", \"explain\": \"123\", \"placeTypeKey\": \"1\", \"keyNum\" : \"1\", \"lat\" : \"123\", \"long\" :\"37\", \"address\" : \"test\"}".getBytes());
+        "{\"name\": \"이욱재\", \"explain\": \"123\", \"placeTypeKey\": \"1\", \"culture\" : \"1\", \"kpop\" : \"1\", \"lat\" : \"123\", \"long\" :\"37\", \"address\" : \"test\"}".getBytes());
 
         mvc.perform(
             MockMvcRequestBuilders.multipart("/manager/place")
