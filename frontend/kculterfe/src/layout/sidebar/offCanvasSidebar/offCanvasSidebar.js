@@ -4,7 +4,7 @@ import Sidebar from '../Sidebar';
 import concertItem from '../concertPage/sidebar.json';
 
 
-function OffCanvasSidebar() {
+function offCanvasSidebar() {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
