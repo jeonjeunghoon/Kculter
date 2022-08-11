@@ -3,9 +3,8 @@ import {
 	Marker,
 	MarkerClusterer
 } from '@react-google-maps/api';
-// import markerData from '../data/markerData.json';
 
-function MapMarker({stayData, setCenter}) {
+function MapMarker({ stayData, setCenter }) {
 	return (
 		stayData
 			?
@@ -15,7 +14,7 @@ function MapMarker({stayData, setCenter}) {
 							const props = {
 								key: Number(item.lat) + Number(item.lng),
 								title: item.title,
-								// img: item.pinImg,
+								icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
 								pos: {
 									lat: Number(item.lat),
 									lng: Number(item.lng)
@@ -25,7 +24,8 @@ function MapMarker({stayData, setCenter}) {
 								<Marker
 									key={props.key}
 									title={props.title}
-									// img={img}
+									icon={props.icon}
+  								zIndex={30}
 									position={props.pos}
 									clusterer={clusterer}
 									visible={true}

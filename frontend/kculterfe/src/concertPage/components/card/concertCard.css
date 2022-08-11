@@ -3,6 +3,28 @@
 	box-shadow:0px 0px 15px 0px;
 }
 
-.concertModalHeader {
-	background-color: #fff;
+@media all and (min-width: 992px) {
+	.concert_modal_body {
+		display: grid;
+		grid-template-columns: 3fr 4fr;
+	}
+}
+
+@media all and (max-width: 992px) {
+	.concert_modal_body {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+	}
+}
+
+.map_img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.modal_concert_img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
 }

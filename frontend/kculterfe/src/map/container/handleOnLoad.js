@@ -70,9 +70,5 @@ export function handleCurrent(map, setCenter, setCurrent, setGeoService, setLoad
 			setLoaded(true);
     }
   });
-}
-
-export function handleOnLoad (map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef) {
-	handleCurrent(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus);
 	setMapRef(map);
 };

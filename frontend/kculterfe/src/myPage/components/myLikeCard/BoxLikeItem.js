@@ -1,10 +1,9 @@
 import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
-import "../../styles/Card.css"
+import "../../styles/LikeListCard.css"
 
 function BoxLikeItem({ props }) {
 	return (
-		<div className="card-container">
+		<div id="card-container">
 			<div className="image-container">
 				<img src={props.img} />
 				<div className="image-title"><h3>{props.title}</h3></div>

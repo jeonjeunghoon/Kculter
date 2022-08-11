@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
-import "../../styles/Card.css"
+import "../../styles/MyPageCard.css"
 
 function CardItem({ props }) {
 	const [show, setShow] = useState(false);
@@ -10,12 +10,12 @@ function CardItem({ props }) {
 	const handleShow = () => setShow(true);
 	return (
 		<>
-			<div className="my-4">
+			<div className="my-5">
 				<Card className="body-card">
 					{/* 카드 호버 기능 */}
-					<Card className="body-card-hover text-center" onClick={handleShow}>
-						<div className="square border border-1 rounded-pill m-auto" style={{ color: 'white', width: '6em'}}>
-							<span className="px-2" style={{ width: '20px'}}>
+					<Card className="body-card-hover" onClick={handleShow}>
+						<div className="square border border-1 rounded-pill m-auto" style={{ color: 'white', width: '6em' }}>
+							<span className="px-2" style={{ width: '20px' }}>
 								view more
 							</span>
 						</div>

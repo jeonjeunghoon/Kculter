@@ -6,7 +6,7 @@ import items from '../../data/myLikeList.json'
 function BoxCardList() {
 	return (
 		<>
-			<Row className="mx-5">
+			<Row style={{margin: '25px'}}>
 				{ items.map((item, index) => <BoxLikeItem key={index} props={item} {...item} />)}
 			</Row>
 		</>

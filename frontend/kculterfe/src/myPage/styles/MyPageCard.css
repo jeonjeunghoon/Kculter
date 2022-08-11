@@ -1,0 +1,62 @@
+#my-body .boxList {
+	overflow-x: auto;
+	height: 700px;
+	width: 1276px;
+}
+
+#my-body .boxList .box-card {
+	margin-bottom: 30px;
+	margin-left: 50px;
+}
+
+#my-body .cardList {
+	display: flex;
+	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
+}
+
+#my-body .date {
+	text-align: right;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+#my-body .date-span{
+	border: 2px solid gray;
+	color: blue;
+	padding: 6px;
+}
+
+#my-body .body-card {
+    width: 8em;
+    margin-left: 50px;
+    margin-right: 50px;
+	position: relative;
+}
+
+#my-body .body-card .body-card-hover {
+    width: 7.95em;
+	height: 8.6em;
+	position: absolute;
+	opacity: 0;
+}
+
+#my-body .body-card .body-card-hover:hover {
+    width: 7.85em;
+	height: 8.45em;
+	background: fuchsia;
+	position: absolute;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+#my-body .body-card-body {
+    background: gainsboro;
+    padding-top: 0.5em;
+    padding-bottom: 0;
+}
+
+#my-body .card-idol {
+	color: blue;
+	text-align: center;
+	margin-top: 8px;
+}

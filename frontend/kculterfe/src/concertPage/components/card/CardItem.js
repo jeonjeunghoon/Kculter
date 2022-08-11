@@ -5,9 +5,8 @@ import './concertCard.css';
 
 function CardItem(item) {
 	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const handleClose = () => setShow(false);
 	return (
 		<>
 			<Card className='concertCard' onClick={handleShow}>
@@ -21,30 +20,37 @@ function CardItem(item) {
 							<Col>
 								<Card.Text>{item.date}</Card.Text>
 							</Col>
-								<div className='conertLikeBtn'></div>
+								<div className='conertLikeBtn'>like</div>
 							<Col>
 							</Col>
 						</Row>
-						
 					</Container>
 				</Card.Body>
 			</Card>
 
-			<Modal show={show} onHide={handleClose}>
+			<Modal show={show} onHide={handleClose} size="xl">
 				<Modal.Header closeButton>
 				<Modal.Title>{item.title}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
-					<img width="200" height="300" src={Jeju}></img>
-					{item.date}
+				<Modal.Body className="concert_modal_body">
+					<div className='concert_modal_body_l'>
+					<img className='modal_concert_img' src={Jeju} width={300} height={400}/>
+					</div>
+					<div className='concert_modal_body_r'>
+						<h1>{item.title}</h1>
+						<p>{item.date}</p>
+						<br/>
+						<p>location: asdf</p>
+						<img className='map_img' src="https://i.stack.imgur.com/HILmr.png"></img>
+					</div>
 				</Modal.Body>
 				<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-					Close
-				</Button>
-				<Button variant="primary" onClick={handleClose}>
-					Save Changes
-				</Button>
+					<Button variant="secondary" onClick={handleClose}>
+						Close
+					</Button>
+					<Button variant="primary" onClick={handleClose}>
+						Save Changes
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>

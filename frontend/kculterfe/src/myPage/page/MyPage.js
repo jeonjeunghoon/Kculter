@@ -1,9 +1,9 @@
 import React from 'react';
-import MyMapBody from '../components/MyMapBody';
+import MyPageBody from '../components/MyPageBody';
 
 function MyPage() {
   return (
-    <MyMapBody />
+    <MyPageBody />
   );									
 }
 
