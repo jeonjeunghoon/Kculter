@@ -1,8 +1,23 @@
-.sidebar {
-	background-color: rgb(0,3,77);
-	height: 100%;
-	min-width: 260px;
-	grid-row: 1 / span 4;
+@media all and (min-width: 512px) {
+	.sidebar {
+		background-color: rgb(0,3,77);
+		height: 100%;
+		min-width: 260px;
+		grid-row: 1 / span 4;
+}
+
+@media all and (max-width: 512px) {
+	.sidebar {
+		display: none;
+	}
+	.inCanvas .sidebar {
+		overflow: auto;
+		display: block;
+		background-color: rgb(0,3,77);
+		height: 100vh;
+		min-width: 260px;
+		grid-row: 1 / span 4;
+	}
 }
 
 .name {
