@@ -33,6 +33,6 @@ function reverseGeocode(newPos, setStayData) {
 
 export function handleDragEnd(mapref, setCenter, setStayData) {
 	if (mapref) {
-		// reverseGeocode(getNewPos(mapref, setCenter), setStayData);
+		reverseGeocode(getNewPos(mapref, setCenter), setStayData);
 	}
 };

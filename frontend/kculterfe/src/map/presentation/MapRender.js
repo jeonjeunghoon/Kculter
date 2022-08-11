@@ -1,13 +1,17 @@
 import React, {
 	useState,
 } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
-import SearchBox from './SearchBox';
+import {
+	Autocomplete,
+	GoogleMap,
+	Marker,
+} from '@react-google-maps/api';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
 import CurrentInfoWindow from './CurrentInfoWindow';
 import { handleOnLoad } from '../container/handleOnLoad';
 import { handleDragEnd } from '../container/handleDragEnd';
+import { handlePlaceChanged } from '../container/handlePlaceChanged';
 
 function MapRender() {
 	// 공식 구글맵 api object
@@ -33,11 +37,15 @@ function MapRender() {
 		},
 	};
 
+	// SearchBox
+	const [input, setInput] = useState(null);
+	const [search, setSearch] = useState(false);
+
 	// 현재위치버튼
 	const [current, setCurrent] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 	const [geoService, setGeoService] = useState(false);
-	const [focus, setFocus] = useState({lat: 0, lng: 0});
+	const [focus, setFocus] = useState({ lat: 0, lng: 0 });
 
 	// 맵 center 값
 	const [mapref, setMapRef] = useState(null);
@@ -47,11 +55,6 @@ function MapRender() {
 
 	return (
 		<div className='map-container'>
-			{/* 검색창 */}
-			<SearchBox
-				setCenter={setCenter}
-				setZoom={setZoom}
-			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
 				mapContainerClassName='map-container'
@@ -61,10 +64,26 @@ function MapRender() {
 				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
 				onDragEnd={() => handleDragEnd(mapref, setCenter, setStayData)}
 			>
-				{/* 마커클러스터와 마커 */}
+				{/* Search Place */}
+				<Autocomplete
+					onLoad={autocomplete => setInput(autocomplete)}
+					onPlaceChanged={() => handlePlaceChanged(input, setCenter, setZoom, setSearch)}
+				>
+					<input className='autocomplete-input'
+            type="text"
+            placeholder="Search place"
+          />
+				</Autocomplete>
+				{search &&
+					<Marker
+					position={center}
+					/>
+				}
+				{/* 아이돌/숙소 마커 */}
 				<MapMarker
 					stayData={stayData}
 					setCenter={setCenter}
+					input={input}
 				/>
 				{/* 현재위치 infoWindow */}
 				<CurrentInfoWindow
@@ -74,13 +93,12 @@ function MapRender() {
 					loaded={loaded}
 					geoService={geoService}
 				/>
+				{/* 숙소 카드 */}
+				<Stay
+					stayData={stayData}
+					setCenter={setCenter}
+				/>
 			</GoogleMap>
-
-			{/* 숙소 카드 */}
-			<Stay
-				stayData={stayData}
-				setCenter={setCenter}
-			/>
 		</div>
 	)
 }

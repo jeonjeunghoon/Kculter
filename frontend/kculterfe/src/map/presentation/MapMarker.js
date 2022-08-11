@@ -4,7 +4,7 @@ import {
 	MarkerClusterer
 } from '@react-google-maps/api';
 
-function MapMarker({stayData, setCenter}) {
+function MapMarker({ stayData, setCenter }) {
 	return (
 		stayData
 			?
