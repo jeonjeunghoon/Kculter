@@ -6,10 +6,8 @@ import SearchBox from './SearchBox';
 import MapMarker from './MapMarker';
 import Stay from './Stay';
 import CurrentInfoWindow from './CurrentInfoWindow';
-import {
-	handleOnLoad,
-	handleCenterChanged,
-} from '../container/handleOnLoad';
+import { handleOnLoad } from '../container/handleOnLoad';
+import { handleDragEnd } from '../container/handleDragEnd';
 
 function MapRender() {
 	// 공식 구글맵 api object
@@ -56,12 +54,12 @@ function MapRender() {
 			/>
 			{/* 구글맵 인스턴스 */}
 			<GoogleMap
-				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
 				mapContainerClassName='map-container'
 				options={options}
-				zoom={zoom}
-				onDragEnd={() => handleCenterChanged(mapref, setCenter, setStayData)}
 				center={center}
+				zoom={zoom}
+				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
+				onDragEnd={() => handleDragEnd(mapref, setCenter, setStayData)}
 			>
 				{/* 마커클러스터와 마커 */}
 				<MapMarker
