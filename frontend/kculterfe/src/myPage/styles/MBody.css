@@ -3,17 +3,19 @@
     background-color: #eeeeee;
 }
 
-#my-body button {
-    border: 0;
-    color: gray;
-}
-
 #my-body .body-navbar {
     background-color: #eeeeee;
-    border-bottom: 1px solid gray;
-    border-top: none;
-    border-right: none;
-    border-bottom-right-radius: 0px;
-    margin-left: 2.3em;
-    margin-right: 3em;
+    border-bottom: 2px solid gray;
+    margin-left: 2.4em;
+    width: 1208px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#my-body .navbtn {
+    border-bottom: 5px solid blue;
+}
+
+#my-body .navbtn:hover {
+    color: green;
 }
