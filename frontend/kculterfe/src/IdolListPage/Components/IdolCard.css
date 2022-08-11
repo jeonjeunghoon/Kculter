@@ -68,7 +68,7 @@ h3,p{
 	padding: 0;
 }
 
-.modal-header{
+.idolcard-modal-header{
 	overflow: hidden;
 	position: relative;
 	height: 30rem;
@@ -77,7 +77,7 @@ h3,p{
 	justify-content: center;
 }
 
-.modal-header img{
+.idolcard-modal-header img{
 	width: 100%;
 	position: absolute;
 	top: 0px;
@@ -85,7 +85,7 @@ h3,p{
 	opacity: 0.5;
 }
 
-.modal-title {
+.idolcard-modal-title {
 	color: white;
 	font-weight: bold;
 	font-size: xx-large;
@@ -93,21 +93,21 @@ h3,p{
 	top: 30%;
 }
 
-.modal-body {
+.idolcard-modal-body {
 	display: flex;
 	justify-content: left;
 }
 
-.modal-paragraph {
+.idolcard-modal-paragraph {
 	width: 70%;
 }
 
-.modal-info {
+.idolcard-modal-info {
 	width: 20%;
 	text-align: right;
 }
 
-.modal-info *{
+.idolcard-modal-info *{
 	width: 80%;
 	display: flex;
 	justify-content: right;
@@ -115,10 +115,10 @@ h3,p{
 	margin: 3px;
 }
 
-.modal-like-num img {
+.idolcard-modal-like-num img {
 	width: 1.3rem;
 }
 
-.modal-spot-num img {
+.idolcard-modal-spot-num img {
 	width: 1.3rem;
 }
