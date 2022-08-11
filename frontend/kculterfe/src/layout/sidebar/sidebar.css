@@ -4,6 +4,7 @@
 		height: 100%;
 		min-width: 260px;
 		grid-row: 1 / span 4;
+	}
 }
 
 @media all and (max-width: 512px) {
