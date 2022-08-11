@@ -8,7 +8,7 @@ export function handlePlaceChanged(input, setCenter, setZoom, setSearch) {
 		console.log(place.name);
 		console.log(place.formatted_address);
 		console.log(place.formatted_phone_number);
-		console.log(place.type);
+		console.log(place.types);
 		console.log(place.geometry.location.lat());
 		console.log(place.geometry.location.lng());
 		setCenter({
