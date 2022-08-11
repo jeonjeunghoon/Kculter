@@ -39,7 +39,6 @@ export function handleCenterChanged(mapref, setCenter, setStayData) {
 };
 
 export function handleCurrent(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus) {
->>>>>>> tmp
 	const locationButton = document.createElement('button');
 	const google = window.google;
 
