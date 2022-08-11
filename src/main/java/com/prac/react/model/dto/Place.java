@@ -4,21 +4,24 @@ public class Place {
 
     private int placeNum;
     private int placeType; //1 : kpop ,  2 : 문화 체험
-    private int placeTypeKey; //장소 유형의 키값
-    private long lat; //위도
-    private long lng; //경도
+    private String culture;
+    private String kpop;
+    private double lat; //위도
+    private double lng; //경도
     private int status; //1:삭제 ,2: 보존
     private String name;
     private String explain;
     private String address;
     private String fileUrl;
 
-    public Place() {}
+    public Place() {
+    }
 
-    public Place(int placeNum, int placeType, int placeTypeKey, long lat, long lng, int status, String name, String explain, String address, String fileUrl) {
+    public Place(int placeNum, int placeType, String culture, String kpop, double lat, double lng, int status, String name, String explain, String address, String fileUrl) {
         this.placeNum = placeNum;
         this.placeType = placeType;
-        this.placeTypeKey = placeTypeKey;
+        this.culture = culture;
+        this.kpop = kpop;
         this.lat = lat;
         this.lng = lng;
         this.status = status;
@@ -44,27 +47,35 @@ public class Place {
         this.placeType = placeType;
     }
 
-    public int getPlaceTypeKey() {
-        return this.placeTypeKey;
+    public String getCulture() {
+        return this.culture;
     }
 
-    public void setPlaceTypeKey(int placeTypeKey) {
-        this.placeTypeKey = placeTypeKey;
+    public void setCulture(String culture) {
+        this.culture = culture;
     }
 
-    public long getLat() {
+    public String getKpop() {
+        return this.kpop;
+    }
+
+    public void setKpop(String kpop) {
+        this.kpop = kpop;
+    }
+
+    public double getLat() {
         return this.lat;
     }
 
-    public void setLat(long lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public long getLng() {
+    public double getLng() {
         return this.lng;
     }
 
-    public void setLng(long lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
@@ -113,7 +124,8 @@ public class Place {
         return "{" +
             " placeNum='" + getPlaceNum() + "'" +
             ", placeType='" + getPlaceType() + "'" +
-            ", placeTypeKey='" + getPlaceTypeKey() + "'" +
+            ", culture='" + getCulture() + "'" +
+            ", kpop='" + getKpop() + "'" +
             ", lat='" + getLat() + "'" +
             ", lng='" + getLng() + "'" +
             ", status='" + getStatus() + "'" +
@@ -124,4 +136,5 @@ public class Place {
             "}";
     }
 
+ 
 }

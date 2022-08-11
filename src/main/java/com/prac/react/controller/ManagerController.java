@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,7 +59,7 @@ public class ManagerController{
     }
 
     @PostMapping("/kpopinfo")
-    public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart("file") MultipartFile mpf) throws IOException{
+    public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart(value = "file") MultipartFile mpf) throws IOException{
         logger.info("kpop 저장 들어옴");
         logger.info("celeb : "+ celeb.toString());
 
@@ -76,20 +78,50 @@ public class ManagerController{
     }
 
     @PostMapping("/place")
-    public int insertPlace(@RequestPart("formValue") Place place,@RequestPart("file") MultipartFile mpf) throws IOException{
-        
-        logger.info("Place : "+place.toString());
-        
-        String url = "";
-        
-        if(place.getPlaceType() == 1){ //kpop이라면 진입
-            url = sfu.uploadtoS3(mpf, "kpop-place-img");
-        }else{//culture이라면 진입
-            url = sfu.uploadtoS3(mpf, "culture-place-img");
-        }
+    public int insertPlace(@RequestPart("formValue") Place place,@RequestPart(value="file", required=false) MultipartFile mpf) throws IOException{
 
-        place.setFileUrl(url);
-        int result = ms.insertPlace(place);
+        logger.info("Place : "+place.toString());
+        int result = 0;
+        String url = "";
+
+        //일단 여기는 장소를 입력할때 들어오는곳이잔아.
+        //그럼 먼저 확인해야할것은 request로 들어온 Place의 placeNum이 있는지 먼저 확인을 해보자.
+        if(place.getPlaceNum() == 0){ //이말인 즉슨 기존에 장소가 아니라는 얘기이다.
+            //그럼 얘는 새로 insert 해줘야 한다.
+            if(place.getPlaceType() == 1){ // kpop = 1, 즉 kpop 장소일때
+                logger.info("type : "+ place.getPlaceType());
+                place.setCulture("");
+                place.setKpop("/"+place.getKpop()+"/");
+                logger.info("culture : "+ place.getCulture());
+                logger.info("kpop : "+ place.getKpop());
+            }else{
+                logger.info("type : "+ place.getPlaceType());
+                place.setKpop("");
+                place.setCulture("/"+place.getCulture()+"/");
+                logger.info("culture : "+ place.getCulture());
+                logger.info("kpop : "+ place.getKpop());
+            }
+            logger.info("No place info, starting insert process");
+            url = sfu.uploadtoS3(mpf, "/place");
+            place.setFileUrl(url);
+            result = ms.insertPlace(place);
+        }else{ //얘는 기존에 있는 장소에서 따로 추가하는것이니 placeNum만 있을것이다.
+
+            logger.info("Place info exist, updating insert process");
+
+            //따라서 얘는 기존의 Place에서 culture 혹은 kpop에서 추가된 내용만 얹어주면된다. 상황을 예를 들어서 설명을 하겠다.
+
+            /*
+             * 만약 키값이 3인 kpop이 기존에 키값이 3인 장소에 본인과 관련있는 장소로 하고 싶을땐 아래와 같이 입력이 된다
+             * placeNum(3) - kpop :  /1/2/3 
+             * 그럼 placeNum과 관련있는 kpop들은 1번 2번 3번이 된다.
+             */
+            if(ms.checkDuplicate(place)>0){
+                result = 201; //201 : 이미 존재하는 데이터입니다.
+            }else{
+                result = ms.updatePlace(place);
+            }
+        }
         return result;
     }
 
