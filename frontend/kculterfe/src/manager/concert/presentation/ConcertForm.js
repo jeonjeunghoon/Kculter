@@ -7,17 +7,16 @@ import { getKpopList } from '../container/GetKpopList';
 
 function ConcertForm(props){
     
-    const [kpop,setKpop] = useState();
-
+    const [kpopList, setKpopList] = useState();
     useEffect(() => {
-        let kpopList;
         const fetchData = async() =>{
-            console.log("가즈아");
-            kpopList = await getKpopList();
-            console.log("kpop list : "+kpopList);
+            const check = await getKpopList();
+            setKpopList(check);
         }
         fetchData();
-    });
+    },[]);
+
+    const kpopListMap = kpopList && kpopList.map((kpopList) => (<option key={kpopList.keyNum} value={kpopList.keyNum}>{kpopList.name}</option>))
 
     const [starName,setStar] = useState("");
     const [name,setName] = useState("");
@@ -157,6 +156,13 @@ function ConcertForm(props){
 
     return(
         <Form>
+            <Form.Group className="mb-3" controlId="formName">
+                <Form.Label id="label1">유형 선택</Form.Label> 
+                <Form.Select style={{width : '30%'}}>
+                    <option value="">=== 선택 ===</option>
+                    {kpopListMap}
+                </Form.Select>  
+            </Form.Group>            
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">가수(그룹)명</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: starDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
