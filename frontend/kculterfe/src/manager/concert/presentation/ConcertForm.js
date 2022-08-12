@@ -10,12 +10,15 @@ function ConcertForm(props){
     const [kpopList, setKpopList] = useState();
     useEffect(() => {
         const fetchData = async() =>{
+            //await하는것을 받아서 await 시켜준다.
             const check = await getKpopList();
             setKpopList(check);
         }
         fetchData();
-    },[]);
+    },[]); //뒤에 빈 배열을 붙여줘서 한번만 실행되게 해준다.
+    // w3schools.com/react/react_useeffect.asp  참조
 
+    //얘는 데이터가 없어도 렌더링을 하기 때문에 변수 &&를 붙여야지만 렌더링이 된다.
     const kpopListMap = kpopList && kpopList.map((kpopList) => (<option key={kpopList.keyNum} value={kpopList.keyNum}>{kpopList.name}</option>))
 
     const [starName,setStar] = useState("");
