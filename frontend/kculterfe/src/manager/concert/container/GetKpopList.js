@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export function getKpopList(setKpop) {
+export async function getKpopList() {
     let list;
-    axios.get('/celebrities')
+    return await axios.get('/celebrities')
     .then(function(res){
-        console.log(res.data);
-        return res.data;
+        list = res.data;
+        return list;
     })
     .catch(function(error){
         console.log(error);
