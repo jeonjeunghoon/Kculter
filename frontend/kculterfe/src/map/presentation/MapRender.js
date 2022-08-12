@@ -18,6 +18,7 @@ function MapRender() {
 	const google = window.google;
 
 	// 구글맵 api 설정
+	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({ lat: 37.566535, lng: 126.9779692 });
 	const [zoom, setZoom] = useState(10);
 	const options = {
@@ -53,6 +54,36 @@ function MapRender() {
 	// 숙소 데이터
 	const [stayData, setStayData] = useState(null);
 
+	function handleOnClickSearchMarker(e, map) {
+		// geocoder + placeId로 장소 세부 정보 찾기
+		const geocoder = new window.google.maps.Geocoder();
+		geocoder.geocode({'latLng': e.latLng}, (result, status) => {
+			if (status !== google.maps.GeocoderStatus.OK) {
+				alert(status);
+			}
+			if (status == google.maps.GeocoderStatus.OK) {
+				const placeId = result[0].place_id;
+				console.log(placeId);
+				const request = {
+					placeId: placeId,
+					fields: ['name', 'formatted_address', 'place_id', 'geometry'],
+				};
+				const service = new window.google.maps.places.PlacesService(map);
+				service.getDetails(request, (place, status) => {
+					if (status === google.maps.places.PlacesServiceStatus.OK &&
+						place &&
+						place.geometry &&
+						place.geometry.location) {
+							console.log(place, status);
+						}
+				})
+			}
+		});
+
+		// console.log(e.latLng.lat(), e.latLng.lng());
+		// console.log(service);
+	}
+
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
@@ -61,7 +92,8 @@ function MapRender() {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
+				// onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
+				onLoad={map => {setMap(map)}}
 				onDragEnd={() => handleDragEnd(mapref, setCenter, setStayData)}
 			>
 				{/* Search Place */}
@@ -74,10 +106,25 @@ function MapRender() {
             placeholder="Search place"
           />
 				</Autocomplete>
-				{search &&
-					<Marker
-					position={center}
-					/>
+
+				{/* TEST용 */}
+				<Marker
+						position={center}
+						visible={true}
+						onClick={(e) => handleOnClickSearchMarker(e, map)}
+				/>
+
+
+
+				{search
+					?
+						<Marker
+						position={center}
+						visible={true}
+						onClick={(e) => handleOnClickSearchMarker(e, map)}
+						/>
+					:
+						<></>
 				}
 				{/* 아이돌/숙소 마커 */}
 				<MapMarker
