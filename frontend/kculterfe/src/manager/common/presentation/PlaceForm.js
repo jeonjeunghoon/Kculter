@@ -155,6 +155,25 @@ function PlaceForm(props){
 
             //값을 넣어준다.
             setPlaceNum(check);
+        }else{
+            //입력 disabled 시켜주기 위해서
+            setNameX(false);
+            setExpX(false);
+            setAddX(false);
+            setFileX(false);
+            setLatX(false);
+            setLongX(false);
+
+            //제출버튼 disabled 풀어주기위해서
+            setNameDis(false);
+            setExpDis(false);
+            setAddDis(false);
+            setFileDis(false);
+            setLatDis(false);
+            setLongDis(false);
+
+            //값을 넣어준다.
+            setPlaceNum(check);           
         }
     }
 
