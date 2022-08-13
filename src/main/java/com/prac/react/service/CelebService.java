@@ -19,4 +19,7 @@ public class CelebService {
     public List<Celebrity> getCelebrities(){
         return cd.getCelebrities();
     }
+    public int getCelebKeyNumByName(String name){
+        return cd.getCelebKeyNumByName(name);
+    }
 }

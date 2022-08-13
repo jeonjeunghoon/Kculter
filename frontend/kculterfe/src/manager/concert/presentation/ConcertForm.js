@@ -29,6 +29,7 @@ function ConcertForm(props){
     const [endDate, setEndDate] = useState("");
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
+    const [starKeyNum,setStarKey] = useState("");
 
     const [starDis,setStarDis] = useState(false);
     const [nameDis, setNameDis] = useState(false);
@@ -39,16 +40,18 @@ function ConcertForm(props){
     const [latDis, setLatDis] = useState(false);
     const [lngDis, setLngDis] = useState(false);
 
+    const [nameX,setNameX] = useState(false);
 
 
     const formValue = {
-        name : name,
+        concertName : name,
         explain : explain,
         startDate : startDate,
         endDate : endDate,
-        startName : starName,
+        starName : starName,
         lat : lat,
-        lng : lng
+        lng : lng,
+        starKey : starKeyNum,
     }
 
     const sendData = {
@@ -157,11 +160,24 @@ function ConcertForm(props){
         setFile(e.target.files[0]);
     }
 
+    const changedKpop = (e) => {
+        const check = e.target.value;
+        if(check != ""){ //값이 바뀌었을때 들어가는곳
+            setNameDis(true);
+            setStarDis(true);
+            setNameX(true);
+        }else{ //값이 바뀌지 않았을때 들어가는곳
+            setNameDis(false);
+            setStarDis(false);
+            setNameX(false);
+        }
+        setStarKey(check);
+    }
     return(
         <Form>
             <Form.Group className="mb-3" controlId="formName">
-                <Form.Label id="label1">유형 선택</Form.Label> 
-                <Form.Select style={{width : '30%'}}>
+                <Form.Label id="label1">기존 Kpop 가수 선택</Form.Label> 
+                <Form.Select onChange={changedKpop} style={{width : '30%'}}>
                     <option value="">=== 선택 ===</option>
                     {kpopListMap}
                 </Form.Select>  
@@ -169,7 +185,7 @@ function ConcertForm(props){
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">가수(그룹)명</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: starDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
-                <Form.Control style={{width:'30%'}} onChange={changedStar}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
+                <Form.Control disabled={nameX} style={{width:'30%'}} onChange={changedStar}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
             </Form.Group>            
 
             <Form.Group className="mb-3" controlId="formName">

@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +15,8 @@ import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
 import com.prac.react.model.dto.Place;
+import com.prac.react.service.CelebService;
+import com.prac.react.service.ConcertService;
 import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
@@ -28,12 +28,16 @@ public class ManagerController{
 
     private S3FileUploadService sfu;
     private ManagerService ms;
+    private CelebService celebS;
+    private ConcertService concertS;
 
     //의존성 주입
     @Autowired
-    public ManagerController(S3FileUploadService sfu,ManagerService ms){
+    public ManagerController(S3FileUploadService sfu,ManagerService ms,CelebService celebS,ConcertService concertS){
         this.sfu = sfu;
         this.ms = ms; 
+        this.celebS = celebS;
+        this.concertS = concertS;
     }
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
@@ -68,9 +72,26 @@ public class ManagerController{
         logger.info("imageUrl : "+ imageUrl);
 
         celeb.setFileUrl(imageUrl);
-        int result = ms.insertKpop(celeb);
+        //연예인 입력을 한다.
+        int kpopResult = ms.insertKpop(celeb);
 
-        if(result > 0){ //데이터가 잘 입력 됐을때
+        //해당 연예인의 키값을 받아온다.
+        int celebKeyNum = celebS.getCelebKeyNumByName(celeb.getName());
+        //해당 연예인의 이름이 있는 concertNum을 가져온다.
+        int concertNum = concertS.getConcertNumbyCelebName(celeb.getName());
+        //해당 연예인의 이름이 concerts table에 있다면 진입
+        if(concertNum > 0){
+            int concertResult = concertS.updateCelebNum(celebKeyNum,concertNum);
+            if(concertResult > 0){
+                logger.info("Updated celebNum at concert info");
+            }else{
+                logger.error("Error Updating celebNum ad concert info");
+            }
+        }else{
+            logger.info("No concert info with this celebName");
+        }
+
+        if(kpopResult > 0){ //데이터가 잘 입력 됐을때
             return 200;
         }else{ //데이터가 잘 들어가지 않았을때
             return 500;
