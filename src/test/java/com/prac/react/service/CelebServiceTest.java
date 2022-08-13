@@ -39,4 +39,13 @@ public class CelebServiceTest {
         }
 
     }
+    @Test
+    void getCelebKeyNumByName(){
+        //given
+        String celebName = "BTS";
+        //when
+        int celebKeyNum = cs.getCelebKeyNumByName(celebName);
+
+        logger.info("celebKeyNum : "+celebKeyNum);
+    }
 }

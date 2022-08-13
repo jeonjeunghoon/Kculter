@@ -9,4 +9,5 @@ import com.prac.react.model.dto.Celebrity;
 @Mapper
 public interface CelebDao {
     List<Celebrity> getCelebrities();
+    int getCelebKeyNumByName(String name);
 }
