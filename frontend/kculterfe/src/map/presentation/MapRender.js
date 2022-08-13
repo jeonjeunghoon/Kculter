@@ -2,16 +2,16 @@ import React, {
 	useState,
 } from 'react';
 import {
-	Autocomplete,
 	GoogleMap,
-	Marker,
 } from '@react-google-maps/api';
-import MapMarker from './MapMarker';
+import Search from './Search';
+import MapMarkerClustered from './MapMarkerClustered';
 import Stay from './Stay';
-import CurrentInfoWindow from './CurrentInfoWindow';
-import { handleOnLoad } from '../container/handleOnLoad';
-import { handleDragEnd } from '../container/handleDragEnd';
-import { handlePlaceChanged } from '../container/handlePlaceChanged';
+import {
+	handleDragEndGM,
+	handleClickGM,
+} from '../container/handleGM';
+
 
 function MapRender() {
 	// 공식 구글맵 api object
@@ -36,53 +36,11 @@ function MapRender() {
         west: -180
 			},
 		},
+		// clickableIcons: false, false하면 안되고 info만 안뜨게 해야 한다.
 	};
-
-	// SearchBox
-	const [input, setInput] = useState(null);
-	const [search, setSearch] = useState(false);
-
-	// 현재위치버튼
-	const [current, setCurrent] = useState(false);
-	const [loaded, setLoaded] = useState(false);
-	const [geoService, setGeoService] = useState(false);
-	const [focus, setFocus] = useState({ lat: 0, lng: 0 });
-
-	// 맵 center 값
-	const [mapref, setMapRef] = useState(null);
 
 	// 숙소 데이터
 	const [stayData, setStayData] = useState(null);
-
-	function handleOnClickSearchMarker(e, map) {
-		// geocoder + placeId로 장소 세부 정보 찾기
-		const geocoder = new window.google.maps.Geocoder();
-		geocoder.geocode({'latLng': e.latLng}, (result, status) => {
-			if (status !== google.maps.GeocoderStatus.OK) {
-				alert(status);
-			}
-			if (status == google.maps.GeocoderStatus.OK) {
-				const placeId = result[0].place_id;
-				console.log(placeId);
-				const request = {
-					placeId: placeId,
-					fields: ['name', 'formatted_address', 'place_id', 'geometry'],
-				};
-				const service = new window.google.maps.places.PlacesService(map);
-				service.getDetails(request, (place, status) => {
-					if (status === google.maps.places.PlacesServiceStatus.OK &&
-						place &&
-						place.geometry &&
-						place.geometry.location) {
-							console.log(place, status);
-						}
-				})
-			}
-		});
-
-		// console.log(e.latLng.lat(), e.latLng.lng());
-		// console.log(service);
-	}
 
 	return (
 		<div className='map-container'>
@@ -92,59 +50,29 @@ function MapRender() {
 				options={options}
 				center={center}
 				zoom={zoom}
-				// onLoad={map => handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef)}
-				onLoad={map => {setMap(map)}}
-				onDragEnd={() => handleDragEnd(mapref, setCenter, setStayData)}
+				onLoad={map => setMap(map)}
+				onDragEnd={() => handleDragEndGM(map, setCenter, setStayData)}
+				onClick={e => handleClickGM(e, google, map)}
 			>
-				{/* Search Place */}
-				<Autocomplete
-					onLoad={autocomplete => setInput(autocomplete)}
-					onPlaceChanged={() => handlePlaceChanged(input, setCenter, setZoom, setSearch)}
-				>
-					<input className='autocomplete-input'
-            type="text"
-            placeholder="Search place"
-          />
-				</Autocomplete>
 
-				{/* TEST용 */}
-				<Marker
-						position={center}
-						visible={true}
-						onClick={(e) => handleOnClickSearchMarker(e, map)}
+				{/* 검색창 */}
+				<Search
+					setCenter={setCenter}
+					setZoom={setZoom}
 				/>
 
-
-
-				{search
-					?
-						<Marker
-						position={center}
-						visible={true}
-						onClick={(e) => handleOnClickSearchMarker(e, map)}
-						/>
-					:
-						<></>
-				}
 				{/* 아이돌/숙소 마커 */}
-				<MapMarker
+				<MapMarkerClustered
 					stayData={stayData}
 					setCenter={setCenter}
-					input={input}
 				/>
-				{/* 현재위치 infoWindow */}
-				<CurrentInfoWindow
-					focus={focus}
-					center={center}
-					current={current}
-					loaded={loaded}
-					geoService={geoService}
-				/>
+
 				{/* 숙소 카드 */}
 				<Stay
 					stayData={stayData}
 					setCenter={setCenter}
 				/>
+
 			</GoogleMap>
 		</div>
 	)
