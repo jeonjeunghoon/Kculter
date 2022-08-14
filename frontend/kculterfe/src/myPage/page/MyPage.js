@@ -3,7 +3,9 @@ import MyPageBody from '../components/MyPageBody';
 
 function MyPage() {
   return (
-    <MyPageBody />
+    <>
+      <MyPageBody />
+    </>
   );									
 }
 

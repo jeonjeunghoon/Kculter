@@ -6,10 +6,17 @@
 #my-body .body-navbar {
     background-color: #eeeeee;
     border-bottom: 2px solid gray;
-    margin-left: 2.4em;
-    width: 1208px;
+	width: 80.3vw;
+    margin-left: 2.6em;
+    margin-right: 2.6em;
     margin-top: 2em;
     margin-bottom: 2em;
+}
+
+@media all and (max-width:768px) {
+    #my-body .body-navbar {
+        margin-left: 50px;
+    }
 }
 
 #my-body .navbtn {
@@ -18,4 +25,10 @@
 
 #my-body .navbtn:hover {
     color: green;
+}
+
+@media all and (max-width:768px) {
+    #my-body .body-navbar .mob-body-nav {
+        width: 210px;
+    }
 }
