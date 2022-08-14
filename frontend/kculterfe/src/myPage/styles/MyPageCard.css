@@ -1,12 +1,28 @@
 #my-body .boxList {
-	overflow-x: auto;
-	height: 700px;
-	width: 1276px;
+	width: 85vw;
+	height: 75vh;
+}
+
+@media all and (min-width:768px) { 
+	#my-body .boxList {
+		overflow-x: auto;
+		width: 85vw;
+		height: 75vh;
+	}
 }
 
 #my-body .boxList .box-card {
+	width: 79.6vw;
 	margin-bottom: 30px;
-	margin-left: 50px;
+	margin-left: 53px;
+}
+
+/* 모바일 화면을 위해 임시적으로 하드코딩함 (부트스트랩 커스텀) */
+@media all and (max-width:768px) {
+	#my-body .boxList .box-card-top {
+		margin-left: 11px;
+		width: 398px;
+	}
 }
 
 #my-body .cardList {
@@ -26,23 +42,25 @@
 	padding: 6px;
 }
 
-#my-body .body-card {
-    width: 8em;
-    margin-left: 50px;
-    margin-right: 50px;
-	position: relative;
+@media all and (min-width:768px) { 
+	#my-body .body-card {
+		width: 8em;
+		margin-left: 50px;
+		margin-right: 30px;
+		position: relative;
+	}
 }
 
 #my-body .body-card .body-card-hover {
-    width: 7.95em;
+    width: 8em;
 	height: 8.6em;
 	position: absolute;
 	opacity: 0;
 }
 
 #my-body .body-card .body-card-hover:hover {
-    width: 7.85em;
-	height: 8.45em;
+    width: 8em;
+	height: 8.5em;
 	background: fuchsia;
 	position: absolute;
 	cursor: pointer;
