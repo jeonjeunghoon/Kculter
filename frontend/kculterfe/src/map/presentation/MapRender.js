@@ -1,4 +1,5 @@
 import React, {
+	useEffect,
 	useState,
 } from 'react';
 import {
@@ -12,6 +13,8 @@ import {
 	handleClickGM,
 } from '../container/handleGM';
 
+import CourseForm from './CourseForm';
+import CourseListView from './CourseListView';
 
 function MapRender() {
 	// 공식 구글맵 api object
@@ -42,6 +45,19 @@ function MapRender() {
 	// 숙소 데이터
 	const [stayData, setStayData] = useState(null);
 
+	const [courseList, setCourseList] = useState([]);
+	const [courseId, setCourseId] = useState(0);
+
+	const handleOnCreate = (courseInfo) => {
+		setCourseList(courseList.concat({ id: courseId, place: courseInfo.place }));
+		setCourseId(course => course + 1);
+	}
+	
+	useEffect(() => {
+		console.log(courseList);
+		console.log('courseId:', courseId);
+	}, [courseList]);
+
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
@@ -60,6 +76,9 @@ function MapRender() {
 					setCenter={setCenter}
 					setZoom={setZoom}
 				/>
+
+				<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
+				<CourseListView courseList={courseList} />
 
 				{/* 아이돌/숙소 마커 */}
 				<MapMarkerClustered
