@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SidebarItem from "./SidebarItem"
 import common from "./sidebarCommonData.json"
+import ResizedComponent from '../ResizeComponent';
 import './sidebar.css';
 
 export default function Sidebar(props) {
