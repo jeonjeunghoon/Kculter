@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import Form from 'react-bootstrap/Form';
-import {getKpopList} from '../../common/container/GetKpopList';
-import {getCultureList} from '../../common/container/GetCultureList';
-import ShowList from '../../common/presentation/ShowList';
-import StoreData from '../../common/container/StoreData';
+import {getKpopList} from '../common/container/GetKpopList';
+import {getCultureList} from '../common/container/GetCultureList';
+import ShowList from '../common/presentation/ShowList';
+import StoreData from '../common/container/StoreData';
 
 function PinForm(props){
 
