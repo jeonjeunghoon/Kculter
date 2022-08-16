@@ -2,12 +2,14 @@ import React,{useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import StoreData from '../container/StoreData';
 import { useLocation } from "react-router";
-
+import ShowList from './ShowList';
 
 function PlaceForm(props){
 
     const location = useLocation();
 
+
+    //백엔드로 데이터를 보내기 위해 만든 변수들
     const [placeNum,setPlaceNum] = useState();
     const [placeType,setPlaceType] = useState();
     const [keyNum,setKeyNum] = useState();
@@ -21,6 +23,7 @@ function PlaceForm(props){
     const list = location.state.list;
     const places = location.state.places
 
+    //유효성 검사하기 위해 만든 변수들
     const [nameDis, setNameDis] = useState(false);
     const [expDis, setExpDis] = useState(false);
     const [fileDis, setFileDis] = useState(false);
@@ -29,6 +32,7 @@ function PlaceForm(props){
     const [addDis, setAddDis] = useState(false);
     const [typeDis, setTypeDis] = useState(false);
 
+    //기존 장소 선택했을때 disable 시켜주기 위한 변수들
     const [nameX, setNameX] = useState(false);
     const [expX, setExpX] = useState(false);
     const [fileX, setFileX] = useState(false);
@@ -36,6 +40,7 @@ function PlaceForm(props){
     const [longX,setLongX] = useState(false);
     const [addX, setAddX] = useState(false);
 
+    //이름 값 변경 됐을때
     const changedName = (e) => {
         const check = e.target.value
         if(check != ""){
@@ -46,6 +51,7 @@ function PlaceForm(props){
         setName(e.target.value);
     }
 
+    //설명 값 변경됐을때
     const changedExp = (e) => {
         const check = e.target.value
         if(check != ""){
@@ -56,6 +62,7 @@ function PlaceForm(props){
         setExp(e.target.value);
     }
 
+    //파일값 변경됐을떄
     const changedFile = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -66,6 +73,7 @@ function PlaceForm(props){
         setFile(e.target.files[0]);
     }
 
+    //경도값 변경 됐을때
     const changedLng = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -76,6 +84,7 @@ function PlaceForm(props){
         setLongitude(e.target.value);
     }
 
+    //위도값 변경됐을때
     const changedLat = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -86,6 +95,7 @@ function PlaceForm(props){
         setLatitude(e.target.value);
     }
 
+    //주소값 변경됐을때
     const changedAdd = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -96,27 +106,30 @@ function PlaceForm(props){
         setAddress(e.target.value);
     }
 
+    //백엔드로 보낼 객체 값
     const formValue = {
 
-        placeNum : placeNum,
+        placeNum : placeNum, //장소번호 값, 기존 장소값에서 선택할수 있기 때문에 만듬
         placeType : placeType, //kpop = 1 문화체험 = 2
-        culture : keyNum,
-        kpop: keyNum,
-        lat : lat,
-        lng : lng, // 각타입 키 값
-        name : name,
-        explain : explain,
-        address : address
+        culture : keyNum, //기존 있는 문화체험 장소일경우 보내는 culture 키값
+        kpop: keyNum, //기존 있는 kpop 장소일 경우 보내는 키값
+        lat : lat, //위도
+        lng : lng, //경도
+        name : name, //장소 이름
+        explain : explain, //장소 설명
+        address : address // 장소 주소
     }
+    //백엔드로 보내기 위한 container component로 보내기 위한 객체
     const sendData = {
-        formValue : formValue,
-        file : file,
+        formValue : formValue, //위에서 만든 form 안의 값
+        file : file, //파일 값
         dataType: 'place' //장소추가인지 아닌지 확인하기 위해
     }
 
+    //유형 선택값 변경됐을때 진입
     const showSelected = (event) => {// 선택된 유형의 키값을 넣어줌
         const check = event.target.value;
-        
+
         if(props.label.includes("Kpop")){
             //1이면
             setPlaceType(1);
@@ -132,6 +145,7 @@ function PlaceForm(props){
         setKeyNum(check);
     }
 
+    //기존 장소 선택값 변경됐을때 진입
     const selectedPlace = (event) => {
         const check = event.target.value;
         if(check != ""){
@@ -177,28 +191,17 @@ function PlaceForm(props){
         }
     }
 
-        //반복으로 특정 컴포넌트를 만들기 위해서 사용
-    //매새변수로는 list와 같이 특정 배열이나 이런것들을 넣어준다.
-    const mapList = list.map((list) => (<option key={list.keyNum} value={list.keyNum}>{list.name}</option>))
-    const placeMap = places.map((places)=> (<option key={places.placeNum} value={places.placeNum}>{places.name}</option>)) 
-
     return(
         <Form>
             {/* 위에서 만든 map const를 그대로 출력을 해준다.*/}
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">유형 선택</Form.Label> 
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: typeDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
-                <Form.Select onChange={showSelected} style={{width : '30%'}}>
-                    <option value="">=== 선택 ===</option>
-                    {mapList}
-                </Form.Select>  
+                <ShowList disabled={false} changed={showSelected} list={list}></ShowList>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">기존 장소 선택</Form.Label> 
-                <Form.Select onChange={selectedPlace} style={{width : '30%'}}>
-                    <option value="">=== 선택 ===</option>
-                    {placeMap}
-                </Form.Select>  
+                <ShowList disabled={false} changed={selectedPlace} list={places}></ShowList>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">{props.label} 이름</Form.Label>

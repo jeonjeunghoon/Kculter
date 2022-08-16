@@ -4,6 +4,7 @@ import NavBar from './navbar/Navbar';
 import ManageKpop from './kpop/ManageKpop';
 import ManageCulture from './culture/ManageCulture';
 import ConcertForm from './concert/presentation/ConcertForm';
+import PinForm from './pin/presentation/PinForm';
 
 function ManagerMain(){
     return(
@@ -13,6 +14,7 @@ function ManagerMain(){
                 <Route path="/kpop/*" element={<ManageKpop/>}></Route>
                 <Route path="/culture/*" element={<ManageCulture/>}></Route>
                 <Route path="/concert" element={<ConcertForm label="콘서트"/>}></Route>
+                <Route path="/pin" element={<PinForm label="핀"/>}></Route>
             </Routes>
         </div>
     );
