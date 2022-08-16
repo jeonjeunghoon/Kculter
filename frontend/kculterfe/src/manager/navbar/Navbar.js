@@ -17,7 +17,10 @@ export default function NavBar() {
         </SListItems>
         <SListItems>
           <SListAnchor to="/manager/concert">콘서트</SListAnchor>
-        </SListItems>        
+        </SListItems>
+        <SListItems>
+          <SListAnchor to="/manager/pin">핀</SListAnchor>
+        </SListItems>            
       </SListWrapper>
     </SNavBar>
   );

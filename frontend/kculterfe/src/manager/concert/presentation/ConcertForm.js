@@ -3,11 +3,14 @@ import Form from 'react-bootstrap/Form';
 import StoreData from '../../common/container/StoreData';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { getKpopList } from '../container/GetKpopList';
+import { getKpopList } from '../../common/container/GetKpopList';
+import ShowList from '../../common/presentation/ShowList';
 
 function ConcertForm(props){
     
+    //kpop 스타 리스트를 받아오기 위해서 사용함
     const [kpopList, setKpopList] = useState();
+
     useEffect(() => {
         const fetchData = async() =>{
             //await하는것을 받아서 await 시켜준다.
@@ -18,9 +21,7 @@ function ConcertForm(props){
     },[]); //뒤에 빈 배열을 붙여줘서 한번만 실행되게 해준다.
     // w3schools.com/react/react_useeffect.asp  참조
 
-    //얘는 데이터가 없어도 렌더링을 하기 때문에 변수 &&를 붙여야지만 렌더링이 된다.
-    const kpopListMap = kpopList && kpopList.map((kpopList) => (<option key={kpopList.keyNum} value={kpopList.keyNum}>{kpopList.name}</option>))
-
+    //백엔드로 값을 보내기 위해서 사용하는 변수
     const [starName,setStar] = useState("");
     const [name,setName] = useState("");
     const [explain,setExp] = useState("");
@@ -31,6 +32,7 @@ function ConcertForm(props){
     const [lng, setLng] = useState("");
     const [starKeyNum,setStarKey] = useState("");
 
+    //유효성 검사하기 위해서 사용하는 변수
     const [starDis,setStarDis] = useState(false);
     const [nameDis, setNameDis] = useState(false);
     const [expDis, setExpDis] = useState(false);
@@ -40,9 +42,10 @@ function ConcertForm(props){
     const [latDis, setLatDis] = useState(false);
     const [lngDis, setLngDis] = useState(false);
 
+    //기존 가수 선택했을시에 disabled 시켜주기 위해서 사용한 변수
     const [nameX,setNameX] = useState(false);
 
-
+    //백엔드로 보낼 객체
     const formValue = {
         concertName : name,
         explain : explain,
@@ -54,12 +57,14 @@ function ConcertForm(props){
         starKey : starKeyNum,
     }
 
+    //container component로 보낼 객체
     const sendData = {
         formValue : formValue,
         file : file,
         dataType : 'notplace' //장소추가인지 아닌지 확인하기 위해
     }
  
+    //위도 변경됐을떄
     const changedLat = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -70,6 +75,7 @@ function ConcertForm(props){
         setLat(check);
     }
 
+    //경도 변경됐을때
     const changedLng = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -80,6 +86,7 @@ function ConcertForm(props){
         setLng(check);
     }
 
+    //연예인 이름 변경됐을때
     const changedStar = (e) => {
         const check = e.target.value
         if(check != ""){
@@ -90,6 +97,7 @@ function ConcertForm(props){
         setStar(e.target.value);
     }
 
+    //콘서트 이름 변경됐을때
     const changedName = (e) => {
         const check = e.target.value
         if(check != ""){
@@ -100,6 +108,7 @@ function ConcertForm(props){
         setName(e.target.value);
     }
 
+    //콘서트 설명 변경됐을때
     const changedExp = (e) => {
         const check = e.target.value
         if(check != ""){
@@ -110,6 +119,7 @@ function ConcertForm(props){
         setExp(e.target.value);
     }
 
+    //콘서트 시작 날짜 변경됐을때
     const changedSd = (date) => {
         let check = date
         if(date.getDate() < new Date().getDate()){
@@ -130,6 +140,7 @@ function ConcertForm(props){
             setSdDis(false);
         }
     }
+    //콘서트 끝나는 날짜 변경됐을때
     const changedEd = (date) => {
         let check = date;
         if(date.getDate() < new Date().getDate()){
@@ -150,6 +161,7 @@ function ConcertForm(props){
             setEdDis(false);
         }
     }
+    //콘서트 사진 변경됐을때
     const changedFile = (e) => {
         const check = e.target.value;
         if(check != ""){
@@ -160,6 +172,7 @@ function ConcertForm(props){
         setFile(e.target.files[0]);
     }
 
+    //기존 가수에서 선택했을때
     const changedKpop = (e) => {
         const check = e.target.value;
         if(check != ""){ //값이 바뀌었을때 들어가는곳
@@ -173,15 +186,15 @@ function ConcertForm(props){
         }
         setStarKey(check);
     }
+
     return(
         <Form>
+
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">기존 Kpop 가수 선택</Form.Label> 
-                <Form.Select onChange={changedKpop} style={{width : '30%'}}>
-                    <option value="">=== 선택 ===</option>
-                    {kpopListMap}
-                </Form.Select>  
-            </Form.Group>            
+                <ShowList disabled={false} changed={changedKpop} list={kpopList} ></ShowList>
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="formName">
                 <Form.Label id="label1">가수(그룹)명</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: starDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
