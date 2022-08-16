@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import Form from 'react-bootstrap/Form';
-import StoreData from '../../common/container/StoreData';
+import StoreData from '../common/container/StoreData';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { getKpopList } from '../../common/container/GetKpopList';
-import ShowList from '../../common/presentation/ShowList';
+import { getKpopList } from '../common/container/GetKpopList';
+import ShowList from '../common/presentation/ShowList';
 
 function ConcertForm(props){
     

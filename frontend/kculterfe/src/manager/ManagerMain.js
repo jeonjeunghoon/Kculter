@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './navbar/Navbar';
 import ManageKpop from './kpop/ManageKpop';
 import ManageCulture from './culture/ManageCulture';
-import ConcertForm from './concert/presentation/ConcertForm';
-import PinForm from './pin/presentation/PinForm';
+import ConcertForm from './concert/ConcertForm';
+import PinForm from './pin/PinForm';
 
 function ManagerMain(){
     return(
