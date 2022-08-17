@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function handleClickGM(e, google, map) {
+export function handleClickGM(e, google, map, dispatch) {
 	if (!e || !map || !e.placeId) { return; }
 	const service = new window.google.maps.places.PlacesService(map);
 	const request = {
@@ -15,6 +15,10 @@ export function handleClickGM(e, google, map) {
 			place.geometry.location
 		) {
 			console.log(place, status);
+			dispatch({
+				type: "MAP_PLACE",
+				data: place,
+			})
 		}
 	})
 }

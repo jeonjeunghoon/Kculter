@@ -47,39 +47,20 @@ function MapRender() {
 	
 	// 숙소 데이터
 	const [stayData, setStayData] = useState(null);
-	
+
+	// redux
+	const dispatch = useDispatch();
+
+
+	// courseList
 	const [courseList, setCourseList] = useState([]);
 	const [courseId, setCourseId] = useState(0);
-	
+
 	const handleOnCreate = (courseInfo) => {
 		setCourseList(courseList.concat({ id: courseId, place: courseInfo.place }));
 		setCourseId(course => course + 1);
 	}
 	
-	const dispatch = useDispatch();
-	
-	const handleOnClickGM = (e, google, map) => {
-		if (!e || !map || !e.placeId) { return; }
-		const service = new window.google.maps.places.PlacesService(map);
-		const request = {
-			placeId: e.placeId,
-			fields: ['ALL'],
-		};
-		service.getDetails(request, (place, status) => {
-			if (
-				status === google.maps.places.PlacesServiceStatus.OK &&
-				place &&
-				place.geometry &&
-				place.geometry.location
-				) {
-					console.log(place, status);
-				dispatch({
-					type: "MAP_PLACE",
-					data: place,
-				})
-			}
-		})
-	}
 	
 	useEffect(() => {
 		console.log(courseList);
@@ -97,7 +78,7 @@ function MapRender() {
 				zoom={zoom}
 				onLoad={map => setMap(map)}
 				onDragEnd={() => handleDragEndGM(map, setCenter, setStayData)}
-				onClick={e => handleOnClickGM(e, google, map)}
+				onClick={e => handleClickGM(e, google, map, dispatch)}
 			>
 
 				{/* 검색창 */}
