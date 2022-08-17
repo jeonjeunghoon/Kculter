@@ -1,0 +1,57 @@
+.concertBody {
+	height: 100%;
+}
+
+.cardLink {
+	text-decoration: none;
+	color: #000;
+}
+
+.cardList {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	row-gap: 20px;
+	column-gap: 20px;
+	justify-content: space-between;
+}
+
+@media all and (max-width: 1500px) {
+	.cardList {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		row-gap: 20px;
+		column-gap: 20px;
+		justify-content: space-between;
+	}
+}
+
+
+@media all and (max-width: 1200px) {
+	.cardList {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 20px;
+		column-gap: 20px;
+		justify-content: space-between;
+	}
+}
+
+@media all and (max-width: 975px) {
+	.cardList {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 20px;
+		column-gap: 20px;
+		justify-content: space-between;
+	}
+}
+
+@media all and (max-width: 750px) {
+	.cardList {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		row-gap: 20px;
+		column-gap: 20px;
+		justify-content: space-between;
+	}
+}

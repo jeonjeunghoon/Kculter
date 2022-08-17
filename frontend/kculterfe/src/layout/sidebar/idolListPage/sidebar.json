@@ -1,0 +1,10 @@
+[
+    {
+        "title": "IDOL",
+        "path":"/login"
+    },
+    {
+        "title": "STATUS",
+        "path": "/"
+    }
+]

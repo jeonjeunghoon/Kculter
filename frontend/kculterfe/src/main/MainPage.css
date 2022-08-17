@@ -1,0 +1,25 @@
+.main-con {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.main-con img {
+  width: 100%;
+}
+.MainNav {
+  width: 100%;
+}
+
+.maindiv {
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+.mainbtn {
+  position: absolute;
+  top: 575px;
+  left: 1060px;
+}

@@ -1,0 +1,17 @@
+.main-btn {
+  cursor: pointer;
+}
+
+.main-start {
+  padding: 1px 55px;
+  font-size: 23px;
+  color: #0759fc;
+  border: none;
+  background-color: transparent;
+  border: solid 2px #0759fc;
+}
+
+.main-start:hover {
+  color: #ff59f6;
+  border: solid 2px #ff59f6;
+}

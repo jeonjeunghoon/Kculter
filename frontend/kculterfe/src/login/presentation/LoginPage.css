@@ -1,0 +1,124 @@
+.login-con {
+  position: relative;
+  display: flex;
+}
+
+.login-con img {
+  width: 100%;
+}
+
+.login-div {
+  border-radius: 5%;
+  background-color: #ffff;
+  padding: 100px 35px 70px 35px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 20%;
+  align-items: center;
+  right: 37%;
+}
+
+.login-top {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+
+.login-logo img {
+  height: 5rem;
+}
+
+.login-div img {
+  height: 5rem;
+}
+
+.login-black {
+  position: absolute;
+  display: flex;
+  top: 20px;
+}
+
+.login-black img {
+  height: 7rem;
+  width: 21rem;
+}
+
+.input-css1 {
+  margin-top: 50px;
+  padding: 15px 100px 15px 30px;
+  display: block;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: #e2e2e0;
+  border: none;
+}
+
+.input-css2 {
+  margin-top: 7px;
+  padding: 15px 100px 15px 30px;
+  display: block;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: #e2e2e0;
+  text-indent: 0px;
+}
+
+.google-nav {
+  margin-top: 10px;
+  display: flex;
+  bottom: 50px;
+}
+
+.for-pwd {
+  margin-top: 5px;
+  margin-bottom: 17px;
+}
+
+.for-pwd a {
+  color: #006bff;
+  text-decoration: none;
+}
+
+.login-btn button {
+  border: 0;
+  outline: 0;
+  background-color: #1755d1;
+  font-size: 15px;
+  color: #ffff;
+}
+
+.login-btn {
+  background-color: #1755d1;
+  padding: 10px 132px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.signup-btn {
+  background-color: #f4029b;
+  padding: 10px 127px;
+  color: #ffff;
+  font-size: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.signup-btn button {
+  border: none;
+  background-color: #f4029b;
+  color: #ffff;
+}
+
+.input-css1,
+.input-css2:hover {
+  cursor: pointer;
+}
+
+.pwd {
+  padding: 10px 85px;
+  background-color: #ffff;
+  border: none;
+  color: #1755d1;
+}

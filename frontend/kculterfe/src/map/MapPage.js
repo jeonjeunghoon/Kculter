@@ -1,63 +1,24 @@
-import React, { useState } from 'react';
-import './MapPage.css';
-import GoogleMap from './GoogleMap';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import {
+	useJsApiLoader
+} from '@react-google-maps/api';
+import MapRender from './presentation/MapRender';
+import './style/MapPage.css';
 
-const MapNav = () => {
-	return (
-		<nav className="map-nav">
-			
-		</nav>
-	);
-}
-
-const MapHeader = () => {
-	return (
-		<header className="map-header">
-			<h4>HEADER</h4>
-		</header>
-	);
-}
-
-const MapSearch = () => {
-	const [search, setSearch] = useState("");
-	const onChange = (e) => {
-		setSearch(e.target.value);
-	}
+function MapPage(props) {
+	const { isLoaded } = useJsApiLoader({
+		id: 'map-page',
+		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
+		language: 'ko',
+		libraries: ['places'],
+	});
 
 	return (
-		<div className='map-search'>
-			<Link to='/'>
-				<button>Go Back</button>
-			</Link>
-			<input
-				type='text'
-				value={search}
-				onChange={onChange}
-			/>
-		</div>
-	);
-}
-
-const MapContent = () => {
-	const location = useLocation();
-	const { center } = location.state;
-
-	return (
-		<div className='map-content'>
-			<GoogleMap center={center} />
-		</div>
-	);
-}
-
-const MapPage = () => {
-	return (
-		<div className='map-page'>
-			<MapNav />
-			<MapHeader />
-			<MapSearch />
-			<MapContent />
-		</div>
+		isLoaded
+			?
+				<MapRender />
+			:
+				<div>Loading ...</div>
 	);
 }
 
