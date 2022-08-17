@@ -16,6 +16,9 @@ import {
 import CourseForm from './CourseForm';
 import CourseListView from './CourseListView';
 
+// redux
+import { useDispatch } from 'react-redux';
+
 function MapRender() {
 	// 공식 구글맵 api object
 	const google = window.google;
@@ -33,7 +36,7 @@ function MapRender() {
 		minZoom: 10,
 		restriction: {
 			latLngBounds: {
-        north: 80,
+				north: 80,
         south: -80,
 				east: 180,
         west: -180
@@ -41,22 +44,48 @@ function MapRender() {
 		},
 		// clickableIcons: false, false하면 안되고 info만 안뜨게 해야 한다.
 	};
-
+	
 	// 숙소 데이터
 	const [stayData, setStayData] = useState(null);
-
+	
 	const [courseList, setCourseList] = useState([]);
 	const [courseId, setCourseId] = useState(0);
-
+	
 	const handleOnCreate = (courseInfo) => {
 		setCourseList(courseList.concat({ id: courseId, place: courseInfo.place }));
 		setCourseId(course => course + 1);
+	}
+	
+	const dispatch = useDispatch();
+	
+	const handleOnClickGM = (e, google, map) => {
+		if (!e || !map || !e.placeId) { return; }
+		const service = new window.google.maps.places.PlacesService(map);
+		const request = {
+			placeId: e.placeId,
+			fields: ['ALL'],
+		};
+		service.getDetails(request, (place, status) => {
+			if (
+				status === google.maps.places.PlacesServiceStatus.OK &&
+				place &&
+				place.geometry &&
+				place.geometry.location
+				) {
+					console.log(place, status);
+				dispatch({
+					type: "MAP_PLACE",
+					data: place,
+				})
+			}
+		})
 	}
 	
 	useEffect(() => {
 		console.log(courseList);
 		console.log('courseId:', courseId);
 	}, [courseList]);
+
 
 	return (
 		<div className='map-container'>
@@ -68,7 +97,7 @@ function MapRender() {
 				zoom={zoom}
 				onLoad={map => setMap(map)}
 				onDragEnd={() => handleDragEndGM(map, setCenter, setStayData)}
-				onClick={e => handleClickGM(e, google, map)}
+				onClick={e => handleOnClickGM(e, google, map)}
 			>
 
 				{/* 검색창 */}

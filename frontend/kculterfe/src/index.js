@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducer from './redux/reducer';
+
+const store = createStore(reducer);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-//   <React.StrictMode> Google Map 버전 이슈 때문에 주석 처리했습니다.
-    <App />
-//   </React.StrictMode>
+	<Provider store={store}>
+  	<React.StrictMode>
+  	  <App />
+		</React.StrictMode>
+	</Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
