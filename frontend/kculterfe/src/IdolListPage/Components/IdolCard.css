@@ -21,9 +21,18 @@
 	background-color: black;
 	color: white;
 	text-align: center;
+	width: 100%;
+	padding-bottom: 100%;
+	overflow: hidden;
 }
 
 .image-container img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(50, 50);
+	object-fit: cover;
+	margin: auto;
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
@@ -44,17 +53,16 @@
 
 .card-content{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-around;
 }
 
 .card-content *{
 	width: 4rem;
-	margin-top: 0.3rem;
+	margin: 0.3rem;
 	text-align: center;
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
 	align-items: center;
 }
 
