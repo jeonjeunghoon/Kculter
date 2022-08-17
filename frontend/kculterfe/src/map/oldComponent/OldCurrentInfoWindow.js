@@ -13,6 +13,8 @@ function CurrentInfoWindow({ center, focus, current, geoService, loaded }) {
 					? <Marker
 							position={focus}
 							visible={true}
+							// icon={}
+							zIndex={5}
 							onClick={() => alert('Clicked Marker!')}
 						/>
 					: <InfoWindow

@@ -9,7 +9,7 @@ function StoreData(props){
 
         const url = window.location.href;
         console.log(url);
-
+        console.log("sending : "+props.sendData.formValue);
         //form data를 보내기 위해서 사용하는 클래스이다.
         //FormData는 키와 value값으로 값을 넣어서 controller로 보내는 역할을 한다.
         const fmd = new FormData();
@@ -27,12 +27,11 @@ function StoreData(props){
         })
         
         fmd.append('formValue',blob);
-        fmd.append('file',props.sendData.file)
+        fmd.append('file',props.sendData.file);
 
         if(props.sendData.dataType == "place"){
             //장소 추가라면 진입
             console.log("장소 추가 간다잇");
-            
             axios.post('/manager/place',fmd,{
                 headers:{
                     'Content-Type' : 'multipart/form-data'
@@ -45,7 +44,7 @@ function StoreData(props){
             })
             .catch(function(error){
                 console.log(error);
-            })            
+            })
 
         }else if(props.sendData.dataType == "notplace"){
             //장소 추가 아니라면 진입
@@ -75,7 +74,7 @@ function StoreData(props){
                 .then(function(res){
                     console.log(res);
                     alert("서버 저장 완료!");
-                    window.location.reload();
+                    window.location.href="/manager";
                 })
                 .catch(function(error){
                     console.log(error);
@@ -84,6 +83,19 @@ function StoreData(props){
                 console.log('콘서트 추가 간다잇');
                 console.log("콘서트 정보 : "+props.sendData.formValue);
                 //이제 여기서 concert를 넘겨줘야함
+                axios.post("/manager/concert",fmd,{
+                    headers:{
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                })
+                .then(function(res){
+                    console.log(res);
+                    alert("서버 저장 완료")
+                    window.location.reload();
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
             }
         }
 

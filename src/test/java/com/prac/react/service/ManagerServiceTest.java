@@ -51,10 +51,10 @@ public class ManagerServiceTest {
     }
 
     @Test
-    void insertPlace(){
+    void testInsertPlace(){
         //given
-        Place place = new Place(0, 1, 1, 123, 34, 0,"테스트",
-         "테스트", "테스트", "테스트");
+        Place place = new Place(0, 0, "1", "0", 123, 37, 0, 
+        "test", "test", "test", "test");
         
         //when
         int result = ms.insertPlace(place);
@@ -65,10 +65,9 @@ public class ManagerServiceTest {
     }
 
     @Test
-    void insertConcert(){
+    void testInsertConcert(){
         //given
-        Concert concert = new Concert(0, "test", new Date(), "test", 0, new Date(),
-         "test", "test");
+        Concert concert = new Concert(0, "테스트", "test", new Date(), new Date(), 123, 37, 1, "test", 0,"");
 
          //when
          int result = ms.insertConcert(concert);
@@ -76,5 +75,31 @@ public class ManagerServiceTest {
          //then
          logger.info("result : "+ result);
          assertEquals(result,1);
+    }
+
+    @Test
+    void testUpdatePlace(){
+        //given
+        Place place = new Place(1, 1, "", "1", 123, 37,
+         0, "test", "test", "test","test");
+
+         //when
+         int result = ms.updatePlace(place);
+         
+         //then
+         logger.info("result : "+ result);
+    }
+
+    @Test
+    void testCheckDuplicate(){
+        //given
+        Place place = new Place(1, 2, "1", "1", 123, 37,
+         0, "test", "test", "test","test");
+
+         //when
+         int result = ms.checkDuplicate(place);
+
+         //then
+         logger.info("result : "+result);
     }
 }

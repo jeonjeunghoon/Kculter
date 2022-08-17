@@ -1,4 +1,4 @@
-export function handleOnLoad (map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef) {
+export function handleOnLoad(map, setCenter, setCurrent, setGeoService, setLoaded, setFocus, setMapRef) {
 	const locationButton = document.createElement('button');
 	const google = window.google;
 

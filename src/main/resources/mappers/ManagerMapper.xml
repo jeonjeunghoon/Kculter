@@ -12,11 +12,23 @@
 	</insert>
 	<insert id="insertPlace" parameterType="Place">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
-		insert into places (placeNum,placeType,placeTypeKey,lat,lng,status,name,`explain`,address,fileUrl) 
-		values (null, #{placeType}, #{placeTypeKey},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
+		insert into places (placeNum,culture,kpop,lat,lng,status,name,`explain`,address,fileUrl) 
+		values (null, #{culture}, #{kpop},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
 	</insert>	
 	<insert id="insertConcert" parameterType="Concert">
-		insert into concerts (concertNum,address,startDate,celebName,status,endDate,`explain`,imageUrl) 
-		values (null, #{address}, #{startDate},#{celebName},#{status},#{endDate},#{explain},#{imageUrl})		
+		insert into concerts (concertNum,lat,startDate,starKey,status,endDate,`explain`,imageUrl,lng,concertName,starName) 
+		values (null, #{lat}, #{startDate},#{starKey},null,#{endDate},#{explain},#{imageUrl},#{lng},#{concertName},#{starName})		
 	</insert>
+	<update id="updatePlaceKpop" parameterType="Place">
+		update places set kpop = concat(kpop,concat("/",#{kpop},"/")) where placeNum=#{placeNum}
+	</update>
+	<update id="updatePlaceCulture" parameterType="Place">
+		update places set culture = concat(culture,concat("/",#{culture},"/")) where placeNum=#{placeNum}
+	</update>
+	<select id="checkKpopPlace" parameterType="String" resultType="int">
+		select count(*) from places where kpop like CONCAT('%', #{kpop}, '%)
+	</select>
+	<select id="checkCulturePlace" parameterType="String" resultType="int">
+		select count(*) from places where culture like CONCAT('%', #{culture}, '%')
+	</select>			
 </mapper>

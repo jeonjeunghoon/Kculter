@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Card, Button, Row, Col, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import '../styles/MBody.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
@@ -14,11 +14,11 @@ function MyPageBody() {
             {/* 저장한 경로와 좋아요 리스트 선택 경로 네비*/}
             <div className="body-navbar">
                 <Row>
-                    <Col sm={2} className="px-0 text-center" id='my-body'>
+                    <Col sm={2} className="px-0 text-center mob-body-nav">
                         <button onClick={() => {setLikeList(true); setBtnLikeColor('gray'); setBtnPageColor('blue')}
                         } className="" style={{ color:btnPageColor }}>My map</button>
                     </Col>
-                    <Col sm={2} className="px-0 text-center" id='my-body'>
+                    <Col sm={2} className="px-0 text-center mob-body-nav">
                         <button onClick={() => {setLikeList(false); setBtnLikeColor('blue'); setBtnPageColor('gray')}
                         } className="" style={{ color:btnLikeColor }}>Like list</button>
                     </Col>

@@ -5,4 +5,7 @@
 	<select id="getCelebrities" resultType="Celebrity">
 		select * from celebrities
 	</select>
+	<select id="getCelebKeyNumByName" parameterType="String" resultType="int">
+		select keyNum from celebrities where name= #{name}
+	</select>
 </mapper>

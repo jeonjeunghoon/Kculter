@@ -1,6 +1,5 @@
 package com.prac.react.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -10,14 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prac.react.model.dto.Celebrity;
-import com.prac.react.model.dto.Culture;
+import com.prac.react.service.CelebService;
+import com.prac.react.service.ConcertService;
 import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
@@ -32,7 +30,11 @@ public class ManagerControllerTest {
     @MockBean //WebMvcTest를 하게 되면 @Component and @ConfigurationProperties bean이 등록이 되지 않는다고 한다 따라서 @Service도 등록이 되지 않기에 @MockBean을 사용해야한다.
     S3FileUploadService sfu;
     @MockBean
-    private ManagerService ms;
+    ManagerService ms;
+    @MockBean
+    CelebService celebS;
+    @MockBean
+    ConcertService concertS;
 
     @Test
     void testInsertCultureInfo() throws Exception{
@@ -94,14 +96,16 @@ public class ManagerControllerTest {
 
     @Test
     void insertPlace() throws Exception{
-        MockMultipartFile image = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
+        // MockMultipartFile imageGram = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
+
+        MockMultipartFile imageDeskTop = new MockMultipartFile("file", "로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\pc1\\Pictures\\관광공모전\\로고.jpg"));
 
         MockMultipartFile json = new MockMultipartFile("formValue", "","application/json", 
-        "{\"name\": \"이욱재\", \"explain\": \"123\", \"placeTypeKey\": \"1\", \"keyNum\" : \"1\", \"lat\" : \"123\", \"long\" :\"37\", \"address\" : \"test\"}".getBytes());
+        "{\"name\": \"이욱재\", \"explain\": \"123\", \"placeTypeKey\": \"1\", \"culture\" : \"1\", \"kpop\" : \"1\", \"lat\" : \"123\", \"long\" :\"37\", \"address\" : \"test\", \"placeNum\" : \"1\"}".getBytes());
 
         mvc.perform(
             MockMvcRequestBuilders.multipart("/manager/place")
-            .file(image) //image값 넘기고
+            .file(imageDeskTop) //image값 넘기고
             .file(json)) //json 값 넘기고
             .andExpect(status().isOk())//200을 예상한다. 이게 아니라면 error
             .andDo(print()); //그리고 마지막에 print로 모든 request와 reponse 출력
@@ -109,14 +113,16 @@ public class ManagerControllerTest {
 
     @Test
     void insertConcert() throws Exception{
-        MockMultipartFile image = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
+        // MockMultipartFile imageGram = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
+
+        MockMultipartFile imageDeskTop = new MockMultipartFile("file", "로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\pc1\\Pictures\\관광공모전\\로고.jpg"));
 
         MockMultipartFile json = new MockMultipartFile("formValue", "","application/json", 
-        "{\"name\": \"이욱재\", \"explain\": \"123\", \"startDate\" : \"2022-08-11\", \"endDate\" : \"2022-08-11\", \"startName\" : \"starName\"}".getBytes());
+        "{\"concertName\": \"테스트\", \"explain\": \"123\", \"startDate\" : \"2022-08-11\", \"endDate\" : \"2022-08-11\", \"starName\" : \"테스트\",\"lat\" : \"123 \", \"lng\" : \"37 \", \"starKey \" : \"''\"}".getBytes());
 
         mvc.perform(
             MockMvcRequestBuilders.multipart("/manager/concert")
-            .file(image) //image값 넘기고
+            .file(imageDeskTop) //image값 넘기고
             .file(json)) //json 값 넘기고
             .andExpect(status().isOk())//200을 예상한다. 이게 아니라면 error
             .andDo(print()); //그리고 마지막에 print로 모든 request와 reponse 출력
