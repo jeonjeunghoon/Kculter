@@ -67,7 +67,6 @@ function MapRender() {
 		console.log('courseId:', courseId);
 	}, [courseList]);
 
-
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
