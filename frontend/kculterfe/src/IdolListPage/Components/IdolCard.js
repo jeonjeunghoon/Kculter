@@ -24,11 +24,11 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map}) {
 					<div className="card-content">
 						<div className="like-num">
 							<img src='heart.png' />
-							<p>{num_like}<br></br>Likes</p>
+							<p>{num_like} Likes</p>
 						</div>
 						<div className="spot-num">
 							<img src='spot.png' />
-							<p>{num_spot}<br></br>Spots</p>
+							<p>{num_spot} Spots</p>
 						</div>
 					</div>
 				</div>
@@ -56,6 +56,10 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map}) {
 							<img src='spot.png' />
 							<p>{num_spot} Spots</p>
 						</div>					
+					</div>
+
+					<div className="idolcard-modal-map">
+
 					</div>
 
 				</Modal.Body>

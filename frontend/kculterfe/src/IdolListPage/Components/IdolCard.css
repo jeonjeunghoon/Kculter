@@ -53,17 +53,16 @@
 
 .card-content{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-around;
 }
 
 .card-content *{
 	width: 4rem;
-	margin-top: 0.3rem;
+	margin: 0.3rem;
 	text-align: center;
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
 	align-items: center;
 }
 
