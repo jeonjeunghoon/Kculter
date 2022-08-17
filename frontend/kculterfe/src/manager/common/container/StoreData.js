@@ -48,7 +48,8 @@ function StoreData(props){
 
         }else if(props.sendData.dataType == "notplace"){
             //장소 추가 아니라면 진입
-            if(url.includes('kpop')){
+
+            if(url.includes('kpop')){ //셀럽 추가라면 진입
                 console.log("셀럽 추가");
                 axios.post('/manager/kpopinfo',fmd,{
                     headers:{
@@ -63,8 +64,8 @@ function StoreData(props){
                 .catch(function(error){
                     console.log(error);
                 })
-    
-            }else if(url.includes('culture')){
+                
+            }else if(url.includes('culture')){ //체험 추가라면 진입
                 console.log('체험 추가 간다잇');
                 axios.post('/manager/cultureinfo',fmd,{
                     headers:{
@@ -79,12 +80,29 @@ function StoreData(props){
                 .catch(function(error){
                     console.log(error);
                 })
-            }else if(url.includes('concert')){
+            }else if(url.includes('concert')){ //콘서트 추가라면 진입
                 console.log('콘서트 추가 간다잇');
                 console.log("콘서트 정보 : "+props.sendData.formValue);
                 //이제 여기서 concert를 넘겨줘야함
                 axios.post("/manager/concert",fmd,{
                     headers:{
+                        'Content-Type' : 'multipart/form-data'
+                    }
+                })
+                .then(function(res){
+                    console.log(res);
+                    alert("서버 저장 완료")
+                    window.location.reload();
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+            }else if(url.includes('pin')){ //핀추가라면 진입
+                console.log("핀 추가 간다잇!");
+                console.log("핀 정보 : "+props.sendData.formValue);
+                //이제 여기서 pin 정보를 넘겨줘야 함
+                axios.post("/manager/pin",fmd,{
+                    header:{
                         'Content-Type' : 'multipart/form-data'
                     }
                 })

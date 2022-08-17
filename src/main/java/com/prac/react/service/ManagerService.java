@@ -8,6 +8,7 @@ import com.prac.react.model.dao.ManagerDao;
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.model.dto.Pin;
 import com.prac.react.model.dto.Place;
 
 @Service
@@ -55,5 +56,9 @@ public class ManagerService {
 
     public int insertConcert(Concert concert){
         return md.insertConcert(concert);
+    }
+
+    public int insertPin(Pin pin){
+        return md.insertPin(pin);
     }
 }

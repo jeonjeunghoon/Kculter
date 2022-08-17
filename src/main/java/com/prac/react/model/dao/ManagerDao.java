@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.model.dto.Pin;
 import com.prac.react.model.dto.Place;
 
 @Mapper
@@ -17,4 +18,5 @@ public interface ManagerDao {
     int insertConcert(Concert concert); //콘서트 추가
     int checkKpopPlace(String kpop); //장소에서 kpop 스타의 중복체크
     int checkCulturePlace(String culture); //장소에서 문화체험의 중복체크
+    int insertPin(Pin pin);
 }

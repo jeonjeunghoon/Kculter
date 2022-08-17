@@ -30,5 +30,8 @@
 	</select>
 	<select id="checkCulturePlace" parameterType="String" resultType="int">
 		select count(*) from places where culture like CONCAT('%', #{culture}, '%')
-	</select>			
+	</select>	
+	<insert id="insertPin" parameterType="Pin">
+		insert into pin (pinNum,pinType,pinKeyNum,imageUrl) values (null,#{pinType},#{pinKeyNum},#{imageUrl})
+	</insert>		
 </mapper>

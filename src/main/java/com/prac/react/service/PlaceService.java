@@ -1,5 +1,6 @@
 package com.prac.react.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,4 +25,16 @@ public class PlaceService {
         return pd.getPlaceList();
     }
     
+    public List<Place> getPlaceByType(String found,String type){
+        List<Place> placeList = new ArrayList<>();
+        switch(type){
+            case "culture":
+                placeList = pd.getCulturePlaces(found);
+            break;
+            case "kpop" :
+                placeList = pd.getKpopPlaces(found);
+            break;
+        }
+        return placeList;
+    }
 }
