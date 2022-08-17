@@ -10,7 +10,7 @@ import { Button } from './Button';
 function MainPage() {
     return(
         <div className='main-con'>
-          <img src={mainimg} />
+          
             <div className='maindiv'> 
               <MainNavbar className='MainNav'/>
               </div>

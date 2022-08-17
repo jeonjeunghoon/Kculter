@@ -1,19 +1,9 @@
-.main-con {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-.main-con img {
-  width: 100%;
-}
 .MainNav {
   width: 100%;
 }
 
 .maindiv {
   width: 100%;
-  position: absolute;
   top: 10px;
   left: 0px;
 }
@@ -21,5 +11,35 @@
 .mainbtn {
   position: absolute;
   top: 575px;
-  left: 1060px;
+  left: 70vw;
+}
+
+@media all and (max-width: 812px) {
+  .main-con {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    background-image: url("../src_asset/로그인배경.png");
+    height: 100vh;
+    background-size: cover;
+  }
+
+  .mainbtn {
+    top: 70vh;
+    left: 30vw;
+  }
+}
+@media all and (min-width: 812px) {
+  .main-con {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    background-image: url("../src_asset/메인홈.png");
+    background-size: cover;
+    height: 100vh;
+  }
 }
