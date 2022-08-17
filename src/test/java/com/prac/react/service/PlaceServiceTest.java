@@ -39,4 +39,24 @@ public class PlaceServiceTest {
             }            
         }
     }
+
+    @Test 
+    void testGetKpopPlaces(){
+        //given
+        List<Place> places = new ArrayList<>();
+        String found = "/1/";
+        String type ="kpop";
+
+        //when
+        places = ps.getPlaceByType(found, type);
+
+        //then
+        if(places.isEmpty()){
+            logger.warn("Place list is Empty!!");
+        }else{
+            for(Place place : places){
+                logger.info("Place : "+place.toString());
+            }            
+        }
+    }
 }

@@ -127,4 +127,20 @@ public class ManagerControllerTest {
             .andExpect(status().isOk())//200을 예상한다. 이게 아니라면 error
             .andDo(print()); //그리고 마지막에 print로 모든 request와 reponse 출력
     }
+    @Test
+    void testInsertPin() throws Exception{
+       // MockMultipartFile imageGram = new MockMultipartFile("file", "bts로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\bts로고.jpg"));
+
+       MockMultipartFile imageDeskTop = new MockMultipartFile("file", "로고.jpg", "image/jpeg", new FileInputStream("C:\\Users\\pc1\\Pictures\\관광공모전\\로고.jpg"));
+
+       MockMultipartFile json = new MockMultipartFile("formValue", "","application/json", 
+       "{\"pinType\": \" 1\", \"pinKeyNum\": \"1\"}".getBytes());
+
+       mvc.perform(
+           MockMvcRequestBuilders.multipart("/manager/concert")
+           .file(imageDeskTop) //image값 넘기고
+           .file(json)) //json 값 넘기고
+           .andExpect(status().isOk())//200을 예상한다. 이게 아니라면 error
+           .andDo(print()); //그리고 마지막에 print로 모든 request와 reponse 출력        
+    }
 }

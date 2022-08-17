@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.PlaceDao">
-	<!-- member count 가져오는 메소드 -->
+	<!-- 전체 place 정보를 가져오는 메소드 -->
 	<select id="getPlaceList" resultType="Place">
 		select * from places
 	</select>
+	<!-- 특정 kpop 가수의 장소정보를 가져오는 메소드 -->
+	<select id="getKpopPlaces" parameterType="String" resultType="Place">
+		select * from places where kpop like CONCAT('%',#{found},'%')
+	</select>
+	<!--특정 문화체험의 장소정보를 가져오는 메소드-->
+	<select id="getCulturePlaces" parameterType="String" resultType="Place">
+		select * from places where culture like CONCAT('%',#{found},'%')
+	</select>	
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.model.dto.Pin;
 import com.prac.react.model.dto.Place;
 
 @SpringBootTest //DB까지 테스트하는 통합 테스트를 하려면 사용해야할 어노테이션
@@ -101,5 +102,16 @@ public class ManagerServiceTest {
 
          //then
          logger.info("result : "+result);
+    }
+    @Test
+    void testInsertPin(){
+        //given
+        Pin pin = new Pin(0, 1, 1,"테스트");
+
+        //when
+        int result = ms.insertPin(pin);
+
+        //then
+        logger.info("result : "+result);
     }
 }

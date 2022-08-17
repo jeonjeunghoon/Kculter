@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.prac.react.model.dto.Celebrity;
 import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
+import com.prac.react.model.dto.Pin;
 import com.prac.react.model.dto.Place;
 import com.prac.react.service.CelebService;
 import com.prac.react.service.ConcertService;
@@ -148,12 +149,23 @@ public class ManagerController{
 
     @PostMapping("/concert")
     public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
-        logger.info(concert.toString());
+        logger.info("Concert insert : "+concert.toString());
 
         String url = "";
         url = sfu.uploadtoS3(mpf, "/concert");
         concert.setImageUrl(url);
         int result = ms.insertConcert(concert);
+        return result;
+    }
+
+    @PostMapping("/pin")
+    public int insertPin(@RequestPart("formValue") Pin pin,@RequestPart("file") MultipartFile mpf) throws IOException{
+        logger.info("Pin insert : "+ pin.toString());
+        String url = "";
+        url = sfu.uploadtoS3(mpf, "/pin");
+        pin.setImageUrl(url);
+
+        int result = ms.insertPin(pin);
         return result;
     }
 }
