@@ -19,7 +19,7 @@ import CourseListView from './CourseListView';
 // redux
 import { useDispatch } from 'react-redux';
 
-function MapRender() {
+function MapRender({ point }) { // point를 기준으로 마커 찍어주기=
 	// 공식 구글맵 api object
 	const google = window.google;
 

@@ -1,5 +1,6 @@
 import React, {
 	useState,
+	useEffect,
 } from 'react';
 import {
 	useJsApiLoader
@@ -9,10 +10,11 @@ import axios from 'axios'
 import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
 
-function getViewPoint(key, type) {
+function getViewPoint(key, type, setPoint) {
 	axios.get('/place?key='+key+'&type='+type)
 	.then(function(res){
 		console.log(res, '통신 완료');
+		setPoint(res);
 		return true;
   })
   .catch(function(error){
@@ -29,13 +31,18 @@ function MapPage(props) {
 		language: 'ko',
 		libraries: ['places'],
 	});
-	const [key, setKey] = useState(props.key);
-	const [type, setType] = useState(props.type);
+	const [key, setKey] = useState(1);
+	const [type, setType] = useState("kpop");
+	const [point, setPoint] = useState(null);
+	const [isLoadedPoint, setIsLoadedPoint] = useState(false);
+	useEffect(() => {
+		setIsLoadedPoint(getViewPoint(key, type, setPoint));
+	}, []);
 
 	return (
-		isLoaded && getViewPoint(key, type) // false 일 때 모든 마커 보여주게 하기
+		isLoaded && isLoadedPoint
 			?
-				<MapRender />
+				<MapRender point={point} />
 			:
 				<div>Loading ...</div>
 	);
