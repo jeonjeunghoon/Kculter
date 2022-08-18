@@ -23,7 +23,7 @@ function MainNavbar() {
                       MYPAGE
                       </Link> 
                        </li>
-                       <li className='nav-item'>
+                       <li className='nav-item' id="nav-last">
                       <Link to='/Login' className='nav-links'>
                         LOGIN
                       </Link> 
