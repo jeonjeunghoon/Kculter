@@ -21,7 +21,7 @@ import com.prac.react.model.dto.LocationBase;
 @Service
 public class LocationBaseService {
 
-    Logger logger = LoggerFactory.getLogger(SigunguService.class);
+    Logger logger = LoggerFactory.getLogger(LocationBaseService.class);
 
 	@Value("${tourapi.key}")
 	private String serviceKey;
