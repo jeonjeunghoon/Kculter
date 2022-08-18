@@ -5,33 +5,13 @@ public class LatLng {
 	private double lat;
 	// 경도 x축
 	private double lng;
-	// Address
-	private String address;
-
-	@Override
-	public String toString() {
-		return "{" +
-				" lat='" + getLat() + "'" +
-				", lng='" + getLng() + "'" +
-				", address='" + getAddress() + "'" +
-				"}";
-	}
-
-	public LatLng(double lat, double lng, String address) {
-		this.lat = lat;
-		this.lng = lng;
-		this.address = address;
-	}
-
-	public String getAddress() {
-		return this.address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public LatLng() {
+	}
+
+	public LatLng(double lat, double lng) {
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public double getLat() {
@@ -48,6 +28,14 @@ public class LatLng {
 
 	public void setLng(double lng) {
 		this.lng = lng;
+	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" lat='" + getLat() + "'" +
+			", lng='" + getLng() + "'" +
+			"}";
 	}
 
 }

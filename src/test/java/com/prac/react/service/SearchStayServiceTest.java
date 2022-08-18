@@ -23,7 +23,7 @@ public class SearchStayServiceTest {
     @Test
     void testGetNearStay() throws IOException{
         //when
-        List<Stay> list = sss.getNearStay("18");
+        List<Stay> list = sss.getAllStay();
 
         //then
         for(Stay stay : list){

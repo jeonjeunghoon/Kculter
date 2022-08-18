@@ -26,7 +26,7 @@ public class SearchStayService {
 	@Value("${tourapi.key}")
 	private String serviceKey;
 
-	public List<Stay> getNearStay(String sigungu) throws IOException {
+	public List<Stay> getAllStay() throws IOException {
 		List<Stay> stayList = new ArrayList<>();
 
 		StringBuilder urlBuilder = new StringBuilder(
@@ -37,8 +37,6 @@ public class SearchStayService {
 		urlBuilder.append("&" + URLEncoder.encode("MobileApp", "UTF-8") + "=" + URLEncoder.encode("Kculter", "UTF-8"));
 		urlBuilder.append("&" + URLEncoder.encode("areaCode", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
 		// 서울의 areacode 가 1
-		urlBuilder.append("&" + URLEncoder.encode("sigunguCode", "UTF-8") + "=" + URLEncoder.encode(sigungu, "UTF-8"));
-		// 받아온 시군구 코드로 api 호출
 		urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
 
 		// String Builder로 url을 형성
