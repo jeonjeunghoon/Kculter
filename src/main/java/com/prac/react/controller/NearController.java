@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.LatLng;
-import com.prac.react.model.dto.Stay;
-import com.prac.react.service.SearchStayService;
-import com.prac.react.service.SigunguService;
+import com.prac.react.model.dto.LocationBase;
+import com.prac.react.service.LocationBaseService;
 
 @RestController
 @RequestMapping("/near/")
@@ -22,30 +21,36 @@ public class NearController {
 
 	Logger logger = LoggerFactory.getLogger(NearController.class);
 
-	private SigunguService ss;
-	private SearchStayService sss;
+	private LocationBaseService lbs;
 
 	@Autowired
-	public NearController(SigunguService ss, SearchStayService sss) {
-		this.ss = ss;
-		this.sss = sss;
+	public NearController(LocationBaseService lbs) {
+		this.lbs = lbs;
 	}
 
+	//근처 숙소 조회
 	@GetMapping("stay")
-	public List<Stay> getNearStayInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng,
-			@RequestParam("address") String address) throws IOException {
+	public List<LocationBase> getNearStayInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
 
-		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng), address);
+		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
 		logger.info(latLng.toString());
 
-		String[] arr = address.split(" ");
-		logger.info("Sigungu name : " + arr[2]);
 
-		// 시군구 코드를 가져온다
-		String sigunguCode = ss.getSigungu(arr[2]);
+		List<LocationBase> nearStay = lbs.getNearStay(lat,lng);
 
-		List<Stay> nearStayList = sss.getNearStay(sigunguCode);
+		return nearStay;
+	}
 
-		return nearStayList;
+	//근처 관광지 조회
+	@GetMapping("tour")
+	public List<LocationBase> getNearTourInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
+
+		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+		logger.info(latLng.toString());
+
+
+		List<LocationBase> nearTour = lbs.getNearTour(lat,lng);
+		
+		return nearTour;
 	}
 }
