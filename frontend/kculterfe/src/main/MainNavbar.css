@@ -49,11 +49,12 @@
 }
 
 @media all and (max-width: 812px) {
-  .nav-menu {
-  }
   .nav-item {
     top: 175vh;
     margin-top: 400px;
-    margin-right: 100px;
+  }
+
+  #nav-last {
+    margin-right: 170px;
   }
 }

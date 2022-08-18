@@ -106,23 +106,6 @@ const onChangePasswordConfirm = (e) => {
         {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
       </Form.Group>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
@@ -130,27 +113,11 @@ const onChangePasswordConfirm = (e) => {
       </Form.Group>
 
 
-
-
-
-
-
-
-
-
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
         {passwordConfirm.length > 0 && <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>}
       </Form.Group>
-
-
-
-
-
-
-
       
       </div>
 
