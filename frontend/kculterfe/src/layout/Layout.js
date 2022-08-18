@@ -16,7 +16,7 @@ import Header from './header/presentation/Header';
 
 const Layout = () => {
 	const location = useLocation();
-
+	
 	return (
 		<div className='layout'>
 			{location.pathname == "/ConcertPage" && <SideNav pageidx={0} items={concertItem}/>}
