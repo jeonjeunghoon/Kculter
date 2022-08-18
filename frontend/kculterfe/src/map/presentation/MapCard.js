@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-function StayCard({ key, item, setCenter }) {
+function MapCard({ key, item, setCenter }) {
 	const props = {
 		key: key,
 		title: item.title,
@@ -55,7 +55,7 @@ function Stay({ stayData, setCenter }) {
 						{ ...settings }
 					>
 						{stayData.map((item) => 
-							<StayCard
+							<MapCard
 								key={Number(item.lat) + Number(item.lng)}
 								item={item}
 								setCenter={setCenter}

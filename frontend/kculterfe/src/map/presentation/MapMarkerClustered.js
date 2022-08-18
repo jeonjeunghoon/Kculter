@@ -4,20 +4,20 @@ import {
 	MarkerClusterer
 } from '@react-google-maps/api';
 
-function MapMarkerClustered({ stayData, setCenter }) {
+function MapMarkerClustered({ markerData, setCenter, point }) {
 	return (
-		stayData
+		markerData
 			?
 				<MarkerClusterer>
-					{clusterer => 
-						stayData.map((item) => {
+					{clusterer =>
+						point.map((item) => {
 							const props = {
-								key: Number(item.lat) + Number(item.lng),
-								title: item.title,
-								icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
+								key: item.placeNum,
+								title: item.name,
+								// icon: item.icon,
 								pos: {
-									lat: Number(item.lat),
-									lng: Number(item.lng)
+									lat: item.lat,
+									lng: item.lng
 								}
 							}
 							return (

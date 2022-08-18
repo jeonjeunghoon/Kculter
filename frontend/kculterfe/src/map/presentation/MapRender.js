@@ -7,7 +7,7 @@ import {
 } from '@react-google-maps/api';
 import Search from './Search';
 import MapMarkerClustered from './MapMarkerClustered';
-import Stay from './Stay';
+import MapCard from './MapCard';
 import {
 	handleDragEndGM,
 	handleClickGM,
@@ -19,7 +19,7 @@ import CourseListView from './CourseListView';
 // redux
 import { useDispatch } from 'react-redux';
 
-function MapRender({ point }) { // point를 기준으로 마커 찍어주기=
+function MapRender() {
 	// 공식 구글맵 api object
 	const google = window.google;
 
@@ -95,8 +95,8 @@ function MapRender({ point }) { // point를 기준으로 마커 찍어주기=
 					setCenter={setCenter}
 				/>
 
-				{/* 숙소 카드 */}
-				<Stay
+				{/* 카드 */}
+				<MapCard
 					stayData={stayData}
 					setCenter={setCenter}
 				/>
