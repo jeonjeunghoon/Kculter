@@ -18,7 +18,7 @@ import MapSideNav from './sidebar/mapPage/MapSideNav';
 
 const Layout = () => {
 	const location = useLocation();
-
+	
 	return (
 		<div className='layout'>
 			{location.pathname == "/ConcertPage" && <SideNav pageidx={0} items={concertItem}/>}

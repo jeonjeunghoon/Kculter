@@ -6,6 +6,10 @@
     width: 100vw;
     grid-template-rows: 1fr 10fr;
   }
+
+  .sidebar {
+		display: none;
+	}
 }
 
 @media all and (min-width: 512px) {
@@ -17,6 +21,13 @@
     grid-template-columns: 256px 1fr;
     grid-template-rows: 1fr 10fr;
   }
+
+  .sidebar {
+		background-color: rgb(0,3,77);
+		height: 100%;
+		min-width: 260px;
+		grid-row: 1 / span 4;
+	}
   
   .sidebarToggle{
     display: none;

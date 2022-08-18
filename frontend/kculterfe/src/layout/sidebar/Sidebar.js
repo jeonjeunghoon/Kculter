@@ -4,6 +4,7 @@ import SidebarItem from "./SidebarItem"
 import common from "./sidebarCommonData.json"
 import ResizedComponent from '../ResizeComponent';
 import './sidebar.css';
+import '../Layout.css';
 
 export default function Sidebar(props) {
 	const location = useLocation();
