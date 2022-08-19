@@ -67,7 +67,7 @@ function ConcertForm(props){
     //위도 변경됐을떄
     const changedLat = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setLatDis(true);
         }else{
             setLatDis(false);
@@ -78,7 +78,7 @@ function ConcertForm(props){
     //경도 변경됐을때
     const changedLng = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setLngDis(true);
         }else{
             setLngDis(false);
@@ -89,7 +89,7 @@ function ConcertForm(props){
     //연예인 이름 변경됐을때
     const changedStar = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setStarDis(true);
         }else{
             setStarDis(false);
@@ -100,7 +100,7 @@ function ConcertForm(props){
     //콘서트 이름 변경됐을때
     const changedName = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setNameDis(true);
         }else{
             setNameDis(false);
@@ -111,7 +111,7 @@ function ConcertForm(props){
     //콘서트 설명 변경됐을때
     const changedExp = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setExpDis(true);
         }else{
             setExpDis(false);
@@ -134,7 +134,7 @@ function ConcertForm(props){
             setStartDate(date); 
         }
 
-        if(check != ""){
+        if(check !== ""){
             setSdDis(true);
         }else{
             setSdDis(false);
@@ -155,7 +155,7 @@ function ConcertForm(props){
            setEndDate(date); 
         }
 
-        if(check != ""){
+        if(check !== ""){
             setEdDis(true);
         }else{
             setEdDis(false);
@@ -164,7 +164,7 @@ function ConcertForm(props){
     //콘서트 사진 변경됐을때
     const changedFile = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setFileDis(true);
         }else{
             setFileDis(false);
@@ -175,7 +175,7 @@ function ConcertForm(props){
     //기존 가수에서 선택했을때
     const changedKpop = (e) => {
         const check = e.target.value;
-        if(check != ""){ //값이 바뀌었을때 들어가는곳
+        if(check !== ""){ //값이 바뀌었을때 들어가는곳
             setNameDis(true);
             setStarDis(true);
             setNameX(true);

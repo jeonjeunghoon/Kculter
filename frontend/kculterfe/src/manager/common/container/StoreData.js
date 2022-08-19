@@ -29,7 +29,7 @@ function StoreData(props){
         fmd.append('formValue',blob);
         fmd.append('file',props.sendData.file);
 
-        if(props.sendData.dataType == "place"){
+        if(props.sendData.dataType === "place"){
             //장소 추가라면 진입
             console.log("장소 추가 간다잇");
             axios.post('/manager/place',fmd,{
@@ -46,7 +46,7 @@ function StoreData(props){
                 console.log(error);
             })
 
-        }else if(props.sendData.dataType == "notplace"){
+        }else if(props.sendData.dataType === "notplace"){
             //장소 추가 아니라면 진입
 
             if(url.includes('kpop')){ //셀럽 추가라면 진입

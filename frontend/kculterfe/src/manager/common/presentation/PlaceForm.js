@@ -43,7 +43,7 @@ function PlaceForm(props){
     //이름 값 변경 됐을때
     const changedName = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setNameDis(true);
         }else{
             setNameDis(false);
@@ -54,7 +54,7 @@ function PlaceForm(props){
     //설명 값 변경됐을때
     const changedExp = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setExpDis(true);
         }else{
             setExpDis(false);
@@ -65,7 +65,7 @@ function PlaceForm(props){
     //파일값 변경됐을떄
     const changedFile = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setFileDis(true);
         }else{
             setFileDis(false);
@@ -76,7 +76,7 @@ function PlaceForm(props){
     //경도값 변경 됐을때
     const changedLng = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setLongDis(true);
         }else{
             setLongDis(false);
@@ -87,7 +87,7 @@ function PlaceForm(props){
     //위도값 변경됐을때
     const changedLat = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setLatDis(true);
         }else{
             setLatDis(false);
@@ -98,7 +98,7 @@ function PlaceForm(props){
     //주소값 변경됐을때
     const changedAdd = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setAddDis(true);
         }else{
             setAddDis(false);
@@ -137,7 +137,7 @@ function PlaceForm(props){
             setPlaceType(2);
         }
 
-        if(check != ""){ //뭔가 들어갔으면 진입
+        if(check !== ""){ //뭔가 들어갔으면 진입
             setTypeDis(true);
         }else{
             setTypeDis(false);
@@ -148,7 +148,7 @@ function PlaceForm(props){
     //기존 장소 선택값 변경됐을때 진입
     const selectedPlace = (event) => {
         const check = event.target.value;
-        if(check != ""){
+        if(check !== ""){
             //값이 select 됐을때 진입
 
             //입력 disabled 시켜주기 위해서
