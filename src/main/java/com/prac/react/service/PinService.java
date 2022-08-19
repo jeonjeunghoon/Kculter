@@ -21,4 +21,9 @@ public class PinService {
         return pd.getKpopPin(key);
     }
 
+    public Pin getCulturePin(int key){
+        return pd.getCulturePin(key);
+    }
+
+
 }

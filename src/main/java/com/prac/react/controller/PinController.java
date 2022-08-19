@@ -27,4 +27,12 @@ public class PinController {
         Pin pin = ps.getKpopPin(key);
         return pin;
     }
+
+    @GetMapping("culture")
+    public Pin getCulturePin(int key){
+        logger.info("Culture Key : "+key);
+        //이제 받은 키로 pin을 받아와야 한다.
+        Pin pin = ps.getCulturePin(key);
+        return pin;
+    }
 }

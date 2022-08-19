@@ -17,7 +17,7 @@ import com.prac.react.model.dto.Place;
 @Transactional //테스트 상황에서 삽입되어지는 데이터를 롤백하기 위해서 사용하는 어노테이션o
 public class PlaceServiceTest {
 
-    Logger logger = LoggerFactory.getLogger(ConcertServiceTest.class);
+    Logger logger = LoggerFactory.getLogger(PlaceServiceTest.class);
 
     @Autowired
     PlaceService ps;
