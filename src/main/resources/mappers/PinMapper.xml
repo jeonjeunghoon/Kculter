@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.PinDao">
-	<!-- pin 가져오는 메소드 -->
+	<!-- kpop pin 가져오는 메소드 -->
 	<select id="getKpopPin" resultType="Pin" parameterType="int">
 		select * from pin where pinType = 1 and pinKeyNum = #{key}
+	</select>
+    <!-- culture pin 가져오는 메소드 -->
+	<select id="getCulturePin" resultType="Pin" parameterType="int">
+		select * from pin where pinType = 2 and pinKeyNum = #{key}
 	</select>
 </mapper>

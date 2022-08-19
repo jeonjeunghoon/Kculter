@@ -7,4 +7,5 @@ import com.prac.react.model.dto.Pin;
 @Mapper
 public interface PinDao {
     Pin getKpopPin(int key);
+    Pin getCulturePin(int key);
 }
