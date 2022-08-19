@@ -6,25 +6,30 @@ import '../presentation/CountryList';
 import CountrySelector from '../presentation/CountryList';
 import Select from 'react-select'
 import {checkEmail} from '../container/EmailCheck';
+import {checkNick} from '../container/NickCheck';
 
 function SignUpModal({show, onHide}) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [nickName, setNickName] = useState('');
   
   /*오류메세지*/
   const [emailMessage, setEmailMessage] = useState('')
   const [pwdMessage, setPwdMessage] = useState('')
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
+  const [nickNameMessage, setnickNameMessage] = useState('')
   
   /*유효성 검사*/
   const [isEmail, setIsEmail] = useState(false);
   const [isPwd, setIsPwd] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+  const [isNickName, setIsNickName] = useState(false);
 
   /*버튼 disabled만들기 위해 */
   const [emailBtDis,setEmailBtDis] = useState(true);
+  const [NickNameBtDis, setNicNameBtDis] = useState(true);
 
 const checkPassword = (e) => {
   //  8 ~ 10자 영문, 숫자 조합
@@ -48,12 +53,14 @@ const onChangeEmail = (e) => {
     setEmail(emailRegex);
     if (!regExp.test(emailRegex)) {
       setEmailMessage('Please verify your email');
+      setEmailBtDis(true);
     }
     else
     {
       setEmailMessage('OK :)');
       setIsEmail(true);
       setEmailBtDis(false);
+      setEmail(emailRegex);
     }
 }
 
@@ -70,8 +77,27 @@ const onChangePasswordConfirm = (e) => {
   }
 }
 
+const onChangeNickName = (e) => {
+  var regExp = /[^a-zA-Z]/g
+  const nickNameRegex = e.target.value;
+  setNickName(nickNameRegex);
+  if (regExp.test(nickNameRegex)){
+    setnickNameMessage("no only char plz");
+  }
+  else
+  {
+     setnickNameMessage("OK :)")
+     setIsNickName(true);
+     setNicNameBtDis(false);
+  }
+}
+
 const emaildupli = () => {
   checkEmail(email);
+}
+
+const nicknamedupli = () => {
+  checkNick(nickName);
 }
 
   return(
@@ -94,7 +120,9 @@ const emaildupli = () => {
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" onChange={onChangeEmail}/>
         {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
+
         <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
+
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -115,8 +143,10 @@ const emaildupli = () => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Nick-Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Your NickName" />
-        <button type="button" id='btn-check'>Check</button>
+        <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} />
+        {nickName.length > 0 && <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>}
+
+        <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
