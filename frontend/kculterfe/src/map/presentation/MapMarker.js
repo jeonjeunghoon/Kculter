@@ -4,16 +4,16 @@ import {
 } from '@react-google-maps/api';
 import { CLICK_MARKER } from '../../redux/reducer';
 
-function MapMarker({ kpop, setCenter, setZoom, dispatch }) {
+function MapMarker({ place, setCenter, setZoom, dispatch }) {
 	return (
-		kpop.map((item) => {
+		place.map((item) => {
 			const props = {
 				key: item.placeNum,
 				title: item.name,
+				// icon: item.icon,
 				explain: item.explain,
 				fileUrl: item.fileUrl,
 				address: item.address,
-				// icon: item.icon,
 				pos: {
 					lat: item.lat,
 					lng: item.lng
@@ -23,7 +23,7 @@ function MapMarker({ kpop, setCenter, setZoom, dispatch }) {
 				<MarkerF
 					key={props.key}
 					title={props.title}
-					icon={props.icon}
+					// icon={props.icon}
   				zIndex={30}
 					position={props.pos}
 					onClick={() => {

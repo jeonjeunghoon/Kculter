@@ -6,10 +6,7 @@ import {
 	useJsApiLoader
 } from '@react-google-maps/api';
 import {
-	getKpop,
-	getCulture,
-	getStay,
-	getTour
+	getPlaceApi,
 } from './container/getInfo'
 import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
@@ -26,36 +23,34 @@ function MapPage(props) {
 		language: 'ko',
 		libraries: ['places'],
 	});
-	const [kpop, setKpop] = useState(null);
-	const [culture, setCulture] = useState(null);
+	const [place, setPlace] = useState(null);
 	const [stay, setStay] = useState(null);
-	const [tour, setTour] = useState(null);
-	const [isLoadedApi, setIsLoadedApi] = useState({
-		kpop: false,
-		culture: false,
-		stay: false,
-		tour: false
-	});
+	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
 	useEffect(() => {
-		getKpop(setKpop, setIsLoadedApi);
-		// getCulture(setCulture, setIsLoadedApi);
-		// getStay(setStay, setIsLoadedApi);
-		// getTour(setTour, setIsLoadedApi);
+		const fetchData = async() => {
+			// const url = props.type === "kpop" ? "/place" : "/culture";
+			// const placeData = await getPlaceApi(url, props.type, props.key);
+
+			// 임시
+			const url = "/place";
+			const type = "kpop";
+			const key = 1;
+			// 임시
+
+			setPlace(await getPlaceApi(url, key, type));
+			// setStay(await getPlaceApi("/stay", ));
+			setIsLoadedApi(true);
+		}
+		fetchData();
 	}, [])
 	return (
 		isLoaded &&
-		isLoadedApi.kpop &&
-		// isLoadedApi.culture &&
-		// isLoadedApi.stay &&
-		// isLoadedApi.tour &&
+		isLoadedApi &&
 		<MapRender
-			keyNum={props.keyNum}
-			type={props.type}
-			kpop={kpop}
-			culture={culture}
-			stay={stay}
-			tour={tour}
+		place={place}
+		stay={stay}
+		type={props.type}
 		/>
 	);
 }
