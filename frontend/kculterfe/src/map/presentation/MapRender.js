@@ -9,7 +9,7 @@ import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import {
 	handleDragEndGM,
-	handleClickGM,
+	handleOnClickGM,
 } from '../container/handleGM';
 // redux
 import { useDispatch } from 'react-redux';
@@ -59,8 +59,8 @@ function MapRender(props) {
 				zoom={zoom}
 				onLoad={(map) => setMap(map)}
 				onUnmount={() => setMap(null)}
+				onClick={e => handleOnClickGM(e, google, map, dispatch, setCenter, setZoom)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
 				// onDragEnd={() => handleDragEndGM(map, setCenter, setMarker)} // 근처의 무엇을 보여줘야하나요?
-				// onClick={e => handleClickGM(e, google, map, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
 			>
 
 				{/* 검색창 */}

@@ -7,8 +7,7 @@ import CourseListView from './CourseListView';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
-	const markerClick = useSelector(state => state.markerClick);
-	console.log(markerClick);
+
 	const [courseList, setCourseList] = useState([]);
 	const [courseId, setCourseId] = useState(0);
 	const handleOnCreate = (courseInfo) => {
@@ -17,12 +16,22 @@ function MapSideNav() {
 	}
 
 	return (
-		<div className="sidebar">
-			<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
+		// JSON.stringify(place) !== '{}'
+		// 	?
+		// 	<div className="sidebar">
+		// 		<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
+		// 		<CourseListView courseList={courseList} />
+		// 	</div>
+		// 	:
+			<div className="sidebar">
+				<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
 				<CourseListView courseList={courseList} />
-			<p>{markerClick.title}</p>
-			<img src={markerClick.fileUrl}></img>
-		</div>
+
+				<div style={{color:"white"}}>
+				<p>{place.formatted_address}</p>
+				</div>
+				{/* <img src={place.photos[0].getUrl()}></img> */}
+			</div>
 	);
 }
 

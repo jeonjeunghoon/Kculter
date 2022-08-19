@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function handleClickGM(e, google, map, dispatch) {
+export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 	if (!e || !map || !e.placeId) { return; }
 	const service = new window.google.maps.places.PlacesService(map);
 	const request = {
@@ -19,6 +19,11 @@ export function handleClickGM(e, google, map, dispatch) {
 				type: "MAP_PLACE",
 				data: place,
 			})
+			setCenter({
+				lat: place.geometry.location.lat(),
+				lng: place.geometry.location.lng(),
+			})
+			setZoom(15)
 		}
 	})
 }
