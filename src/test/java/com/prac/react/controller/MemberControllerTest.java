@@ -3,6 +3,7 @@ package com.prac.react.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,5 +47,17 @@ public class MemberControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
                 .andDo(print()); //요청받은것들으 print 해라
+    }
+
+    @Test
+    void testCheckEmail() throws Exception{
+        //given
+        String url = "/member/emaildup?email=hankgood95@naver.com";
+
+        
+		// when
+		mvc.perform(get(url))
+        .andExpect(status().isOk()) // status�� 200�̰�
+        .andDo(print()); // ��û�����͵��� print �ض�
     }
 }

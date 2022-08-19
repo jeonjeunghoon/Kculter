@@ -47,7 +47,7 @@ function PinForm(props){
 
     const changedKpop = (e) => {
         const check = e.target.value;
-        if(check != ""){ //값이 들어가게 되면 진입
+        if(check !== ""){ //값이 들어가게 되면 진입
             //값이 들어오면 culture는 disabled 되어야 함
             setCultureX(true);
         }else{
@@ -59,7 +59,7 @@ function PinForm(props){
 
     const changedCulture = (e) => {
         const check = e.target.value;
-        if(check !=""){ //값이 들어가게 되면 진입
+        if(check !== ""){ //값이 들어가게 되면 진입
             setKpopX(true);
         }else{
             setKpopX(false);
@@ -70,7 +70,7 @@ function PinForm(props){
 
     const changedFile = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setFileDis(true);
         }else{
             setFileDis(false);

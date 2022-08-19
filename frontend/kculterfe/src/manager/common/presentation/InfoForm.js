@@ -15,7 +15,7 @@ function InfoForm(props){
 
     const changedName = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setNameDis(true);
         }else{
             setNameDis(false);
@@ -25,7 +25,7 @@ function InfoForm(props){
 
     const changedExp = (e) => {
         const check = e.target.value
-        if(check != ""){
+        if(check !== ""){
             setExpDis(true);
         }else{
             setExpDis(false);
@@ -35,7 +35,7 @@ function InfoForm(props){
 
     const changedFile = (e) => {
         const check = e.target.value;
-        if(check != ""){
+        if(check !== ""){
             setFileDis(true);
         }else{
             setFileDis(false);
