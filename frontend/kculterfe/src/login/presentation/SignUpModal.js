@@ -1,7 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {Modal, Button, Form, Container} from 'react-bootstrap';
 import '../presentation/Signup.css';
+import '../presentation/CountryList';
+import CountrySelector from '../presentation/CountryList';
+import Select from 'react-select'
+import {checkEmail} from '../container/EmailCheck';
 
 function SignUpModal({show, onHide}) {
 
@@ -13,31 +17,14 @@ function SignUpModal({show, onHide}) {
   const [emailMessage, setEmailMessage] = useState('')
   const [pwdMessage, setPwdMessage] = useState('')
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
+  
   /*유효성 검사*/
   const [isEmail, setIsEmail] = useState(false);
   const [isPwd, setIsPwd] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
 
-  const [form, setForm] = useState({
-    day: "01",
-  });
-  const now = new Date();
-  
-  let years = [];
-  for (let y = now.getFullYear(); y >= 1930; y -= 1) {
-    years.push(y);
-  }
-
-  let month = [];
-  for (let m = 1; m <= 12; m += 1) {
-    if (m < 10) {
-      // 날짜가 2자리로 나타나야 했기 때문에 1자리 월에 0을 붙혀준다
-      month.push("0" + m.toString());
-    } else {
-      month.push(m.toString());
-    }
-  }
-
+  /*버튼 disabled만들기 위해 */
+  const [emailBtDis,setEmailBtDis] = useState(true);
 
 const checkPassword = (e) => {
   //  8 ~ 10자 영문, 숫자 조합
@@ -66,6 +53,7 @@ const onChangeEmail = (e) => {
     {
       setEmailMessage('OK :)');
       setIsEmail(true);
+      setEmailBtDis(false);
     }
 }
 
@@ -82,7 +70,9 @@ const onChangePasswordConfirm = (e) => {
   }
 }
 
-
+const emaildupli = () => {
+  checkEmail(email);
+}
 
   return(
   <Container>
@@ -104,6 +94,7 @@ const onChangePasswordConfirm = (e) => {
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" onChange={onChangeEmail}/>
         {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
+        <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -111,7 +102,6 @@ const onChangePasswordConfirm = (e) => {
         <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
         {password.length > 0 && <span className={`message ${isPwd ? 'success' : 'error'}`}>{pwdMessage}</span>}
       </Form.Group>
-
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Confirm Password</Form.Label>
@@ -130,44 +120,13 @@ const onChangePasswordConfirm = (e) => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Birth Day</Form.Label>
-        <div>
-        <select id="birth-year"
-          value={form.year}
-          onChange={(e)=>
-            setForm({ ...form, year: e.target.value})
-          }
-        >
-           <option disabled selected>
-                          Birth-Year
-                      </option>
-          {years.map(item => (
-                     
-                      <option 
-                        value={item} key={item}
-                      >{item}</option>
-          ))}
-        </select>
-        <select id="birth-month"
-          value={form.month}
-          onChange={(e)=>
-          setForm({...form, month: e.target.value})
-        }
-        >
-          <option disabled selected>Birth-Month</option>
-          {month.map(item => (
-              <option
-                value={item} key={item}
-              >{item}</option>
-          ))}
-        </select>
-       
-        </div>
+        <Form.Label>How old are you ?</Form.Label>
+        <Form.Control type="number" placeholder="age" min="10" max="100" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Contury</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <CountrySelector></CountrySelector>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -187,7 +146,7 @@ const onChangePasswordConfirm = (e) => {
       <Button className="cp-btn" type="submit">
         Complete
       </Button>
-        <Button onClick={onHide}>Close</Button>
+      <button onClick={onHide}>close</button>
       </Modal.Footer>
     </Modal>
   </Container>

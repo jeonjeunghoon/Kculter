@@ -22,7 +22,7 @@ function Loginbtn(props) {
  
   return (
     <>
-      <button onClick={sendToServer}>LOGIN</button>
+      <button className="login-btn" onClick={sendToServer}>LOGIN</button>
     </>
   )
 }
