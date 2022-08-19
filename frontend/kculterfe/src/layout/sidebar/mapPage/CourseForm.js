@@ -13,12 +13,9 @@ function CourseForm({ onCreate = (v) => console.log(v) }) {
 	return (
 		<button
 			style={{
-				position: 'absolute',
-				zIndex:'5px',
 				backgroundColor: 'red',
 				height: '50px',
 				width: '50px',
-				left: '50%',
 			}}
 			onClick={() => handleOnClick("광화문")}
 		/>

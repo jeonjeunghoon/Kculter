@@ -1,12 +1,8 @@
 import React, {
-	useCallback,
-	useEffect,
 	useState,
 } from 'react';
 import {
 	GoogleMap,
-	Marker,
-	MarkerF,
 } from '@react-google-maps/api';
 import Search from './Search';
 import MapMarker from './MapMarker';
@@ -15,13 +11,10 @@ import {
 	handleDragEndGM,
 	handleClickGM,
 } from '../container/handleGM';
-
-// 사이드 네비로 옮길 예정
-import CourseForm from './CourseForm';
-import CourseListView from './CourseListView';
-
 // redux
 import { useDispatch } from 'react-redux';
+// 필터
+import Filter from './Filter';
 
 
 // 맵을 렌더링하는 컴포넌트입니다.
@@ -35,18 +28,16 @@ function MapRender(props) {
 	const google = window.google;
 	// 구글맵 api 설정
 	const [map, setMap] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
 	const [center, setCenter] = useState({
 		lat: 37.566535,
 		lng: 126.9779692,
 	});
-	const [zoom, setZoom] = useState(10);
+	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
 		streetViewControl: false,
-		zoomControlOptions: {
-			position: google.maps.ControlPosition.RIGHT_TOP,
-		},
+		zoomControl: false,
+		fullscreenControl: false,
 		minZoom: 10,
 		restriction: {
 			latLngBounds: {
@@ -58,16 +49,6 @@ function MapRender(props) {
 		},
 		// clickableIcons: false, false하면 안되고 info만 안뜨게 해야 한다.
 	};
-	const [isLoadedMarker, setIsLoadedMarker] = useState(false);
-
-	// courseList
-	const [courseList, setCourseList] = useState([]);
-	const [courseId, setCourseId] = useState(0);
-	const handleOnCreate = (courseInfo) => {
-		setCourseList(courseList.concat({ id: courseId, place: courseInfo.place }));
-		setCourseId(course => course + 1);
-	}
-
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
@@ -88,10 +69,11 @@ function MapRender(props) {
 					setZoom={setZoom}
 				/>
 
+				<Filter />
+
 				{/* 마커 */}
 				<MapMarker
-					kpop={props.kpop.data}
-					// culture={props.culture.data}
+					place={props.place.data}
 					// stay={props.stay.data}
 					setCenter={setCenter}
 					setZoom={setZoom}
@@ -103,11 +85,6 @@ function MapRender(props) {
 					setCenter={setCenter}
 					setZoom={setZoom}
 				/> */}
-
-				{/* 컴포넌트 렌더링 버튼 >>> 사이드 네비로 옮길 예정 */}
-				{/* <CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
-				<CourseListView courseList={courseList} /> */}
-
 			</GoogleMap>
 		</div>
 	)
