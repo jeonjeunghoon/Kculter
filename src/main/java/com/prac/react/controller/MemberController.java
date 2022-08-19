@@ -2,8 +2,11 @@ package com.prac.react.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.Member;
@@ -13,6 +16,7 @@ import com.prac.react.service.MemberService;
  회원 정보와 관련된 일을 할때 들어올 Controller 입니다 */
 
 @RestController
+@RequestMapping("/member/")
 public class MemberController {
 
     //로그를 찍어보기 위해서 만든 인스턴스
@@ -36,5 +40,11 @@ public class MemberController {
             member.setCheckMember(false);
             return member;
         }
+    }
+
+    @GetMapping("emaildup")
+    public int checkEmail(@RequestParam("email")String email){
+        logger.info("Email : "+email);
+        return 1; 
     }
 }
