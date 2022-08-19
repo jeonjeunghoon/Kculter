@@ -60,4 +60,16 @@ public class MemberControllerTest {
         .andExpect(status().isOk()) // status�� 200�̰�
         .andDo(print()); // ��û�����͵��� print �ض�
     }
+
+    @Test
+    void testCheckNickName() throws Exception{
+        //given
+        String url = "/member/nicknamedup?nickname=이욱쟁";
+
+        
+		// when
+		mvc.perform(get(url))
+        .andExpect(status().isOk()) // status�� 200�̰�
+        .andDo(print()); // ��û�����͵��� print �ض�
+    }
 }
