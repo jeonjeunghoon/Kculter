@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './LoginPage.css';
@@ -21,6 +21,11 @@ function LoginPage(){
     const [SignUp, setSignUp] = useState(false);
     const [email,setEmail] = useState("");
     const [pwd,setPwd] = useState("");
+
+    const close = () => {
+        setSignUp(false);
+        window.location.reload();
+    }
 
     return(
        <>
@@ -56,7 +61,7 @@ function LoginPage(){
                 </div>
                 <Loginbtn email={email} pwd={pwd}>LOGIN</Loginbtn>
                 <SignUpModal
-                    show={SignUp} onHide={()=>setSignUp(false)}
+                    show={SignUp} onHide={close}
                     /> 
                 <div className="signup-btn" onClick={()=> setSignUp(true)}>
                     <button

@@ -45,12 +45,12 @@ public class MemberController {
     @GetMapping("emaildup")
     public int checkEmail(@RequestParam("email")String email){
         logger.info("Email : "+email);
-        return 1; 
+        return 0; 
     }
 
     @GetMapping("nicknamedup")
     public int checkNickName(@RequestParam("nickname")String nickName){
         logger.info("NickName : "+nickName);
-        return 1; 
+        return 0; 
     }
 }

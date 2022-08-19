@@ -1,64 +1,83 @@
-import React, { useCallback, useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState,useMemo, useEffect} from 'react';
 import {Modal, Button, Form, Container} from 'react-bootstrap';
 import '../presentation/Signup.css';
 import '../presentation/CountryList';
-import CountrySelector from '../presentation/CountryList';
-import Select from 'react-select'
 import {checkEmail} from '../container/EmailCheck';
 import {checkNick} from '../container/NickCheck';
+import countryList from 'react-select-country-list';
+import Select from 'react-select';
+import { storeMember } from '../container/StoreMember';
 
 function SignUpModal({show, onHide}) {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [nickName, setNickName] = useState('');
+  const [email, setEmail] = useState(""); //이메일
+  const [password, setPassword] = useState(''); //비밀번호
+  const [nickName, setNickName] = useState(''); //닉네임
+  const [country,setCountry] = useState();
+  const [countryCode, setCountryCode] = useState('') //나라
+  const [age, setAge] = useState('');
+  const [gender,setGender] = useState();
   
   /*오류메세지*/
-  const [emailMessage, setEmailMessage] = useState('')
-  const [pwdMessage, setPwdMessage] = useState('')
-  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
-  const [nickNameMessage, setnickNameMessage] = useState('')
+  const [verifyMessage, setVerMessage] = useState('Please verify your email');
+  const [pwdMessage, setPwdMessage] = useState('Please enter your password');
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('Pleace check your password')
+  const [nickNameMessage, setnickNameMessage] = useState('Invalid nickname format')
   
   /*유효성 검사*/
-  const [isEmail, setIsEmail] = useState(false);
+  const [emailOk, setEmailOk] = useState(false);
   const [isPwd, setIsPwd] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
   const [isNickName, setIsNickName] = useState(false);
+  const [emailAvail,setEmailAvail] = useState(false);
+  const [nickNameAvail,setNickNameAvail] = useState(false);
 
   /*버튼 disabled만들기 위해 */
   const [emailBtDis,setEmailBtDis] = useState(true);
   const [NickNameBtDis, setNicNameBtDis] = useState(true);
 
+  const formData = {
+    email : email,
+    pws : password,
+    nickName : nickName,
+    countryCode : countryCode,
+    age : age,
+    gender : gender
+  }
+
 const checkPassword = (e) => {
   //  8 ~ 10자 영문, 숫자 조합
-  var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/
+  let regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,50}$/
   // 형식에 맞는 경우 true 리턴
   const pwdRegex = e.target.value;
-    setPassword(pwdRegex);
-    if (!regExp.test(pwdRegex)) {
-      setPwdMessage('least 7 digits, 1 English characters');
+    if(pwdRegex === ""){
+      setPwdMessage("Please enter your password");
+      setIsPwd(false);
+    }
+    else if (!regExp.test(pwdRegex)) {
+      setPwdMessage('Must contain number, lowercase letter,\n specialcharecter(!@#$%^*+=-),\n and should be minimum 8 characters');
+      setIsPwd(false);
     }
     else
     {
+      setPassword(pwdRegex);
       setPwdMessage('OK :)');
       setIsPwd(true);
     }
 }
 
 const onChangeEmail = (e) => {
-    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+    let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     const emailRegex = e.target.value;
-    setEmail(emailRegex);
     if (!regExp.test(emailRegex)) {
-      setEmailMessage('Please verify your email');
       setEmailBtDis(true);
+      setVerMessage('Please verify your email');
+      setEmailOk(false);
     }
     else
     {
-      setEmailMessage('OK :)');
-      setIsEmail(true);
+      setVerMessage('OK :)');
+      setEmailOk(true);
       setEmailBtDis(false);
       setEmail(emailRegex);
     }
@@ -66,11 +85,9 @@ const onChangeEmail = (e) => {
 
 const onChangePasswordConfirm = (e) => {
   const passwordConfirmCurrent = e.target.value
-  setPasswordConfirm(passwordConfirmCurrent)
-
   if (password === passwordConfirmCurrent) {
-    setPasswordConfirmMessage('OK :)')
-    setIsPasswordConfirm(true)
+    setPasswordConfirmMessage('OK :)');
+    setIsPasswordConfirm(true);
   } else {
     setPasswordConfirmMessage('The password is different')
     setIsPasswordConfirm(false)
@@ -78,28 +95,74 @@ const onChangePasswordConfirm = (e) => {
 }
 
 const onChangeNickName = (e) => {
-  var regExp = /[^a-zA-Z]/g
+  let regExp = /[^a-zA-Z]/g
   const nickNameRegex = e.target.value;
-  setNickName(nickNameRegex);
-  if (regExp.test(nickNameRegex)){
+  if (regExp.test(nickNameRegex) || nickNameRegex === ""){
     setnickNameMessage("no only char plz");
+    setNicNameBtDis(true);
+    setIsNickName(false);
   }
   else
   {
+     setNickName(nickNameRegex);
      setnickNameMessage("OK :)")
      setIsNickName(true);
      setNicNameBtDis(false);
   }
 }
 
-const emaildupli = () => {
-  checkEmail(email);
+const emaildupli = async () => { //이메일 중복검사
+  const result = await checkEmail(email);
+  if(result > 0){
+    alert("This email is not available.")
+    setEmailAvail(false);
+  }else{
+    alert("This email is available.")
+    setEmailAvail(true);
+  }
 }
 
-const nicknamedupli = () => {
-  checkNick(nickName);
+const nicknamedupli = async () => { //닉네임 중복검사
+  const result = await checkNick(nickName);
+  if(result > 0){
+    alert("This nick name is not available.");
+    setNickNameAvail(false);
+  }else{
+    alert("This nick name is available.");
+    setNickNameAvail(true);
+  }
 }
 
+const checkAge = (e) => {
+  const result = e.target.value
+  setAge(result);
+}
+
+/* 나라선택 */
+const options = useMemo(() => countryList().getData(), []);
+
+const changeHandler = value => {
+  console.log("country code : "+value.value);
+  setCountry(value);
+  setCountryCode(value.value);
+}
+
+const insertMember = () =>{
+  if(!(emailAvail||nickNameAvail)){
+    alert("Please check email and nickname duplication");
+  }else if(!emailAvail){
+    alert("Please check email duplication");
+  }else if(!nickNameAvail){
+    alert("Please check nickname duplication");
+  }else{
+    storeMember(formData);
+  }
+}
+
+const cancel = () => {
+  alert(email);
+  onHide();
+}
   return(
   <Container>
     <Modal
@@ -110,73 +173,69 @@ const nicknamedupli = () => {
       centered
       id = "modal-body"
     >
-     <div className="Signup-header">
-     Sign Up
-     </div>
+      <div className="Signup-header">
+        Sign Up
+      </div>
       <Modal.Body id="form-div">
-      <Form>
-      <div className="form-1">
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" onChange={onChangeEmail}/>
-        {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
+        <Form>
+          <div className="form-1">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" onChange={onChangeEmail}/>
+              <span className={`message ${emailOk ? 'success' : 'error'}`}>{verifyMessage}</span>
+              <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
 
-        <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
+            </Form.Group>
 
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
+              <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
-        {password.length > 0 && <span className={`message ${isPwd ? 'success' : 'error'}`}>{pwdMessage}</span>}
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
+              <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
+            </Form.Group>
+        
+          </div>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
-        {passwordConfirm.length > 0 && <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>}
-      </Form.Group>
-      
-      </div>
+          <div className="form-2">
 
-      <div className="form-2">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Nick-Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} />
+              <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>
+              <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button>
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Nick-Name</Form.Label>
-        <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} />
-        {nickName.length > 0 && <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>How old are you ?</Form.Label>
+              <Form.Control type="number" onChange={checkAge} placeholder="age" min="10" max="100" />
+            </Form.Group>
 
-        <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button>
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Contury</Form.Label>
+              <Select options={options} value={country} onChange={changeHandler} />
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>How old are you ?</Form.Label>
-        <Form.Control type="number" placeholder="age" min="10" max="100" />
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Gender</Form.Label>
+              <div>
+                <input type='radio' name='gender' value='female' onClick={(e) =>setGender(e.target.value)} />여성
+                <input type='radio' name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/>남성
+              </div>
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Contury</Form.Label>
-        <CountrySelector></CountrySelector>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Gender</Form.Label>
-        <div>
-        <input type='radio' name='gender' value='female' />여성
-  <input type='radio' name='gender' value='male' />남성
-  </div>
-      </Form.Group>
-
-      </div>
-      
-     
-    </Form>
+          </div>
+        </Form>
       </Modal.Body>
       <Modal.Footer>
-      <Button className="cp-btn" type="submit">
-        Complete
-      </Button>
-      <button onClick={onHide}>close</button>
+        <Button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
+          Complete
+        </Button>
+        <button onClick={cancel}>close</button>
       </Modal.Footer>
     </Modal>
   </Container>

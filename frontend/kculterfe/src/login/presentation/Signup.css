@@ -64,3 +64,6 @@
   justify-content: center;
   font-weight: bold;
 }
+.display-linebreak {
+  white-space: pre-line;
+}
