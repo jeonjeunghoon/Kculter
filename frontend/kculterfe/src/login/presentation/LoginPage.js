@@ -11,6 +11,8 @@ import Loginbtn from '../container/Loginbtn';
 import PwdLink from '../presentation/PwdLink';
 import ForgotPwdModal from '../presentation/ForgotPwd';
 import SignUpModal from '../presentation/SignUpModal';
+import '../presentation/LoginPage.css';
+import '../presentation/LoginPage';
 
 
 function LoginPage(){
@@ -52,13 +54,11 @@ function LoginPage(){
                         className='pwd'
                     >Forgot your password ?</button>
                 </div>
-                <div className="login-btn">
-                    <Loginbtn email={email} pwd={pwd}></Loginbtn>
-                </div>               
-                <div className="signup-btn">
+                <Loginbtn email={email} pwd={pwd}>LOGIN</Loginbtn>
                 <SignUpModal
                     show={SignUp} onHide={()=>setSignUp(false)}
-                    />
+                    /> 
+                <div className="signup-btn" onClick={()=> setSignUp(true)}>
                     <button
                         onClick={()=> setSignUp(true)}
                     >SIGNUP</button>
