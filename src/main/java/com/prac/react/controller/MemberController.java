@@ -47,4 +47,10 @@ public class MemberController {
         logger.info("Email : "+email);
         return 1; 
     }
+    
+    @GetMapping("nicknamedup")
+    public int checkNickName(@RequestParam("nickname")String nickName){
+        logger.info("NickName : "+nickName);
+        return 1; 
+    }
 }
