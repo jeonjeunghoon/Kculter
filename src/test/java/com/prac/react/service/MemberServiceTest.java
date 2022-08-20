@@ -18,19 +18,49 @@ public class MemberServiceTest {
 
     Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 
+    // @Test
+    // @DisplayName("특정 아이디의 유무를 확인하는 테스트") 
+    // void testCheckMember() {
+    //     //given
+    //     //새로운 멤버로 임의로 인스턴스를 생성한다.
+    //     Member mb = new Member(0,"hankgood95@gmail.com","이욱재",false);
+
+    //     //when
+    //     //이사람 아이디로 실제로 존재하는지 체크를 한다.
+    //     int check = ms.checkMember(mb.getEmail());
+
+    //     //then
+    //     //결과  출력
+    //     logger.info("result : "+ check);
+    // }
     @Test
-    @DisplayName("특정 아이디의 유무를 확인하는 테스트") 
-    void testCheckMember() {
+    void testCheckMember(){
         //given
-        //새로운 멤버로 임의로 인스턴스를 생성한다.
-        Member mb = new Member(0,"hankgood95@gmail.com","이욱재",false);
+        String email = "hankgood95@naver.com";
+        //when
+        int result = ms.checkMember(email);
+        //then
+        logger.info("Result : "+result);
+    }
+    
+    @Test
+    void testCheckNickName(){
+        //given
+        String nickName = "test";
+        //when
+        int result = ms.checkNickName(nickName);
+        //then
+        logger.info("Result : "+result);
+    }
+
+    @Test 
+    void TestInsertMember(){
+        //given
+        Member member = new Member(0, "hankgood95@naver.com", "-dldnrwo9595", "asd", "KR", 28, "male", "https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
 
         //when
-        //이사람 아이디로 실제로 존재하는지 체크를 한다.
-        int check = ms.checkMember(mb.getEmail());
-
+        int result = ms.insertMember(member);
         //then
-        //결과  출력
-        logger.info("result : "+ check);
+        logger.info("Result : "+result);
     }
 }

@@ -38,7 +38,7 @@ function SignUpModal({show, onHide}) {
 
   const formData = {
     email : email,
-    pws : password,
+    pwd : password,
     nickName : nickName,
     countryCode : countryCode,
     age : age,
@@ -161,7 +161,7 @@ const changeHandler = value => {
   setCountryCode(value.value);
 }
 
-const insertMember = () =>{
+const insertMember = async () =>{
   if(!(emailAvail||nickNameAvail)){
     alert("Please check email and nickname duplication");
   }else if(!emailAvail){
@@ -169,12 +169,18 @@ const insertMember = () =>{
   }else if(!nickNameAvail){
     alert("Please check nickname duplication");
   }else{
-    storeMember(formData);
+    const result = await storeMember(formData);
+    if(result == 1){
+      alert("success on signup");
+      cancel();
+    }else{
+      alert("Registration failed.\nContact us at hankgood958@gmail.com");
+      cancel();
+    }
   }
 }
 
 const cancel = () => {
-  alert(email);
   onHide();
 }
   return(
