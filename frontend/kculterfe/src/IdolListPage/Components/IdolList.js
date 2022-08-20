@@ -3,15 +3,28 @@ import './IdolList.css';
 import IdolCard from './IdolCard.js';
 import idolcards from '../Data/idolcard.json';
 import IdolSearchBar from './IdolSearchBar';
+import { getKpopList } from './container/GetKpopListData';
 
 function IdolList({}) {
 	const [search, setSearch] = useState("");
 	const onChange = (e) => {
 		setSearch(e.target.value)
 	}
-	const filterTitle = idolcards.filter((p) => {
-		return p.title.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase())
-	})
+
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		getKpopList()
+		.then(resData => {
+			setData(resData)
+		})
+		.catch(err => {
+			console.log(err);
+		});
+		console.log(data);
+	}, []);
+	const filterTitle = data.filter((p) => {
+		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
+	});
 	return (
 		<>
 		<IdolSearchBar value={search} onChange={onChange} />
@@ -19,12 +32,12 @@ function IdolList({}) {
 			{ filterTitle.map(idolcard => 
 			<div className="CardDiv">
 				<IdolCard
-				id={idolcard.id}
-				key={idolcard.id}
-				path_photo={idolcard.path_photo}
-				title={idolcard.title}
-				num_like={idolcard.num_like}
-				num_spot={idolcard.numspot}
+				id={idolcard.keyNum}
+				key={idolcard.keyNum}
+				path_photo={idolcard.fileUrl}
+				title={idolcard.name}
+				num_like={idolcard.likeCount}
+				num_spot={idolcard.likeCount}
 				path_map={idolcard.path_map}
 				/>
 			</div>) }
