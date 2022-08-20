@@ -236,9 +236,9 @@ const cancel = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Gender</Form.Label>
-              <div>
-                <input type='radio' name='gender' value='female' onClick={(e) =>setGender(e.target.value)} />여성
-                <input type='radio' name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/>남성
+              <div className="select-gender">
+                <input type='radio' id = "select"name='gender' value='female' onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
+                <input type='radio' id = "select2"name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
               </div>
             </Form.Group>
 
@@ -246,10 +246,10 @@ const cancel = () => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
+        <button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
           Complete
-        </Button>
-        <button onClick={cancel}>close</button>
+        </button>
+        <button className="close-btn"onClick={cancel}>Close</button>
       </Modal.Footer>
     </Modal>
   </Container>

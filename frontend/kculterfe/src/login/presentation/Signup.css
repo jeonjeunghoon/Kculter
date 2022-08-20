@@ -18,22 +18,32 @@
   position: relative;
 }
 
-#modal-body {
-}
-
 #btn-check {
   font-size: 10px;
   margin-top: 10px;
+  padding: 3px 5px;
   border: none;
-  background-color: #03cf5c;
+  background-color: #006bff;
   color: #ffff;
   font-weight: bold;
 }
 
 .cp-btn {
-  position: absolute;
-  left: 75%;
+  padding: 7px 20px;
+  border: none;
+  color: #fff;
+  background-color: #f4029b;
+  border-radius: 10px;
+  left: 73%;
   bottom: 2%;
+}
+
+.close-btn {
+  padding: 7px 20px;
+  border: none;
+  color: #fff;
+  background-color: #f4029b;
+  border-radius: 10px;
 }
 
 .form-1 {
@@ -66,4 +76,35 @@
 }
 .display-linebreak {
   white-space: pre-line;
+}
+
+.select-gender {
+  padding: 12px 17px;
+  right: 100px;
+}
+
+.select-gender input[type="radio"] {
+  display: none;
+}
+
+.select-gender input[type="radio"] + label {
+  display: inline-block;
+  cursor: pointer;
+  height: 23px;
+  width: 90px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  border: 1px solid #000;
+}
+
+.select-gender input[type="radio"] + label {
+  background-color: #fff;
+  color: #333;
+}
+
+.select-gender input[type="radio"]:checked + label {
+  background-color: #333;
+  color: #fff;
 }
