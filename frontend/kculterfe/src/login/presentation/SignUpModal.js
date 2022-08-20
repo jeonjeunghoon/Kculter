@@ -19,10 +19,10 @@ function SignUpModal({show, onHide}) {
   const [gender,setGender] = useState();
   
   /*오류메세지*/
-  const [verifyMessage, setVerMessage] = useState('Please verify your email');
-  const [pwdMessage, setPwdMessage] = useState('Please enter your password');
-  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('Pleace check your password')
-  const [nickNameMessage, setnickNameMessage] = useState('Invalid nickname format')
+  const [verifyMessage, setVerMessage] = useState('');
+  const [pwdMessage, setPwdMessage] = useState('');
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
+  const [nickNameMessage, setnickNameMessage] = useState('')
   
   /*유효성 검사*/
   const [emailOk, setEmailOk] = useState(false);
@@ -51,7 +51,7 @@ const checkPassword = (e) => {
   // 형식에 맞는 경우 true 리턴
   const pwdRegex = e.target.value;
     if(pwdRegex === ""){
-      setPwdMessage("Please enter your password");
+      setPwdMessage("");
       setIsPwd(false);
     }
     else if (!regExp.test(pwdRegex)) {
@@ -69,7 +69,12 @@ const checkPassword = (e) => {
 const onChangeEmail = (e) => {
     let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     const emailRegex = e.target.value;
-    if (!regExp.test(emailRegex)) {
+    if(emailRegex === ""){
+      setEmailBtDis(true);
+      setVerMessage('');
+      setEmailOk(false);
+    }
+    else if (!regExp.test(emailRegex)) {
       setEmailBtDis(true);
       setVerMessage('Please verify your email');
       setEmailOk(false);
@@ -85,19 +90,28 @@ const onChangeEmail = (e) => {
 
 const onChangePasswordConfirm = (e) => {
   const passwordConfirmCurrent = e.target.value
-  if (password === passwordConfirmCurrent) {
+  if(passwordConfirmCurrent === ""){
+    setPasswordConfirmMessage('')
+    setIsPasswordConfirm(false)
+  }
+  else if (password === passwordConfirmCurrent) {
     setPasswordConfirmMessage('OK :)');
     setIsPasswordConfirm(true);
-  } else {
+  }else{
     setPasswordConfirmMessage('The password is different')
-    setIsPasswordConfirm(false)
+    setIsPasswordConfirm(false)    
   }
 }
 
 const onChangeNickName = (e) => {
   let regExp = /[^a-zA-Z]/g
   const nickNameRegex = e.target.value;
-  if (regExp.test(nickNameRegex) || nickNameRegex === ""){
+  if(nickNameRegex === ""){
+    setnickNameMessage("");
+    setNicNameBtDis(true);
+    setIsNickName(false);
+  }
+  else if (regExp.test(nickNameRegex)){
     setnickNameMessage("no only char plz");
     setNicNameBtDis(true);
     setIsNickName(false);
