@@ -1,0 +1,33 @@
+.map-sidebar {
+	display: flex;
+	flex-direction: column;
+	color: white;
+}
+
+.map-sidebar .head {
+	display: flex;
+	justify-content: center;
+}
+
+.map-sidebar .title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.course-card {
+	display: flex;
+	width: 100%;
+}
+
+.course-card img {
+	width: 40%;
+	height: 40%;
+}
+
+.course-card h6 {
+}
+
+.course-card button {
+	margin-left: auto;
+}
