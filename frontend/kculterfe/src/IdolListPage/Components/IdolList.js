@@ -39,6 +39,7 @@ function IdolList({}) {
 				num_like={idolcard.likeCount}
 				num_spot={idolcard.likeCount}
 				path_map={idolcard.path_map}
+				explain={idolcard.explain}
 				/>
 			</div>) }
 		</div>

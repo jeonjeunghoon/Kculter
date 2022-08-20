@@ -7,7 +7,7 @@ import btsimg from '../Data/photo/bts.jpg'
 import psyimg from '../Data/photo/psy.png'
 import twiceimg from '../Data/photo/twice.jpg'
 
-function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map}) {
+function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -45,7 +45,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map}) {
 				</Modal.Header>
 				<Modal.Body className="idolcard-modal-body">
 					<div className="idolcard-modal-paragraph">
-						<p>BTS, also known as the Bangtan Boys, is a South Korean boy band that was formed in 2010 and debuted in 2013 under Big Hit Entertainment.[5] The septet—consisting of members Jin, Suga, J-Hope, RM, Jimin, V, and Jungkook—co-writes and co-produces much of their own output.</p>
+						<p>{explain}</p>
 					</div>
 					<div className="idolcard-modal-info">
 						<div className="idolcard-modal-like-num">
