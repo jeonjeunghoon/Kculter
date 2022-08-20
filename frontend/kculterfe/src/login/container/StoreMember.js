@@ -1,5 +1,15 @@
 import axios from 'axios';
 
-export function storeMember(formData) {
-    console.log(formData);
+export async function storeMember(formData) {
+    let result;
+    return await axios.post("/member/signup",formData)
+    .then(function(res){
+        result = res.data;
+        return result;
+    })
+    .catch(function(error){
+        console.log(error);
+        result = 500;
+        return result;
+    })
 }

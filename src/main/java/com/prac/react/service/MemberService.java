@@ -3,7 +3,9 @@ package com.prac.react.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import com.prac.react.model.dao.MemberDao;
+import com.prac.react.model.dto.Member;
 
 @Service
 public class MemberService {
@@ -17,7 +19,13 @@ public class MemberService {
         this.md = md;
     }
 
-    public int checkMember(String email){
+    public Integer checkMember(String email){
         return md.checkMember(email);
+    }
+    public Integer checkNickName(String nickName){
+        return md.checkNickName(nickName);
+    }
+    public int insertMember(Member member){
+        return md.insertMember(member);
     }
 }
