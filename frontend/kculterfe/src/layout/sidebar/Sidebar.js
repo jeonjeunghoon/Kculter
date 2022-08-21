@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SidebarItem from "./SidebarItem"
 import common from "./sidebarCommonData.json"
@@ -8,6 +8,14 @@ import '../Layout.css';
 
 export default function Sidebar(props) {
 	const location = useLocation();
+	const [select, setSelect] = useState(false);
+	const changeSelect = (e) => {
+		setSelect(e);
+	}
+	useEffect(() => {
+		console.log("hi");
+	}, [select]);
+
 	return (
 		<div className="sidebar">
 			<Link to='/'><i className="bi-chevron-left sidebar-back-btn"></i></Link>
@@ -20,7 +28,7 @@ export default function Sidebar(props) {
 			<br></br>
 			<br></br>
 			<br></br>
-			{ props.items.map((item, index) => <SidebarItem key={index} item={item} {...item} />)}
+			{ props.items.map((item, index) => <SidebarItem key={index} item={item} isSelect={select} changeSelect={changeSelect} />)}
 		</div>
 	)
 }
