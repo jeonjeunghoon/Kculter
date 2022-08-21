@@ -3,9 +3,12 @@ import axios from 'axios';
 export async function getKpopList() {
     let list;
     //await 한 값을 보내준다.
-    return await axios.get('/celebrities')
+    return await axios.get('/celebrities', {
+        responseType: 'json'
+    })
     .then(function(res){
         list = res.data;
+        console.log(list);
         return list;
     })
     .catch(function(error){
@@ -13,3 +16,4 @@ export async function getKpopList() {
         alert("서버 통신 실패");
     });
 }
+

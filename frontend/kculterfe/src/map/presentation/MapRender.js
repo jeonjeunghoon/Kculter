@@ -8,14 +8,13 @@ import Search from './Search';
 import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import {
-	handleDragEndGM,
+	handleOnDragEndGM,
 	handleOnClickGM,
 } from '../container/handleGM';
 // redux
 import { useDispatch } from 'react-redux';
 // 필터
 import Filter from './Filter';
-
 
 // 맵을 렌더링하는 컴포넌트입니다.
 // MapPage에서 받아온 정보를 토대로 맵에 마커들을 렌더링합니다. (AllVisible = false)
@@ -47,7 +46,6 @@ function MapRender(props) {
         west: -180
 			},
 		},
-		// clickableIcons: false, false하면 안되고 info만 안뜨게 해야 한다.
 	};
 	return (
 		<div className='map-container'>
@@ -60,13 +58,14 @@ function MapRender(props) {
 				onLoad={(map) => setMap(map)}
 				onUnmount={() => setMap(null)}
 				onClick={e => handleOnClickGM(e, google, map, dispatch, setCenter, setZoom)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
-				// onDragEnd={() => handleDragEndGM(map, setCenter, setMarker)} // 근처의 무엇을 보여줘야하나요?
+				// onDragEnd={() => handleOnDragEndGM(map, setCenter, setMarker)} // 근처의 무엇을 보여줘야하나요?
 			>
 
 				{/* 검색창 */}
 				<Search
 					setCenter={setCenter}
 					setZoom={setZoom}
+					dispatch={dispatch}
 				/>
 
 				<Filter />
@@ -74,17 +73,16 @@ function MapRender(props) {
 				{/* 마커 */}
 				<MapMarker
 					place={props.place.data}
-					// stay={props.stay.data}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
 				/>
 
 				{/* 카드 */}
-				{/* <MapCard
+				<MapCard
 					setCenter={setCenter}
 					setZoom={setZoom}
-				/> */}
+				/>
 			</GoogleMap>
 		</div>
 	)

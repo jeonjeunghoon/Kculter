@@ -1,11 +1,10 @@
 package com.prac.react.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,19 +35,19 @@ public class MemberControllerTest {
 
     Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 
-    @Test
-    @DisplayName("Controller의 요청왔을때의 단위테스트") // 회원이 로그인 버튼을 눌렀을때를 가정
-    void TestLoginMember() throws Exception {
-        // given
-        Member mb = new Member(1, "hankgood95@gmail.com", "이욱재", true);
+    // @Test
+    // @DisplayName("Controller의 요청왔을때의 단위테스트") // 회원이 로그인 버튼을 눌렀을때를 가정
+    // void TestLoginMember() throws Exception {
+    //     // given
+    //     Member mb = new Member(1, "hankgood95@gmail.com", "이욱재", true);
 
-        String requestBody = obm.writeValueAsString(mb);
-        mvc.perform(post("/member")
-                .content(requestBody)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
-                .andDo(print()); //요청받은것들으 print 해라
-    }
+    //     String requestBody = obm.writeValueAsString(mb);
+    //     mvc.perform(post("/member")
+    //             .content(requestBody)
+    //             .contentType(MediaType.APPLICATION_JSON))
+    //             .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
+    //             .andDo(print()); //요청받은것들으 print 해라
+    // }
 
     @Test
     void testCheckEmail() throws Exception{
@@ -71,5 +71,35 @@ public class MemberControllerTest {
 		mvc.perform(get(url))
         .andExpect(status().isOk()) // status�� 200�̰�
         .andDo(print()); // ��û�����͵��� print �ض�
+    }
+
+    @Test
+    void testInsertMember() throws Exception{
+        //given
+        Member member = new Member(0, "hankgood95@naver.com", "-dldnrwo9595", "asd", "KR", 28, "male", "");
+
+        String requestBody = obm.writeValueAsString(member);
+
+        mvc.perform(post("/member/signup")
+                .content(requestBody)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
+                .andDo(print()); //요청받은것들으 print 해라
+    }
+
+    @Test
+    void testLogin() throws Exception{
+
+        //given
+        String email = "hankgood95@naver.com";
+        String pwd = "-dldnrwo9595";
+
+        mvc.perform(get("/member/login")
+        .header("email", email)
+        .header("pwd", pwd)
+        .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
+        .andDo(print());
+
     }
 }

@@ -91,9 +91,11 @@
 
 .login-btn {
   background-color: #1755d1;
-  padding: 10px 132px;
+  padding: 10px 136px;
+  border: none;
   border-radius: 10px;
   margin-bottom: 10px;
+  color: #ffff;
 }
 
 .signup-btn {

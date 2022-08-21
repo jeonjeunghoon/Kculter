@@ -5,10 +5,10 @@ import {
 	Marker,
 	Autocomplete,
 } from '@react-google-maps/api';
-import { handlePlaceChangedAutocomplete } from '../container/handleAutocomplete';
-import { handleClickMarker } from '../container/handleMarker'
+import { handleOnPlaceChangedAutocomplete } from '../container/handleAutocomplete';
+import { handleOnClickMarker } from '../container/handleMarker'
 
-function Search({ setCenter, setZoom }) {
+function Search({ setCenter, setZoom, dispatch }) {
 	const [input, setInput] = useState(null);
 	const [focus, setFocus] = useState(null);
 	const [search, setSearch] = useState(false);
@@ -17,20 +17,19 @@ function Search({ setCenter, setZoom }) {
 		<div>
 			<Autocomplete
 						onLoad={autocomplete => setInput(autocomplete)}
-						onPlaceChanged={() => handlePlaceChangedAutocomplete(input, setCenter, setZoom, setSearch, setFocus)}
+						onPlaceChanged={() => handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, setSearch, setFocus, dispatch)}
 					>
 						<input className='autocomplete-input'
     	        type="text"
     	        placeholder="Search place"
     	      />
 			</Autocomplete>
-
 			{search
 				?
 					<Marker
 					position={focus}
 					visible={true}
-					onClick={() => handleClickMarker(input, search)}
+					onClick={() => handleOnClickMarker(input, search, dispatch)}
 					/>
 				:
 					<></>
