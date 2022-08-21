@@ -5,7 +5,8 @@ function CardList({ props }) {
 	return (
 		<>
 			<div className="cardList">
-				{ props.map((item, index) => <CardItem key={index} props={item} {...item} />)}
+				{ props.name }
+				{/* { props.map((course, index) => <CardItem key={index} props={course} {...course} />)} */}
 			</div>
 		</>
 	)

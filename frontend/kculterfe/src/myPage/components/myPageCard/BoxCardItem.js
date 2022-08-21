@@ -11,7 +11,7 @@ function BoxCardItem({ props }) {
                 <Row>
                     <Col md={2} className="bg-primary box-card-top">
                         <p className="mx-2 py-2 text-light">
-                            { props.dayNum }<br/>{ props.dayStr }
+                            { props.placeNum }<br/>{ props.placeNum }
                         </p>
                         <p className="box-btn">
                             <button className="btn" onclike="">
@@ -25,10 +25,10 @@ function BoxCardItem({ props }) {
                     <Col md={10} className="">
                         <div className="date">
                             <span className="date-span">
-                                { props.date }
+                                { props.lat }
                             </span>
                         </div>
-                        <CardList props={ props.card } />
+                        <CardList props={ props } />
                     </Col>
                 </Row>
             </Card>

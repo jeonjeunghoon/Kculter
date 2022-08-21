@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CLICK_MARKER } from '../../redux/reducer';
 
 export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 	if (!e || !map || !e.placeId) { return; }
@@ -15,9 +16,15 @@ export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 			place.geometry.location
 		) {
 			console.log(place, status);
+			const newPlace = {
+				head: "K-culter",
+				title: place.name,
+				address: place.formatted_address,
+				fileUrl: place.photos[0].getUrl(),
+			}
 			dispatch({
-				type: "MAP_PLACE",
-				data: place,
+				type: CLICK_MARKER,
+				data: newPlace,
 			})
 			setCenter({
 				lat: place.geometry.location.lat(),

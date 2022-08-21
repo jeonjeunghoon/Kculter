@@ -2,36 +2,55 @@ import React, {
 	useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import CourseForm from './CourseForm';
-import CourseListView from './CourseListView';
+
+import CourseCard from './CourseCard';
+
+
+import './map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
 
-	const [courseList, setCourseList] = useState([]);
-	const [courseId, setCourseId] = useState(0);
-	const handleOnCreate = (courseInfo) => {
-		setCourseList(courseList.concat({ id: courseId, place: courseInfo.place }));
-		setCourseId(course => course + 1);
+	const [courseList, setCourseList] = useState([])
+	function handleOnClickBtn(place) {
+		const isEmpty = Object.keys(place).length === 0;
+		if (isEmpty) {
+			return;
+		} else {
+			let newCourseList = [...courseList]
+			const courseData = {
+				title: place.title,
+				fileUrl: place.fileUrl,
+			}
+	  	newCourseList.push(courseData)
+	  	setCourseList(newCourseList)
+		}
 	}
 
 	return (
-		// JSON.stringify(place) !== '{}'
-		// 	?
-		// 	<div className="sidebar">
-		// 		<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
-		// 		<CourseListView courseList={courseList} />
-		// 	</div>
-		// 	:
-			<div className="sidebar">
-				<CourseForm onCreate={(courseInfo) => handleOnCreate(courseInfo)} />
-				<CourseListView courseList={courseList} />
-
-				<div style={{color:"white"}}>
-				<p>{place.formatted_address}</p>
+		<div className="sidebar">
+			<div className="map-sidebar">
+				<div className="head">
+					{/* <img src={}></img> */}
+					<h3>{place.head}</h3>
 				</div>
-				{/* <img src={place.photos[0].getUrl()}></img> */}
+				<img src={place.fileUrl}></img>
+				<div className="content">
+					<div className="title">
+						<h3>{place.title}</h3>
+						<p>{place.address}</p>
+					</div>
+					<p>{place.explain}</p>
+					<div className="course">
+					<p>Save Your Course</p>
+    			  <CourseCard courseList={courseList} setCourseList={setCourseList} />
+    			  <button onClick={() => handleOnClickBtn(place)}>
+    			    +
+    			  </button>
+    			</div>
+				</div>
 			</div>
+		</div>
 	);
 }
 
