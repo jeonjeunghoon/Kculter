@@ -1,31 +1,44 @@
 import React, {
 	useState,
 } from 'react';
-import { useSelector } from 'react-redux';
-
+import { MODIFY_COURSE } from '../../../redux/reducer';
+import { useDispatch, useSelector } from 'react-redux';
 import CourseCard from './CourseCard';
-
-
 import './map-sidebar.css';
+import axios from 'axios';
+
+function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
+	const isEmpty = Object.keys(place).length === 0;
+
+	if (isEmpty) {
+		return;
+	} else if (courseList.find((item) => item.name === place.name ? true : false)) {
+		return;
+	}
+	let newCourseList = [...courseList];
+	const courseData = place;
+	newCourseList.push(courseData);
+	setCourseList(newCourseList);
+	dispatch({
+		type: MODIFY_COURSE,
+		data: newCourseList,
+	})
+}
+
+function handleOnClickSave(courseList) {
+	// axios.get('/near/stay')
+	// 	.then(function(res){
+	// 		console.log(res, '통신 완료');
+  // 	})
+  // 	.catch(function(error){
+	// 		console.log(error, "서버 통신 실패");
+  // })
+}
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
-
 	const [courseList, setCourseList] = useState([])
-	function handleOnClickBtn(place) {
-		const isEmpty = Object.keys(place).length === 0;
-		if (isEmpty) {
-			return;
-		} else {
-			let newCourseList = [...courseList]
-			const courseData = {
-				title: place.title,
-				fileUrl: place.fileUrl,
-			}
-	  	newCourseList.push(courseData)
-	  	setCourseList(newCourseList)
-		}
-	}
+	const dispatch = useDispatch();
 
 	return (
 		<div className="sidebar">
@@ -44,8 +57,11 @@ function MapSideNav() {
 					<div className="course">
 					<p>Save Your Course</p>
     			  <CourseCard courseList={courseList} setCourseList={setCourseList} />
-    			  <button onClick={() => handleOnClickBtn(place)}>
-    			    +
+    			  <button onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}>
+    			    ADD
+    			  </button>
+						<button onClick={() => handleOnClickSave(courseList)}>
+    			    SAVE TO BACK
     			  </button>
     			</div>
 				</div>

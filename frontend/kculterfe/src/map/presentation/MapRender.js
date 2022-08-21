@@ -47,7 +47,6 @@ function MapRender(props) {
         west: -180
 			},
 		},
-		// clickableIcons: false, false하면 안되고 info만 안뜨게 해야 한다.
 	};
 	return (
 		<div className='map-container'>
@@ -67,6 +66,7 @@ function MapRender(props) {
 				<Search
 					setCenter={setCenter}
 					setZoom={setZoom}
+					dispatch={dispatch}
 				/>
 
 				<Filter />
@@ -74,7 +74,6 @@ function MapRender(props) {
 				{/* 마커 */}
 				<MapMarker
 					place={props.place.data}
-					// stay={props.stay.data}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
