@@ -81,7 +81,7 @@ h3,p{
 	position: relative;
 	height: 30rem;
 	background-color: black;
-	display: flex;
+	display: block;
 	justify-content: center;
 }
 
@@ -96,7 +96,7 @@ h3,p{
 .idolcard-modal-title {
 	color: white;
 	font-weight: bold;
-	font-size: xx-large;
+	font-size: 100rem;
 	position: absolute;
 	top: 30%;
 	display: block;
