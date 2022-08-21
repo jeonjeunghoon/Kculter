@@ -68,7 +68,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					Find BTS Spots
+					Find {title} Spots in Map
 				</Button>
 				</Modal.Footer>
 			</Modal>

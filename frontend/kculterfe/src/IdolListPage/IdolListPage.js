@@ -1,6 +1,7 @@
 import React from 'react';
 import './IdolListPage.css';
 import IdolList from './Components/IdolList.js';
+import PlaceList from './Components/PlaceList';
 
 function IdolListPage() {
 
@@ -8,6 +9,7 @@ function IdolListPage() {
     <div className="body">
       <div className='IdolList'>
         <IdolList />
+        <PlaceList />
       </div>
     </div>
   );

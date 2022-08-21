@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './IdolList.css';
 import IdolCard from './IdolCard.js';
-import idolcards from '../Data/idolcard.json';
 import IdolSearchBar from './IdolSearchBar';
 import { getKpopList } from './container/GetKpopListData';
 
