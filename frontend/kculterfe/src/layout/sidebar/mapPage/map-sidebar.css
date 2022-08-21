@@ -15,6 +15,11 @@
 	align-items: center;
 }
 
+.course {
+	display: flex;
+	flex-direction: column;
+}
+
 .course-card {
 	display: flex;
 	width: 100%;
@@ -23,9 +28,6 @@
 .course-card img {
 	width: 40%;
 	height: 40%;
-}
-
-.course-card h6 {
 }
 
 .course-card button {
