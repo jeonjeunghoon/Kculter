@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import './IdolCard.css';
 
-import blackpinkpimg from '../Data/photo/blackpink.jpg'
-import btsimg from '../Data/photo/bts.jpg'
-import psyimg from '../Data/photo/psy.png'
-import twiceimg from '../Data/photo/twice.jpg'
-
 function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
 
@@ -55,7 +50,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 						<div className="idolcard-modal-spot-num">
 							<img src='spot.png' />
 							<p>{num_spot} Spots</p>
-						</div>					
+						</div>
 					</div>
 
 					<div className="idolcard-modal-map">
