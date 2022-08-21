@@ -3,7 +3,6 @@
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
-    width: 100vw;
     grid-template-rows: 1fr 10fr;
   }
 
@@ -17,7 +16,6 @@
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
-    width: 100vw;
     grid-template-columns: 256px 1fr;
     grid-template-rows: 1fr 10fr;
   }
