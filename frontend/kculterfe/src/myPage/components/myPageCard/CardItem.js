@@ -21,27 +21,27 @@ function CardItem({ props }) {
 						</div>
 					</Card>
 					{/* 아이돌 카드 */}
-					<Card.Img variant="top" className="px-4 py-1 m-auto" src={ props.img } style={{ height: '6em', width: '8em' }}/>
+					<Card.Img variant="top" className="px-4 py-1 m-auto" src={ props.fileUrl } style={{ height: '6em', width: '8em' }}/>
 					<Card.Body className="body-card-body">
 						<Card.Title className="text-center">
 							<span className="small">
-								{ props.place }
+								{ props.name }
 							</span>
 						</Card.Title>
 					</Card.Body>
 				</Card>
 				<div className="card-idol">
-					{ props.title }
+					{ props.name }
 				</div>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-				<Modal.Title>{props.title}</Modal.Title>
+				<Modal.Title>{props.name}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<img width="200" height="300" src={props.img}></img>
-					{props.title}
+					<img width="200" height="300" src={props.fileUrl}></img>
+					{props.name}
 				</Modal.Body>
 				<Modal.Footer>
 				<Button variant="secondary" onClick={handleClose}>
