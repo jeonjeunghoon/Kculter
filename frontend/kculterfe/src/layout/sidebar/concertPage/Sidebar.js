@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SidebarItem from "./SidebarItem"
-import common from "./sidebarCommonData.json"
-import ResizedComponent from '../ResizeComponent';
+import common from "../sidebarCommonData.json"
 import './sidebar.css';
-import '../Layout.css';
+import '../../Layout.css';
 
 export default function Sidebar(props) {
 	const location = useLocation();
