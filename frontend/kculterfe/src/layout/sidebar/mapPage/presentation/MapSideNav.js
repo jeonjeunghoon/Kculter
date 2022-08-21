@@ -24,7 +24,7 @@ function MapSideNav() {
 				<img src={place.fileUrl}></img>
 				<div className="content">
 					<div className="title">
-						<h3>{place.title}</h3>
+						<h3>{place.name}</h3>
 						<p>{place.address}</p>
 					</div>
 					<p>{place.explain}</p>

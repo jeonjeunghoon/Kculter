@@ -1,16 +1,12 @@
 import { CLICK_MARKER } from "../../redux/reducer";
 
-export function handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, setSearch, setFocus, dispatch) {
+export function handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, dispatch) {
 	if (!input)
 		return;
 	const place = input.getPlace();
 	const placeLength = Object.keys(place).length;
 	if (place && placeLength > 1) {
 		setCenter({
-			lat: place.geometry.location.lat(),
-			lng: place.geometry.location.lng(),
-		});
-		setFocus({
 			lat: place.geometry.location.lat(),
 			lng: place.geometry.location.lng(),
 		});
@@ -28,6 +24,5 @@ export function handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, setS
 			type: CLICK_MARKER,
 			data: newPlace,
 		})
-		setSearch(true);
 	}
 }

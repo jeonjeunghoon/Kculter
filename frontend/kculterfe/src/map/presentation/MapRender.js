@@ -16,10 +16,6 @@ import { useDispatch } from 'react-redux';
 // 필터
 import Filter from './Filter';
 
-// 맵을 렌더링하는 컴포넌트입니다.
-// MapPage에서 받아온 정보를 토대로 맵에 마커들을 렌더링합니다. (AllVisible = false)
-// key, type이 all이라면 모든 마커들을 보여줍니다. (AllVisible = true)
-// key, type이 특정한 주제라면 해당 주제의 마커를 보여줍니다. (특정MarkerVisible = true)
 function MapRender(props) {
 	// redux
 	const dispatch = useDispatch();
@@ -47,6 +43,7 @@ function MapRender(props) {
 			},
 		},
 	};
+
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
@@ -58,7 +55,7 @@ function MapRender(props) {
 				onLoad={(map) => setMap(map)}
 				onUnmount={() => setMap(null)}
 				onClick={e => handleOnClickGM(e, google, map, dispatch, setCenter, setZoom)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
-				// onDragEnd={() => handleOnDragEndGM(map, setCenter, setMarker)} // 근처의 무엇을 보여줘야하나요?
+				onDragEnd={() => handleOnDragEndGM(map, setCenter)}
 			>
 
 				{/* 검색창 */}

@@ -19,12 +19,18 @@ export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
 	})
 }
 
-export function handleOnClickSave(courseList) {
-	// axios.get('/near/stay')
-	// 	.then(function(res){
-	// 		console.log(res, '통신 완료');
-  // 	})
-  // 	.catch(function(error){
-	// 		console.log(error, "서버 통신 실패");
-  // })
+export function handleOnClickSave(course) {
+	const json = JSON.stringify({course});
+	console.log(json);
+	axios.post('/course/', json, {
+		headers:{
+			'Content-Type':'application/json'
+		}
+	})
+		.then(function(res){
+			console.log(res, '통신 완료');
+  	})
+  	.catch(function(error){
+			console.log(error, "서버 통신 실패");
+  })
 }
