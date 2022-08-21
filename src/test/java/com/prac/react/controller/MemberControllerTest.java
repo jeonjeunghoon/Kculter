@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -84,5 +85,21 @@ public class MemberControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
                 .andDo(print()); //요청받은것들으 print 해라
+    }
+
+    @Test
+    void testLogin() throws Exception{
+
+        //given
+        String email = "hankgood95@naver.com";
+        String pwd = "-dldnrwo9595";
+
+        mvc.perform(get("/member/login")
+        .header("email", email)
+        .header("pwd", pwd)
+        .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
+        .andDo(print());
+
     }
 }
