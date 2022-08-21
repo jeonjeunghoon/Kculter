@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import {
+	Link
+} from 'react-router-dom';
+import MapLink from '../../map/tmp/MapLink';
 import './PlaceCard.css';
 
 function IdolCard( {id, key, culture_type, path_photo, title, num_like, lat, lng, address, explain}) {
@@ -56,7 +60,9 @@ function IdolCard( {id, key, culture_type, path_photo, title, num_like, lat, lng
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					Find {title} in Map
+					<Link to='/MapLink' render={() => <MapLink key={key} culture_type={culture_type} />}>
+                        Find {title} in Map
+                    </Link>
 				</Button>
 				</Modal.Footer>
 			</Modal>
