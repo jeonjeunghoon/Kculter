@@ -1,6 +1,6 @@
 import { CLICK_MARKER } from "../../redux/reducer";
 
-export function handlePlaceChangedAutocomplete(input, setCenter, setZoom, setSearch, setFocus, dispatch) {
+export function handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, setSearch, setFocus, dispatch) {
 	if (!input)
 		return;
 	const place = input.getPlace();

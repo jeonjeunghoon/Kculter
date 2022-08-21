@@ -1,6 +1,6 @@
 import { CLICK_MARKER } from '../../redux/reducer';
 
-export function handleClickMarker(input, search, dispatch) {
+export function handleOnClickMarker(input, search, dispatch) {
 	if (!search || !input) {
 		return;
 	}
@@ -9,13 +9,12 @@ export function handleClickMarker(input, search, dispatch) {
 	if (place && placeLength > 1) {
 		const newPlace = {
 			head: "K-culter",
-			title: place.name,
+			placeNum: place.placeNum,
+			name: place.name,
 			address: place.formatted_address,
 			fileUrl: place.photos[0].getUrl(),
-			center: {
-				lat: place.geometry.location.lat(),
-				lng: place.geometry.location.lng(),
-			},
+			lat: place.geometry.location.lat(),
+			lng: place.geometry.location.lng(),
 		}
 		dispatch({
 			type: CLICK_MARKER,

@@ -1,17 +1,9 @@
 import React from "react"
 import { useDispatch } from "react-redux";
-import { MODIFY_COURSE } from "../../../redux/reducer";
-import "./map-sidebar.css";
-
-function deleteCourse(courseList, setCourseList, i, dispatch) {
-	let newCourseList = [...courseList];
-	newCourseList.splice(i, 1);
-	setCourseList(newCourseList);	
-	dispatch({
-		type: MODIFY_COURSE,
-		data: newCourseList,
-	})
-}
+import {
+	handleOnClickDel
+} from '../container/handleCourseCard';
+import "../map-sidebar.css";
 
 function CourseCard (props) {
 	const dispatch = useDispatch();
@@ -24,7 +16,7 @@ function CourseCard (props) {
 				>
 					<img src={item.fileUrl}></img>
 					<h6>{item.name}</h6>
-					<button onClick={() => deleteCourse(props.courseList, props.setCourseList, i, dispatch)}>
+					<button onClick={() => handleOnClickDel(props.courseList, props.setCourseList, i, dispatch)}>
 						X
 					</button>
         </div>

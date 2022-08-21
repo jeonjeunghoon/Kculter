@@ -40,7 +40,7 @@ export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 	})
 }
 
-export function handleDragEndGM(map, setCenter, setStayData) {
+export function handleOnDragEndGM(map, setCenter, setStayData) {
 	if (!map) { return; }
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();

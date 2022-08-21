@@ -14,7 +14,7 @@ import Header from './header/presentation/Header';
 
 // import Search from './Search';
 
-import MapSideNav from './sidebar/mapPage/MapSideNav';
+import MapSideNav from './sidebar/mapPage/presentation/MapSideNav';
 
 const Layout = () => {
 	const location = useLocation();
