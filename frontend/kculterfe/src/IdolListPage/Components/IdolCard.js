@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import {
+	Link
+} from 'react-router-dom';
 import './IdolCard.css';
 
 function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, explain}) {
