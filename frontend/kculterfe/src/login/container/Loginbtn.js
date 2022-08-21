@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import '../presentation/LoginPage.css';
 import '../presentation/LoginPage';
+import {hashPwd} from '../presentation/Encryptpwd';
 import axios from 'axios';
 
 function Loginbtn(props) {
@@ -9,7 +10,7 @@ function Loginbtn(props) {
   const pwd = props.pwd;
   const member = {
     email : email,
-    pwd : pwd
+    pwd : hashPwd(pwd)
   }
   const sendToServer = () => {
     if (email === ""){
@@ -26,7 +27,7 @@ function Loginbtn(props) {
         }
       })
       .then(function(res){
-        alert(res.date);
+        alert(res.data);
       })
       .catch(function(error){
         console.log(error);
