@@ -22,6 +22,7 @@ export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 				lat: place.geometry.location.lat(),
 				lng: place.geometry.location.lng(),
 			})
+			setZoom(15)
 			const newPlace = {
 				head: "K-culter",
 				placeNum: place.placeNum,
@@ -35,24 +36,25 @@ export function handleOnClickGM(e, google, map, dispatch, setCenter, setZoom) {
 				type: CLICK_MARKER,
 				data: newPlace,
 			})
-			setZoom(15)
 		}
 	})
 }
 
-export function handleOnDragEndGM(map, setCenter, setStayData) {
-	if (!map) { return; }
+export function handleOnDragEndGM(map, setCenter) {
+	if (!map) {
+		return;
+	}
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();
+	console.log(map.getCenter().lat());
 	geocoder.geocode({ location: map.getCenter() }, (result, status) => {
 		if (status !== google.maps.GeocoderStatus.OK) {
 			alert(status);
 		}
 		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get('/near/stay?lat='+map.getCenter().lat()+'&lng='+map.getCenter().lng())
+			axios.get('/near/stay?lat='+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
 			.then(function(res){
 				console.log(res, '통신 완료');
-				setStayData(res.data);
 				setCenter({
 					lat: map.getCenter().lat(),
 					lng: map.getCenter().lng()
