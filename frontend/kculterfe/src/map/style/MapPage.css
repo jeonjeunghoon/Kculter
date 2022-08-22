@@ -87,18 +87,6 @@
 	margin: 0 10px 0 auto;
 }
 
-.marker {
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: 8px;
-	border: 1px solid rgba(0, 0, 0, 1);
-	cursor: pointer;
-}
-
-.marker .marker-img {
-	height: 40px;
-	width: 40px;
-}
-
 .current-marker-out {
 	display: flex;
 	background-color: rgba(202, 219, 246, 0.6);

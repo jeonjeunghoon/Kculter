@@ -73,6 +73,7 @@ function MapRender(props) {
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
+					pin={props.pin.data}
 				/>
 
 				{/* 카드 */}
