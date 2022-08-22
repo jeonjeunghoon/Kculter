@@ -9,7 +9,6 @@ function PlaceList({}) {
 	const onChange = (e) => {
 		setSearch(e.target.value)
 	}
-
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		getPlaceList()
@@ -26,7 +25,9 @@ function PlaceList({}) {
 	});
 	return (
 		<>
-		<IdolSearchBar value={search} onChange={onChange} />
+		<div className="IdolSearchBar">
+			<IdolSearchBar value={search} onChange={onChange} />
+		</div>
 		<div className="CardContainer">
 			{ filterTitle.map(placecard => 
 			<div className="CardDiv">
