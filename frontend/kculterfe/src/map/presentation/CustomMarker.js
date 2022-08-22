@@ -3,12 +3,17 @@ import React, {
 	useEffect
 } from 'react'
 import {
-	MarkerF
+	Marker
 } from '@react-google-maps/api'
 import { CLICK_MARKER } from '../../redux/reducer';
 
 function CustomMarker(props) {
 	const [place, setPlace] = useState(null);
+
+	// iconMarker로 이미지 찍어보자
+	let iconMarker = new window.google.maps.MarkerImage();
+	console.log(iconMarker);
+
 
 	useEffect(() => {
 		setPlace(props.place);
@@ -17,11 +22,10 @@ function CustomMarker(props) {
 		place &&
 		place.map((item, index) => {
 			return (
-				<MarkerF
+				<Marker className="map-marker"
 					key={index}
 					title={item.name}
-					// icon={props.pin.imageUrl}
-  				zIndex={30}
+					// icon={iconMarker}
 					position={{
 						lat: item.lat,
 						lng: item.lng

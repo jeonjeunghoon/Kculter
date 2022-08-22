@@ -34,7 +34,7 @@ function MapSideNav() {
     			  <button onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}>
     			    ADD
     			  </button>
-						<button onClick={() => handleOnClickSave(courseList)}>
+						<button onClick={() => handleOnClickSave(courseList, setCourseList, dispatch)}>
     			    SAVE TO BACK
     			  </button>
     			</div>

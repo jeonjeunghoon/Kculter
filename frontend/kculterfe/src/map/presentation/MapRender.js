@@ -70,10 +70,10 @@ function MapRender(props) {
 				{/* 마커 */}
 				<MapMarker
 					place={props.place.data}
-					pin={props.pin.data}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
+					pin={props.pin.data}
 				/>
 
 				{/* 카드 */}
