@@ -7,6 +7,9 @@ import {checkNick} from '../container/NickCheck';
 import countryList from 'react-select-country-list';
 import Select from 'react-select';
 import { storeMember } from '../container/StoreMember';
+import crypto from 'crypto-js';
+import axios from 'axios';
+import {hashPwd}  from '../presentation/Encryptpwd';
 
 function SignUpModal({show, onHide}) {
 
@@ -38,12 +41,14 @@ function SignUpModal({show, onHide}) {
 
   const formData = {
     email : email,
-    pwd : password,
+    pwd : password, //여기를 암호화 한 값을 넣어야 한다. 
     nickName : nickName,
     countryCode : countryCode,
     age : age,
     gender : gender
   }
+
+
 
 const checkPassword = (e) => {
   //  8 ~ 10자 영문, 숫자 조합
@@ -97,6 +102,7 @@ const onChangePasswordConfirm = (e) => {
   else if (password === passwordConfirmCurrent) {
     setPasswordConfirmMessage('OK :)');
     setIsPasswordConfirm(true);
+    setPassword(hashPwd(password));
   }else{
     setPasswordConfirmMessage('The password is different')
     setIsPasswordConfirm(false)    
@@ -183,6 +189,11 @@ const insertMember = async () =>{
 const cancel = () => {
   onHide();
 }
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  axios.post("api 주소", {pw: password}).then(res => console.log(res.data))
+}
   return(
   <Container>
     <Modal
@@ -209,7 +220,9 @@ const cancel = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
+              <form onSubmit={handleSubmit}>
               <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
+              </form>
               <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
             </Form.Group>
 
