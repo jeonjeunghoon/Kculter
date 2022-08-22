@@ -21,7 +21,6 @@ export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
 
 export function handleOnClickSave(course) {
 	const json = JSON.stringify({course});
-	console.log(json);
 	axios.post('/course/', json, {
 		headers:{
 			'Content-Type':'application/json'

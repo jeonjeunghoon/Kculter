@@ -20,7 +20,7 @@ function CustomMarker(props) {
 				<MarkerF
 					key={index}
 					title={item.name}
-					icon={item.icon}
+					// icon={props.pin.imageUrl}
   				zIndex={30}
 					position={{
 						lat: item.lat,
