@@ -2,6 +2,16 @@
 const initState = {
 	place: {},
 	course: [],
+	member:{
+		memberNum : 1,
+		email : 'hankgood95@naver.com',
+		pwd : '1234',
+		nickName : 'passcucci',
+		countryCode : 'KR',
+		age : 28,
+		gender : 'male',
+		pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
+	}
 }
 
 // 액션 추가 여기
