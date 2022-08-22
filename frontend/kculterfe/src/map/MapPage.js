@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api';
 import {
 	getPlaceApi,
+	getPinApi
 } from './container/getInfo'
 import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
@@ -24,32 +25,31 @@ function MapPage(props) {
 		libraries: ['places'],
 	});
 	const [place, setPlace] = useState(null);
-	const [stay, setStay] = useState(null);
+	const [pin, setPin] = useState(null);
 	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
+	// 임시
 	useEffect(() => {
 		const fetchData = async() => {
-			// const url = props.type === "kpop" ? "/place" : "/culture";
-			// const placeData = await getPlaceApi(url, props.type, props.key);
 
-			// 임시
 			const url = "/place";
 			const type = "kpop";
 			const key = 1;
-			// 임시
-
+			
 			setPlace(await getPlaceApi(url, key, type));
-			// setStay(await getPlaceApi("/stay", ));
+			setPin(await getPinApi("/pin/kpop", 1))
 			setIsLoadedApi(true);
 		}
 		fetchData();
 	}, [])
+	// 임시
+
 	return (
 		isLoaded &&
 		isLoadedApi &&
 		<MapRender
 		place={place}
-		stay={stay}
+		pin={pin}
 		type={props.type}
 		/>
 	);

@@ -46,7 +46,6 @@ export function handleOnDragEndGM(map, setCenter) {
 	}
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();
-	console.log(map.getCenter().lat());
 	geocoder.geocode({ location: map.getCenter() }, (result, status) => {
 		if (status !== google.maps.GeocoderStatus.OK) {
 			alert(status);
