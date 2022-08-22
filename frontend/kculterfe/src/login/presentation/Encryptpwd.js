@@ -1,14 +1,8 @@
 import React from 'react';
-import cryptoJs from 'crypto-js';
+import cryptojs from 'crypto-js'
 
-export function hashPwd(password) {
-
-  const crypto = require('crypto');
-  var shasum = crypto.createHash('sha256');
-  shasum.update(password);
-
-  var output = shasum.digest('hex');
-
-  return output;
+export function hashPwd(email,pwd) {
+  const autho = CryptoJS.AES.encrypt(email+pwd, 'secret key').toString();
+  return autho;
 }
 export default hashPwd;

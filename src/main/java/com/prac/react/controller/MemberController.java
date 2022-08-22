@@ -77,10 +77,8 @@ public class MemberController {
         }
     }
     @GetMapping("login")
-    public Member login(@RequestHeader("email") String email, @RequestHeader("pwd") String pwd){
-        
-        logger.info("email : "+email);
-        logger.info("pwd : "+pwd);
+    public Member login(@RequestHeader("Authorization")String autho){
+        logger.info("Authorization : "+autho);
 
         return null;
     }
