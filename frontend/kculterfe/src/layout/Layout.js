@@ -21,14 +21,17 @@ import MapSideNav from './sidebar/mapPage/presentation/MapSideNav';
 
 const Layout = () => {
 	const location = useLocation();
-	
+	const [open, setOpen] = useState(true);
+	const sideClose = () => setOpen(false);
+	const sideOpen = () => setOpen(true);
+
 	return (
-		<div className='layout'>
-			{location.pathname == "/ConcertPage" && <ConcertSideNav pageidx={0} items={concertItem}/>}
+		<div className={open ? 'layout open' : 'layout close'}>
+			{location.pathname == "/ConcertPage" && <ConcertSideNav pageidx={0} items={concertItem} open={open} sideClose={sideClose}/>}
 			{location.pathname == "/IdolListPage" && <IdolListSideNav pageidx={1} items={idolListItem}/>}
 			{location.pathname == "/MapPage" && <MapSideNav pageidx={2} items={mapItem}/>}
 			{location.pathname == "/Mypage" && <MySideNav pageidx={3} items={myPageItem}/>}
-			<Header />
+			<Header open={open} sideOpen={sideOpen}/>
 			<Outlet />
 		</div>
 	);

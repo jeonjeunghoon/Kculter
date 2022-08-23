@@ -6,13 +6,21 @@
     grid-template-rows: 1fr 10fr;
   }
 
+  .bi-chevron-double-right.inSide {
+    display: none;
+  }
+
+  .bi-chevron-double-right.hide {
+    display: none;
+  }
+
   .sidebar {
 		display: none;
 	}
 }
 
 @media all and (min-width: 512px) {
-  .layout {
+  .layout.open {
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
@@ -20,16 +28,35 @@
     grid-template-rows: 1fr 10fr;
   }
 
+  .layout.close {
+    background-color: rgba(238, 238, 238);
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 10fr;
+  }
+
+  .layout.close > .sidebar {
+    display: none;
+  }
+
   .sidebar {
 		background-color: rgb(0,3,77);
 		height: 100%;
-		min-width: 260px;
+		min-width: 256px;
 		grid-row: 1 / span 4;
 	}
   
   .sidebarToggle{
     display: none;
   }
+
+  .bi-chevron-double-right.hide {
+    display: none;
+  }
+}
+
+.bi-chevron-double-right {
+  font-size: 30px;
 }
 
 header {
