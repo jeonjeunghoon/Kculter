@@ -2,9 +2,34 @@ package com.prac.react.security;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.prac.react.model.dto.SecretKey;
+
+@Component
 public class Encryption {
-	public String encryption(String email) {
+	private SecretKey sk;
+	private String iv = "abcdefghijklmnop"; // 16자리 iv
+
+	Logger logger = LoggerFactory.getLogger(Encryption.class);
+
+	public Encryption(){}
+
+	@Autowired
+	public Encryption(SecretKey sk){
+		this.sk = sk;
+	}
+
+	public String shaEncryption(String email) {
 		try {
 			//try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -36,5 +61,24 @@ public class Encryption {
 			e.printStackTrace();
 			throw new RuntimeException();
 		} 
-	}    
+	}
+
+		// 복호화
+		public String aesDecrypt(String encryptedText) {
+			logger.info("autho : "+encryptedText);
+			logger.info("secretKey : "+sk.getSecretKey());
+			try {
+				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				cipher.init(Cipher.DECRYPT_MODE,
+							new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
+							new IvParameterSpec(iv.getBytes()));
+				
+				return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText.getBytes("UTF-8"))));
+			} catch(Exception e) {
+				logger.info("Exception occur : "+e.toString());
+				return encryptedText;
+			}
+		}
+
+		
 }

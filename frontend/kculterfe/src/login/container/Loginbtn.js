@@ -6,7 +6,6 @@ import {hashPwd} from '../presentation/Encryptpwd';
 import axios from 'axios';
 
 function Loginbtn(props) {
-  const hash = hashPwd(props.email,props.pwd);
 
   const sendToServer = () => {
     if (props.email === ""){
@@ -16,6 +15,7 @@ function Loginbtn(props) {
       alert("Please enter your Password");
     }else{
       //여기는 이제 둘다 정보가 들어있는 경우니 로그인 api를 호출한다.
+      const hash = hashPwd(props.email,props.pwd);
       axios.get('/member/login',{
         headers :{
           Authorization : hash

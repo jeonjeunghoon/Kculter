@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prac.react.model.dao.CourseDao">
+    <insert id="saveNewPlace"  useGeneratedKeys="true" keyProperty="placeNum" parameterType="Place">
+        insert into places (placeNum,culture,kpop,lat,lng,status,name,`explain`,address,fileUrl) 
+		values (null, #{culture}, #{kpop},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
+    </insert>
+    <insert id="insertCourse" parameterType="Course">
+        insert into course(courseNum,courseName,memberNum,places) values (null,#{courseName},#{memberNum},#{places})
+    </insert>
+    <select id="checkPlaceDb" parameterType="Place" resultType="integer">
+        select placeNum from places where name = #{name} and lat = #{lat} and lng = #{lng}
+    </select>
+</mapper>
