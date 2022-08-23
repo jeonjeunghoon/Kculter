@@ -1,10 +1,14 @@
 [
     {
-        "title": "IDOL",
+        "title": "Home",
         "path": "/"
     },
     {
-        "title": "STATUS",
+        "title": "Dashboard",
+        "path": "/"
+    },
+    {
+        "title": "sttings",
         "path": "/"
     }
 ]
