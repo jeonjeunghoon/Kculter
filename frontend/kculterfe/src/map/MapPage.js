@@ -24,7 +24,7 @@ function MapPage(props) {
 		language: 'ko',
 		libraries: ['places'],
 	});
-	const [place, setPlace] = useState(null);
+	const [kculterPlace, setKculterPlace] = useState(null);
 	const [pin, setPin] = useState(null);
 	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
@@ -36,7 +36,7 @@ function MapPage(props) {
 			const type = "kpop";
 			const key = 1;
 			
-			setPlace(await getPlaceApi(url, key, type));
+			setKculterPlace(await getPlaceApi(url, key, type));
 			setPin(await getPinApi("/pin/kpop", 1))
 			setIsLoadedApi(true);
 		}
@@ -48,7 +48,7 @@ function MapPage(props) {
 		isLoaded &&
 		isLoadedApi &&
 		<MapRender
-		place={place}
+		kculterPlace={kculterPlace}
 		pin={pin}
 		type={props.type}
 		/>
