@@ -5,12 +5,17 @@
 
 #my-body .body-navbar {
     background-color: #eeeeee;
-    border-bottom: 2px solid gray;
-	width: 80.3vw;
-    margin-left: 2.6em;
-    margin-right: 2.6em;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.401);
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#my-body .body-navbar button {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
 }
 
 @media all and (max-width:768px) {

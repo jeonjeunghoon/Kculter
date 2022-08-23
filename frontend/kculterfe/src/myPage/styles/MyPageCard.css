@@ -1,80 +1,84 @@
-#my-body .boxList {
-	width: 85vw;
-	height: 75vh;
+/* 각각의 day box */
+#my-body .box-list {
+	background-color: #eeeeee;;
+	margin-right: 2rem;
+	margin-left: 4rem;
+	padding-right: 1rem;
+	overflow: auto;
+	height: 45rem;
 }
 
-@media all and (min-width:768px) { 
-	#my-body .boxList {
-		overflow-x: auto;
-		width: 85vw;
-		height: 75vh;
-	}
+#my-body .box-list .box-card-item {
+	margin-bottom: 3rem;
+	height: 20rem;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	position: relative;
+	color: white;
 }
 
-#my-body .boxList .box-card {
-	width: 79.6vw;
-	margin-bottom: 30px;
-	margin-left: 53px;
+#my-body .box-card-item .left {
+	background-color: blue;
 }
 
-/* 모바일 화면을 위해 임시적으로 하드코딩함 (부트스트랩 커스텀) */
-@media all and (max-width:768px) {
-	#my-body .boxList .box-card-top {
-		margin-left: 11px;
-		width: 398px;
-	}
+#my-body .box-card-item .left .title{
+	margin-top: 10px;
+	margin-left: 20px;
 }
 
+#my-body .box-card-item .right {
+	background-color: white;
+}
+
+/* 장소 카드 전체 감싸는 부분 */
 #my-body .cardList {
 	display: flex;
-	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
+	overflow-y: auto;
+	padding-bottom: 2rem;
+	/* 스크롤 수평방향으로 만듬 */
 }
 
+/* body card */
+#my-body .body-card {
+	width: 9rem;
+	margin-left: 90px;
+	position: relative;
+}
+
+#my-body .body-card-body {
+	background: gainsboro;
+	padding-top: 0.5em;
+	padding-bottom: 0;
+	height: 4rem;
+}
+
+
+/* 날짜 표시 */
 #my-body .date {
 	text-align: right;
 	margin-top: 20px;
 	margin-right: 20px;
 }
 
-#my-body .date-span{
-	border: 2px solid gray;
+#my-body .date-span {
+	border: 1px solid rgba(128, 128, 128, 0.401);
 	color: blue;
 	padding: 6px;
 }
 
-@media all and (min-width:768px) { 
-	#my-body .body-card {
-		width: 8em;
-		margin-left: 50px;
-		margin-right: 30px;
-		position: relative;
-	}
-}
-
+/* 카드 view more 호버 기능 */
 #my-body .body-card .body-card-hover {
-    width: 8em;
+	width: 9em;
 	height: 8.6em;
 	position: absolute;
 	opacity: 0;
 }
 
 #my-body .body-card .body-card-hover:hover {
-    width: 8em;
-	height: 8.5em;
+	width: 9em;
+	height: 10em;
 	background: fuchsia;
 	position: absolute;
 	cursor: pointer;
 	opacity: 0.8;
-}
-
-#my-body .body-card-body {
-    background: gainsboro;
-    padding-top: 0.5em;
-    padding-bottom: 0;
-}
-
-#my-body .card-idol {
-	color: blue;
-	text-align: center;
-	margin-top: 8px;
 }
