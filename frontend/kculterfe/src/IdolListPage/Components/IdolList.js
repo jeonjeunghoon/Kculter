@@ -25,24 +25,26 @@ function IdolList({}) {
 		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 	return (
-		<>
-		<IdolSearchBar value={search} onChange={onChange} />
-		<div className="CardContainer">
-			{ filterTitle.map(idolcard => 
-			<div className="CardDiv">
-				<IdolCard
-				id={idolcard.keyNum}
-				key={idolcard.keyNum}
-				path_photo={idolcard.fileUrl}
-				title={idolcard.name}
-				num_like={idolcard.likeCount}
-				num_spot={idolcard.likeCount}
-				path_map={idolcard.path_map}
-				explain={idolcard.explain}
-				/>
-			</div>) }
+		<div className="IdolListBody">
+			<div className="IdolSearchBar">
+				<IdolSearchBar value={search} onChange={onChange} />
+			</div>
+			<div className="CardContainer">
+				{ filterTitle.map(idolcard => 
+				<div className="CardDiv">
+					<IdolCard
+					id={idolcard.keyNum}
+					key={idolcard.keyNum}
+					path_photo={idolcard.fileUrl}
+					title={idolcard.name}
+					num_like={idolcard.likeCount}
+					num_spot={idolcard.likeCount}
+					path_map={idolcard.path_map}
+					explain={idolcard.explain}
+					/>
+				</div>) }
+			</div>
 		</div>
-		</>
 	)
 }
 
