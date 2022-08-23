@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/MBody.css';
+import '../styles/MainNavbar.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
 
@@ -10,7 +10,7 @@ function MyPageBody() {
 
     return (
         <div id='my-body'>
-            {/* 저장한 경로와 좋아요 리스트 선택 경로 네비*/}
+            {/* 저장한 경로와 좋아요 리스트 선택 경로 네비 */}
             <div className="body-navbar">
                 <button onClick={() => {setLikeList(true); setBtnLikeColor('gray'); setBtnPageColor('blue')}
                 } style={{ color:btnPageColor }}>My map</button>

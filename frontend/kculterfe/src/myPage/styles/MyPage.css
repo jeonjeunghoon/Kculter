@@ -1,0 +1,140 @@
+#my-body {
+	/* 뒷 배경을 가리기 위한 임시 방책 */
+	background-color: #eeeeee;
+}
+
+/* main body 전체 리스트 */
+@media all and (min-width:768px) {
+	#my-body .box-list {
+		background-color: #eeeeee;;
+		margin-right: 2rem;
+		margin-left: 4rem;
+		padding-right: 1rem;
+		overflow: auto;
+		height: 45rem;
+	}
+}
+
+@media all and (max-width:767px) {
+	#my-body .box-list {
+		background-color: #eeeeee;
+	}
+}
+
+/* 각각의 day 리스트 */
+@media all and (min-width:768px) {
+	#my-body .box-list .box-card-item {
+		margin-bottom: 3rem;
+		height: 20rem;
+		display: grid;
+		grid-template-columns: 20% 80%;
+		position: relative;
+		color: white;
+	}
+}
+
+@media all and (max-width:767px) {
+	#my-body .box-list .box-card-item {
+		width: 18rem;
+		position: relative;
+		color: white;
+		margin: auto;
+	}
+}
+
+/* day 카드 왼쪽 */
+@media all and (min-width:768px)
+{
+	#my-body .box-card-item .left {
+		background-color: blue;
+	}
+}
+
+@media all and (max-width:767px) {
+	#my-body .box-card-item .left {
+		background-color: blue;
+		padding-bottom: 1rem;
+	}
+}
+
+/* 카드 왼쪽, 위쪽(모바일) 타이틀 */
+@media all and (min-width:767px) {
+	#my-body .box-card-item .left .title {
+	margin-top: 10px;
+	margin-left: 20px;
+	}
+}
+
+@media all and (max-width:767px) {
+	#my-body .box-card-item .left .title {
+		margin-top: 2rem;
+		margin-left: 20px;
+		padding-top: 0.5rem;
+	}
+}
+
+/* day 카드 오른쪽 */
+#my-body .box-card-item .right {
+	background-color: white;
+}
+
+/* 장소 카드 전체 감싸는 부분 */
+#my-body .cardList {
+	display: flex;
+	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
+}
+
+/* body card */
+@media all and (min-width:768px) {
+	#my-body .body-card {
+		width: 9rem;
+		margin-left: 80px;
+		position: relative;
+	}
+}
+
+@media all and (max-width:767px) {
+	#my-body .body-card {
+		width: 9rem;
+		margin-left: 40px;
+		position: relative;
+	}
+}
+
+#my-body .body-card-body {
+	background: gainsboro;
+	padding-top: 0.5em;
+	padding-bottom: 0;
+	height: 4rem;
+}
+
+
+/* 날짜 표시 */
+#my-body .date {
+	text-align: right;
+	padding-top: 20px;
+	margin-right: 20px;
+}
+
+#my-body .date-span {
+	border: 1px solid rgba(128, 128, 128, 0.401);
+	color: blue;
+	padding: 6px;
+}
+
+/* 카드 view more 호버 기능 */
+#my-body .body-card .body-card-hover {
+	width: 9em;
+	height: 8.6em;
+	position: absolute;
+	opacity: 0;
+}
+
+#my-body .body-card .body-card-hover:hover {
+	width: 9em;
+	height: 10em;
+	background: fuchsia;
+	position: absolute;
+	cursor: pointer;
+	opacity: 0.8;
+}

@@ -1,0 +1,36 @@
+/* body top 네비 바 */
+@media all and (min-width:768px) {
+    #my-body .body-navbar {
+        background-color: #eeeeee;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.401);
+        margin-left: 4rem;
+        margin-right: 4rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media all and (max-width:767px) {
+        #my-body .body-navbar {
+            background-color: #eeeeee;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.401);
+            margin-left: 3rem;
+            margin-right: 3rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+}
+
+#my-body .body-navbar button {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+#my-body .navbtn {
+    border-bottom: 5px solid blue;
+}
+
+#my-body .navbtn:hover {
+    color: green;
+}

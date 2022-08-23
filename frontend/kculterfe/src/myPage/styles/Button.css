@@ -3,11 +3,21 @@
     color: gray;
 }
 
-#my-body .box-btn {
-    margin-left: 1rem;
-    margin-bottom: 0;
-    position: absolute;
-    bottom: -15px;
+/* 수정, 삭제 버튼 */
+@media all and (min-width:768px) {
+    #my-body .box-btn {
+        margin-left: 1rem;
+        position: absolute;
+        bottom: 1rem;
+    }
+}
+
+@media all and (max-width:768px) {
+    #my-body .box-btn {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        /* margin-bottom: 1rem; */
+    }
 }
 
 #my-body .btn {

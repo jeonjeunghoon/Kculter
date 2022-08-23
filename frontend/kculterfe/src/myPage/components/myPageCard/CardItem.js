@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
-import "../../styles/MyPageCard.css"
+import "../../styles/MyPage.css"
 
 function CardItem({ props }) {
 	const [show, setShow] = useState(false);
