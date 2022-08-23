@@ -19,9 +19,7 @@ function OffCanvasSidebar() {
 	return (
 		<>
 			<div className="sidebarToggle">
-				<Button variant="primary" onClick={handleShow}>
-					Launch
-				</Button>
+				<i class="bi bi-chevron-double-right offSide" onClick={handleShow}></i>
 			</div>
 			<Offcanvas show={ show && isSm } onHide={handleClose} responsive="lg">
 				<div className='inCanvas'>
