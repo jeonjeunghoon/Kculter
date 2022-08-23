@@ -48,6 +48,9 @@ function IdolCard( {id, key, culture_type, path_photo, title, num_like, lat, lng
 							<img src='heart.png' />
 							<p>{num_like} Likes</p>
 						</div>
+						<div className="idol-card-modal-address">
+							<p>{address}</p>
+						</div>
 					</div>
 
 					<div className="idolcard-modal-map">

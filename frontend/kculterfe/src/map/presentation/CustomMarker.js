@@ -9,11 +9,13 @@ import { CLICK_MARKER } from '../../redux/reducer';
 
 function CustomMarker(props) {
 	const [place, setPlace] = useState(null);
-
-	// iconMarker로 이미지 찍어보자
-	let iconMarker = new window.google.maps.MarkerImage();
-	console.log(iconMarker);
-
+	const iconMarker = new window.google.maps.MarkerImage(
+		props.pin.imageUrl,
+		null,
+		null,
+		null,
+		new window.google.maps.Size(40, 40)
+	);
 
 	useEffect(() => {
 		setPlace(props.place);
@@ -25,7 +27,7 @@ function CustomMarker(props) {
 				<Marker className="map-marker"
 					key={index}
 					title={item.name}
-					// icon={iconMarker}
+					icon={iconMarker}
 					position={{
 						lat: item.lat,
 						lng: item.lng

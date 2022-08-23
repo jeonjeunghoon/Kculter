@@ -37,7 +37,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 				onHide={handleClose}
 				size="lg"
 			>
-				<Modal.Header closeButton className="idolcard-modal-header">
+				<Modal.Header className="idolcard-modal-header">
 					<img src={path_photo} />
 					<Modal.Title className="idolcard-modal-title">{title}</Modal.Title>
 				</Modal.Header>

@@ -1,4 +1,10 @@
 
+.IdolSearchBar{
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+
 .CardContainer{
 	display: grid;
 	grid-template-columns: auto;
