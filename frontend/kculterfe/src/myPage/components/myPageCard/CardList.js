@@ -1,12 +1,11 @@
 import React from 'react';
 import CardItem from './CardItem';
 
-function CardList({ props }) {
+function CardList({ props, data }) {
 	return (
 		<>
 			<div className="cardList">
-				{ props.name }
-				{/* { props.map((course, index) => <CardItem key={index} props={course} {...course} />)} */}
+				{ data.map((course, index) => <CardItem key={index} props={course} {...course} />)}
 			</div>
 		</>
 	)

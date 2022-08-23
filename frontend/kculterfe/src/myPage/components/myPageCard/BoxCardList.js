@@ -18,8 +18,8 @@ function BoxCardList() {
 	}, []);
 
 	return (
-		<div className="boxList">
-			{ data.map((course, index) => <BoxCardItem key={index} props={course} {...course} />)}
+		<div className="box-list">
+			{ data.map((course, index) => <BoxCardItem key={index} props={course} data={data} {...course} />)}
 		</div>
 	)
 }

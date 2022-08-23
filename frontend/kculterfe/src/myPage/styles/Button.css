@@ -3,25 +3,30 @@
     color: gray;
 }
 
-#my-body .box-btn {
-    margin-left: 8px;
-}
-
+/* 수정, 삭제 버튼 */
 @media all and (min-width:768px) {
     #my-body .box-btn {
-        margin-left: 8px;
-        margin-top: 230px;
+        margin-left: 1rem;
+        position: absolute;
+        bottom: 1rem;
+    }
+}
+
+@media all and (max-width:768px) {
+    #my-body .box-btn {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        /* margin-bottom: 1rem; */
     }
 }
 
 #my-body .btn {
     background-color: none;
     border: 1px solid white;
-    border-radius: 50%;
-    font-size: 15px;
-    padding: 0px 6px 0px 6px;
+    border-radius: 2rem;
+    font-size: 1rem;
     color: white;
-    margin-right: 7px;
+    margin-right: 1rem;
 }
 
 #my-body .btn:hover {

@@ -1,37 +1,35 @@
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
-import "../../styles/MyPageCard.css"
+import "../../styles/MyPage.css"
 import "../../styles/Button.css"
 import CardList from './CardList';
 
-function BoxCardItem({ props }) {
+function BoxCardItem({ props, data }) {
 	return (
 		<>
-            <Card className="box-card">
-                <Row>
-                    <Col md={2} className="bg-primary box-card-top">
-                        <p className="mx-2 py-2 text-light">
-                            { props.placeNum }<br/>{ props.placeNum }
-                        </p>
-                        <p className="box-btn">
-                            <button className="btn" onclike="">
-                                +
-                            </button>
-                            <button className="btn" onclike="">
-                                -
-                            </button>
-                        </p>
-                    </Col>
-                    <Col md={10} className="">
-                        <div className="date">
-                            <span className="date-span">
-                                { props.lat }
-                            </span>
-                        </div>
-                        <CardList props={ props } />
-                    </Col>
-                </Row>
-            </Card>
+            <div className='box-card-item'>
+                <div className='left'>
+                    <div className="title">
+                        { props.placeNum }.<br/>{ props.address }
+                    </div>
+                    <div className="box-btn">
+                        <button className="btn" onclike="">
+                            Modification
+                        </button>
+                        <button className="btn" onclike="">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div className='right'>
+                    <div className="date">
+                        <span className="date-span">
+                            { props.lat }
+                        </span>
+                    </div>
+                    <CardList props={ props } data={ data } />
+                </div>
+            </div>
 		</>
 	);
 }
