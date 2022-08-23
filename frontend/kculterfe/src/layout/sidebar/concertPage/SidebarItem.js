@@ -13,7 +13,7 @@ export default function SidebarItem(props) {
 	// })
 	if (select == true)
 		props.changeSelect(false);
-	console.log(select);
+	// console.log(select);
 	return (
 		<div className={select ? "sidebar-item plain select" : "sidebar-item plain"} onClick={() => setSelect(!select)}>
 			{ props.item.icon && <i className={props.item.icon}></i> }

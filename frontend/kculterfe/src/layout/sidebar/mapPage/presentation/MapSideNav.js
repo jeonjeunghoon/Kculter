@@ -11,6 +11,8 @@ import '../map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
+	const memberNum = useSelector(state => state.member.memberNum);
+	const [courseName, setCourseName] = useState("");
 	const [courseList, setCourseList] = useState([])
 	const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ function MapSideNav() {
 					<div className="course">
 					<p>Save Your Course</p>
     			  <CourseCard courseList={courseList} setCourseList={setCourseList} />
-    			  <button onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}>
+    			  <button onClick={() => handleOnClickAdd(place, memberNum, courseName, courseList, setCourseList, dispatch)}>
     			    ADD
     			  </button>
 						<button onClick={() => handleOnClickSave(courseList, setCourseList, dispatch)}>

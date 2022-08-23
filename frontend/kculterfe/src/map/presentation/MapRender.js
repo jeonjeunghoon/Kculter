@@ -13,6 +13,7 @@ import {
 } from '../container/handleGM';
 // redux
 import { useDispatch } from 'react-redux';
+
 // 필터
 import Filter from './Filter';
 
@@ -43,6 +44,7 @@ function MapRender(props) {
 			},
 		},
 	};
+	const [near, setNear] = useState(null);
 
 	return (
 		<div className='map-container'>
@@ -54,8 +56,8 @@ function MapRender(props) {
 				zoom={zoom}
 				onLoad={(map) => setMap(map)}
 				onUnmount={() => setMap(null)}
-				onClick={e => handleOnClickGM(e, google, map, dispatch, setCenter, setZoom)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
-				onDragEnd={() => handleOnDragEndGM(map, setCenter)}
+				onClick={e => handleOnClickGM(e, google, map, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
+				onDragEnd={() => handleOnDragEndGM(map, setNear)}
 			>
 
 				{/* 검색창 */}
@@ -69,17 +71,20 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					place={props.place.data}
+					kculterPlace={props.kculterPlace.data}
+					near={near}
+					pin={props.pin.data}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
-					pin={props.pin.data}
 				/>
 
 				{/* 카드 */}
 				<MapCard
+					near={near}
 					setCenter={setCenter}
 					setZoom={setZoom}
+					dispatch={dispatch}
 				/>
 			</GoogleMap>
 		</div>

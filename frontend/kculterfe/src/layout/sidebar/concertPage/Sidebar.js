@@ -8,22 +8,6 @@ import './sidebar.css';
 import '../../Layout.css';
 import { useSelector } from 'react-redux';
 
-function changeSelect(selected, setidolSelect, setattrSelect, setconcertSelect) {
-	if (selected == "idolSelect") {
-		setidolSelect(true);
-		setattrSelect(false);
-		setconcertSelect(false);
-	} else if (selected == "attrSelect") {
-		setidolSelect(false);
-		setattrSelect(true);
-		setconcertSelect(false);
-	} else if (selected == "concertSelect") {
-		setidolSelect(false);
-		setattrSelect(false);
-		setconcertSelect(true);
-	}
-}
-
 export default function Sidebar(props) {
 	const dispatch = useDispatch();
 	const idolSelect = useSelector(state => state.idolSelected);
@@ -32,7 +16,7 @@ export default function Sidebar(props) {
 
 	return (
 		<div className="sidebar">
-			<Link to='/'><i className="bi-chevron-left sidebar-back-btn"></i></Link>
+			<div className='sidebarHideToggle'><i className="bi-chevron-left sidebar-back-btn" onClick={props.sideClose}/></div>
 			<div className='sidebarTitle'><i className={common[0].page[props.pageidx].icon}></i>{common[0].page[props.pageidx].title}</div>
 			<Link to='/Mypage' className='link-to-mypage'>
 				<i className="bi-person-circle"></i>
@@ -42,15 +26,18 @@ export default function Sidebar(props) {
 			<br></br>
 			<br></br>
 			<br></br>
-			<div className={idolSelect ? "sidebar-item plain select" : "sidebar-item plain"} onClick={() => {dispatch({type: SIDE_SET_IDOL, data: true,}); dispatch({type: SIDE_SET_ATTR, data: false,}); dispatch({type: SIDE_SET_CONCERT, data: false,})}}>
+			<div className={idolSelect ? "sidebar-item plain select" : "sidebar-item plain"}
+			 onClick={() => {dispatch({type: SIDE_SET_IDOL, data: true,}); dispatch({type: SIDE_SET_ATTR, data: false,}); dispatch({type: SIDE_SET_CONCERT, data: false,})}}>
 				{ props.items[0].icon && <i className={props.items[0].icon}></i> }
 				{ props.items[0].title }
 			</div>
-			<div className={attrSelect ? "sidebar-item plain select" : "sidebar-item plain"} onClick={() => {dispatch({type: SIDE_SET_IDOL, data: false,}); dispatch({type: SIDE_SET_ATTR, data: true,}); dispatch({type: SIDE_SET_CONCERT, data: false,})}}>
+			<div className={attrSelect ? "sidebar-item plain select" : "sidebar-item plain"}
+			 onClick={() => {dispatch({type: SIDE_SET_IDOL, data: false,}); dispatch({type: SIDE_SET_ATTR, data: true,}); dispatch({type: SIDE_SET_CONCERT, data: false,})}}>
 				{ props.items[1].icon && <i className={props.items[1].icon}></i> }
 				{ props.items[1].title }
 			</div>
-			<div className={concertSelect ? "sidebar-item plain select" : "sidebar-item plain"} onClick={() => {dispatch({type: SIDE_SET_IDOL, data: false,}); dispatch({type: SIDE_SET_ATTR, data: false,}); dispatch({type: SIDE_SET_CONCERT, data: true,})}}>
+			<div className={concertSelect ? "sidebar-item plain select" : "sidebar-item plain"}
+			 onClick={() => {dispatch({type: SIDE_SET_IDOL, data: false,}); dispatch({type: SIDE_SET_ATTR, data: false,}); dispatch({type: SIDE_SET_CONCERT, data: true,})}}>
 				{ props.items[2].icon && <i className={props.items[2].icon}></i> }
 				{ props.items[2].title }
 			</div>

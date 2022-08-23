@@ -3,7 +3,7 @@
 	display: block;
 	background-color: rgb(0,3,77);
 	height: 100vh;
-	min-width: 260px;
+	min-width: 256px;
 	grid-row: 1 / span 4;
 }
 
@@ -29,6 +29,12 @@
 .sidebar i.bi-chevron-left {
 	font-size: 30px;
 	color: #fff;
+}
+
+.sidebar .sidebarHideToggle {
+	text-align: end;
+	margin-top: 10px;
+	margin-right: 10px;
 }
 
 .sidebar i.bi-person-circle {

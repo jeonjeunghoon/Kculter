@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
-import "../../styles/MyPageCard.css"
+import "../../styles/MyPage.css"
 
 function CardItem({ props }) {
 	const [show, setShow] = useState(false);
@@ -21,18 +21,15 @@ function CardItem({ props }) {
 						</div>
 					</Card>
 					{/* 아이돌 카드 */}
-					<Card.Img variant="top" className="px-4 py-1 m-auto" src={ props.fileUrl } style={{ height: '6em', width: '8em' }}/>
+					<Card.Img variant="top" className="m-auto" src={ props.fileUrl } style={{ height: '6em', width: '100%' }}/>
 					<Card.Body className="body-card-body">
-						<Card.Title className="text-center">
-							<span className="small">
+						<Card.Title className="text-center color-dark">
+							<span style={{fontSize: '1rem'}}>
 								{ props.name }
 							</span>
 						</Card.Title>
 					</Card.Body>
 				</Card>
-				<div className="card-idol">
-					{ props.name }
-				</div>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>

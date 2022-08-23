@@ -11,10 +11,9 @@ import {
 import MapLink from '../../../map/tmp/MapLink';
 import OffCanvasSidebar from '../../sidebar/offCanvasSidebar/offCanvasSidebar';
 
-function Header() {
+function Header(props) {
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
 	const [title, setTitle] = useState(null);
-
 	const location = useLocation();
 
 	useEffect(() => {
@@ -40,6 +39,7 @@ function Header() {
 	return (
 		<header>
 			<div className='left'>
+			<i class={props.open ? "bi bi-chevron-double-right hide" : "bi bi-chevron-double-right inSide"} onClick={props.sideOpen}></i>
 				<OffCanvasSidebar/>
 				<img
 					src={img}
