@@ -1,0 +1,11 @@
+#box-like-list {
+    height: 80vh;
+    width: 83vw;
+    overflow: auto;
+}
+
+@media all and (max-width:768px) {
+    #box-like-list {
+        width: 370px;
+    }
+}
