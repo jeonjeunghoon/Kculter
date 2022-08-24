@@ -7,13 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.prac.react.controller.PlaceController;
 import com.prac.react.model.dao.PlaceDao;
 import com.prac.react.model.dto.Place;
 
 @Service
 public class PlaceService {
-    Logger logger = LoggerFactory.getLogger(PlaceController.class);
+    Logger logger = LoggerFactory.getLogger(PlaceService.class);
 
     private PlaceDao pd;
 

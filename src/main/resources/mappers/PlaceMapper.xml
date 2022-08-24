@@ -13,4 +13,7 @@
 	<select id="getCulturePlaces" parameterType="String" resultType="Place">
 		select * from places where culture like CONCAT('%',#{found},'%')
 	</select>	
+	<select id="getPlaceInfo" parameterType="int" resultType="Place">
+		select * from places where placeNum = #{placeNum}
+	</select>
 </mapper>

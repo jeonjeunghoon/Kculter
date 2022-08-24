@@ -1,5 +1,6 @@
 package com.prac.react.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.prac.react.model.dao.PlaceDao;
 import com.prac.react.model.dto.Course;
+import com.prac.react.model.dto.CourseWrapper;
 import com.prac.react.model.dto.Place;
 
 @SpringBootTest
@@ -18,6 +21,8 @@ public class CourseServiceTest {
 
     @Autowired
     CourseService cs;
+    @Autowired
+    PlaceDao pd;
 
     Logger logger = LoggerFactory.getLogger(CourseServiceTest.class);
 
@@ -64,11 +69,27 @@ public class CourseServiceTest {
         List<Course> courses = cs.getCourses(memberNum);
         //then
         if(courses.isEmpty()){
-            logger.info("There is no course info with this memberNum");
+            logger.warn("There is no course info with this memberNum");
         }else{
             for(Course course : courses){
                 logger.info("Course : "+course.toString());
             }
         }
+    }
+    
+    @Test
+    void testGetMemberCourseWrapper() throws InterruptedException{
+        //given
+        int memberNum = 1;
+        List<Course> courses = cs.getCourses(memberNum);
+        List<CourseWrapper> cwl = new ArrayList<>();
+        //when
+        cwl = cs.getMemberCourseWrapper(memberNum, courses);
+
+        //then
+        for(CourseWrapper cw:cwl){
+            logger.info("CourseWrapper : "+cw.toString());
+        }
+        assert(!courses.isEmpty()&&!cwl.isEmpty());
     }
 }

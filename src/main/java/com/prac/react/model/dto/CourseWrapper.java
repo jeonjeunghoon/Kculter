@@ -6,14 +6,16 @@ public class CourseWrapper {
     private List<Place> course;
     private String courseName;
     private int memberNum;
+    private int courseNum;
 
     public CourseWrapper() {
     }
 
-    public CourseWrapper(List<Place> course, String courseName, int memberNum) {
+    public CourseWrapper(List<Place> course, String courseName, int memberNum, int courseNum) {
         this.course = course;
         this.courseName = courseName;
         this.memberNum = memberNum;
+        this.courseNum = courseNum;
     }
 
     public List<Place> getCourse() {
@@ -40,12 +42,21 @@ public class CourseWrapper {
         this.memberNum = memberNum;
     }
 
+    public int getCourseNum() {
+        return this.courseNum;
+    }
+
+    public void setCourseNum(int courseNum) {
+        this.courseNum = courseNum;
+    }
+
     @Override
     public String toString() {
         return "{" +
             " course='" + getCourse() + "'" +
             ", courseName='" + getCourseName() + "'" +
             ", memberNum='" + getMemberNum() + "'" +
+            ", courseNum='" + getCourseNum() + "'" +
             "}";
     }
 
