@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.Course;
@@ -71,15 +70,18 @@ public class CourseController {
 		return result;
 	}
 	@GetMapping("/{memberNum}")
-	public List<CourseWrapper> getCourses(@PathVariable("memberNum")int memberNum){
+	public List<CourseWrapper> getCourses(@PathVariable("memberNum")int memberNum) throws InterruptedException{
+
+		List<CourseWrapper> memberCourseList = new ArrayList<>();
 		//해당 멤버의 코스를 모두 불러와야한다.
-		List<CourseWrapper> memberCourseList = new ArrayList<>(); //여기에 담아서 보내줄것이다.
-
 		List<Course> courses = cs.getCourses(memberNum); //코스를 모두 불러왔다.
+		if(courses.isEmpty()){
+			logger.warn("Member course is empty");
+		}else{
+			//해당 코스의 
+			memberCourseList = cs.getMemberCourseWrapper(memberNum, courses);		
+		}
 
-		//그럼 이제 CourseWrapper에 place info를 담도록 하자.
-		//이건 이제 MultiThread를 이용해서 
-
-		return null;
+		return memberCourseList;
 	}
 }
