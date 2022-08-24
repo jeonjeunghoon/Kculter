@@ -4,8 +4,24 @@ import '../presentation/LoginPage.css';
 import '../presentation/LoginPage';
 import {hashPwd} from '../presentation/Encryptpwd';
 import axios from 'axios';
+import { useDispatch ,useSelector } from 'react-redux';
+import { PUSH_MEMBER } from "../../redux/reducer";
+
 
 function Loginbtn(props) {
+  const hash = hashPwd(props.email,props.pwd);
+  const dispatch = useDispatch();
+
+  const member = {
+    memberNum : 1,
+      email : 'hankgood95@naver.com',
+      pwd : '1234',
+      nickName : 'passcucci',
+      countryCode : 'KR',
+      age : 28,
+      gender : 'male',
+      pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
+  }
 
   const sendToServer = () => {
     if (props.email === ""){
@@ -22,7 +38,10 @@ function Loginbtn(props) {
         }
       })
       .then(function(res){
-        alert(res.data);
+        dispatch({
+          type:PUSH_MEMBER,
+          data: member,
+        })
       })
       .catch(function(error){
         console.log(error);
@@ -30,11 +49,18 @@ function Loginbtn(props) {
       })
     }
   }
+
+  const onKeyPress = (e) => {
+    if(e.key == 'Enter'){
+      sendToServer();
+    }
+  }
+
+
+
  
   return (
-    <>
-      <button className="login-btn" onClick={sendToServer}>LOGIN</button>
-    </>
+      <button className="login-btn" onClick={sendToServer} onKeyPress={onKeyPress}>LOGIN</button>
   )
 }
 export default Loginbtn;

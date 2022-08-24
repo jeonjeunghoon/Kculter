@@ -1,5 +1,6 @@
 import React,{useState,useRef} from 'react';
 import {Link} from 'react-router-dom';
+import { Form} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import './LoginPage.css';
 import GoogleLoginBtn from '../container/GoogleLoginBtn';
@@ -26,7 +27,15 @@ function LoginPage(){
         setSignUp(false);
         window.location.reload();
     }
-
+    
+    const onKeyPress = (e) => {
+        if(e.key == 'Enter' && email != ''){
+            alert('a');
+        }
+        else{
+            alert("please")
+        }
+      }
     return(
        <>
         <div className='login-con'>
@@ -39,7 +48,8 @@ function LoginPage(){
                     <img src={loginblack}></img>
                 </div>
                 <div className='inpult-nav'>
-                <input className='input-css1' 
+                    <Form>
+                    <input className='input-css1' 
                         type='text'
                         placeholder='E-mail'
                         onChange={e => setEmail(e.target.value)}
@@ -49,6 +59,16 @@ function LoginPage(){
                     placeholder='Password'
                     onChange={e=> setPwd(e.target.value)}
                     />
+                <Loginbtn type="submit" email={email} pwd={pwd}>LOGIN</Loginbtn>
+                </Form>
+                </div>
+                <SignUpModal
+                    show={SignUp} onHide={close}
+                    /> 
+                <div className="signup-btn" onClick={()=> setSignUp(true)}>
+                    <button
+                        onClick={()=> setSignUp(true)}
+                    >SIGNUP</button>
                 </div>
                 <div className="for-pwd">
                 <ForgotPwdModal
@@ -58,15 +78,6 @@ function LoginPage(){
                         onClick={() => setForgotPwd(true)}
                         className='pwd'
                     >Forgot your password ?</button>
-                </div>
-                <Loginbtn email={email} pwd={pwd}>LOGIN</Loginbtn>
-                <SignUpModal
-                    show={SignUp} onHide={close}
-                    /> 
-                <div className="signup-btn" onClick={()=> setSignUp(true)}>
-                    <button
-                        onClick={()=> setSignUp(true)}
-                    >SIGNUP</button>
                 </div>
                 <div>
                     or

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import MyPageLink from '../myPage/page/MyPageLink';
 import ConcertPageLink from '../concertPage/concertPageLink';
 import IdolListPageLink from '../IdolListPage/IdolListPageLink';
@@ -8,6 +8,9 @@ import MainNavbar from './MainNavbar';
 import { Button } from './Button';
 
 function MainPage() {
+
+    const [login,setlogin] = useState(false);
+
     return(
         <div className='main-con'>
           
