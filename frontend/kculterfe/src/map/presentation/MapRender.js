@@ -8,14 +8,14 @@ import Search from './Search';
 import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import {
+	handleOnLoad,
 	handleOnDragEndGM,
 	handleOnClickGM,
 } from '../container/handleGM';
 // redux
-import { useDispatch } from 'react-redux';
-
-// 필터
-import Filter from './Filter';
+import {
+	useDispatch
+} from 'react-redux';
 
 function MapRender(props) {
 	// redux
@@ -54,7 +54,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={(map) => setMap(map)}
+				onLoad={(map) => handleOnLoad(map, setMap, setNear)}
 				onUnmount={() => setMap(null)}
 				onClick={e => handleOnClickGM(e, google, map, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
 				onDragEnd={() => handleOnDragEndGM(map, setNear)}
@@ -66,8 +66,6 @@ function MapRender(props) {
 					setZoom={setZoom}
 					dispatch={dispatch}
 				/>
-
-				<Filter />
 
 				{/* 마커 */}
 				<MapMarker

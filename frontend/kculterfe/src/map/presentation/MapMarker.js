@@ -2,8 +2,14 @@ import React, {
 	useState,
 	useEffect,
 } from 'react';
+import {
+	useSelector
+} from 'react-redux';
+import {
+	handleCustomMarker,
+	handleCard,
+} from '../container/handleOnMarker';
 import CustomMarker from './CustomMarker';
-import { useSelector } from 'react-redux';
 
 function MapMarker(props) {
 	const [nearData, setNearData] = useState(null);
@@ -19,6 +25,7 @@ function MapMarker(props) {
 			<CustomMarker
 				kculterPlace={props.kculterPlace}
 				pin={props.pin}
+				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
 				dispatch={props.dispatch}
@@ -27,6 +34,7 @@ function MapMarker(props) {
 			<CustomMarker
 				kculterPlace={useSelector(state => state.course)}
 				pin={props.pin}
+				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
 				dispatch={props.dispatch}
@@ -35,6 +43,7 @@ function MapMarker(props) {
 			<CustomMarker
 				kculterPlace={nearData}
 				pin={props.pin}
+				markerHandler={handleCard}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
 				dispatch={props.dispatch}

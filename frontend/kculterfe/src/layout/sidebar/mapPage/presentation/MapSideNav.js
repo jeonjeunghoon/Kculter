@@ -1,7 +1,10 @@
 import React, {
 	useState,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+	useDispatch,
+	useSelector
+} from 'react-redux';
 import CourseCard from './CourseCard';
 import {
 	handleOnClickAdd,
@@ -33,10 +36,10 @@ function MapSideNav() {
 					<div className="course">
 					<p>Save Your Course</p>
     			  <CourseCard courseList={courseList} setCourseList={setCourseList} />
-    			  <button onClick={() => handleOnClickAdd(place, memberNum, courseName, courseList, setCourseList, dispatch)}>
+    			  <button onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}>
     			    ADD
     			  </button>
-						<button onClick={() => handleOnClickSave(courseList, setCourseList, dispatch)}>
+						<button onClick={() => handleOnClickSave(courseList, setCourseList, memberNum, courseName, dispatch)}>
     			    SAVE TO BACK
     			  </button>
     			</div>

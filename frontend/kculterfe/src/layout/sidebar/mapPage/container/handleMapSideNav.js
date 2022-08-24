@@ -3,21 +3,14 @@ import {
 	MODIFY_COURSE,
 } from '../../../../redux/reducer';
 
-import { useSelector } from 'react-redux';
-
-export function handleOnClickAdd(place, memberNum, courseName, courseList, setCourseList, dispatch) {
+export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
 	const isEmpty = Object.keys(place).length === 0;
 	if (isEmpty || courseList.find((item) => item.name === place.name ? true : false)) {
 		alert("Please select the place before add the course.");
 		return;
 	}
-	const addObject = {
-		memberNum: memberNum,
-		courseName: courseName,
-	};
 	let newCourseList = [...courseList];
-	const courseData = Object.assign(place, addObject);
-	newCourseList.push(courseData);
+	newCourseList.push(place);
 	setCourseList(newCourseList);
 	dispatch({
 		type: MODIFY_COURSE,
@@ -25,13 +18,18 @@ export function handleOnClickAdd(place, memberNum, courseName, courseList, setCo
 	})
 }
 
-export function handleOnClickSave(course, setCourseList, dispatch) {
-	if (!course.length) {
+export function handleOnClickSave(courseList, setCourseList, memberNum, courseName, dispatch) {
+	if (!courseList.length) {
 		alert("Please add course before save the course list.");
 		return;
 	}
-	const json = JSON.stringify({course});
-	axios.post('/course/', json, {
+	const jsonData = JSON.stringify({
+		memberNum: memberNum,
+		courseName: courseName,
+		course: courseList,
+	});
+	console.log(jsonData);
+	axios.post('/course/', jsonData, {
 		headers:{
 			'Content-Type':'application/json'
 		}

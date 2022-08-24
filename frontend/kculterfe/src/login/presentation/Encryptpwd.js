@@ -1,9 +1,17 @@
 import React from 'react';
-import cryptojs from 'crypto-js'
+import cryptoJS from 'crypto-js'
 
 export function hashPwd(email,pwd) {
-  let CryptoJS = require('crypto-js');
-  const autho = CryptoJS.AES.encrypt(email+pwd, 'secret key').toString();
-  return autho;
+  
+  const secretKey = process.env.REACT_APP_AES_SECRET_KEY; //비밀키
+  const iv = 'abcdefghijklmnop' // 16자리 iv
+
+  const autho = cryptoJS.AES.encrypt(email+"/"+pwd, cryptoJS.enc.Utf8.parse(secretKey), {
+    iv: cryptoJS.enc.Utf8.parse(iv),
+    padding: cryptoJS.pad.Pkcs7,
+    mode: cryptoJS.mode.CBC,
+  });
+
+  return autho.toString();
 }
 export default hashPwd;
