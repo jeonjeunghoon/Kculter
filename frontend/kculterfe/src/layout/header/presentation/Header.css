@@ -1,0 +1,45 @@
+header {
+	display: flex;
+	background-color: rgba(255, 255, 255, 1);
+	min-height: 40px;
+  }
+  
+  header .left {
+	display: flex;
+	align-items: center;
+	min-height: 40px;
+	margin: 0 0 0 10px;
+  }
+  
+  header .left img {
+	height: 30px;
+	width: 30px;
+	margin: 0 10px 0 0;
+  }
+  
+  header .right {
+	  display: flex;
+	  align-items: center;
+	  margin: 0 10px 0 auto;
+  }
+  
+  header .right .logo {
+	margin-right: 10px;
+	border: none;
+	background-color: rgba(255, 255, 255, 1);
+	cursor: pointer;
+  }
+  
+  header .right .logo-img {
+	height: 30px;
+	width: 30px;
+  }
+  
+  header .right .menu {
+	height: 20px;
+	width: 20px;
+  }
+
+  header i.bi.bi-list {
+	font-size: 30px;
+  }

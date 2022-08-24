@@ -5,7 +5,6 @@ import React, {
 import {
 	Marker
 } from '@react-google-maps/api'
-import { handleCustomMarker } from '../container/handleOnFocus';
 
 function CustomMarker(props) {
 	const [kculterPlace, setKculterPlace] = useState(null);
@@ -27,9 +26,8 @@ function CustomMarker(props) {
 	return (
 		kculterPlace &&
 		kculterPlace.map((item, index) => {
-			console.log(item);
 			return (
-				<Marker className="map-marker"
+				<Marker
 					key={index}
 					title={item.name}
 					icon={icon}
@@ -38,7 +36,7 @@ function CustomMarker(props) {
 						lng: item.lng
 					}}
 					onClick={() => {
-						handleCustomMarker(item, props.setCenter, props.setZoom, props.dispatch);
+						props.markerHandler(item, props.setCenter, props.setZoom, props.dispatch);
 					}}
 				/>
 			);

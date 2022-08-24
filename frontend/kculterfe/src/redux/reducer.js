@@ -17,18 +17,20 @@ const initState = {
 	},
 	course: [],
 	member:{
-		memberNum : 1,
-		email : 'hankgood95@naver.com',
-		pwd : '1234',
-		nickName : 'passcucci',
-		countryCode : 'KR',
-		age : 28,
-		gender : 'male',
-		pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
+		memberNum : "",
+		email : '',
+		pwd : '',
+		nickName : '',
+		countryCode : '',
+		age : 0,
+		gender : '',
+		pf_image: ''
 	},
 	idolSelected: true,
 	attrSelected: false,
 	concertSelected: false,
+	dashboardSelected: true,
+	settingSelected: false,
 }
 
 // 액션 추가 여기
@@ -37,6 +39,10 @@ export const MODIFY_COURSE = 'MODIFY_COURSE';
 export const SIDE_SET_IDOL = 'SIDE_SET_IDOL';
 export const SIDE_SET_ATTR = 'SIDE_SET_ATTR';
 export const SIDE_SET_CONCERT = 'SIDE_SET_CONCERT';
+export const CLEAR_MEMBER = 'CLEAR_MEMBER';
+export const PUSH_MEMBER = 'PUSH_MEMBER';
+export const SIDE_SET_DASHBOARD = 'SIDE_SET_DASHBOARD';
+export const SIDE_SET_SETTING = 'SIDE_SET_SETTING';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -67,7 +73,29 @@ export default function reducer(state = initState, action) {
 				...state,
 				concertSelected: action.data,
 			}
+		case CLEAR_MEMBER:
+			return {
+				...state,
+				member: action.data,
+			}
+		case PUSH_MEMBER:
+			return {
+				...state,
+				member: action.data,
+			}
+		case SIDE_SET_DASHBOARD:
+			return {
+				...state,
+				dashboardSelected: action.data,
+			}
+		case SIDE_SET_SETTING:
+			return {
+				...state,
+				settingSelected: action.data,
+			}
 		default:
 			return state;
+
+	
 	}
 }
