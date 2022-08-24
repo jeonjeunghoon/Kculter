@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import SidebarItem from "./SidebarItem"
 import common from "../sidebarCommonData.json"
 import { SIDE_SET_CONCERT, SIDE_SET_IDOL, SIDE_SET_ATTR } from "../../../redux/reducer";
 import './sidebar.css';
-import '../../Layout.css';
 import { useSelector } from 'react-redux';
 
 export default function Sidebar(props) {
@@ -16,7 +14,7 @@ export default function Sidebar(props) {
 
 	return (
 		<div className="sidebar">
-			<div className='sidebarHideToggle'><i className="bi-chevron-left sidebar-back-btn" onClick={props.sideClose}/></div>
+			<Link to='/.'><i className="bi-chevron-left"/></Link>
 			<div className='sidebarTitle'><i className={common[0].page[props.pageidx].icon}></i>{common[0].page[props.pageidx].title}</div>
 			<Link to='/Mypage' className='link-to-mypage'>
 				<i className="bi-person-circle"></i>
@@ -41,7 +39,6 @@ export default function Sidebar(props) {
 				{ props.items[2].icon && <i className={props.items[2].icon}></i> }
 				{ props.items[2].title }
 			</div>
-			{/* { props.items.map((item, index) => <SidebarItem key={index} item={item} isSelect={select} changeSelect={changeSelect} />)} */}
 		</div>
 	)
 }

@@ -1,14 +1,10 @@
 [
     {
-        "title": "Home",
-        "path": "/"
-    },
-    {
         "title": "Dashboard",
         "path": "/"
     },
     {
-        "title": "sttings",
+        "title": "settings",
         "path": "/"
     }
 ]
