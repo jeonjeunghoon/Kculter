@@ -49,7 +49,6 @@ export function handleCustomMarker(data, setCenter, setZoom, dispatch) {
 		placeType: data.placeType,
 		status: data.status,
 	}
-	console.log(place);
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
 
@@ -58,16 +57,25 @@ export function handleGoogleMarkerAndSearch(data, setCenter, setZoom, dispatch) 
 		address: data.formatted_address,
 		culture: "",
 		explain: "",
-		fileUrl: data.photos[0].getUrl(),
+		fileUrl: "",
 		kpop: "",
 		name: data.name,
 		courseName: "",
-		lat: data.geometry.location.lat(),
-		lng: data.geometry.location.lng(),
+		lat: 0,
+		lng: 0,
 		placeNum: 0,
 		placeType: 0,
 		status: 0,
 		tel: data.international_phone_number,
+	}
+	if (data.photos) {
+		place.fileUrl = data.photos[0].getUrl();
+	}
+	if (
+		data.geometry &&
+		data.geometry.location) {
+			place.lat = data.geometry.location.lat();
+			place.lng = data.geometry.location.lng();
 	}
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }

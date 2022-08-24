@@ -4,6 +4,12 @@ import {
 } from '../container/handleOnMarker';
 
 function Cards(props) {
+	let image = null;
+	if (props.item.firstimage) {
+		image = props.item.firstimage;
+	} else {
+		image = "https://www.pngall.com/wp-content/uploads/5/Hotel-PNG-Image.png";
+	}
 	return (
 		<div className="stay-card">
 			<button
@@ -12,11 +18,10 @@ function Cards(props) {
 				}}
 			>
 				<img
-					src={props.item.firstimage}
+					src={image}
 					alt='Stay image'
 				/>
 			</button>
-			<p>{props.item.title}</p>
 		</div>
 	);
 }

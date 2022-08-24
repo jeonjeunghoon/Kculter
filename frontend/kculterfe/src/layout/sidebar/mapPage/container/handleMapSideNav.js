@@ -4,9 +4,12 @@ import {
 } from '../../../../redux/reducer';
 
 export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
-	const isEmpty = Object.keys(place).length === 0;
-	if (isEmpty || courseList.find((item) => item.name === place.name ? true : false)) {
+	if (place.lat === 0 && place.lng === 0) {
 		alert("Please select the place before add the course.");
+		return;
+	}
+	if (courseList.length >= 20) {
+		alert("Too many courses.");
 		return;
 	}
 	let newCourseList = [...courseList];
