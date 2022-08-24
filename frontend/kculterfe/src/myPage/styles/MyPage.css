@@ -35,7 +35,7 @@
 
 @media all and (max-width:767px) {
 	#my-body .box-list .box-card-item {
-		width: 18rem;
+		width: 21rem; /* day 박스 크기 설정 */
 		position: relative;
 		color: white;
 		margin: auto;
