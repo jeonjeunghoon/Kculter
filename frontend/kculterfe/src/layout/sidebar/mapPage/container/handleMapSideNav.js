@@ -5,14 +5,18 @@ import {
 
 import { useSelector } from 'react-redux';
 
-export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
+export function handleOnClickAdd(place, memberNum, courseName, courseList, setCourseList, dispatch) {
 	const isEmpty = Object.keys(place).length === 0;
 	if (isEmpty || courseList.find((item) => item.name === place.name ? true : false)) {
 		alert("Please select the place before add the course.");
 		return;
 	}
+	const addObject = {
+		memberNum: memberNum,
+		courseName: courseName,
+	};
 	let newCourseList = [...courseList];
-	const courseData = place;
+	const courseData = Object.assign(place, addObject);
 	newCourseList.push(courseData);
 	setCourseList(newCourseList);
 	dispatch({

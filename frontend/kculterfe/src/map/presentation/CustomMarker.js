@@ -5,43 +5,40 @@ import React, {
 import {
 	Marker
 } from '@react-google-maps/api'
-import { CLICK_MARKER } from '../../redux/reducer';
+import { handleCustomMarker } from '../container/handleOnFocus';
 
 function CustomMarker(props) {
-	const [place, setPlace] = useState(null);
-	const iconMarker = new window.google.maps.MarkerImage(
-		props.pin.imageUrl,
-		null,
-		null,
-		null,
-		new window.google.maps.Size(40, 40)
-	);
-
+	const [kculterPlace, setKculterPlace] = useState(null);
+	const [icon, setIcon] = useState(null);
+	
 	useEffect(() => {
-		setPlace(props.place);
-	})
+		if (props.kculterPlace) {
+		setKculterPlace(props.kculterPlace);
+		const tmpIcon = new window.google.maps.MarkerImage(
+			props.pin.imageUrl,
+			null,
+			null,
+			null,
+			new window.google.maps.Size(30, 30)
+		);
+		setIcon(tmpIcon);
+		}
+	}, [props.kculterPlace])
 	return (
-		place &&
-		place.map((item, index) => {
+		kculterPlace &&
+		kculterPlace.map((item, index) => {
+			console.log(item);
 			return (
 				<Marker className="map-marker"
 					key={index}
 					title={item.name}
-					icon={iconMarker}
+					icon={icon}
 					position={{
 						lat: item.lat,
 						lng: item.lng
 					}}
 					onClick={() => {
-						props.dispatch({
-							type: CLICK_MARKER,
-							data: item
-						})
-						props.setCenter({
-							lat: item.lat,
-							lng: item.lng
-						})
-						props.setZoom(15)
+						handleCustomMarker(item, props.setCenter, props.setZoom, props.dispatch);
 					}}
 				/>
 			);

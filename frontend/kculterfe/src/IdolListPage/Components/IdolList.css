@@ -1,3 +1,6 @@
+.IdolListBody {
+	background-color: #eeeeee;
+}
 
 .IdolSearchBar{
 	display: flex;
@@ -17,10 +20,10 @@
 	margin-right: 1rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
 	.CardContainer { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
 	.CardContainer { grid-template-columns: repeat(3, 1fr); }
 }

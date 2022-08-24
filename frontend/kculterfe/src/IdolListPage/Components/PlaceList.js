@@ -24,28 +24,28 @@ function PlaceList({}) {
 		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 	return (
-		<>
-		<div className="IdolSearchBar">
-			<IdolSearchBar value={search} onChange={onChange} />
+		<div className="PlaceListBody">
+			<div className="IdolSearchBar">
+				<IdolSearchBar value={search} onChange={onChange} />
+			</div>
+			<div className="CardContainer">
+				{ filterTitle.map(placecard => 
+				<div className="CardDiv">
+					<PlaceCard
+					id={placecard.placeNum}
+					key={placecard.placeNum}
+					culture_type={placecard.culture}
+					path_photo={placecard.fileUrl}
+					title={placecard.name}
+					num_like={placecard.likeCount}
+					lat={placecard.lat}
+					lng={placecard.lng}
+					address={placecard.address}
+					explain={placecard.explain}
+					/>
+				</div>) }
+			</div>
 		</div>
-		<div className="CardContainer">
-			{ filterTitle.map(placecard => 
-			<div className="CardDiv">
-				<PlaceCard
-				id={placecard.placeNum}
-				key={placecard.placeNum}
-				culture_type={placecard.culture}
-				path_photo={placecard.fileUrl}
-				title={placecard.name}
-				num_like={placecard.likeCount}
-				lat={placecard.lat}
-				lng={placecard.lng}
-				address={placecard.address}
-				explain={placecard.explain}
-				/>
-			</div>) }
-		</div>
-		</>
 	)
 }
 
