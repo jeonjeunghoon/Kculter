@@ -1,5 +1,39 @@
 import axios from 'axios';
-import { handleGoogleMarkerAndSearch } from './handleOnFocus';
+import {
+	handleGoogleMarkerAndSearch
+} from './handleOnMarker';
+
+export function handleOnLoad(map, setMap, setNear) {
+	if (!map) {
+		return;
+	}
+	setMap(map);
+	const google = window.google;
+	const geocoder = new google.maps.Geocoder();
+	geocoder.geocode({ location: map.getCenter() }, (result, status) => {
+		if (status !== google.maps.GeocoderStatus.OK) {
+			alert(status);
+		}
+		if (status === google.maps.GeocoderStatus.OK) {
+			axios.get('/near/stay?lat='+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
+			.then(function(res){
+				console.log(res, '통신 완료');
+				const data = res.data.map((obj) => ({
+						...obj,
+						lat: Number(obj.mapy),
+						lng: Number(obj.mapx)
+					})
+				);
+				res.data = data;
+				setNear(res);
+
+			})
+			.catch(function(error){
+				console.log(error, "서버 통신 실패");
+			})
+		}
+	});
+}
 
 export function handleOnClickGM(e, google, map, setCenter, setZoom, dispatch) {
 	if (!e || !map || !e.placeId) {

@@ -1,4 +1,6 @@
-import { handleGoogleMarkerAndSearch, handleOnFocus } from "./handleOnFocus";
+import {
+	handleGoogleMarkerAndSearch,
+} from "./handleOnMarker";
 
 export function handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, dispatch) {
 	if (!input)

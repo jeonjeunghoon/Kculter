@@ -23,12 +23,11 @@ export function handleOnClickSave(courseList, setCourseList, memberNum, courseNa
 		alert("Please add course before save the course list.");
 		return;
 	}
-	const saveData = {
+	const jsonData = JSON.stringify({
 		memberNum: memberNum,
 		courseName: courseName,
 		course: courseList,
-	}
-	const jsonData = JSON.stringify({saveData});
+	});
 	console.log(jsonData);
 	axios.post('/course/', jsonData, {
 		headers:{

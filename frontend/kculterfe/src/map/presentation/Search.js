@@ -4,7 +4,9 @@ import React, {
 import {
 	Autocomplete,
 } from '@react-google-maps/api';
-import { handleOnPlaceChangedAutocomplete } from '../container/handleAutocomplete';
+import {
+	handleOnPlaceChangedAutocomplete
+} from '../container/handleAutocomplete';
 
 function Search({ setCenter, setZoom, dispatch }) {
 	const [input, setInput] = useState(null);
