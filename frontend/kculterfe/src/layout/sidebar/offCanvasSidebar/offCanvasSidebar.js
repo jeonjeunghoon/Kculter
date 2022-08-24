@@ -6,22 +6,14 @@ import concertItem from '../concertPage/sidebar.json';
 import '../concertPage/sidebar.css';
 
 
-function OffCanvasSidebar() {
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+function OffCanvasSidebar(props) {
 	const isSm = useMediaQuery({
 		query : "(max-width:512px)"
 	});
-	if (show && isSm == false)
-		setShow(false);
 
 	return (
 		<>
-			<div className="sidebarToggle">
-				<i class="bi bi-chevron-double-right offSide" onClick={handleShow}></i>
-			</div>
-			<Offcanvas show={ show && isSm } onHide={handleClose} responsive="lg">
+			<Offcanvas show={ props.isOpen && isSm } onHide={props.sideClose}>
 				<div className='inCanvas'>
 					<Sidebar pageidx={0} items={concertItem}/>
 				</div>

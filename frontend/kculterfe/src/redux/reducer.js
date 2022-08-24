@@ -29,6 +29,8 @@ const initState = {
 	idolSelected: true,
 	attrSelected: false,
 	concertSelected: false,
+	dashboardSelected: true,
+	settingSelected: false,
 }
 
 // 액션 추가 여기
@@ -37,6 +39,8 @@ export const MODIFY_COURSE = 'MODIFY_COURSE';
 export const SIDE_SET_IDOL = 'SIDE_SET_IDOL';
 export const SIDE_SET_ATTR = 'SIDE_SET_ATTR';
 export const SIDE_SET_CONCERT = 'SIDE_SET_CONCERT';
+export const SIDE_SET_DASHBOARD = 'SIDE_SET_DASHBOARD';
+export const SIDE_SET_SETTING = 'SIDE_SET_SETTING';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -66,6 +70,16 @@ export default function reducer(state = initState, action) {
 			return {
 				...state,
 				concertSelected: action.data,
+			}
+		case SIDE_SET_DASHBOARD:
+			return {
+				...state,
+				dashboardSelected: action.data,
+			}
+		case SIDE_SET_SETTING:
+			return {
+				...state,
+				settingSelected: action.data,
 			}
 		default:
 			return state;
