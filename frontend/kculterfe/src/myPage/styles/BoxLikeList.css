@@ -1,11 +1,17 @@
-#box-like-list {
-    height: 80vh;
-    width: 83vw;
-    overflow: auto;
+@media all and (min-width:768px) {
+    #box-like-list {
+        height: 76vh;
+        width: 95%;
+        overflow: auto;
+        margin-left: 3.2rem;
+    }
 }
 
-@media all and (max-width:768px) {
+@media all and (max-width:767px) {
     #box-like-list {
-        width: 370px;
+        width: 20rem;
+        margin: auto;
+        overflow-y: auto;
+        min-height: 70vh;
     }
 }

@@ -16,12 +16,12 @@ function BoxLikeList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data);
+		// console.log(data); // 데이터 체크
 	}, []);
 
 	return (
 		<>
-			<Row id="box-like-list" style={{margin: '32px'}}>
+			<Row id="box-like-list">
 				{ data.map((LikeList, index) => <BoxLikeItem key={index} props={LikeList} {...LikeList} />)}
 			</Row>
 		</>

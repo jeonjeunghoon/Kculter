@@ -1,6 +1,7 @@
 /* body top 네비 바 */
 @media all and (min-width:768px) {
     #my-body .body-navbar {
+        font-size: 1.5rem;
         background-color: #eeeeee;
         border-bottom: 1px solid rgba(128, 128, 128, 0.401);
         margin-left: 4rem;
@@ -12,12 +13,14 @@
 
 @media all and (max-width:767px) {
         #my-body .body-navbar {
+            font-size: 1rem;
             background-color: #eeeeee;
             border-bottom: 1px solid rgba(128, 128, 128, 0.401);
             margin-left: 3rem;
             margin-right: 3rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
 }
 
