@@ -10,11 +10,12 @@ import "slick-carousel/slick/slick-theme.css";
 function MapCard(props) {
 	const [nearData, setNearData] = useState(null);
 	const settings = {
-		dots: true,
+		dots: false,
 		infinite: true,
+		adaptiveHeight: true,
 		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 3
+		slidesToShow: 5,
+		slidesToScroll: 5
 	}
 
 	useEffect(() => {

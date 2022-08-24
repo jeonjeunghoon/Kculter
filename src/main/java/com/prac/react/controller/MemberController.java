@@ -2,6 +2,7 @@ package com.prac.react.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +25,13 @@ public class MemberController {
     //로그를 찍어보기 위해서 만든 인스턴스
     Logger logger = LoggerFactory.getLogger(MemberController.class);
     //MemberService 의존성 주입을 위해 사용할 인스턴스
-    MemberService ms;
+    private MemberService ms;
+    private Encryption encrypt;
 
-    public MemberController(MemberService ms){
+    @Autowired
+    public MemberController(MemberService ms,Encryption encrypt){
         this.ms = ms; //의존성 주입
+        this.encrypt = encrypt;
     }
 
     // @PostMapping("member")
@@ -63,8 +67,7 @@ public class MemberController {
         logger.info(member.toString());
 
         member.setPf_image("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
-        Encryption encypt = new Encryption();
-        String pwd = encypt.encryption(member.getPwd());
+        String pwd = encrypt.shaEncryption(member.getPwd());
         member.setPwd(pwd);
 
         logger.info("Member : "+member.toString());
@@ -79,6 +82,10 @@ public class MemberController {
     @GetMapping("login")
     public Member login(@RequestHeader("Authorization")String autho){
         logger.info("Authorization : "+autho);
+
+        String memberInform = encrypt.aesDecrypt(autho);
+        //복호화를 했으니 이제는 입력받은것중 sql문이 있는지를 확인하고 이상한것이라면 
+        //해당 IP를 차단하는거면 좋겠지만 그러지는 못할것같도 일단 그 값을 못받게하자.
 
         return null;
     }

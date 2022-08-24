@@ -1,4 +1,6 @@
-import { CLICK_PLACE } from "../../redux/reducer";
+import {
+	CLICK_PLACE
+} from "../../redux/reducer";
 
 function useFocusOn(place, setCenter, setZoom, dispatch) {
 	setCenter({
@@ -47,6 +49,7 @@ export function handleCustomMarker(data, setCenter, setZoom, dispatch) {
 		placeType: data.placeType,
 		status: data.status,
 	}
+	console.log(place);
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { handleCard } from '../container/handleOnFocus';
+import {
+	handleCard
+} from '../container/handleOnMarker';
 
 function Cards(props) {
 	return (
