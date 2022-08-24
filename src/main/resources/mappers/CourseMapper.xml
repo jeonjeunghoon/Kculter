@@ -11,4 +11,7 @@
     <select id="checkPlaceDb" parameterType="Place" resultType="integer">
         select placeNum from places where name = #{name} and lat = #{lat} and lng = #{lng}
     </select>
+    <select id="getCourses" parameterType="int" resultType="Course">
+        select * from course where memberNum=#{memberNum}
+    </select>
 </mapper>

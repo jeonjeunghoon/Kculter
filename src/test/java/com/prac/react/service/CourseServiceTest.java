@@ -1,5 +1,7 @@
 package com.prac.react.service;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,5 +55,20 @@ public class CourseServiceTest {
         Integer placeNum = cs.checkPlaceDb(place);
         //then
         logger.info("PlaceNum : "+ placeNum);
+    }
+    @Test
+    void testGetCourses() {
+        //given
+        int memberNum = 1;
+        //when
+        List<Course> courses = cs.getCourses(memberNum);
+        //then
+        if(courses.isEmpty()){
+            logger.info("There is no course info with this memberNum");
+        }else{
+            for(Course course : courses){
+                logger.info("Course : "+course.toString());
+            }
+        }
     }
 }

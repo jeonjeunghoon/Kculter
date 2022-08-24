@@ -1,5 +1,7 @@
 package com.prac.react.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -28,5 +30,9 @@ public class CourseService {
 
     public int insertCourse(Course course){
         return cd.insertCourse(course);
+    }
+
+    public List<Course> getCourses(int memberNum){
+        return cd.getCourses(memberNum);
     }
 }
