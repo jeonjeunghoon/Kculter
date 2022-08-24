@@ -48,7 +48,7 @@
   margin-top: 50px;
   padding: 15px 100px 15px 30px;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 10px;
   background-color: #e2e2e0;
   border: none;
@@ -68,12 +68,12 @@
 .google-nav {
   margin-top: 10px;
   display: flex;
-  bottom: 50px;
+  bottom: 10px;
 }
 
 .for-pwd {
-  margin-top: 5px;
-  margin-bottom: 17px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .for-pwd a {
@@ -91,16 +91,17 @@
 
 .login-btn {
   background-color: #1755d1;
-  padding: 10px 136px;
+  padding: 10px 130px 10px 130px;
   border: none;
   border-radius: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   color: #ffff;
 }
 
 .signup-btn {
   background-color: #f4029b;
-  padding: 10px 127px;
+  padding: 10px 120px 10px 120px;
   color: #ffff;
   font-size: 15px;
   border-radius: 10px;
