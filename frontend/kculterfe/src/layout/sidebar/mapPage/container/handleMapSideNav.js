@@ -21,17 +21,22 @@ export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
 	})
 }
 
-export function handleOnClickSave(courseList, setCourseList, memberNum, courseName, dispatch) {
+export function handleOnClickSave(setModalIsOpen, courseList) {
 	if (!courseList.length) {
 		alert("Please add course before save the course list.");
 		return;
 	}
+	setModalIsOpen(true);
+}
+
+export function handleOnSubmit(e, courseList, setCourseList, courseName, memberNum, setModalIsOpen, dispatch) {
+	e.preventDefault();
 	const jsonData = JSON.stringify({
 		memberNum: memberNum,
 		courseName: courseName,
 		course: courseList,
 	});
-	console.log(jsonData);
+	setModalIsOpen(false);
 	axios.post('/course/', jsonData, {
 		headers:{
 			'Content-Type':'application/json'
@@ -45,8 +50,9 @@ export function handleOnClickSave(courseList, setCourseList, memberNum, courseNa
 				type: MODIFY_COURSE,
 				data: newCourseList,
 			})
-  	})
-  	.catch(function(error){
+			setModalIsOpen(false);
+		})
+		.catch(function(error){
 			console.log(error, "서버 통신 실패");
-  })
+	})
 }

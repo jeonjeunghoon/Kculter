@@ -16,6 +16,8 @@ function useFocusOn(place, setCenter, setZoom, dispatch) {
 
 export function handleCard(data, setCenter, setZoom, dispatch) {
 	const place = {
+		head: "K-CULTER",
+		src: "",
 		address: data.addr1,
 		culture: "",
 		explain: "",
@@ -36,6 +38,8 @@ export function handleCard(data, setCenter, setZoom, dispatch) {
 
 export function handleCustomMarker(data, setCenter, setZoom, dispatch) {
 	const place = {
+		head: "K-CULTER",
+		src: "",
 		address: data.address,
 		culture: data.culture,
 		explain: data.explain,
@@ -54,6 +58,8 @@ export function handleCustomMarker(data, setCenter, setZoom, dispatch) {
 
 export function handleGoogleMarkerAndSearch(data, setCenter, setZoom, dispatch) {
 	const place = {
+		head: "K-CULTER",
+		src: "",
 		address: data.formatted_address,
 		culture: "",
 		explain: "",

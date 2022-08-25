@@ -1,49 +1,36 @@
-import React, {
-	useState,
-} from 'react';
-import {
-	useDispatch,
-	useSelector
-} from 'react-redux';
-import CourseCard from './CourseCard';
-import {
-	handleOnClickAdd,
-	handleOnClickSave
-} from '../container/handleMapSideNav';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Head from './Head';
+import Place from './Place';
+import CourseBox from './CourseBox'
 import '../map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
-	const memberNum = useSelector(state => state.member.memberNum);
-	const [courseName, setCourseName] = useState("");
-	const [courseList, setCourseList] = useState([])
-	const dispatch = useDispatch();
 
+	console.log(place);
 	return (
-		<div className="sidebar">
-			<div className="map-sidebar">
-				<div className="head">
-					{/* <img src={}></img> */}
-					<h3>{place.head}</h3>
-				</div>
-				<img src={place.fileUrl}></img>
-				<div className="content">
-					<div className="title">
-						<h3>{place.name}</h3>
-						<p>{place.address}</p>
-					</div>
-					<p>{place.explain}</p>
-					<div className="course">
-					<p>Save Your Course</p>
-    			  <CourseCard courseList={courseList} setCourseList={setCourseList} />
-    			  <button onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}>
-    			    ADD
-    			  </button>
-						<button onClick={() => handleOnClickSave(courseList, setCourseList, memberNum, courseName, dispatch)}>
-    			    SAVE TO BACK
-    			  </button>
-    			</div>
-				</div>
+		<div className="map-sidebar">
+			<Head
+				src={place.src}
+				head={place.head}
+			/>
+			<img
+				src={place.fileUrl}
+				alt={place.name}
+			/>
+			<div className="map-sidebar-content">
+				<Place
+					name={place.name}
+					address={place.address}
+					explain={place.explain}
+				/>
+				{
+					place.name &&
+					<CourseBox
+						place={place}
+					/>
+				}
 			</div>
 		</div>
 	);

@@ -4,9 +4,6 @@ import {
 } from './handleOnMarker';
 
 export function handleOnLoad(map, setMap, setNear) {
-	if (!map) {
-		return;
-	}
 	setMap(map);
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();

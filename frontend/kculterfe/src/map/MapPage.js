@@ -42,7 +42,6 @@ function MapPage(props) {
 		}
 		fetchData();
 	}, [])
-	// 임시
 
 	return (
 		isLoaded &&

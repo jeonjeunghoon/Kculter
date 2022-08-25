@@ -11,15 +11,22 @@ function CourseCard (props) {
   return (
     <div>
       {props.courseList && props.courseList.map((item, i) => (
-        <div className="course-card"
-					key={i}
-				>
-					<img src={item.fileUrl}></img>
-					<h6>{item.name}</h6>
-					<button onClick={() => handleOnClickDel(props.courseList, props.setCourseList, i, dispatch)}>
-						X
-					</button>
-        </div>
+				<div className='course-card-outter'>
+        	<div className="course-card"
+						key={i}
+					>
+						<img
+							src={item.fileUrl}
+						/>
+						<h6>
+							{item.name}
+						</h6>
+						<button
+							onClick={() => handleOnClickDel(props.courseList, props.setCourseList, i, dispatch)}
+						>
+						</button>
+        	</div>
+				</div>
       ))}
     </div>
   )
