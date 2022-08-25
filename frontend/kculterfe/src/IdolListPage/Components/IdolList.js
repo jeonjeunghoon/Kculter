@@ -3,6 +3,7 @@ import './IdolList.css';
 import IdolCard from './IdolCard.js';
 import IdolSearchBar from './IdolSearchBar';
 import { getKpopList } from './container/GetKpopListData';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function IdolList({}) {
 	const [search, setSearch] = useState("");

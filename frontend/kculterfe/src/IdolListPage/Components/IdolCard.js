@@ -66,7 +66,9 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					Find {title} Spots in Map
+					<Link to='/MapLink' render={() => <MapLink key={key} culture_type={0} />}>
+						Find {title} Spots in Map
+                    </Link>
 				</Button>
 				</Modal.Footer>
 			</Modal>
