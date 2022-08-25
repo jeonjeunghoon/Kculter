@@ -5,6 +5,7 @@ import './MainNavbar.css';
 import { Button } from './Button';
 import logo from '../src_asset/logo.png';
 import {CLEAR_MEMBER} from "../redux/reducer";
+import { isNull } from 'lodash';
 
 function MainNavbar() {
   const dispatch = useDispatch();
@@ -13,11 +14,13 @@ function MainNavbar() {
   const [login,setLogin] = useState('LOGIN');
 
   useEffect(()=>{
-    if(member != ""){
+    if(member == null){
+      setStatus("login");
+     
+    }else {
+      console.log(member);
       setStatus("logout");
       setLogin("LOGOUT");
-    }else{
-      setStatus("login");
     }
   },[])
 
@@ -27,9 +30,8 @@ function MainNavbar() {
       alert("로그인간다잇")
     }else if(status === "logout"){//로그아웃 시켜준다.
       //멤버의 값을 다지우고, 다시 로그인으로 바꿔줘야한다.
-      console.log(member);
       dispatch({type:CLEAR_MEMBER,
-                data: ""
+                data:[]
           });
       alert("로그아웃 간다잇");
       setStatus("login");

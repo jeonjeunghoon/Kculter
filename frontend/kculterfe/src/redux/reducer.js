@@ -16,16 +16,7 @@ const initState = {
 		status: 0,
 	},
 	course: [],
-	member:{
-		memberNum : "",
-		email : '',
-		pwd : '',
-		nickName : '',
-		countryCode : '',
-		age : 0,
-		gender : '',
-		pf_image: ''
-	},
+	member: null,
 	idolSelected: true,
 	attrSelected: false,
 	concertSelected: false,

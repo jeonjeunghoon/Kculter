@@ -23,6 +23,10 @@ function Loginbtn(props) {
       pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
   }
 
+  //이 멤버를 세션 스토리지에 저장을 해야한다. 
+
+
+  
   const sendToServer = () => {
     if (props.email === ""){
       alert("Please enter your ID");
@@ -31,6 +35,7 @@ function Loginbtn(props) {
       alert("Please enter your Password");
     }else{
       //여기는 이제 둘다 정보가 들어있는 경우니 로그인 api를 호출한다.
+      
       const hash = hashPwd(props.email,props.pwd);
       axios.get('/member/login',{
         headers :{
@@ -38,14 +43,12 @@ function Loginbtn(props) {
         }
       })
       .then(function(res){
-        dispatch({
-          type:PUSH_MEMBER,
-          data: member,
-        })
-      })
+        const result = res.data;
+        alert("tkqjf")
+      }
+      )
       .catch(function(error){
         console.log(error);
-        alert("login failure");
       })
     }
   }

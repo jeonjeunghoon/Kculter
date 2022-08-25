@@ -14,6 +14,9 @@ import ForgotPwdModal from '../presentation/ForgotPwd';
 import SignUpModal from '../presentation/SignUpModal';
 import '../presentation/LoginPage.css';
 import '../presentation/LoginPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { PUSH_MEMBER } from "../../redux/reducer";
+import {CLEAR_MEMBER} from "../../redux/reducer";
 
 
 function LoginPage(){
@@ -27,15 +30,42 @@ function LoginPage(){
         setSignUp(false);
         window.location.reload();
     }
-    
-    const onKeyPress = (e) => {
-        if(e.key == 'Enter' && email != ''){
-            alert('a');
-        }
-        else{
-            alert("please")
-        }
+
+    const dispatch = useDispatch();
+
+    const member = {
+        memberNum : 1,
+          email : 'hankgood95@naver.com',
+          pwd : '1234',
+          nickName : 'passcucci',
+          countryCode : 'KR',
+          age : 28,
+          gender : 'male',
+          pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
       }
+        
+    const ononon = () => {
+        dispatch({
+            type:PUSH_MEMBER,
+            data: member,
+          })
+    }
+
+    const member1 = useSelector(state => state.member);
+
+    const ononon1 = () => {
+       console.log(member1);
+    }
+
+    const ononon2 = () => {
+        dispatch({
+            type:CLEAR_MEMBER,
+            data: ""
+      });
+     }
+
+
+
     return(
        <>
         <div className='login-con'>
@@ -85,6 +115,10 @@ function LoginPage(){
                 <div className='google-nav'>
                   <GoogleLoginBtn/>
                 </div>
+                <button onClick={ononon}>여기이ㅣ</button>
+                <button onClick={ononon1}>여기이ㅣ</button>
+                <button onClick={ononon2}>여기이ㅣ</button>
+
             </div>
         </div>
         </>
