@@ -8,7 +8,6 @@ function PlaceListPage() {
   return (
     <div className="body">
       <div className='IdolList'>
-        <IdolList />
         <PlaceList />
       </div>
     </div>

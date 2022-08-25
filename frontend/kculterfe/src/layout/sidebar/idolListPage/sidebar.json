@@ -1,10 +1,11 @@
 [
     {
-        "title": "K-Pop Stars",
-        "path":"../../../IdolListPage/IdolListPage"
+        "title": "Idol"
     },
     {
-        "title": "Attractions",
-        "path": "../../../IdolListPage/PlaceListPage"
+        "title": "Attractions"
+    },
+    {
+        "title": "Concert"
     }
 ]

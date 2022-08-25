@@ -2,17 +2,40 @@ import React from 'react';
 import './IdolListPage.css';
 import IdolList from './Components/IdolList.js';
 import PlaceList from './Components/PlaceList';
+import ConcertPage from '../concertPage/concertPage';
+import { useSelector } from 'react-redux';
 
 function IdolListPage() {
+  const idolSelect = useSelector(state => state.idolSelected);
+	const attrSelect = useSelector(state => state.attrSelected);
+	const concertSelect = useSelector(state => state.concertSelected);
 
-  return (
-    <div className="body">
-      <div className='IdolList'>
-        <IdolList />
-        <PlaceList />
+  if (idolSelect) {
+    return (
+      <div className="body">
+        <div className='IdolList'>
+          <IdolList />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else if (attrSelect) {
+    return (
+      <div className="body">
+        <div className='IdolList'>
+          <PlaceList />
+        </div>
+      </div>
+    );
+  }
+  else if (concertSelect) {
+    return (
+      <ConcertPage/>
+    );
+  }
+  return (
+    <p>error</p>
+  )
 }
 
 export default IdolListPage;
