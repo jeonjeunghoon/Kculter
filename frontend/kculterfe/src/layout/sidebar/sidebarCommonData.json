@@ -2,10 +2,6 @@
     {
 		"page":	[
 			{
-				"title": "Concert",
-				"icon": "bi-filter-circle"
-			},
-			{
 				"title": "IdolList",
 				"icon": ""
 			},

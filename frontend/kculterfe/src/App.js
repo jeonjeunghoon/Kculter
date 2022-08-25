@@ -9,7 +9,6 @@ import SignUpPage from './signup/SignUpPage';
 import MyPage from './myPage/page/MyPage';
 import MapPage from './map/MapPage';
 import Layout from './layout/Layout';
-import ConcertPage from './concertPage/concertPage';
 import IdolListPage from './IdolListPage/IdolListPage';
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';

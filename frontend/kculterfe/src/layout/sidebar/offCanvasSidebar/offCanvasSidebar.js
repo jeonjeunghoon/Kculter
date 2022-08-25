@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Offcanvas, Button } from 'react-bootstrap';
 import { useMediaQuery } from "react-responsive";
-import Sidebar from '../concertPage/Sidebar';
-import concertItem from '../concertPage/sidebar.json';
-import '../concertPage/sidebar.css';
+import Sidebar from '../idolListPage/Sidebar';
+import concertItem from '../idolListPage/sidebar.json';
+import '../idolListPage/sidebar.css';
 
 
 function OffCanvasSidebar(props) {
