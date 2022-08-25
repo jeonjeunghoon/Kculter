@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prac.react.algorithm.QuikSort;
 import com.prac.react.model.dto.Course;
 import com.prac.react.model.dto.CourseWrapper;
 import com.prac.react.model.dto.Place;
@@ -82,6 +83,10 @@ public class CourseController {
 			memberCourseList = cs.getMemberCourseWrapper(memberNum, courses);		
 		}
 
-		return memberCourseList;
+		//memberCourseList를 불러왔지만 지금 정렬이 하나도 되어있지 않다
+		//따라서 courseNum에따라서 오름차순으로 정렬을 해야한다.
+		QuikSort qs = new QuikSort(memberCourseList);
+
+		return qs.getCwl();
 	}
 }
