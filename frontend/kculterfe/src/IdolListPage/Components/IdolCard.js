@@ -6,7 +6,7 @@ import {
 import MapLink from '../../map/tmp/MapLink';
 import './IdolCard.css';
 
-function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, explain}) {
+function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -67,7 +67,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='/MapLink' render={() => <MapLink key={key} title={title.toLocaleUppercase()} culture_type={0} />}>
+					<Link to='/MapLink' render={() => <MapLink key={key} type={type} title={title.toLocaleUppercase()} />}>
 						Find {title} Spots in Map
                     </Link>
 				</Button>

@@ -35,10 +35,10 @@ function CultureList({}) {
 				{ filterTitle.map(cultureCard => 
 				<div className="CardDiv">
 					<IdolCard
-					id={cultureCard.keyNum}
 					key={cultureCard.keyNum}
-					path_photo={cultureCard.fileUrl}
+					type={2}
 					title={cultureCard.name}
+					path_photo={cultureCard.fileUrl}
 					num_like={cultureCard.likeCount}
 					num_spot={cultureCard.likeCount}
 					explain={cultureCard.explain}
