@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
+import MapLink from '../../map/tmp/MapLink';
 import './IdolCard.css';
 
 function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, explain}) {
