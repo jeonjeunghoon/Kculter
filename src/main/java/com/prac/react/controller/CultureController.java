@@ -22,7 +22,7 @@ public class CultureController {
     }
 
 
-    @GetMapping("/cultures")
+    @GetMapping("/culture")
     public List<Culture> getCultures(){
         List<Culture> cultureList = new ArrayList<>();
         logger.info("Culture list get API start");

@@ -1,7 +1,7 @@
 import React from 'react';
 import './IdolListPage.css';
 import IdolList from './Components/IdolList.js';
-import PlaceList from './Components/PlaceList';
+import CultureList from './Components/CultureList';
 import ConcertPage from '../concertPage/concertPage';
 import { useSelector } from 'react-redux';
 
@@ -23,7 +23,7 @@ function IdolListPage() {
     return (
       <div className="body">
         <div className='IdolList'>
-          <PlaceList />
+          <CultureList />
         </div>
       </div>
     );

@@ -67,7 +67,7 @@ function IdolCard( {id, key, path_photo, title, num_like, num_spot, path_map, ex
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='/MapLink' render={() => <MapLink key={key} title={title} culture_type={0} />}>
+					<Link to='/MapLink' render={() => <MapLink key={key} title={title.toLocaleUppercase()} culture_type={0} />}>
 						Find {title} Spots in Map
                     </Link>
 				</Button>
