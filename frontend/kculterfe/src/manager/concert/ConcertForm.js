@@ -122,11 +122,7 @@ function ConcertForm(props){
     //콘서트 시작 날짜 변경됐을때
     const changedSd = (date) => {
         let check = date
-        if(date.getDate() < new Date().getDate()){
-            alert("이미 지난 콘서트는 등록할수 없습니다.");
-            setStartDate();
-            check="";
-        }else if(endDate>startDate){
+        if(endDate>startDate){ 
             alert("콘서트 시작 날짜를 다시 확인해주세요.");
             setStartDate();
             check="";
@@ -143,11 +139,7 @@ function ConcertForm(props){
     //콘서트 끝나는 날짜 변경됐을때
     const changedEd = (date) => {
         let check = date;
-        if(date.getDate() < new Date().getDate()){
-            alert("이미 지난 콘서트는 등록할수 없습니다.");
-            setEndDate();
-            check="";
-        }else if(date<startDate){
+        if(date<startDate){
             alert("콘서트 끝나는 날짜를 다시 확인해주세요.");
             setEndDate("");
             check="";
