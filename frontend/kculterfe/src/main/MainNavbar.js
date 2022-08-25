@@ -46,11 +46,6 @@ function MainNavbar() {
                </Link>
                <ul className='nav-menu'>
                        <li className='nav-item'>
-                      <Link to='/ConcertPage' className='nav-links'>
-                        CONCERT
-                      </Link> 
-                       </li>
-                       <li className='nav-item'>
                       <Link to='/Mypage' className='nav-links'>
                       MYPAGE
                       </Link> 

@@ -27,7 +27,6 @@ function App() {
 				<Route element={<Layout />}> {/* 중첩 라우팅입니다. 레이아웃(헤더와 사이드네비)로 감싸는 컴포넌트(메인페이지를 제외한 모든 페이지)는 이 사이에 넣어주세요 */}
 					<Route path="/MapPage" element={<MapPage />} />
 					<Route path="/MyPage" element={<MyPage/>}/>  {/* myPage 추가 */}
-					<Route path="/ConcertPage" element={<ConcertPage/>}/>
 					<Route path="/IdolListPage" element={<IdolListPage/>}/>
 				</Route>
 				<Route path="*" element={<NotFound />} />
