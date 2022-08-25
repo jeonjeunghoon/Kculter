@@ -1,5 +1,5 @@
 import React from 'react';
-import CardItem from './CardItem';
+import CardItem from './ConcertCard';
 import items from '../data/card.json';
 
 function CardList() {

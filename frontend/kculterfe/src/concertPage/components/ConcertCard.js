@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button, Modal, Container, Row, Col } from 'react-bootstrap';
-import Jeju from '../../jeju.jpg';
+import Jeju from '../jeju.jpg';
 import './concertCard.css';
 
 function CardItem(item) {

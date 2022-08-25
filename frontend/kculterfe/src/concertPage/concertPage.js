@@ -1,7 +1,6 @@
 import React from 'react';
 import './concertPage.css';
-import CardList from './components/card/CardList';
-import { useSelector } from 'react-redux';
+import CardList from './components/ConcertList';
 
 function concertPage() {
 
