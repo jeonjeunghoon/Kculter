@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BoxCardItem from './BoxCardItem';
-import items from '../../data/myPage.json';
 import { getCourseList } from '../../container/GetCours';
 
 function BoxCardList() {
@@ -19,7 +18,7 @@ function BoxCardList() {
 
 	return (
 		<div className="box-list">
-			{ data.map((course, index) => <BoxCardItem key={index} props={course} data={data} {...course} />)}
+			{/* { data.map((course, index) => <BoxCardItem key={index} props={course} data={data} {...course} />)} */}
 		</div>
 	)
 }
