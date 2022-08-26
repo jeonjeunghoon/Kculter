@@ -1,6 +1,5 @@
 package com.prac.react.service;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,10 +71,10 @@ public class MemberServiceTest {
         Member member = new Member();
         member.setEmail("irang1205@naver.com");
         member.setPwd(pwd);
-        Member result = new Member();
+
 
         //when
-        result = ms.login(member);
+        Member result = ms.login(member);
 
         //then
         if(result == null){
