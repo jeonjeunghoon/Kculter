@@ -7,6 +7,7 @@ import {
 import Search from './Search';
 import MapMarker from './MapMarker';
 import MapCard from './MapCard';
+import MapFilter from './MapFilter'
 import {
 	handleOnLoad,
 	handleOnDragEndGM,
@@ -66,6 +67,9 @@ function MapRender(props) {
 					setZoom={setZoom}
 					dispatch={dispatch}
 				/>
+
+				{/* 필터 */}
+				<MapFilter />
 
 				{/* 마커 */}
 				<MapMarker

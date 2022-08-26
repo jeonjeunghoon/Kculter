@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
-import MapLink from '../../map/tmp/MapLink';
+import MapPage from '../../map/MapPage.js';
 import './PlaceCard.css';
 
 function PlaceCard( {id, key, culture_type, path_photo, title, num_like, lat, lng, address, explain}) {
@@ -63,7 +63,7 @@ function PlaceCard( {id, key, culture_type, path_photo, title, num_like, lat, ln
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='/MapLink' render={() => <MapLink key={key} title={title.toLocaleUpperCase()} culture_type={culture_type} />}>
+					<Link to='../../map/MapPage.js' render={() => <MapPage key={key} title={title.toLocaleUpperCase()} culture_type={culture_type} />}>
                         Find {title} in Map
                     </Link>
 				</Button>
