@@ -12,4 +12,7 @@
 		insert into member(memberNum,email,pwd,nickName,countryCode,age,gender,pf_image) 
 		values(null,#{email},#{pwd},#{nickName},#{countryCode},#{age},#{gender},#{pf_image})
 	</insert>
+	<select id="login" parameterType="Member" resultType="Member">
+		select memberNum, email, nickName, pf_image from member where email=#{email} and pwd=#{pwd}
+	</select>
 </mapper>

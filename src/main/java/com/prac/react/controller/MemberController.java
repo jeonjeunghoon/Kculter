@@ -85,9 +85,15 @@ public class MemberController {
         logger.info("Authorization : " + autho);
 
         String memberInform = encrypt.aesDecrypt(autho);
-        // 복호화를 했으니 이제는 입력받은것중 sql문이 있는지를 확인하고 이상한것이라면
-        // 해당 IP를 차단하는거면 좋겠지만 그러지는 못할것같도 일단 그 값을 못받게하자.
 
-        return null;
+        String[] idPwd = memberInform.split("/");
+        Member loginTry = new Member();
+        Encryption encrypt = new Encryption();
+        loginTry.setEmail(idPwd[0]);
+        loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); //받은 비밀번호 sha256 암호화
+
+        Member authorizedUser = ms.login(loginTry);
+
+        return authorizedUser;
     }
 }
