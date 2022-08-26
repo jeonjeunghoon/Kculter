@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
-import MapLink from '../../map/tmp/MapLink';
+import MapPage from '../../map/MapPage.js';
 import './IdolCard.css';
 
 function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, explain}) {
@@ -67,7 +67,7 @@ function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, 
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='/MapLink' render={() => <MapLink key={key} type={type} title={title.toLocaleUppercase()} />}>
+					<Link to='../../map/MapPage.js' render={() => <MapPage key={key} type={type} title={title.toLocaleUppercase()} />}>
 						Find {title} Spots in Map
                     </Link>
 				</Button>
