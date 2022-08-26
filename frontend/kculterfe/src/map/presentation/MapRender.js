@@ -46,17 +46,16 @@ function MapRender(props) {
 			},
 		},
 	};
-	const [isStay, setIsStay] = useState(true);
-	const [url, setUrl] = useState("/near/stay?lat=");
+	const [isStay, setIsStay] = useState(null);
+	const [url, setUrl] = useState(null);
 	const [near, setNear] = useState(null);
-	useEffect(() => {
-		console.log(isStay);
-		if (isStay) {
+		useEffect(() => {
+		if (isStay === true) {
 			setUrl("/near/stay?lat=");
-			handleOnDragEndGM(map, url, setNear);
-		} else {
+			handleOnDragEndGM(map, "/near/stay?lat=", setNear);
+		} else if (isStay === false) {
 			setUrl("/near/tour?lat=");
-			handleOnDragEndGM(map, url, setNear);
+			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
 	}, [isStay])
 
@@ -68,7 +67,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={(map) => handleOnLoad(map, setMap, url, setNear)}
+				onLoad={(map) => handleOnLoad(map, setMap, setIsStay, setUrl, setNear)}
 				onUnmount={() => setMap(null)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
 				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
@@ -97,7 +96,6 @@ function MapRender(props) {
 				{/* 카드 */}
 				<MapCard
 					near={near}
-					isStay={isStay}
 					setIsStay={setIsStay}
 					setCenter={setCenter}
 					setZoom={setZoom}

@@ -1,6 +1,4 @@
 import React, {
-	useState,
-	useEffect,
 	useRef,
 } from 'react';
 import Slider from "react-slick";
@@ -17,17 +15,11 @@ function CardToggle(props) {
 				style={{
 					backgroundColor:"red",
 				}}
-				onClick={() => {
-					console.log("Click! RED");
-					props.setIsStay(true);
-				}}
+				onClick={() => props.setIsStay(true)}
 			>
 			</button>
 			<button className='tour-toggle'
-				onClick={() => {
-					console.log("Click!");
-					props.setIsStay(false);
-				}}
+				onClick={() => props.setIsStay(false)}
 			>
 			</button>
 		</div>
@@ -35,7 +27,6 @@ function CardToggle(props) {
 }
 
 function MapCard(props) {
-	const [nearData, setNearData] = useState(null);
 	const settings = {
 		dots: false,
 		infinite: false,
@@ -69,12 +60,7 @@ function MapCard(props) {
 	}
 	const sliderRef = useRef();
 
-	useEffect(() => {
-		if (props.near) {
-			setNearData(props.near.data);
-		}
-	}, [props.near])
-	if (props.near) {
+	if (props.near && props.near.data) {
 		if (props.near.data.length < settings.slidesToShow) {
 			settings.slidesToShow = props.near.length;
 		}
@@ -85,11 +71,10 @@ function MapCard(props) {
 		})
 	}
 	return (
-		nearData
+		props.near
 		?
 		<div className='stay-container'>
 			<CardToggle
-				isStay={props.isStay}
 				setIsStay={props.setIsStay}
 			/>
 
@@ -101,7 +86,9 @@ function MapCard(props) {
 				ref={sliderRef}
 				{ ...settings }
 			>
-				{nearData.map((item, index) => 
+				{props.near &&
+				props.near.data &&
+				props.near.data.map((item, index) => 
 					<Cards
 						key={index}
 						item={item}

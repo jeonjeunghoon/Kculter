@@ -10,8 +10,11 @@ function CourseCard (props) {
 
   return (
     <div>
-      {props.courseList && props.courseList.map((item, i) => (
-				<div className='course-card-outter'>
+      {props.courseList &&
+			props.courseList.map((item, i) => (
+				<div className='course-card-outter'
+					key={i}
+				>
         	<div className="course-card"
 						key={i}
 					>
