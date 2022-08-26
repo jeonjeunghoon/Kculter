@@ -1,4 +1,5 @@
 import React, {
+	useEffect,
 	useState,
 } from 'react';
 import {
@@ -45,7 +46,19 @@ function MapRender(props) {
 			},
 		},
 	};
+	const [isStay, setIsStay] = useState(true);
+	const [url, setUrl] = useState("/near/stay?lat=");
 	const [near, setNear] = useState(null);
+	useEffect(() => {
+		console.log(isStay);
+		if (isStay) {
+			setUrl("/near/stay?lat=");
+			handleOnDragEndGM(map, url, setNear);
+		} else {
+			setUrl("/near/tour?lat=");
+			handleOnDragEndGM(map, url, setNear);
+		}
+	}, [isStay])
 
 	return (
 		<div className='map-container'>
@@ -55,10 +68,10 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={(map) => handleOnLoad(map, setMap, setNear)}
+				onLoad={(map) => handleOnLoad(map, setMap, url, setNear)}
 				onUnmount={() => setMap(null)}
-				onClick={e => handleOnClickGM(e, google, map, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
-				onDragEnd={() => handleOnDragEndGM(map, setNear)}
+				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
+				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
 			>
 
 				{/* 검색창 */}
@@ -84,6 +97,8 @@ function MapRender(props) {
 				{/* 카드 */}
 				<MapCard
 					near={near}
+					isStay={isStay}
+					setIsStay={setIsStay}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}

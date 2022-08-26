@@ -10,6 +10,30 @@ import Cards from './Cards';
 import CustomArrowPrev from './CustomArrowPrev';
 import CustomArrowNext from './CustomArrowNext';
 
+function CardToggle(props) {
+	return (
+		<div className="card-toggle">
+			<button className='stay-toggle'
+				style={{
+					backgroundColor:"red",
+				}}
+				onClick={() => {
+					console.log("Click! RED");
+					props.setIsStay(true);
+				}}
+			>
+			</button>
+			<button className='tour-toggle'
+				onClick={() => {
+					console.log("Click!");
+					props.setIsStay(false);
+				}}
+			>
+			</button>
+		</div>
+	);
+}
+
 function MapCard(props) {
 	const [nearData, setNearData] = useState(null);
 	const settings = {
@@ -64,6 +88,11 @@ function MapCard(props) {
 		nearData
 		?
 		<div className='stay-container'>
+			<CardToggle
+				isStay={props.isStay}
+				setIsStay={props.setIsStay}
+			/>
+
 			<CustomArrowPrev
 				sliderRef={sliderRef}
 			/>

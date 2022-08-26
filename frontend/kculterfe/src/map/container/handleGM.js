@@ -3,7 +3,7 @@ import {
 	handleGoogleMarkerAndSearch
 } from './handleOnMarker';
 
-export function handleOnLoad(map, setMap, setNear) {
+export function handleOnLoad(map, setMap, url, setNear) {
 	setMap(map);
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();
@@ -12,7 +12,7 @@ export function handleOnLoad(map, setMap, setNear) {
 			alert(status);
 		}
 		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get('/near/stay?lat='+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
+			axios.get(url+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
 			.then(function(res){
 				console.log(res, '통신 완료');
 				const data = res.data.map((obj) => ({
@@ -31,7 +31,7 @@ export function handleOnLoad(map, setMap, setNear) {
 	});
 }
 
-export function handleOnClickGM(e, google, map, setCenter, setZoom, dispatch) {
+export function handleOnClickGM(map, e, google, setCenter, setZoom, dispatch) {
 	if (!e || !map || !e.placeId) {
 		return;
 	}
@@ -39,7 +39,13 @@ export function handleOnClickGM(e, google, map, setCenter, setZoom, dispatch) {
 	const service = new window.google.maps.places.PlacesService(map);
 	const request = {
 		placeId: e.placeId,
-		fields: ['ALL'],
+		fields: [
+			"formatted_address",
+			"international_phone_number",
+			"name",
+			"photos",
+			"geometry"
+		],
 	};
 	service.getDetails(request, (placeData, status) => {
 		if (
@@ -53,7 +59,7 @@ export function handleOnClickGM(e, google, map, setCenter, setZoom, dispatch) {
 	})
 }
 
-export function handleOnDragEndGM(map, setNear) {
+export function handleOnDragEndGM(map, url, setNear) {
 	if (!map) {
 		return;
 	}
@@ -64,7 +70,7 @@ export function handleOnDragEndGM(map, setNear) {
 			alert(status);
 		}
 		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get('/near/stay?lat='+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
+			axios.get(url+map.getCenter().lat()+'&lng='+map.getCenter().lng())
 			.then(function(res){
 				console.log(res, '통신 완료');
 				const data = res.data.map((obj) => ({
