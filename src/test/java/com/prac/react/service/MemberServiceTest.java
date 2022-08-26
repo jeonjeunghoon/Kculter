@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.prac.react.model.dto.Member;
+import com.prac.react.security.Encryption;
 
 @SpringBootTest //DB까지 테스트하는 통합 테스트를 하려면 사용해야할 어노테이션
 @Transactional //테스트 상황에서 삽입되어지는 데이터를 롤백하기 위해서 사용하는 어노테이션
@@ -62,5 +63,26 @@ public class MemberServiceTest {
         int result = ms.insertMember(member);
         //then
         logger.info("Result : "+result);
+    }
+    @Test
+    void testLogin(){
+        //given
+        Encryption encryption = new Encryption();
+        String pwd = encryption.shaEncryption("h1267915h!");
+        Member member = new Member();
+        member.setEmail("irang1205@naver.com");
+        member.setPwd(pwd);
+        Member result = new Member();
+
+        //when
+        result = ms.login(member);
+
+        //then
+        if(result == null){
+            logger.info("ID or Pwd is not correct");
+        }else{
+            logger.info("Member : "+ member.toString());
+        }
+
     }
 }
