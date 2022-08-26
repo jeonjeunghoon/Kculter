@@ -8,7 +8,6 @@ import '../map-sidebar.css';
 function MapSideNav() {
 	const place = useSelector(state => state.place);
 
-	console.log(place);
 	return (
 		<div className="map-sidebar">
 			<Head
