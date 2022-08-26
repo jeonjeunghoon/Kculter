@@ -54,6 +54,8 @@
 
 .autocomplete-input {
 	position: absolute;
+	margin-top: 20px;
+	margin-left: 30px;
   width: 240px;
   height: 32px;
   border: 1px solid transparent;
