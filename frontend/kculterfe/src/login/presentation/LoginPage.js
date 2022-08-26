@@ -78,7 +78,6 @@ function LoginPage(){
                     <img src={loginblack}></img>
                 </div>
                 <div className='inpult-nav'>
-                    <Form>
                     <input className='input-css1' 
                         type='text'
                         placeholder='E-mail'
@@ -90,7 +89,6 @@ function LoginPage(){
                     onChange={e=> setPwd(e.target.value)}
                     />
                 <Loginbtn type="submit" email={email} pwd={pwd}>LOGIN</Loginbtn>
-                </Form>
                 </div>
                 <SignUpModal
                     show={SignUp} onHide={close}

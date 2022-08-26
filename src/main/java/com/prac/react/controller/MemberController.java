@@ -87,7 +87,8 @@ public class MemberController {
         String memberInform = encrypt.aesDecrypt(autho);
         // 복호화를 했으니 이제는 입력받은것중 sql문이 있는지를 확인하고 이상한것이라면
         // 해당 IP를 차단하는거면 좋겠지만 그러지는 못할것같도 일단 그 값을 못받게하자.
+        Member member = new Member(1, "irang4605@naver.com", "123", "jham", "KR", 23, "man", "www.dwd.com");
 
-        return null;
+        return member;
     }
 }

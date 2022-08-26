@@ -44,7 +44,10 @@ function Loginbtn(props) {
       })
       .then(function(res){
         const result = res.data;
-        alert("tkqjf")
+        window.sessionStorage.setItem("memberNum",result.memberNum);
+        window.sessionStorage.setItem("nickname",result.nickName);
+        window.sessionStorage.setItem("email",result.email);
+        window.sessionStorage.setItem("pwd",result.pwd);
       }
       )
       .catch(function(error){
