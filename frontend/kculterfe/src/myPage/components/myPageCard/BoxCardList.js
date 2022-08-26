@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BoxCardItem from './BoxCardItem';
-import items from '../../data/myPage.json';
 import { getCourseList } from '../../container/GetCours';
 
 function BoxCardList() {

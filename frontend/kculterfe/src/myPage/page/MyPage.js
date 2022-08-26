@@ -1,5 +1,6 @@
 import React from 'react';
 import MyPageBody from '../components/MyPageBody';
+import MyInfoPage from '../components/MyInfoPage';
 import { useSelector } from 'react-redux';
 
 function MyPage() {
@@ -16,7 +17,7 @@ function MyPage() {
   else if (settingSelected) {
     return (
       <>
-        setting page
+        <MyInfoPage />
       </>
     );		
   }							

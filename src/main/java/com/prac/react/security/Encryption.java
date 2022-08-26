@@ -66,7 +66,6 @@ public class Encryption {
 		// 복호화
 		public String aesDecrypt(String encryptedText) {
 			logger.info("autho : "+encryptedText);
-			logger.info("secretKey : "+sk.getSecretKey());
 			try {
 				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 				cipher.init(Cipher.DECRYPT_MODE,
