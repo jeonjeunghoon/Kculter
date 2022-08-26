@@ -67,7 +67,7 @@ function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, 
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='../../map/MapPage.js' render={() => <MapPage key={key} type={type} title={title.toLocaleUppercase()} />}>
+					<Link to='/MapPage' render={() => <MapPage key={key} type={type} title={title.toLocaleUppercase()} />}>
 						Find {title} Spots in Map
                     </Link>
 				</Button>

@@ -63,7 +63,7 @@ function PlaceCard( {id, key, culture_type, path_photo, title, num_like, lat, ln
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='../../map/MapPage.js' render={() => <MapPage key={key} title={title.toLocaleUpperCase()} culture_type={culture_type} />}>
+					<Link to='/MapPage' render={() => <MapPage key={key} title={title.toLocaleUpperCase()} culture_type={culture_type} />}>
                         Find {title} in Map
                     </Link>
 				</Button>

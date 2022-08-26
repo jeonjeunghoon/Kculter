@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './IdolList.css';
+import './CultureList.css';
 import IdolCard from './IdolCard.js';
 import IdolSearchBar from './IdolSearchBar';
 import { getCultureList } from './container/GetCultureListData';
