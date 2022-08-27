@@ -40,12 +40,14 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 						</div>
 						<div className={styles.pin}>
 							<div className={styles.like_num}>
+								<p>{num_like }</p>
+								<p>likes</p>
 								<img src='heart.png' />
-								<p>{num_like} Likes</p>
 							</div>
 							<div className={styles.spot_num}>
+								<p>{num_spot }</p>
+								<p>spots</p>
 								<img src='spot.png' />
-								<p>{num_spot} Spots</p>
 							</div>
 						</div>
 					</div>
@@ -59,8 +61,8 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 			>
 				<Modal.Header className={styles.modal_header}>
 					<img src={path_photo} />
-					<Modal.Title className={styles.modal_title}>{title}</Modal.Title>
 				</Modal.Header>
+				<Modal.Title className={styles.modal_title}>{title}</Modal.Title>
 				<Modal.Body className={styles.modal_body}>
 					<div className={styles.modal_paragraph}>
 						<p>{explain}</p>
@@ -82,11 +84,11 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 
 				</Modal.Body>
 				<Modal.Footer>
-				<Button className={styles.button} variant={styles.modal_secondary} onClick={handleClose}>
+				<Button variant={styles.modal_secondary} onClick={handleClose}>
 					Close
 				</Button>
-				<Button className={styles.button} variant={styles.modal_primary} onClick={handleClose}>
-					<Link to='/MapPage'>
+				<Button variant={styles.modal_primary} onClick={handleClose}>
+					<Link className={styles.button} to='/MapPage'>
 						Find {title} Spots in Map
                     </Link>
 				</Button>

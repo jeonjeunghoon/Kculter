@@ -137,7 +137,6 @@ h3,p{
 	width: 1.3rem;
 }
 
-
 @media (max-width: 950px) {
 	.idolcard-modal-body {
 		flex-direction: column;

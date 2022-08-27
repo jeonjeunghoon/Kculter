@@ -1,0 +1,29 @@
+.IdolListBody {
+	background-color: #eeeeee;
+}
+
+.IdolSearchBar{
+	display: flex;
+	justify-content: left;
+	margin-top: 1rem;
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+.CardContainer{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); 
+}
+
+.CardDiv{
+	display: 0;
+	float: left;
+}
+
+@media (min-width: 800px) {
+	.CardContainer { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1000px) {
+	.CardContainer { grid-template-columns: repeat(4, 1fr); }
+}

@@ -4,6 +4,8 @@ import IdolCard from './IdolCard.js';
 import IdolSearchBar from './IdolSearchBar';
 import { getKpopList } from './container/GetKpopListData';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+/** css module */
+import styles from './IdolList.module.css';
 
 function IdolList({}) {
 	const [search, setSearch] = useState("");
@@ -26,13 +28,13 @@ function IdolList({}) {
 		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 	return (
-		<div className="IdolListBody">
-			<div className="IdolSearchBar">
+		<div className={styles.IdolListBody}>
+			<div className={styles.IdolSearchBar}>
 				<IdolSearchBar value={search} onChange={onChange} />
 			</div>
-			<div className="CardContainer">
+			<div className={styles.CardContainer}>
 				{ filterTitle.map(idolcard => 
-				<div className="CardDiv">
+				<div className={styles.CardDiv}>
 					<IdolCard
 					keyNum={idolcard.keyNum}
 					type={1}
