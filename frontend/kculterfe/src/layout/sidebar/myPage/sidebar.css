@@ -7,7 +7,7 @@
 .sidebar {
 	background-color: rgb(0,3,77);
 	height: 100%;
-	min-width: 256px;
+	min-width: 300px;
 	grid-row: 1 / span 4;
 }
 
@@ -16,7 +16,7 @@
 	display: block;
 	background-color: rgb(0,3,77);
 	height: 100vh;
-	min-width: 256px;
+	min-width: 300px;
 	grid-row: 1 / span 4;
 }
 
