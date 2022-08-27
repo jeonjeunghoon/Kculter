@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
-import { Offcanvas, Button } from 'react-bootstrap';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Offcanvas } from 'react-bootstrap';
 import { useMediaQuery } from "react-responsive";
-import Sidebar from '../idolListPage/Sidebar';
-import concertItem from '../idolListPage/sidebar.json';
+import MapSideNav from '../mapPage/presentation/MapSideNav';
+import IdolListSideNav from '../idolListPage/Sidebar';
+import MySideNav from '../myPage/Sidebar';
+
+import idolListItem from "../idolListPage/sidebar.json";
+import mapItem from "../mapPage/sidebar.json";
+import myPageItem from "../myPage/sidebar.json";
 import '../idolListPage/sidebar.css';
+import './offCanvasSidebar.css';
 
 
 function OffCanvasSidebar(props) {
+	const location = useLocation();
 	const isSm = useMediaQuery({
 		query : "(max-width:512px)"
 	});
 
 	return (
 		<>
-			<Offcanvas show={ props.isOpen && isSm } onHide={props.sideClose}>
+			<Offcanvas className='custom' show={ props.isOpen && isSm } onHide={props.sideClose}>
 				<div className='inCanvas'>
-					<Sidebar pageidx={0} items={concertItem}/>
+					{location.pathname == "/IdolListPage" && <IdolListSideNav pageidx={0} items={idolListItem}/>}
+					{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem}/>}
+					{location.pathname == "/Mypage" && <MySideNav pageidx={2} items={myPageItem}/>}
 				</div>
 			</Offcanvas>
 		</>
