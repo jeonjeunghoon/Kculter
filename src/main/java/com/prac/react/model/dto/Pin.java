@@ -2,8 +2,10 @@ package com.prac.react.model.dto;
 
 public class Pin {
     private int pinNum;
+    private String pinHash;
     private int pinType;
     private int pinKeyNum;
+    private String pinKeyHash;
     private String imageUrl;
 
     public Pin() {
@@ -25,6 +27,14 @@ public class Pin {
         this.pinNum = pinNum;
     }
 
+    public String getPinHash() {
+        return this.pinHash;
+    }
+
+    public void setPinHash(String pinHash) {
+        this.pinHash = pinHash;
+    }
+
     public int getPinType() {
         return this.pinType;
     }
@@ -41,6 +51,14 @@ public class Pin {
         this.pinKeyNum = pinKeyNum;
     }
 
+    public String getPinKeyHash() {
+        return this.pinKeyHash;
+    }
+
+    public void setPinKeyHash(String pinKeyHash) {
+        this.pinKeyHash = pinKeyHash;
+    }
+
     public String getImageUrl() {
         return this.imageUrl;
     }
@@ -48,12 +66,16 @@ public class Pin {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
     @Override
     public String toString() {
         return "{" +
             " pinNum='" + getPinNum() + "'" +
+            ", pinHash='" + getPinHash() + "'" +
             ", pinType='" + getPinType() + "'" +
             ", pinKeyNum='" + getPinKeyNum() + "'" +
+            ", pinKeyHash='" + getPinKeyHash() + "'" +
             ", imageUrl='" + getImageUrl() + "'" +
             "}";
     }

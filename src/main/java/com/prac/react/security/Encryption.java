@@ -31,9 +31,10 @@ public class Encryption {
 
 	public String shaEncryption(String pwd) {
 		try {
+			String pwdSalt = sk.getSecretKey()+pwd;
 			//try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(pwd.getBytes());
+			md.update(pwdSalt.getBytes());
 			byte byteData[] = md.digest();
 			
 			StringBuffer sb = new StringBuffer();//이건 문자열을 추가하거나 변경할때 주로 사용하는 클래스이다.
@@ -62,6 +63,20 @@ public class Encryption {
 			throw new RuntimeException();
 		} 
 	}
+
+		//암호화
+		public String aesEncrypt(String key) {
+			try {
+				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				cipher.init(Cipher.ENCRYPT_MODE, 
+							new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
+							new IvParameterSpec(iv.getBytes()));
+				
+				return new String(Base64.getEncoder().encode(cipher.doFinal(key.getBytes("UTF-8"))));
+			} catch(Exception e) { 
+				return key;
+			}
+		}		
 
 		// 복호화
 		public String aesDecrypt(String encryptedText) {

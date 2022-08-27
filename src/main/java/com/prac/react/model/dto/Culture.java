@@ -2,6 +2,7 @@ package com.prac.react.model.dto;
 
 public class Culture {
     private int keyNum;
+    private String keyHash;
     private String name;
     private int likeCount;
     private int status;
@@ -24,8 +25,16 @@ public class Culture {
         return this.keyNum;
     }
 
-    public void setKeyNum(int cultNum) {
-        this.keyNum = cultNum;
+    public void setKeyNum(int keyNum) {
+        this.keyNum = keyNum;
+    }
+
+    public String getKeyHash() {
+        return this.keyHash;
+    }
+
+    public void setKeyHash(String keyHash) {
+        this.keyHash = keyHash;
     }
 
     public String getName() {
@@ -68,10 +77,12 @@ public class Culture {
         this.fileUrl = fileUrl;
     }
 
+
     @Override
     public String toString() {
         return "{" +
-            " cultNum='" + getKeyNum() + "'" +
+            " keyNum='" + getKeyNum() + "'" +
+            ", keyHash='" + getKeyHash() + "'" +
             ", name='" + getName() + "'" +
             ", likeCount='" + getLikeCount() + "'" +
             ", status='" + getStatus() + "'" +
@@ -79,4 +90,6 @@ public class Culture {
             ", fileUrl='" + getFileUrl() + "'" +
             "}";
     }
+
+
 }

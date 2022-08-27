@@ -3,6 +3,7 @@ package com.prac.react.model.dto;
 public class Place {
 
     private int placeNum;
+    private String placeHash;
     private int placeType; //1 : kpop ,  2 : 문화 체험
     private String culture;
     private String kpop;
@@ -37,6 +38,14 @@ public class Place {
 
     public void setPlaceNum(int placeNum) {
         this.placeNum = placeNum;
+    }
+
+    public String getPlaceHash() {
+        return this.placeHash;
+    }
+
+    public void setPlaceHash(String placeHash) {
+        this.placeHash = placeHash;
     }
 
     public int getPlaceType() {
@@ -123,6 +132,7 @@ public class Place {
     public String toString() {
         return "{" +
             " placeNum='" + getPlaceNum() + "'" +
+            ", placeHash='" + getPlaceHash() + "'" +
             ", placeType='" + getPlaceType() + "'" +
             ", culture='" + getCulture() + "'" +
             ", kpop='" + getKpop() + "'" +
@@ -136,5 +146,4 @@ public class Place {
             "}";
     }
 
- 
 }
