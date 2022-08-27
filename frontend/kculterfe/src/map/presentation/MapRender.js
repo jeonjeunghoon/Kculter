@@ -87,7 +87,11 @@ function MapRender(props) {
 				<MapMarker
 					kculterPlace={props.kculterPlace.data}
 					near={near}
-					pin={props.pin.data}
+					kPin={props.pin.data}
+					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
+					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
+					coursePin={""}
+					isStay={isStay}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}

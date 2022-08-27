@@ -36,9 +36,9 @@ export function handleCard(data, setCenter, setZoom, dispatch) {
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
 
-export function handleCustomMarker(data, setCenter, setZoom, dispatch) {
+export function handleCustomMarker(data, setCenter, setZoom, dispatch, title) {
 	const place = {
-		head: "K-CULTER",
+		head: title,
 		src: "",
 		address: data.address,
 		culture: data.culture,

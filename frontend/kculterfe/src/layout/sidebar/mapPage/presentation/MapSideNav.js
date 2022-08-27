@@ -14,10 +14,13 @@ function MapSideNav() {
 				src={place.src}
 				head={place.head}
 			/>
-			<img
-				src={place.fileUrl}
-				alt={place.name}
-			/>
+			{
+				place.fileUrl &&
+				<img className="place-img"
+					src={place.fileUrl}
+					alt={place.name}
+					/>
+			}
 			<div className="map-sidebar-content">
 				<Place
 					name={place.name}

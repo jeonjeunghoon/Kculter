@@ -24,7 +24,7 @@ function MapMarker(props) {
 			{/* KCULTER 마커 */}
 			<CustomMarker
 				kculterPlace={props.kculterPlace}
-				pin={props.pin}
+				pin={props.kPin}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
@@ -33,21 +33,33 @@ function MapMarker(props) {
 			{/* 코스 마커 */}
 			<CustomMarker
 				kculterPlace={useSelector(state => state.course)}
-				pin={props.pin}
+				pin={props.coursePin}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
 				dispatch={props.dispatch}
 			/>
 			{/* Near 마커 */}
-			<CustomMarker
-				kculterPlace={nearData}
-				pin={props.pin}
-				markerHandler={handleCard}
-				setCenter={props.setCenter}
-				setZoom={props.setZoom}
-				dispatch={props.dispatch}
-			/>
+			{
+				props.isStay ?
+				<CustomMarker
+					kculterPlace={nearData}
+					pin={props.stayPin}
+					markerHandler={handleCard}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+				:
+				<CustomMarker
+					kculterPlace={nearData}
+					pin={props.tourPin}
+					markerHandler={handleCard}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 		</div>
 	);
 }

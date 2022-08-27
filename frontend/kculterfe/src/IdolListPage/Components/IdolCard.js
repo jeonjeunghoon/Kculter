@@ -3,14 +3,28 @@ import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
-import MapPage from '../../map/MapPage.js';
 import './IdolCard.css';
+// redux
+import {
+	useDispatch
+} from 'react-redux';
+import { SET_IDOL_CULTURE } from '../../redux/reducer';
 
-function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, explain}) {
+function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const dispatch = useDispatch();
+	dispatch({
+		type: SET_IDOL_CULTURE,
+		data: {
+			key: keyNum,
+			type: type,
+			title: title,
+		}
+	});
 
 	return (
 		<>
@@ -67,7 +81,7 @@ function IdolCard( {key, type, path_photo, title, num_like, num_spot, path_map, 
 					Close
 				</Button>
 				<Button variant="idolcard-primary" onClick={handleClose}>
-					<Link to='/MapPage' render={() => <MapPage key={key} type={type} title={title.toLocaleUppercase()} />}>
+					<Link to='/MapPage'>
 						Find {title} Spots in Map
                     </Link>
 				</Button>

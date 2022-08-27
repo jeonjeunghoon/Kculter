@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {
 	useState,
 	useEffect,
@@ -8,13 +7,12 @@ import {
 	useLocation,
 } from 'react-router-dom';
 import './Header.css';
-import MapLink from '../../../map/tmp/MapLink';
 import OffCanvasSidebar from '../../sidebar/offCanvasSidebar/offCanvasSidebar';
 
 function Header(props) {
+	const location = useLocation();
 	const [img, setImg] = useState('https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png');
 	const [title, setTitle] = useState(null);
-	const location = useLocation();
 	const [isOpen, setOpen] = useState(true);
 	const sideClose = () => setOpen(false);
 
@@ -22,7 +20,7 @@ function Header(props) {
 		switch (location.pathname) {
 			case '/MapPage':
 				setTitle('Map');
-				// setImg('');
+				setImg('');
 				break;
 			case '/Mypage':
 				setTitle('My Page');
@@ -32,6 +30,9 @@ function Header(props) {
 				setTitle('Concert');
 				setImg('');
 				break;
+			case '/IdolListPage':
+				setTitle('IdolListPage');
+				setImg('');
 			default:
 				setTitle('Error');
 				setImg('');
@@ -53,7 +54,6 @@ function Header(props) {
 				/>
 				<p>{title}</p>
 			</div>
-			<MapLink />
 			<div className='right'>
 				<Link to='/'>
 					<button className='logo'>

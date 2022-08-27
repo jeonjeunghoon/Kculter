@@ -22,6 +22,11 @@ const initState = {
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
+	idolCulture: {
+		key: 0,
+		type: 0,
+		title: "K-CULTER",
+	},
 }
 
 // 액션 추가 여기
@@ -34,6 +39,7 @@ export const CLEAR_MEMBER = 'CLEAR_MEMBER';
 export const PUSH_MEMBER = 'PUSH_MEMBER';
 export const SIDE_SET_DASHBOARD = 'SIDE_SET_DASHBOARD';
 export const SIDE_SET_SETTING = 'SIDE_SET_SETTING';
+export const SET_IDOL_CULTURE = 'SET_IDOL_CULTURE';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -83,6 +89,11 @@ export default function reducer(state = initState, action) {
 			return {
 				...state,
 				settingSelected: action.data,
+			}
+		case SET_IDOL_CULTURE:
+			return {
+				...state,
+				idolCulture: action.data,
 			}
 		default:
 			return state;

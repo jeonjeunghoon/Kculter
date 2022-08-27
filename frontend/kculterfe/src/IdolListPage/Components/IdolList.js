@@ -34,7 +34,7 @@ function IdolList({}) {
 				{ filterTitle.map(idolcard => 
 				<div className="CardDiv">
 					<IdolCard
-					key={idolcard.keyNum}
+					keyNum={idolcard.keyNum}
 					type={1}
 					title={idolcard.name}
 					path_photo={idolcard.fileUrl}
