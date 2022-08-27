@@ -205,22 +205,8 @@ const handleSubmit = (e) => {
           <span className={`message ${emailOk ? 'success' : 'error'}`}>{verifyMessage}</span>
           <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
         </Form.Group>
-        
-        {/* 비밀번호 */}
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <form onSubmit={handleSubmit}>
-            <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
-          </form>
-          <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
-        </Form.Group>
 
-        {/* 비밀번호 확인 */}
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
-          <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
-        </Form.Group>
+        {/* 닉네임 */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nick-Name</Form.Label>
           <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} defaultValue={"hyujo"} />
@@ -257,11 +243,27 @@ const handleSubmit = (e) => {
 
       {/* Edit 버튼 */}
       <button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
-        Complete
+        Edit
       </button>
 
+      {/* 비밀번호 */}
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <form onSubmit={handleSubmit}>
+          <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
+        </form>
+        <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
+      </Form.Group>
+
+      {/* 비밀번호 확인 */}
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
+        <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
+      </Form.Group>
+
       {/* 비밀번호 변경 버튼으로 해야 할듯? */}
-      <button className="close-btn"onClick={cancel}>Close</button>
+      <button className="close-btn"onClick={cancel}>password confirm</button>
     </Container>
   )
 }
