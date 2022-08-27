@@ -7,11 +7,11 @@
 	animation: ease-in-out;
 	background-color: white;
 	margin: 5%;
+	border-radius: 2rem;
 }
 
 .card-container:hover{
 	transform: scale(1.1);
-	box-shadow:0px 0px 15px 0px;
 }
 
 .image-container {
@@ -43,15 +43,6 @@
 	opacity: 0.85;
 }
 
-.image-title{
-	font-size: x-large;
-	font-weight: bold;
-	position: absolute;
-	bottom: 8px;
-	left: 16px;
-
-}
-
 .card-content{
 	display: flex;
 	flex-direction: row;
@@ -65,6 +56,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.image-title{
+	font-size: x-large;
+	font-weight: bold;
 }
 
 .card-content img {

@@ -3,7 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
-import './IdolCard.css';
+// css module
+import styles from './IdolCard.module.css';
 // redux
 import {
 	useDispatch
@@ -28,20 +29,24 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 
 	return (
 		<>
-			<a className='cardLink' onClick={handleShow}>
-				<div className="card-container">
-					<div className="image-container">
+			<a className={styles.cardLink} onClick={handleShow}>
+				<div className={styles.card_container}>
+					<div className={styles.image_container}>
 						<img src={path_photo} />
-						<div className="image-title"><h3>{title}</h3></div>
 					</div>
-					<div className="card-content">
-						<div className="like-num">
-							<img src='heart.png' />
-							<p>{num_like} Likes</p>
+					<div className={styles.card_content}>
+						<div className={styles.image_title}>
+							<h3>{title}</h3>
 						</div>
-						<div className="spot-num">
-							<img src='spot.png' />
-							<p>{num_spot} Spots</p>
+						<div className={styles.pin}>
+							<div className={styles.like_num}>
+								<img src='heart.png' />
+								<p>{num_like} Likes</p>
+							</div>
+							<div className={styles.spot_num}>
+								<img src='spot.png' />
+								<p>{num_spot} Spots</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -52,35 +57,35 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 				onHide={handleClose}
 				size="lg"
 			>
-				<Modal.Header className="idolcard-modal-header">
+				<Modal.Header className={styles.modal_header}>
 					<img src={path_photo} />
-					<Modal.Title className="idolcard-modal-title">{title}</Modal.Title>
+					<Modal.Title className={styles.modal_title}>{title}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="idolcard-modal-body">
-					<div className="idolcard-modal-paragraph">
+				<Modal.Body className={styles.modal_body}>
+					<div className={styles.modal_paragraph}>
 						<p>{explain}</p>
 					</div>
-					<div className="idolcard-modal-info">
-						<div className="idolcard-modal-like-num">
+					<div className={styles.modal_info}>
+						<div className={styles.modal_like_num}>
 							<img src='heart.png' />
 							<p>{num_like} Likes</p>
 						</div>
-						<div className="idolcard-modal-spot-num">
+						<div className={styles.modal_spot_num}>
 							<img src='spot.png' />
 							<p>{num_spot} Spots</p>
 						</div>
 					</div>
 
-					<div className="idolcard-modal-map">
+					<div className={styles.modal_map}>
 
 					</div>
 
 				</Modal.Body>
 				<Modal.Footer>
-				<Button variant="idolcard-secondary" onClick={handleClose}>
+				<Button className={styles.button} variant={styles.modal_secondary} onClick={handleClose}>
 					Close
 				</Button>
-				<Button variant="idolcard-primary" onClick={handleClose}>
+				<Button className={styles.button} variant={styles.modal_primary} onClick={handleClose}>
 					<Link to='/MapPage'>
 						Find {title} Spots in Map
                     </Link>
