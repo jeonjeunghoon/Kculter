@@ -1,12 +1,12 @@
 import React, {useState,useMemo, useEffect} from 'react';
-import {Modal, Button, Form, Container} from 'react-bootstrap';
+import {Form, Container} from 'react-bootstrap';
 import './MyInfo.css';
 // import '../presentation/CountryList';
-// import {checkEmail} from '../container/EmailCheck';
-// import {checkNick} from '../container/NickCheck';
-// import countryList from 'react-select-country-list';
+import {checkEmail} from '../../container/EmailCheck';
+import {checkNick} from '../../container/NickCheck';
+import countryList from 'react-select-country-list';
 import Select from 'react-select';
-// import { storeMember } from '../container/StoreMember';
+// import { EditInfo } from '../container/EditInfo';
 // import crypto from 'crypto-js';
 import axios from 'axios';
 // import {hashPwd}  from '../presentation/Encryptpwd';
@@ -19,7 +19,7 @@ function MyInfo({show, onHide}) {
   const [country,setCountry] = useState();
   const [countryCode, setCountryCode] = useState('') //나라
   const [age, setAge] = useState('');
-  const [gender,setGender] = useState();
+  const [gender,setGender] = useState('');
   
   /*오류메세지*/
   const [verifyMessage, setVerMessage] = useState('');
@@ -93,89 +93,90 @@ const onChangeEmail = (e) => {
     }
 }
 
-// const onChangePasswordConfirm = (e) => {
-//   const passwordConfirmCurrent = e.target.value
-//   if(passwordConfirmCurrent === ""){
-//     setPasswordConfirmMessage('')
-//     setIsPasswordConfirm(false)
-//   }
-//   else if (password === passwordConfirmCurrent) {
-//     setPasswordConfirmMessage('OK :)');
-//     setIsPasswordConfirm(true);
-//     setPassword(hashPwd(password));
-//   }else{
-//     setPasswordConfirmMessage('The password is different')
-//     setIsPasswordConfirm(false)    
-//   }
-// }
+const onChangePasswordConfirm = (e) => {
+  const passwordConfirmCurrent = e.target.value
+  if(passwordConfirmCurrent === ""){
+    setPasswordConfirmMessage('')
+    setIsPasswordConfirm(false)
+  }
+  else if (password === passwordConfirmCurrent) {
+    setPasswordConfirmMessage('OK :)');
+    setIsPasswordConfirm(true);
+    // setPassword(hashPwd(password));
+  }else{
+    setPasswordConfirmMessage('The password is different')
+    setIsPasswordConfirm(false)    
+  }
+}
 
-// const onChangeNickName = (e) => {
-//   let regExp = /[^a-zA-Z]/g
-//   const nickNameRegex = e.target.value;
-//   if(nickNameRegex === ""){
-//     setnickNameMessage("");
-//     setNicNameBtDis(true);
-//     setIsNickName(false);
-//   }
-//   else if (regExp.test(nickNameRegex)){
-//     setnickNameMessage("no only char plz");
-//     setNicNameBtDis(true);
-//     setIsNickName(false);
-//   }
-//   else
-//   {
-//      setNickName(nickNameRegex);
-//      setnickNameMessage("OK :)")
-//      setIsNickName(true);
-//      setNicNameBtDis(false);
-//   }
-// }
+const onChangeNickName = (e) => {
+  let regExp = /[^a-zA-Z]/g
+  const nickNameRegex = e.target.value;
+  if(nickNameRegex === ""){
+    setnickNameMessage("");
+    setNicNameBtDis(true);
+    setIsNickName(false);
+  }
+  else if (regExp.test(nickNameRegex)){
+    setnickNameMessage("no only char plz");
+    setNicNameBtDis(true);
+    setIsNickName(false);
+  }
+  else
+  {
+     setNickName(nickNameRegex);
+     setnickNameMessage("OK :)")
+     setIsNickName(true);
+     setNicNameBtDis(false);
+  }
+}
 
-// const emaildupli = async () => { //이메일 중복검사
-//   const result = await checkEmail(email);
-//   if(result > 0){
-//     alert("This email is not available.")
-//     setEmailAvail(false);
-//   }else{
-//     alert("This email is available.")
-//     setEmailAvail(true);
-//   }
-// }
+const emaildupli = async () => { //이메일 중복검사
+  const result = await checkEmail(email);
+  if(result > 0){
+    alert("This email is not available.")
+    setEmailAvail(false);
+  }else{
+    alert("This email is available.")
+    setEmailAvail(true);
+  }
+}
 
-// const nicknamedupli = async () => { //닉네임 중복검사
-//   const result = await checkNick(nickName);
-//   if(result > 0){
-//     alert("This nick name is not available.");
-//     setNickNameAvail(false);
-//   }else{
-//     alert("This nick name is available.");
-//     setNickNameAvail(true);
-//   }
-// }
+const nicknamedupli = async () => { //닉네임 중복검사
+  const result = await checkNick(nickName);
+  if(result > 0){
+    alert("This nick name is not available.");
+    setNickNameAvail(false);
+  }else{
+    alert("This nick name is available.");
+    setNickNameAvail(true);
+  }
+}
 
-// const checkAge = (e) => {
-//   const result = e.target.value
-//   setAge(result);
-// }
+const checkAge = (e) => {
+  const result = e.target.value
+  setAge(result);
+}
 
 /* 나라선택 */
-// const options = useMemo(() => countryList().getData(), []);
+const options = useMemo(() => countryList().getData(), []);
 
-// const changeHandler = value => {
-//   console.log("country code : "+value.value);
-//   setCountry(value);
-//   setCountryCode(value.value);
-// }
+const changeHandler = value => {
+  console.log("country code : "+value.value);
+  setCountry(value);
+  setCountryCode(value.value);
+}
 
-// const insertMember = async () =>{
-//   if(!(emailAvail||nickNameAvail)){
-//     alert("Please check email and nickname duplication");
-//   }else if(!emailAvail){
-//     alert("Please check email duplication");
-//   }else if(!nickNameAvail){
-//     alert("Please check nickname duplication");
+const insertMember = async () =>{
+  if(!(emailAvail||nickNameAvail)){
+    alert("Please check email and nickname duplication");
+  }else if(!emailAvail){
+    alert("Please check email duplication");
+  }else if(!nickNameAvail){
+    alert("Please check nickname duplication");
+  }
 //   }else{
-//     const result = await storeMember(formData);
+//     const result = await modifyInfo(formData);
 //     if(result == 1){
 //       alert("success on signup");
 //       cancel();
@@ -184,7 +185,7 @@ const onChangeEmail = (e) => {
 //       cancel();
 //     }
 //   }
-// }
+}
 
 const cancel = () => {
   onHide();
@@ -197,59 +198,69 @@ const handleSubmit = (e) => {
   return(
     <Container id="my-info">
       <Form>
-        <div className="form-1">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" onChange={onChangeEmail}/>
-            {/* <span className={`message ${emailOk ? 'success' : 'error'}`}>{verifyMessage}</span> */}
-            {/* <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button> */}
-          </Form.Group>
+        {/* 이메일 */}
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" defaultValue={"hyujo@gmail.com"} onChange={onChangeEmail}/>
+          <span className={`message ${emailOk ? 'success' : 'error'}`}>{verifyMessage}</span>
+          <button type="button" disabled={emailBtDis} onClick={emaildupli} id='btn-check'>Check</button>
+        </Form.Group>
+        
+        {/* 비밀번호 */}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <form onSubmit={handleSubmit}>
+            <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
+          </form>
+          <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <form onSubmit={handleSubmit}>
-              <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
-            </form>
-            {/* <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text> */}
-          </Form.Group>
+        {/* 비밀번호 확인 */}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
+          <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Nick-Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} defaultValue={"hyujo"} />
+          <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>
+          <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            {/* <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/> */}
-            {/* <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span> */}
-          </Form.Group>
-        </div>
+        {/* 나이 */}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>How old are you ?</Form.Label>
+          <Form.Control type="number" onChange={checkAge} placeholder="age" min="10" max="100" defaultValue={"30"} />
+        </Form.Group>
 
-        <div className="form-2">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Nick-Name</Form.Label>
-            {/* <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} /> */}
-            {/* <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span> */}
-            {/* <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button> */}
-          </Form.Group>
+        {/* 나라 */}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Contury</Form.Label>
+          <Select 
+            options={options} 
+            defaultValue={{ label: "Korea", value: "country" }}
+            onChange={changeHandler} >
+          </Select>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>How old are you ?</Form.Label>
-            {/* <Form.Control type="number" onChange={checkAge} placeholder="age" min="10" max="100" /> */}
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Contury</Form.Label>
-            {/* <Select options={options} value={country} onChange={changeHandler} /> */}
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Gender</Form.Label>
-            <div className="select-gender">
-              <input type='radio' id = "select"name='gender' value='female' onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
-              <input type='radio' id = "select2"name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
-            </div>
-          </Form.Group>
-        </div>
+        {/* 성별 */}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Gender</Form.Label>
+          <div className="select-gender">
+            {/* checked{gender === 'femal'} 이렇게 넣어주면 초기값 완성 */}
+            <input type='radio' id = "select" name='gender' value='female' checked={"female"} onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
+            <input type='radio' id = "select2" name='gender' value='male' checked={"female"} onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
+          </div>
+        </Form.Group>
       </Form>
-      {/* <button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
+
+      {/* Edit 버튼 */}
+      <button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
         Complete
-      </button> */}
+      </button>
+
+      {/* 비밀번호 변경 버튼으로 해야 할듯? */}
       <button className="close-btn"onClick={cancel}>Close</button>
     </Container>
   )
