@@ -91,15 +91,15 @@ public class MemberControllerTest {
     void testLogin() throws Exception{
 
         //given
-        String email = "hankgood95@naver.com";
-        String pwd = "-dldnrwo9595";
+        // String email = "hankgood95@naver.com";
+        // String pwd = "-dldnrwo9595";
 
-        mvc.perform(get("/member/login")
-        .header("email", email)
-        .header("pwd", pwd)
-        .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
-        .andDo(print());
+        // mvc.perform(get("/member/login")
+        // .header("email", email)
+        // .header("pwd", pwd)
+        // .contentType(MediaType.APPLICATION_JSON))
+        // .andExpect(status().isOk()) //status가 200이고//content안에 .com이 있다면 
+        // .andDo(print());
 
     }
 }

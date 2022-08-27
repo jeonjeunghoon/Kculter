@@ -87,9 +87,6 @@ public class CourseServiceTest {
         cwl = cs.getMemberCourseWrapper(memberNum, courses);
 
         //then
-        for(CourseWrapper cw:cwl){
-            logger.info("CourseWrapper : "+cw.toString());
-        }
         assert(!courses.isEmpty()&&!cwl.isEmpty());
     }
 }

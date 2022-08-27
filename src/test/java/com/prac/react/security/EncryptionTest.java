@@ -21,13 +21,24 @@ public class EncryptionTest {
     @Test
     void testAesDecrypt() {
         //given
-        String ecrypt = "HyG147CoZFG64WjRbGJ8VoKBUTVBAe3x87RiYSdlNNc=";
+        String ecrypt = "NsBru5sAKx/S/CCO6u1Hng==";
         //when
         String decrypt = ec.aesDecrypt(ecrypt);
         //then
         logger.info("Devrypt : "+decrypt);
     }
 
+    @Test
+    void testAesEncrypt(){
+        //given
+        int key = 1;
+        String keyString = Integer.toString(key);
+        //when
+        String encrypt = ec.aesEncrypt(keyString);
+        //then
+        logger.info("Encrypt : "+encrypt);
+
+    }
     @Test
     void testShaEncryption() {
 

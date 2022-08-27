@@ -5,6 +5,7 @@ import java.util.Date;
 public class Concert {
     
     private int concertNum; //콘서트 번호
+    private String concertHash;
     private String concertName; // 콘서트 이름
     private String explain; // 콘서트 설명
     private Date startDate; // 콘서트 시작일자
@@ -12,6 +13,7 @@ public class Concert {
     private double lat; // 위도
     private double lng; // 경도
     private int starKey; // kpop 키번호
+    private String starHash;
     private String imageUrl; // 이미지 파일 url
     private int status; // 상태 1: 저장 2: 삭제
     private String starName; //연예인 이름
@@ -33,12 +35,22 @@ public class Concert {
         this.starName = starName;
     }
 
+
+
     public int getConcertNum() {
         return this.concertNum;
     }
 
     public void setConcertNum(int concertNum) {
         this.concertNum = concertNum;
+    }
+
+    public String getConcertHash() {
+        return this.concertHash;
+    }
+
+    public void setConcertHash(String concertHash) {
+        this.concertHash = concertHash;
     }
 
     public String getConcertName() {
@@ -97,6 +109,14 @@ public class Concert {
         this.starKey = starKey;
     }
 
+    public String getStarHash() {
+        return this.starHash;
+    }
+
+    public void setStarHash(String starHash) {
+        this.starHash = starHash;
+    }
+
     public String getImageUrl() {
         return this.imageUrl;
     }
@@ -121,10 +141,13 @@ public class Concert {
         this.starName = starName;
     }
 
+
+
     @Override
     public String toString() {
         return "{" +
             " concertNum='" + getConcertNum() + "'" +
+            ", concertHash='" + getConcertHash() + "'" +
             ", concertName='" + getConcertName() + "'" +
             ", explain='" + getExplain() + "'" +
             ", startDate='" + getStartDate() + "'" +
@@ -132,12 +155,12 @@ public class Concert {
             ", lat='" + getLat() + "'" +
             ", lng='" + getLng() + "'" +
             ", starKey='" + getStarKey() + "'" +
+            ", starHash='" + getStarHash() + "'" +
             ", imageUrl='" + getImageUrl() + "'" +
             ", status='" + getStatus() + "'" +
             ", starName='" + getStarName() + "'" +
             "}";
     }
 
-   
     
 }

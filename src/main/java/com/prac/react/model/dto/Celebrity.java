@@ -7,6 +7,7 @@ public class Celebrity {
     private int status;
     private String explain;
     private String fileUrl;
+    private String keyHash;
 
     public Celebrity() {
     }
@@ -19,6 +20,7 @@ public class Celebrity {
         this.explain = explain;
         this.fileUrl = fileUrl;
     }
+
 
     public int getKeyNum() {
         return this.keyNum;
@@ -68,15 +70,27 @@ public class Celebrity {
         this.fileUrl = fileUrl;
     }
 
+    public String getKeyHash() {
+        return this.keyHash;
+    }
+
+    public void setKeyHash(String keyHash) {
+        this.keyHash = keyHash;
+    }
+
+
     @Override
     public String toString() {
         return "{" +
-            " celebNum='" + getKeyNum() + "'" +
+            " keyNum='" + getKeyNum() + "'" +
             ", name='" + getName() + "'" +
             ", likeCount='" + getLikeCount() + "'" +
             ", status='" + getStatus() + "'" +
             ", explain='" + getExplain() + "'" +
             ", fileUrl='" + getFileUrl() + "'" +
+            ", keyHash='" + getKeyHash() + "'" +
             "}";
     }
+
+
 }

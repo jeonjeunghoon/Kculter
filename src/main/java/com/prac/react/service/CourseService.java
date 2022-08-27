@@ -72,13 +72,9 @@ public class CourseService {
                 if(result == null){
                     logger.error("CourseWrapper is empty");
                     cdl.countDown();
-                    logger.info("CounDownLatch count : "+cdl.getCount());
                 }else{
-                    logger.info("CourseWrapper : "+ result.toString());
                     memberCourseList.add(result);
-                    logger.info("Place info DB fetch success");
                     cdl.countDown();
-                    logger.info("CounDownLatch count : "+cdl.getCount());
                 }
 			}
 			//실패했을때
@@ -86,13 +82,11 @@ public class CourseService {
 			public void failed(Throwable exc,Void attachment){
 				logger.error("Place info DB fetch failed");
                 cdl.countDown();
-                logger.info("CounDownLatch count : "+cdl.getCount());
 			}
 		};
 
 		for(Course course : courses){
 			//이제 여기서는 course를 보내서 course에 있는 Place를 다 뽑아올것이다.
-            logger.info("Thread call");
 			exs.submit(new CourseThread(course, callback, memberNum));
 		}
 		exs.shutdown(); //현재 돌아가고있는 Thread를 제외하고 나머지는 종료
@@ -100,6 +94,12 @@ public class CourseService {
 
         if(memberCourseList.isEmpty()){
             logger.error("Memeber course list is empty");
+        }
+        
+        logger.info("------------Result------------");
+
+        for(CourseWrapper cw : memberCourseList){
+            logger.info(cw.toString());
         }
 
         return memberCourseList;
