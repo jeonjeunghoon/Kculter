@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getCourseList() {
     let list;
-    //await 한 값을 보내준다.
+    // /course/{회원번호}, {회원번호}에 memeber나 session? 에서 정보값을 가지고 와야함 
     return await axios.get('/course/1', {
         responseType: 'json'
     })

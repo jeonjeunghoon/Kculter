@@ -81,6 +81,7 @@
 /* 장소 카드 전체 감싸는 부분 */
 #my-body .cardList {
 	display: flex;
+	justify-content: flex-start;
 	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
 }
 
@@ -107,7 +108,6 @@
 	padding-bottom: 0;
 	height: 4rem;
 }
-
 
 /* 날짜 표시 */
 #my-body .date {

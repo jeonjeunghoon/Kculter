@@ -4,30 +4,27 @@ import "../../styles/MyPage.css"
 import "../../styles/Button.css"
 import CardList from './CardList';
 
-function BoxCardItem({ props, data }) {
+function BoxCardItem({ props }) {
 	return (
 		<>
             <div className='box-card-item'>
                 <div className='left'>
                     <div className="title">
-                        { props.placeNum }.<br/>{ props.address }
+                        { props.courseNum }.<br/>{ props.courseName }
                     </div>
                     <div className="box-btn">
                         <button className="btn" onclike="">
                             Modification
-                        </button>
-                        <button className="btn" onclike="">
-                            Delete
                         </button>
                     </div>
                 </div>
                 <div className='right'>
                     <div className="date">
                         <span className="date-span">
-                            { props.lat }
+                            { props.courseNum }
                         </span>
                     </div>
-                    <CardList props={ props } data={ data } />
+                    <CardList props={ props.course } />
                 </div>
             </div>
 		</>
