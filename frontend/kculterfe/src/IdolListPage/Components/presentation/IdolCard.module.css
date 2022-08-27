@@ -79,7 +79,6 @@ h3,p{
 	overflow: hidden;
 	position: relative;
 	height: 30rem;
-	background-color: black;
 	display: block;
 	justify-content: center;
 }
@@ -88,7 +87,6 @@ h3,p{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	opacity: 0.5;
 	transform: translate(50, 50);
 	object-fit: cover;
 	margin: auto;
@@ -97,20 +95,18 @@ h3,p{
 	height: 100%;
 }
 
-.modal_title {
-	color: white;
-	font-weight: bold;
-	font-size: 100rem;
-	position: absolute;
-	top: 30%;
-	display: block;
-	width: 100%;
-	text-align: center;
-}
-
 .modal_body {
 	display: flex;
-	justify-content: left;
+	flex-direction: column;
+}
+
+.modal_title {
+	color: black;
+	font-weight: bold;
+	font-size: xx-large;
+	display: block;
+	width: 100%;
+	text-align: left;
 }
 
 .modal_paragraph {
@@ -155,12 +151,16 @@ h3,p{
 	.modal_body * {
 		display: block;
 	}
-	.modal_info {
+	.modal_title{
 		order: 1;
 		width: 100%;
 	}
-	.modal_paragraph {
+	.modal_info {
 		order: 2;
+		width: 100%;
+	}
+	.modal_paragraph {
+		order: 3;
 		width: 100%;
 	}
 }

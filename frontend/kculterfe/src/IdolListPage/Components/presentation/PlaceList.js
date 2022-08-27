@@ -1,8 +1,11 @@
+/** 이 파일은 이제 사용하지 않습니다. This file is obsolete */
+
 import React, { useEffect, useState } from 'react';
-import './PlaceList.css';
 import PlaceCard from './PlaceCard.js';
 import IdolSearchBar from './IdolSearchBar';
 import { getPlaceList } from './container/GetPlaceListData';
+/** css module */
+import styles from './IdolList.module.css';
 
 function PlaceList({}) {
 	const [search, setSearch] = useState("");
@@ -24,13 +27,13 @@ function PlaceList({}) {
 		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 	return (
-		<div className="PlaceListBody">
-			<div className="IdolSearchBar">
+		<div className={styles.ListBody}>
+			<div className={styles.SearchBar}>
 				<IdolSearchBar value={search} onChange={onChange} />
 			</div>
-			<div className="CardContainer">
+			<div className={styles.CardContainer}>
 				{ filterTitle.map(placecard => 
-				<div className="CardDiv">
+				<div className={styles.CardDiv}>
 					<PlaceCard
 					id={placecard.placeNum}
 					key={placecard.placeNum}
