@@ -1,8 +1,8 @@
-.IdolListBody {
+.ListBody {
 	background-color: #eeeeee;
 }
 
-.IdolSearchBar{
+.SearchBar{
 	display: flex;
 	justify-content: left;
 	margin-top: 1rem;

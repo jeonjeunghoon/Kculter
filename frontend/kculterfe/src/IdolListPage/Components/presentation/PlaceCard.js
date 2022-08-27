@@ -1,3 +1,5 @@
+/** 이 파일은 이제 사용하지 않습니다. This file is obsolete */
+
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import {

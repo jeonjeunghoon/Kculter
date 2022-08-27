@@ -1,7 +1,7 @@
 import React from 'react';
 import './IdolListPage.css';
-import IdolList from './Components/IdolList.js';
-import CultureList from './Components/CultureList';
+import IdolList from './Components/presentation/IdolList';
+import CultureList from './Components/presentation/CultureList';
 import ConcertPage from '../concertPage/concertPage';
 import { useSelector } from 'react-redux';
 

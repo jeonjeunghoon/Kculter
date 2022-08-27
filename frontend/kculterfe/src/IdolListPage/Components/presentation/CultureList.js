@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './CultureList.css';
 import IdolCard from './IdolCard.js';
 import IdolSearchBar from './IdolSearchBar';
-import { getCultureList } from './container/GetCultureListData';
+import { getCultureList } from '../container/GetCultureListData';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+/** css module */
+import styles from './IdolList.module.css';
 
 function CultureList({}) {
 	const [search, setSearch] = useState("");
@@ -27,13 +28,13 @@ function CultureList({}) {
 		return p.name.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 	return (
-		<div className="IdolListBody">
-			<div className="IdolSearchBar">
+		<div className={styles.ListBody}>
+			<div className={styles.SearchBar}>
 				<IdolSearchBar value={search} onChange={onChange} />
 			</div>
-			<div className="CardContainer">
+			<div className={styles.CardContainer}>
 				{ filterTitle.map(cultureCard => 
-				<div className="CardDiv">
+				<div className={styles.CardDiv}>
 					<IdolCard
 					key={cultureCard.keyNum}
 					type={2}
