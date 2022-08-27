@@ -9,6 +9,10 @@
 	overflow-y: scroll;
 }
 
+.map-sidebar::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera*/
+}
+
 .map-sidebar .head {
 	display: flex;
 	justify-content: center;

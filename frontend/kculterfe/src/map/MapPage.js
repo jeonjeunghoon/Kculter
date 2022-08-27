@@ -9,23 +9,26 @@ import {
 	getPlaceApi,
 	getPinApi
 } from './container/getInfo'
-import MapRender from './presentation/MapRender';
 import {
+	useDispatch,
 	useSelector
 } from 'react-redux';
+import {
+	SET_KCULTER_PLACE,
+	SET_PIN
+} from '../redux/reducer';
+import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
 
 function MapPage(props) {
+	const dispatch = useDispatch();
 	const data = useSelector(state => state.idolCulture);
-	console.log(data);
 	const { isLoaded } = useJsApiLoader({
 		id: 'map-page',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
 		language: 'ko',
 		libraries: ['places'],
 	});
-	const [kculterPlace, setKculterPlace] = useState(null);
-	const [pin, setPin] = useState(null);
 	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
 	useEffect(() => {
@@ -37,9 +40,17 @@ function MapPage(props) {
 			} else {
 				type = "culture";
 			}
-			setKculterPlace(await getPlaceApi(url, data.key, type));
-			setPin(await getPinApi("/pin/" + type, data.key))
-			setIsLoadedApi(true);
+			const kculterPlace = await getPlaceApi(url, data.key, type);
+			const pin = await getPinApi("/pin/" + type, data.key);
+			dispatch({
+				type: SET_KCULTER_PLACE,
+				data: kculterPlace.data,
+			})
+			dispatch({
+				type: SET_PIN,
+				data: pin.data,
+			})
+			setIsLoadedApi(() => true);
 		}
 		fetchData();
 	}, [])
@@ -48,8 +59,6 @@ function MapPage(props) {
 		isLoaded &&
 		isLoadedApi &&
 		<MapRender
-		kculterPlace={kculterPlace}
-		pin={pin}
 		type={props.type}
 		/>
 	);

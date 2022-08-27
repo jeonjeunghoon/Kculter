@@ -27,6 +27,13 @@ const initState = {
 		type: 0,
 		title: "K-CULTER",
 	},
+	kculterPlace: [],
+	pin: {
+		imageUrl: "",
+		pinKeyNum: 0,
+		pinNum: 0,
+		pinType: 0,
+	},
 }
 
 // 액션 추가 여기
@@ -40,6 +47,10 @@ export const PUSH_MEMBER = 'PUSH_MEMBER';
 export const SIDE_SET_DASHBOARD = 'SIDE_SET_DASHBOARD';
 export const SIDE_SET_SETTING = 'SIDE_SET_SETTING';
 export const SET_IDOL_CULTURE = 'SET_IDOL_CULTURE';
+export const CLEAR_COURSE = 'CLEAR_COURSE';
+export const CLEAR_PLACE = 'CLEAR_PLACE';
+export const SET_KCULTER_PLACE = 'SET_KCULTER_PLACE';
+export const SET_PIN = 'SET_PIN';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -95,9 +106,27 @@ export default function reducer(state = initState, action) {
 				...state,
 				idolCulture: action.data,
 			}
+		case CLEAR_COURSE:
+			return {
+				...state,
+				course: action.data,
+			}
+		case CLEAR_PLACE:
+			return {
+				...state,
+				place: action.data,
+			}
+		case SET_KCULTER_PLACE:
+			return {
+				...state,
+				kculterPlace: action.data,
+			}
+		case SET_PIN:
+			return {
+				...state,
+				pin: action.data,
+			}
 		default:
 			return state;
-
-	
 	}
 }

@@ -5,26 +5,26 @@ import React, {
 import {
 	GoogleMap,
 } from '@react-google-maps/api';
-import Search from './Search';
-import MapMarker from './MapMarker';
-import MapCard from './MapCard';
-import MapFilter from './MapFilter'
 import {
 	handleOnLoad,
 	handleOnDragEndGM,
 	handleOnClickGM,
+	handleOnUnmount,
 } from '../container/handleGM';
-// redux
 import {
-	useDispatch
+	useDispatch,
+	useSelector,
 } from 'react-redux';
+import Search from './Search';
+import MapMarker from './MapMarker';
+import MapCard from './MapCard';
+import MapFilter from './MapFilter'
 
 function MapRender(props) {
-	// redux
 	const dispatch = useDispatch();
-	// 공식 구글맵 api object
+	const kculterPlace = useSelector(state => state.kculterPlace);
+	const pin = useSelector(state => state.pin);
 	const google = window.google;
-	// 구글맵 api 설정
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
 		lat: 37.566535,
@@ -49,12 +49,12 @@ function MapRender(props) {
 	const [isStay, setIsStay] = useState(null);
 	const [url, setUrl] = useState(null);
 	const [near, setNear] = useState(null);
-		useEffect(() => {
+	useEffect(() => {
 		if (isStay === true) {
-			setUrl("/near/stay?lat=");
+			setUrl(() => "/near/stay?lat=");
 			handleOnDragEndGM(map, "/near/stay?lat=", setNear);
 		} else if (isStay === false) {
-			setUrl("/near/tour?lat=");
+			setUrl(() => "/near/tour?lat=");
 			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
 	}, [isStay])
@@ -67,9 +67,9 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={(map) => handleOnLoad(map, setMap, setIsStay, setUrl, setNear)}
-				onUnmount={() => setMap(null)}
-				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)} // 구글의 기본 마커를 클릭할 때 작동하는 함수
+				onLoad={(map) => handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear)}
+				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
+				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
 				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
 			>
 
@@ -85,9 +85,9 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					kculterPlace={props.kculterPlace.data}
+					kculterPlace={kculterPlace}
 					near={near}
-					kPin={props.pin.data}
+					kPin={pin}
 					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					coursePin={""}

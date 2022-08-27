@@ -8,13 +8,13 @@ export function handleOnClickAdd(place, courseList, setCourseList, dispatch) {
 		alert("Please select the place before add the course.");
 		return;
 	}
-	if (courseList.length >= 20) {
+	if (courseList.length > 15) {
 		alert("Too many courses.");
 		return;
 	}
 	let newCourseList = [...courseList];
 	newCourseList.push(place);
-	setCourseList(newCourseList);
+	setCourseList(() => newCourseList);
 	dispatch({
 		type: MODIFY_COURSE,
 		data: newCourseList,
@@ -43,14 +43,13 @@ export function handleOnSubmit(e, courseList, setCourseList, courseName, memberN
 		}
 	})
 		.then(function(res){
-			console.log(res, '통신 완료');
 			const newCourseList = [];
-			setCourseList(newCourseList);
+			setCourseList(() => newCourseList);
 			dispatch({
 				type: MODIFY_COURSE,
 				data: newCourseList,
 			})
-			setModalIsOpen(false);
+			setModalIsOpen(() => false);
 		})
 		.catch(function(error){
 			console.log(error, "서버 통신 실패");

@@ -13,7 +13,7 @@ function Search({ setCenter, setZoom, dispatch }) {
 
 	return (
 		<Autocomplete
-			onLoad={autocomplete => setInput(autocomplete)}
+			onLoad={autocomplete => setInput(() => autocomplete)}
 			onPlaceChanged={() => handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, dispatch)}
 		>
 			<input className='autocomplete-input'

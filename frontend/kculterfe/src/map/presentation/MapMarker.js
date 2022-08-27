@@ -16,7 +16,7 @@ function MapMarker(props) {
 
 	useEffect(() => {
 		if (props.near) {
-			setNearData(props.near.data);
+			setNearData(() => props.near.data);
 		}
 	}, [props.near])
 	return (
@@ -41,24 +41,27 @@ function MapMarker(props) {
 			/>
 			{/* Near 마커 */}
 			{
-				props.isStay ?
-				<CustomMarker
-					kculterPlace={nearData}
-					pin={props.stayPin}
-					markerHandler={handleCard}
-					setCenter={props.setCenter}
-					setZoom={props.setZoom}
-					dispatch={props.dispatch}
-				/>
+				props.near ?
+					props.isStay ?
+					<CustomMarker
+						kculterPlace={nearData}
+						pin={props.stayPin}
+						markerHandler={handleCard}
+						setCenter={props.setCenter}
+						setZoom={props.setZoom}
+						dispatch={props.dispatch}
+					/>
+					:
+					<CustomMarker
+						kculterPlace={nearData}
+						pin={props.tourPin}
+						markerHandler={handleCard}
+						setCenter={props.setCenter}
+						setZoom={props.setZoom}
+						dispatch={props.dispatch}
+					/>
 				:
-				<CustomMarker
-					kculterPlace={nearData}
-					pin={props.tourPin}
-					markerHandler={handleCard}
-					setCenter={props.setCenter}
-					setZoom={props.setZoom}
-					dispatch={props.dispatch}
-				/>
+				<></>
 			}
 		</div>
 	);

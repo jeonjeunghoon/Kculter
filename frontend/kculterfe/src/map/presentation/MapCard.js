@@ -4,27 +4,10 @@ import React, {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import CardToggle from './CardToggle';
 import Cards from './Cards';
 import CustomArrowPrev from './CustomArrowPrev';
 import CustomArrowNext from './CustomArrowNext';
-
-function CardToggle(props) {
-	return (
-		<div className="card-toggle">
-			<button className='stay-toggle'
-				style={{
-					backgroundColor:"red",
-				}}
-				onClick={() => props.setIsStay(true)}
-			>
-			</button>
-			<button className='tour-toggle'
-				onClick={() => props.setIsStay(false)}
-			>
-			</button>
-		</div>
-	);
-}
 
 function MapCard(props) {
 	const settings = {
@@ -70,6 +53,7 @@ function MapCard(props) {
 			}
 		})
 	}
+
 	return (
 		props.near
 		?

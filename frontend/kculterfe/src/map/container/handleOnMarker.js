@@ -3,11 +3,11 @@ import {
 } from "../../redux/reducer";
 
 function useFocusOn(place, setCenter, setZoom, dispatch) {
-	setCenter({
+	setCenter(() => ({
 		lat: place.lat,
 		lng: place.lng
-	});
-	setZoom(15);
+	}));
+	setZoom(() => 15);
 	dispatch({
 		type: CLICK_PLACE,
 		data: place

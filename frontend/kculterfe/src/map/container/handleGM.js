@@ -2,11 +2,41 @@ import axios from 'axios';
 import {
 	handleGoogleMarkerAndSearch
 } from './handleOnMarker';
+import {
+	CLEAR_COURSE,
+	CLEAR_PLACE
+} from '../../redux/reducer';
 
-export function handleOnLoad(map, setMap, setIsStay, setUrl, setNear) {
-	setMap(map);
-	setIsStay(true);
-	setUrl("/near/stay?lat=");
+export function handleOnUnmount(map, setMap, dispatch) {
+	setMap(() => map);
+	dispatch({
+		type: CLEAR_COURSE,
+		data: [],
+	})
+	dispatch({
+		type: CLEAR_PLACE,
+		data: {
+			address: "",
+			culture: "",
+			explain: "",
+			fileUrl: "",
+			kpop: "",
+			name: "",
+			courseName: "",
+			memberNum: 0,
+			lat: 0,
+			lng: 0,
+			placeNum: 0,
+			placeType: 0,
+			status: 0,
+		},
+	})
+}
+
+export function handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear) {
+	setMap(() => map);
+	setIsStay(() => true);
+	setUrl(() => "/near/stay?lat=");
 	const google = window.google;
 	const geocoder = new google.maps.Geocoder();
 	geocoder.geocode({ location: map.getCenter() }, (result, status) => {
@@ -14,7 +44,7 @@ export function handleOnLoad(map, setMap, setIsStay, setUrl, setNear) {
 			alert(status);
 		}
 		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get("/near/stay?lat="+map.getCenter().lat()+'&lng='+map.getCenter().lng()) // 근처 숙소
+			axios.get(url + map.getCenter().lat() + '&lng=' + map.getCenter().lng())
 			.then(function(res){
 				console.log(res, '통신 완료');
 				const data = res.data.map((obj) => ({
@@ -24,11 +54,11 @@ export function handleOnLoad(map, setMap, setIsStay, setUrl, setNear) {
 					})
 				);
 				res.data = data;
-				setNear(res);
+				setNear(() => res);
 			})
 			.catch(function(error){
 				console.log(error, "서버 통신 실패");
-				setNear(null);
+				setNear(() => null);
 			})
 		}
 	});
@@ -73,9 +103,8 @@ export function handleOnDragEndGM(map, url, setNear) {
 			alert(status);
 		}
 		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get(url+map.getCenter().lat()+'&lng='+map.getCenter().lng())
+			axios.get(url + map.getCenter().lat() + '&lng=' + map.getCenter().lng())
 			.then(function(res){
-				console.log(res, '통신 완료');
 				const data = res.data.map((obj) => ({
 						...obj,
 						lat: Number(obj.mapy),
@@ -83,11 +112,11 @@ export function handleOnDragEndGM(map, url, setNear) {
 					})
 				);
 				res.data = data;
-				setNear(res);
+				setNear(() => res);
   		})
   		.catch(function(error){
 				console.log(error, "서버 통신 실패");
-				setNear(null);
+				setNear(() => null);
   		})
 		}
 	});
