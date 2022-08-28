@@ -16,4 +16,3 @@ export async function getKpopList() {
         alert("서버 통신 실패");
     });
 }
-

@@ -33,11 +33,11 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 				<div className={styles.card_container}>
 					<div className={styles.image_container}>
 						<img src={path_photo} />
-					</div>
-					<div className={styles.card_content}>
 						<div className={styles.image_title}>
 							<h3>{title}</h3>
 						</div>
+					</div>
+					<div className={styles.card_content}>
 						<div className={styles.pin}>
 							<div className={styles.like_num}>
 								<p>{num_like }</p>
@@ -58,7 +58,6 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 				className={styles.modal}
 				show={show}
 				onHide={handleClose}
-				size="sm"
 			>
 				<Modal.Header className={styles.modal_header}>
 					<img src={path_photo} />
