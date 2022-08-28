@@ -75,6 +75,10 @@ h3,p{
 	padding: 0;
 }
 
+.modal{	
+	border-radius: 2rem;
+}
+
 .modal_header{
 	overflow: hidden;
 	position: relative;

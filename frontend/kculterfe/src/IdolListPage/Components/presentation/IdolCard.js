@@ -55,9 +55,10 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 			</a>
 
 			<Modal 
+				className={styles.modal}
 				show={show}
 				onHide={handleClose}
-				size="lg"
+				size="sm"
 			>
 				<Modal.Header className={styles.modal_header}>
 					<img src={path_photo} />
