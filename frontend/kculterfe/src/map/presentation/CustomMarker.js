@@ -17,14 +17,14 @@ function CustomMarker(props) {
 	useEffect(() => {
 		if (props.kculterPlace) {
 		setKculterPlace(() => props.kculterPlace);
-		const tmpIcon = new window.google.maps.MarkerImage(
+		const icon = new window.google.maps.MarkerImage(
 			props.pin.imageUrl,
 			null,
 			null,
 			null,
 			new window.google.maps.Size(30, 30)
 		);
-		setIcon(() => tmpIcon);
+		setIcon(() => icon);
 		}
 	}, [props.kculterPlace])
 	return (
@@ -33,7 +33,6 @@ function CustomMarker(props) {
 			return (
 				<Marker
 					key={index}
-					title={item.name}
 					icon={icon}
 					position={{
 						lat: item.lat,

@@ -6,6 +6,7 @@ export async function getPlaceApi(url, key, type) {
 		return res;
   })
   .catch(function(error) {
+		console.log(error);
   })
 }
 
@@ -15,5 +16,6 @@ export async function getPinApi(url, key) {
 		return res;
 	})
 	.catch(function(error) {
+		console.log(error);
 	})
 }

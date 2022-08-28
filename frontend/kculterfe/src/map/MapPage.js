@@ -26,7 +26,7 @@ function MapPage(props) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'map-page',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
-		language: 'ko',
+		language: 'en',
 		libraries: ['places'],
 	});
 	const [isLoadedApi, setIsLoadedApi] = useState(false);

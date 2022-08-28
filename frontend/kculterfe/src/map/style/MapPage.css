@@ -4,7 +4,7 @@
 	height: 100%;
 }
 
-.stay-container {
+.map-card {
 	position: absolute;
 	display: flex;
 	justify-content: space-around;
@@ -16,48 +16,46 @@
 	transform: translate(-50%);
 }
 
-.stay-container .card-toggle {
+.map-card .card-toggle {
 	display: flex;
 	width: 30px;
 	height: 30px;
-	/* background-color: rgba(0, 0, 0, 0); */
-	/* border: 0; */
 }
 
-.stay-container .arrow {
+.map-card .arrow {
 	width: 30px;
 	height: 30px;
 	background-color: rgba(0, 0, 0, 0);
 	border: 0;
 }
 
-.stay-container .arrow img {
+.map-card .arrow img {
 	width: 100%;
 	height: 100%;
 }
 
-.stay-box {
+.card-box {
 	width: 85%;
 	align-self: center;
 }
 
-.stay-card {
-	display: flex;
-	justify-content: center;
-}
-
-.stay-box button {
+.card-box button {
 	width: 130px;
 	height: 130px;
 	border: rgba(0, 0, 0, 0);
 	background-color: rgba(0, 0, 0, 0);
 }
 
-.stay-box button img {
+.card-box button img {
 	width: 100%;
 	height: 90%;
 	box-shadow: 3px 3px 5px gray;
 	border-radius: 8px;
+}
+
+.card-item {
+	display: flex;
+	justify-content: center;
 }
 
 .autocomplete-input {
@@ -80,58 +78,3 @@
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 	text-overflow: ellipses;
 }
-
-/* .map-render {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-}
-
-.map-render .search-bar {
-	display: flex;
-	flex-grow: 1;
-	min-height: 40px;
-	align-items: center;
-}
-
-.map-render .google-map {
-	flex-grow: 20;
-}
-
-.search-box {
-	height: 20px;
-	width: 100px;
-	margin-left: 10px;
-	border: solid 2px rgba(0, 0, 0, 0.2);
-	border-radius: 8px;
-}
-
-.current-marker-out {
-	display: flex;
-	background-color: rgba(202, 219, 246, 0.6);
-	height: 40px;
-	width: 40px;
-	border-radius: 50%;
-}
-
-.current-marker-in {
-	margin: auto;
-	height: 15px;
-	width: 15px;
-	background: rgba(28, 115, 233, 1);
-	border: 2px solid rgba(255, 255, 255, 1);
-	border-radius: 50%;
-	box-shadow: 0 0 16px rgba(200, 200, 200, 1);
-} */
-
-/* .combobox-input {
-	width: 100%;
-	height: 40px;
-	padding: 0.5rem;
-} */
-
-/* .places-container {
-	top: 55px;
-	width: 300px;
-} */

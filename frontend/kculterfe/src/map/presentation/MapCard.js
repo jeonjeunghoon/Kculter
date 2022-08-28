@@ -57,7 +57,7 @@ function MapCard(props) {
 	return (
 		props.near
 		?
-		<div className='stay-container'>
+		<div className='map-card'>
 			<CardToggle
 				setIsStay={props.setIsStay}
 			/>
@@ -66,7 +66,7 @@ function MapCard(props) {
 				sliderRef={sliderRef}
 			/>
 
-			<Slider className="stay-box"
+			<Slider className="card-box"
 				ref={sliderRef}
 				{ ...settings }
 			>

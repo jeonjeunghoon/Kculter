@@ -34,6 +34,13 @@ const initState = {
 		pinNum: 0,
 		pinType: 0,
 	},
+	mapConcert: {
+		key: 0,
+		name: "",
+		explain: "",
+		lat: 0,
+		lng: 0,
+	}
 }
 
 // 액션 추가 여기
@@ -51,6 +58,7 @@ export const CLEAR_COURSE = 'CLEAR_COURSE';
 export const CLEAR_PLACE = 'CLEAR_PLACE';
 export const SET_KCULTER_PLACE = 'SET_KCULTER_PLACE';
 export const SET_PIN = 'SET_PIN';
+export const MAP_IN_CONCERT = 'MAP_IN_CONCERT';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -125,6 +133,11 @@ export default function reducer(state = initState, action) {
 			return {
 				...state,
 				pin: action.data,
+			}
+		case MAP_IN_CONCERT:
+			return {
+				...state,
+				mapConcert: action.data,
 			}
 		default:
 			return state;

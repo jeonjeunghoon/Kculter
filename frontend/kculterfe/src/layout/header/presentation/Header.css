@@ -7,7 +7,7 @@ header {
   header .left {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	text-align: center;
 	height: 100%;
 	margin-left: 20px;
   }
@@ -15,8 +15,14 @@ header {
   header .left img {
 	height: 30px;
 	width: 30px;
-	margin-right: 10px;
+	margin-right: 30px;
   }
+
+	header .left .title {
+		margin: 0;
+		font-size: x-large;
+		font-weight: 700;
+	}
   
   header .right {
 	  display: flex;
@@ -27,6 +33,7 @@ header {
   header .right .logo {
 		background-color: rgba(255, 255, 255, 255);
 		width: 100%;
+		padding: 0;
 		border: none;
 		cursor: pointer;
   }

@@ -58,7 +58,9 @@ function Header(props) {
 					src={img}
 					alt='logo'
 				/>
-				<h6>{title}</h6>
+				<p className='title'>
+					{title}
+				</p>
 			</div>
 			<div className='right'>
 				<Link to='/'>
