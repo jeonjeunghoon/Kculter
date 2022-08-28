@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import './concertCard.css';
+import './ConcertCard.css';
+import './ConcertCardContent.css'
 
 function CardItem(item) {
 	const [show, setShow] = useState(false);
@@ -25,26 +26,29 @@ function CardItem(item) {
 			</a>
 
 			<Modal show={show} onHide={handleClose} size="xl">
-				<Modal.Header closeButton>
+				{/* <Modal.Header closeButton>
 				<Modal.Title>{item.title}</Modal.Title>
-				</Modal.Header>
+				</Modal.Header> */}
 				<Modal.Body className="concert_modal_body">
 					<div className='concert_modal_body_l'>
-					<img className='modal_concert_img' src={item.img} width={300} height={400}/>
+						<img className='modal_concert_img' src={item.img}/>
 					</div>
 					<div className='concert_modal_body_r'>
+						<div className='concert_closebtn'>
+							<i class="bi bi-x" onClick={handleClose}></i>
+						</div>
 						<h1>{item.title}</h1>
-						<p>{item.startDate}</p>
-						<p>{item.endDate}</p>
+						<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
+						<div className='concert_explain'>{item.explain}</div>
 						<p>{item.lng}</p>
 						<p>{item.lat}</p>
 					</div>
 				</Modal.Body>
-				<Modal.Footer>
+				{/* <Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
-				</Modal.Footer>
+				</Modal.Footer> */}
 			</Modal>
 		</>
 	);
