@@ -36,7 +36,7 @@ function CultureList({}) {
 				{ filterTitle.map(cultureCard => 
 				<div className={styles.CardDiv}>
 					<IdolCard
-					key={cultureCard.keyNum}
+					keyNum={cultureCard.keyNum}
 					type={2}
 					title={cultureCard.name}
 					path_photo={cultureCard.fileUrl}

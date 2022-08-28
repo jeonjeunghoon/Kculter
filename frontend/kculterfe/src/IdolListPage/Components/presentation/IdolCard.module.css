@@ -11,7 +11,7 @@
 }
 
 .card_container:hover{
-	transform: scale(1.1);
+	transform: scale(1.05);
 }
 
 .image_container {
@@ -19,6 +19,7 @@
 	width: 100%;
 	position: relative;
 	color: white;
+	background-color: black;
 	text-align: left;
 	width: 100%;
 	padding-bottom: 100%;
@@ -35,6 +36,22 @@
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
+	opacity: 0.75;
+}
+
+.image_container img:hover{
+	opacity: 0.95;
+}
+
+.image_title{
+	font-family: Helvetica;
+	font-size: xx-large;
+	font-weight: 800;
+	margin: auto;
+	position: absolute;
+	bottom: 0;
+	left: 1rem;
+	color: white;
 }
 
 .card_content{
@@ -44,35 +61,33 @@
 }
 
 .card_content *{
-	width: 4rem;
 	margin: 0.3rem;
 	text-align: center;
 	display: flex;
-	justify-content: center;
+	justify-content: right;
 	align-items: center;
 }
 
-.image_title{
-	font-size: x_large;
-	font-weight: bold;
-	display: block;
-	margin: auto;
-}
-
 .pin {
+	width: 100%;
 	display: block;
 	flex-direction: row;
 	margin: auto;
 }
 
 .card_content img {
-	width: 2rem;
+	width: 1rem;
+	margin-right: 1rem;
 }
 
 h3,p{
 	/* resetting default value */
 	margin: 0;
 	padding: 0;
+}
+
+.modal{	
+	border-radius: 2rem;
 }
 
 .modal_header{
