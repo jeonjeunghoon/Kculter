@@ -67,8 +67,8 @@ public class MemberController {
         logger.info(member.toString());
 
         member.setPf_image("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
-        String pwd = encrypt.aesDecrypt(member.getPwd()); //대칭키로 복호화
-        String enccryptPwd = encrypt.shaEncryption(pwd); //복호화 한걸 암호화
+        String pwd = encrypt.aesDecrypt(member.getPwd()); // 대칭키로 복호화
+        String enccryptPwd = encrypt.shaEncryption(pwd); // 복호화 한걸 암호화
         member.setPwd(enccryptPwd);
 
         logger.info("Member : " + member.toString());
@@ -91,7 +91,7 @@ public class MemberController {
         Member loginTry = new Member();
         Encryption encrypt = new Encryption();
         loginTry.setEmail(idPwd[0]);
-        loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); //받은 비밀번호 sha256 암호화
+        loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
 
         Member authorizedUser = ms.login(loginTry);
         if(authorizedUser == null){

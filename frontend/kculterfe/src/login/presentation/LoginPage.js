@@ -31,40 +31,11 @@ function LoginPage(){
         window.location.reload();
     }
 
-    const dispatch = useDispatch();
-
-    const member = {
-        memberNum : 1,
-          email : 'hankgood95@naver.com',
-          pwd : '1234',
-          nickName : 'passcucci',
-          countryCode : 'KR',
-          age : 28,
-          gender : 'male',
-          pf_image: 'https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png'
-      }
-        
-    const ononon = () => {
-        dispatch({
-            type:PUSH_MEMBER,
-            data: member,
-          })
+    const onKeyPress = (e) => {
+        if(e.key == 'Enter'){
+          alert('dd');
+        }
     }
-
-    const member1 = useSelector(state => state.member);
-
-    const ononon1 = () => {
-       console.log(member1);
-    }
-
-    const ononon2 = () => {
-        dispatch({
-            type:CLEAR_MEMBER,
-            data: ""
-      });
-     }
-
-
 
     return(
        <>
@@ -78,7 +49,6 @@ function LoginPage(){
                     <img src={loginblack}></img>
                 </div>
                 <div className='inpult-nav'>
-                    <Form>
                     <input className='input-css1' 
                         type='text'
                         placeholder='E-mail'
@@ -88,9 +58,9 @@ function LoginPage(){
                     type='password'
                     placeholder='Password'
                     onChange={e=> setPwd(e.target.value)}
+                    onKeyPress={onKeyPress}
                     />
-                <Loginbtn type="submit" email={email} pwd={pwd}>LOGIN</Loginbtn>
-                </Form>
+                <Loginbtn email={email} pwd={pwd}>LOGIN</Loginbtn>
                 </div>
                 <SignUpModal
                     show={SignUp} onHide={close}
@@ -109,16 +79,6 @@ function LoginPage(){
                         className='pwd'
                     >Forgot your password ?</button>
                 </div>
-                <div>
-                    or
-                </div>
-                <div className='google-nav'>
-                  <GoogleLoginBtn/>
-                </div>
-                <button onClick={ononon}>여기이ㅣ</button>
-                <button onClick={ononon1}>여기이ㅣ</button>
-                <button onClick={ononon2}>여기이ㅣ</button>
-
             </div>
         </div>
         </>
