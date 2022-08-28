@@ -15,6 +15,10 @@ import {
 	useDispatch,
 	useSelector,
 } from 'react-redux';
+import {
+	getPlaceApi,
+	getPinApi
+} from '../container/getInfo'
 import Search from './Search';
 import MapMarker from './MapMarker';
 import MapCard from './MapCard';
@@ -22,14 +26,15 @@ import MapFilter from './MapFilter'
 
 function MapRender(props) {
 	const dispatch = useDispatch();
+	const concert = useSelector(state => state.mapConcert);
 	const kculterPlace = useSelector(state => state.kculterPlace);
 	const pin = useSelector(state => state.pin);
 	const google = window.google;
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
-		lat: 37.566535,
-		lng: 126.9779692,
-	});
+		lat: 37.5509895,
+		lng: 126.9908991,
+	});;
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -57,7 +62,26 @@ function MapRender(props) {
 			setUrl(() => "/near/tour?lat=");
 			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
-	}, [isStay])
+	}, [isStay]);
+	const [concertPlace, setConcertPlace] = useState(null);
+	const [concertPin, setConcertPin] = useState(null);
+	useEffect(() => {
+		if (concert.lat && concert.lng) {
+			const fetchData = async() => {
+				const pin = await getPinApi("/pin/" + "kpop", concert.key);
+				setConcertPin(() => pin);
+				setCenter(() => ({
+					lat: concert.lat,
+					lng: concert.lng,
+				}));
+				setConcertPlace([{
+					lat: concert.lat,
+					lng: concert.lng,
+				}]);
+			}
+			fetchData();
+		}
+	}, [map])
 
 	return (
 		<div className='map-container'>
@@ -67,7 +91,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={(map) => handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear)}
+				onLoad={map => handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear)}
 				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
 				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
@@ -87,9 +111,11 @@ function MapRender(props) {
 				<MapMarker
 					kculterPlace={kculterPlace}
 					near={near}
+					concertPlace={concertPlace}
 					kPin={pin}
 					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
+					concertPin={concertPin}
 					coursePin={""}
 					isStay={isStay}
 					setCenter={setCenter}

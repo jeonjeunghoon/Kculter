@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import './ConcertCard.css';
 import './ConcertCardContent.css'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { MAP_IN_CONCERT } from '../../redux/reducer';
 
 function CardItem(item) {
 	const [show, setShow] = useState(false);
 	const handleShow = () => setShow(true);
 	const handleClose = () => setShow(false);
+	const dispatch = useDispatch();
 
 	return (
 		<>
@@ -42,6 +46,23 @@ function CardItem(item) {
 						<div className='concert_explain'>{item.explain}</div>
 						<p>{item.lng}</p>
 						<p>{item.lat}</p>
+							<Link to="/MapPage">
+            	       <button onClick={() => {
+											console.log(item);
+											dispatch({
+												type: MAP_IN_CONCERT,
+												data: {
+													key: item.starKey,
+													name: item.title,
+													explain: item.explain,
+													lat: item.lat,
+													lng: item.lng,
+												}
+											})
+										 }}>
+											go to map
+										 </button>
+            	</Link>
 					</div>
 				</Modal.Body>
 				{/* <Modal.Footer>

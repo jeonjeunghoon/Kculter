@@ -63,6 +63,17 @@ function MapMarker(props) {
 				:
 				<></>
 			}
+			{
+				props.concertPlace &&
+				<CustomMarker
+					kculterPlace={props.concertPlace}
+					pin={props.concertPin}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 		</div>
 	);
 }

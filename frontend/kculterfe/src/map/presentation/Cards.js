@@ -11,7 +11,7 @@ function Cards(props) {
 		image = "https://www.pngall.com/wp-content/uploads/5/Hotel-PNG-Image.png";
 	}
 	return (
-		<div className="stay-card">
+		<div className="card-item">
 			<button
 				onClick={() => {
 					handleCard(props.item, props.setCenter, props.setZoom, props.dispatch);
