@@ -220,7 +220,7 @@ const handleSubmit = (e) => {
         <img src={pfImg} alt="profile" width="500" height="600"></img>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Profile img upload</Form.Label>
-          <Form.Control onChange={onChangeProfilImg} type="file" />
+          <Form.Control accept="image/jpg, image/png, image/jpeg" onChange={onChangeProfilImg} type="file" />
         </Form.Group>
 
         {/* 이메일 */}
