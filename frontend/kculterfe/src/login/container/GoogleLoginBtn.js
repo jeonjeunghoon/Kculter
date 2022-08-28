@@ -16,8 +16,12 @@ export default function GoogleLoginBtn({ onGoogleLogin }){
         
         var userObj = jwt_decode(response.credential);
 
+        console.log(userObj);
+
         const email = userObj.email;
         const name = userObj.name;
+        console.log(email);
+        console.log(name);
 
         axios.post('/member',{ //여기서 주의해야할점은 데이터를 보낼때 DTO 클래스의 값과 일치해야함
             email:email,

@@ -67,8 +67,9 @@ public class MemberController {
         logger.info(member.toString());
 
         member.setPf_image("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
-        String pwd = encrypt.shaEncryption(member.getPwd());
-        member.setPwd(pwd);
+        String pwd = encrypt.aesDecrypt(member.getPwd()); // 대칭키로 복호화
+        String enccryptPwd = encrypt.shaEncryption(pwd); // 복호화 한걸 암호화
+        member.setPwd(enccryptPwd);
 
         logger.info("Member : " + member.toString());
 
@@ -85,10 +86,15 @@ public class MemberController {
         logger.info("Authorization : " + autho);
 
         String memberInform = encrypt.aesDecrypt(autho);
-        // 복호화를 했으니 이제는 입력받은것중 sql문이 있는지를 확인하고 이상한것이라면
-        // 해당 IP를 차단하는거면 좋겠지만 그러지는 못할것같도 일단 그 값을 못받게하자.
-        Member member = new Member(1, "irang4605@naver.com", "123", "jham", "KR", 23, "man", "www.dwd.com");
 
-        return member;
+        String[] idPwd = memberInform.split("/");
+        Member loginTry = new Member();
+        Encryption encrypt = new Encryption();
+        loginTry.setEmail(idPwd[0]);
+        loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
+
+        Member authorizedUser = ms.login(loginTry);
+
+        return authorizedUser;
     }
 }

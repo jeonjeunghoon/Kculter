@@ -29,11 +29,11 @@ public class Encryption {
 		this.sk = sk;
 	}
 
-	public String shaEncryption(String email) {
+	public String shaEncryption(String pwd) {
 		try {
 			//try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(email.getBytes());
+			md.update(pwd.getBytes());
 			byte byteData[] = md.digest();
 			
 			StringBuffer sb = new StringBuffer();//이건 문자열을 추가하거나 변경할때 주로 사용하는 클래스이다.

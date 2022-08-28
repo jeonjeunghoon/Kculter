@@ -28,4 +28,8 @@ public class MemberService {
     public int insertMember(Member member){
         return md.insertMember(member);
     }
+
+    public Member login(Member loginTry) {
+        return md.login(loginTry);
+    }
 }

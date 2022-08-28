@@ -1,12 +1,13 @@
 import React from 'react';
 import './concertPage.css';
-import CardList from './components/ConcertList';
+import ConcertList from './components/ConcertList';
+import ConcertSearchBar from "./components/ConcertSearchBar";
 
 function concertPage() {
 
   return (
     <div className="concertBody">
-      <CardList></CardList>
+      <ConcertList/>
     </div>
   );
 }

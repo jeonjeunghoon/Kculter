@@ -23,7 +23,6 @@ export function handleOnLoad(map, setMap, setNear) {
 				);
 				res.data = data;
 				setNear(res);
-
 			})
 			.catch(function(error){
 				console.log(error, "서버 통신 실패");

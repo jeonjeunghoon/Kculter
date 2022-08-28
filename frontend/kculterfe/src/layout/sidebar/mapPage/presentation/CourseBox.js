@@ -14,7 +14,7 @@ import {
 } from '../container/handleMapSideNav';
 
 function CourseBox({ place }) {
-	const memberNum = useSelector(state => state.member.memberNum);
+	const memberNum = window.sessionStorage.getItem("memberNum");
 	const dispatch = useDispatch();
 	const [courseList, setCourseList] = useState([])
 	const [modalIsOpen, setModalIsOpen] = useState(false);

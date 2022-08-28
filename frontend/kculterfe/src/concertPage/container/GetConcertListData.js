@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function getConcertList() {
     let list;
     //await 한 값을 보내준다.
-    return await axios.get('/celebrities', {
+    return await axios.get('/concerts', {
         responseType: 'json'
     })
     .then(function(res){
