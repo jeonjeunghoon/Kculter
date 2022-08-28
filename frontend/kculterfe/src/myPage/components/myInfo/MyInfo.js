@@ -6,7 +6,7 @@ import {checkEmail} from '../../container/EmailCheck';
 import {checkNick} from '../../container/NickCheck';
 import countryList from 'react-select-country-list';
 import Select from 'react-select';
-// import { EditInfo } from '../container/EditInfo';
+import { EditInfo } from '../../container/EditInfo';
 // import crypto from 'crypto-js';
 import axios from 'axios';
 // import {hashPwd}  from '../presentation/Encryptpwd';
@@ -20,6 +20,7 @@ function MyInfo({show, onHide}) {
   const [countryCode, setCountryCode] = useState('') //나라
   const [age, setAge] = useState('');
   const [gender,setGender] = useState('');
+  const [pfImg, setPfImg] = useState('');
   
   /*오류메세지*/
   const [verifyMessage, setVerMessage] = useState('');
@@ -45,7 +46,8 @@ function MyInfo({show, onHide}) {
     nickName : nickName,
     countryCode : countryCode,
     age : age,
-    gender : gender
+    gender : gender,
+    pf_image : pfImg
   }
 
 
@@ -69,6 +71,25 @@ const checkPassword = (e) => {
       setPwdMessage('OK :)');
       setIsPwd(true);
     }
+}
+
+const onChangeProfilImg = (e) => {
+  e.preventDefault();
+  const imgUrl = e.target.files[0];
+  var reader = new FileReader();
+
+  reader.readAsDataURL(imgUrl);
+  reader.onloadend = function(e) {
+    setPfImg(e.target.result);
+  }
+
+  // if (!imgUrl) {
+  //   alert("It is not collect url")
+  // }
+  // else {
+  //   setPfImg(imgUrl);
+  //   console.log(imgUrl);
+  // }
 }
 
 const onChangeEmail = (e) => {
@@ -174,17 +195,14 @@ const insertMember = async () =>{
     alert("Please check email duplication");
   }else if(!nickNameAvail){
     alert("Please check nickname duplication");
+  }else{
+    const result = await EditInfo(formData);
+    if(result == 1){
+      alert("success on edit");
+    }else{
+      alert("Edit failed");
+    }
   }
-//   }else{
-//     const result = await modifyInfo(formData);
-//     if(result == 1){
-//       alert("success on signup");
-//       cancel();
-//     }else{
-//       alert("Registration failed.\nContact us at hankgood958@gmail.com");
-//       cancel();
-//     }
-//   }
 }
 
 const cancel = () => {
@@ -193,11 +211,18 @@ const cancel = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  axios.post("api 주소", {pw: password}).then(res => console.log(res.data))
+  axios.post("/member").then(res => console.log(res.data))
 }
   return(
     <Container id="my-info">
       <Form>
+        {/* 사진 업로드 */}
+        <img src={pfImg} alt="profile" width="500" height="600"></img>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Profile img upload</Form.Label>
+          <Form.Control onChange={onChangeProfilImg} type="file" />
+        </Form.Group>
+
         {/* 이메일 */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -234,15 +259,15 @@ const handleSubmit = (e) => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Gender</Form.Label>
           <div className="select-gender">
-            {/* checked{gender === 'femal'} 이렇게 넣어주면 초기값 완성 */}
-            <input type='radio' id = "select" name='gender' value='female' checked={"female"} onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
-            <input type='radio' id = "select2" name='gender' value='male' checked={"female"} onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
+            {/* checked{gender === 'female'} 이렇게 넣어주면 초기값 완성 */}
+            <input type='radio' id = "select" name='gender' value='female' onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
+            <input type='radio' id = "select2" name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
           </div>
         </Form.Group>
       </Form>
 
       {/* Edit 버튼 */}
-      <button className="cp-btn" disabled={!(emailOk&&isPwd&&isPasswordConfirm&&isNickName)} onClick={insertMember}>
+      <button className="cp-btn" disabled={!(emailOk&&isNickName)} onClick={insertMember}>
         Edit
       </button>
 
@@ -263,7 +288,7 @@ const handleSubmit = (e) => {
       </Form.Group>
 
       {/* 비밀번호 변경 버튼으로 해야 할듯? */}
-      <button className="close-btn"onClick={cancel}>password confirm</button>
+      <button className="close-btn" disabled={!(isPwd&&isPasswordConfirm)} onClick={cancel}>password confirm</button>
     </Container>
   )
 }
