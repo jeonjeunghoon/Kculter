@@ -1,0 +1,47 @@
+h3,p{
+	/* resetting default value */
+	margin: 0;
+	padding: 0;
+}
+
+@media all and (min-width: 992px) {
+	.concert_modal_body {
+		display: grid;
+		grid-template-columns: 3fr 4fr;
+	}
+}
+
+@media all and (max-width: 992px) {
+	.concert_modal_body {
+		display: grid;
+		grid-template-rows: 1fr auto;
+	}
+}
+
+.concert_modal_body_r{
+	margin-left: 1rem;
+}
+
+.modal_concert_img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.concert_closebtn {
+	text-align: end;
+	margin-top: -1.5rem;
+	margin-right: -1rem;
+}
+
+.bi-x {
+	font-size: 50px;
+}
+
+.bi-x:hover {
+	cursor: pointer;
+}
+
+.concert_date {
+	color: gray;
+}

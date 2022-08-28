@@ -44,3 +44,7 @@ header {
   header i.bi.bi-list {
 	font-size: 30px;
   }
+
+  header i.bi.bi-list:hover {
+	cursor: pointer;
+  }
