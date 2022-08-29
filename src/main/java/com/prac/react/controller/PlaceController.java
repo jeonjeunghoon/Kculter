@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.Place;
+import com.prac.react.security.Encryption;
 import com.prac.react.service.PlaceService;
 
 @RestController
@@ -23,28 +24,45 @@ public class PlaceController {
         this.ps = ps;
     }
     
-    //ÀüÃ¼ Àå¼Ò Á¤º¸¸¦ °¡Á®¿À´Â Controller(Kpop°ú ¹®È­Ã¼Çè Æ÷ÇÔÇØ¼­ ¸ðµÎ)
+    //Getting every place info in DB
     @GetMapping("/places")
     public List<Place> getPlaceList(){
         List<Place> placeList = new ArrayList<>();
         logger.info("Getting place list from DB");
 
+        Encryption encrypt = new Encryption();
+
         placeList = ps.getPlaceList();
+
+        for(Place place : placeList){
+            String placeNumHash = encrypt.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            place.setPlaceHash(placeNumHash);
+            place.setPlaceNum(0);
+        }
 
         return placeList;
     }
 
-    //¾ê´Â ÀÌÁ¦ Æ¯Á¤ kpop °¡¼ö¿Í °ü·ÃµÈ Àå¼ÒÁ¤º¸¸¦ Ã£¾Æ º¸³»ÁÖ´Â controller
+    //getting particular place info related by culture or celebrity keyNum
     @GetMapping("place")
-    public List<Place> getKpopPlaces(@RequestParam("key")int key,@RequestParam("type")String type){
+    public List<Place> getKpopPlaces(@RequestParam("keyhash")String keyHash,@RequestParam("type")String type){
 
-        List<Place> kpopPlaceList = new ArrayList<>();
+        List<Place> typePlaceList = new ArrayList<>();
+        Encryption encrypt = new Encryption();
 
-        String found = "/"+key+"/";
+        int keyNum = Integer.parseInt(encrypt.aesDecrypt(keyHash)); //keyHash ë³µí˜¸í™”
 
-        kpopPlaceList = ps.getPlaceByType(found, type);
+        String found = "/"+keyNum+"/";
 
-        return kpopPlaceList;
+        typePlaceList = ps.getPlaceByType(found, type);
+
+        for(Place place : typePlaceList){
+            String hashPlaceNum = encrypt.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            place.setPlaceHash(hashPlaceNum);
+            place.setPlaceNum(0);
+        }
+
+        return typePlaceList;
 
     }
 }

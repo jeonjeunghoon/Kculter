@@ -41,10 +41,12 @@ public class QuikSortTest {
             logger.info(cw.toString());
         }
 
-        QuikSort qs = new QuikSort(cwl);
+        QuikSort qs = new QuikSort();
+
+        qs.quikSort(cwl);
         
         logger.info("------After sort------");
-        for(CourseWrapper cw : qs.getCwl()){
+        for(CourseWrapper cw : cwl){
             logger.info(cw.toString());
         }
     }

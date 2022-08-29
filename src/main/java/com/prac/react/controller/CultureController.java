@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.Culture;
+import com.prac.react.security.Encryption;
 import com.prac.react.service.CultureService;
 
 @RestController
@@ -28,6 +29,14 @@ public class CultureController {
         logger.info("Culture list get API start");
 
         cultureList = cs.getCultureList();
+
+        Encryption encrypt = new Encryption();
+
+        for(Culture culture : cultureList){
+            String keyHash = encrypt.aesEncrypt(Integer.toString(culture.getKeyNum()));
+            culture.setKeyHash(keyHash);
+            culture.setKeyNum(0);
+        }
         
         return cultureList;
     }
