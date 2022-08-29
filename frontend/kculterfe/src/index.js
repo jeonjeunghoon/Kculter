@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducer from './redux/reducer';
 import { rootReducer } from "./redux";
+import './index.css';
 
 const store = createStore(reducer);
 

@@ -5,6 +5,8 @@ import {
 } from 'react-router-dom';
 // css module
 import styles from './IdolCard.module.css';
+// fonts
+import '../../../index.css';
 
 function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
@@ -55,9 +57,6 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 					<div className={styles.modal_title}>
 						{title}
 					</div>
-					<div className={styles.modal_paragraph}>
-						<p>{explain}</p>
-					</div>
 					<div className={styles.modal_info}>
 						<div className={styles.modal_like_num}>
 							<img src='heart.png' />
@@ -68,6 +67,9 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 							<p>{num_spot} Spots</p>
 						</div>
 					</div>
+					<div className={styles.modal_paragraph}>
+						<p>{explain}</p>
+					</div>
 					<div className={styles.modal_map}>
 
 					</div>
@@ -77,11 +79,11 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 				<Button variant={styles.modal_secondary} onClick={handleClose}>
 					Close
 				</Button>
-				<Button variant={styles.modal_primary} onClick={handleClose}>
-					<Link className={styles.button} to='/MapPage'>
-						Find {title} Spots in Map
-                    </Link>
-				</Button>
+				<Link className={styles.button} to='/MapPage'>
+					<Button variant={styles.modal_primary} onClick={handleClose}>
+							Find {title} Spots in Map
+					</Button>
+				</Link>
 				</Modal.Footer>
 			</Modal>
 		</>
