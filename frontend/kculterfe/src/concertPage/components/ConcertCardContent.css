@@ -18,8 +18,16 @@ h3,p{
 	}
 }
 
-.concert_modal_body_r{
+.concert_modal_body_r {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
 	margin-left: 1rem;
+}
+
+.body_r_end {
+	display: flex;
+	align-items: flex-end;
+	justify-content: end;
 }
 
 .modal_concert_img {
@@ -44,4 +52,9 @@ h3,p{
 
 .concert_date {
 	color: gray;
+}
+
+.concert_map_btn {
+	/* color: #0074ff; */
+	background-color: #0074ff;
 }

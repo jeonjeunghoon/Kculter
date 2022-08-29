@@ -29,7 +29,7 @@ function CardItem(item) {
 				</div>
 			</a>
 
-			<Modal show={show} onHide={handleClose} size="xl">
+			<Modal show={show} onHide={handleClose} size="lg">
 				{/* <Modal.Header closeButton>
 				<Modal.Title>{item.title}</Modal.Title>
 				</Modal.Header> */}
@@ -38,31 +38,33 @@ function CardItem(item) {
 						<img className='modal_concert_img' src={item.img}/>
 					</div>
 					<div className='concert_modal_body_r'>
-						<div className='concert_closebtn'>
-							<i class="bi bi-x" onClick={handleClose}></i>
+						<div className='body_r_start'>
+							<div className='concert_closebtn'>
+								<i class="bi bi-x" onClick={handleClose}></i>
+							</div>
+							<h1>{item.title}</h1>
+							<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
+							<div className='concert_explain'>{item.explain}</div>
 						</div>
-						<h1>{item.title}</h1>
-						<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
-						<div className='concert_explain'>{item.explain}</div>
-						<p>{item.lng}</p>
-						<p>{item.lat}</p>
+						<div className='body_r_end'>
 							<Link to="/MapPage">
-            	       <button onClick={() => {
-											console.log(item);
-											dispatch({
-												type: MAP_IN_CONCERT,
-												data: {
-													key: item.starKey,
-													name: item.title,
-													explain: item.explain,
-													lat: item.lat,
-													lng: item.lng,
-												}
-											})
-										 }}>
-											go to map
-										 </button>
-            	</Link>
+								<Button variant="primary" onClick={() => {
+												console.log(item);
+												dispatch({
+													type: MAP_IN_CONCERT,
+													data: {
+														key: item.starKey,
+														name: item.title,
+														explain: item.explain,
+														lat: item.lat,
+														lng: item.lng,
+													}
+												})
+											}}>
+									go to map
+								</Button>
+							</Link>
+						</div>
 					</div>
 				</Modal.Body>
 				{/* <Modal.Footer>
