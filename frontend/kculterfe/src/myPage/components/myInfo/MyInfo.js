@@ -217,8 +217,8 @@ const handleSubmit = (e) => {
     <Container id="my-info">
       <Form>
         {/* 사진 업로드 */}
-        <img src={pfImg} alt="profile" width="500" height="600"></img>
         <Form.Group controlId="formFile" className="mb-3">
+          <img src={pfImg} alt="profile" width="100" height="130"></img>
           <Form.Label>Profile img upload</Form.Label>
           <Form.Control onChange={onChangeProfilImg} type="file" />
         </Form.Group>
