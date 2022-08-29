@@ -5,11 +5,6 @@ import {
 } from 'react-router-dom';
 // css module
 import styles from './IdolCard.module.css';
-// redux
-import {
-	useDispatch
-} from 'react-redux';
-import { SET_IDOL_CULTURE } from '../../../redux/reducer';
 
 function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
@@ -17,15 +12,9 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const dispatch = useDispatch();
-	dispatch({
-		type: SET_IDOL_CULTURE,
-		data: {
-			key: keyNum,
-			type: type,
-			title: title,
-		}
-	});
+	window.sessionStorage.setItem("keyNum",keyNum);
+	window.sessionStorage.setItem("title",title);
+	window.sessionStorage.setItem("type",type);
 
 	return (
 		<>

@@ -1,6 +1,7 @@
 // 데이터 추가는 여기에
 const initState = {
 	place: {
+		head: "",
 		address: "",
 		culture: "",
 		explain: "",
