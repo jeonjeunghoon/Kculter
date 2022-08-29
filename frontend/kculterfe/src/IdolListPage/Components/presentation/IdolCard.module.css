@@ -1,4 +1,5 @@
 .card_container{
+	font-family: 'Noto Sans CJK KR';
 	display: grid;
 	width: 1fr;
 	overflow: hidden;
@@ -44,7 +45,7 @@
 }
 
 .image_title{
-	font-family: Helvetica;
+	font-family: 'Noto Sans CJK KR';
 	font-size: xx-large;
 	font-weight: 800;
 	margin: auto;

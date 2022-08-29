@@ -5,6 +5,8 @@ import {
 } from 'react-router-dom';
 // css module
 import styles from './IdolCard.module.css';
+// fonts
+import '../../../index.css';
 
 function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
@@ -77,11 +79,11 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 				<Button variant={styles.modal_secondary} onClick={handleClose}>
 					Close
 				</Button>
-				<Button variant={styles.modal_primary} onClick={handleClose}>
-					<Link className={styles.button} to='/MapPage'>
-						Find {title} Spots in Map
-                    </Link>
-				</Button>
+				<Link className={styles.button} to='/MapPage'>
+					<Button variant={styles.modal_primary} onClick={handleClose}>
+							Find {title} Spots in Map
+					</Button>
+				</Link>
 				</Modal.Footer>
 			</Modal>
 		</>
