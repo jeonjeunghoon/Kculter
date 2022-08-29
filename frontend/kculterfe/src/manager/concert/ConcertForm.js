@@ -54,7 +54,7 @@ function ConcertForm(props){
         starName : starName,
         lat : lat,
         lng : lng,
-        starKey : starKeyNum,
+        starHash : starKeyNum,
     }
 
     //container component로 보낼 객체
