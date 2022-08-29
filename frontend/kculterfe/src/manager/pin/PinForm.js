@@ -23,7 +23,7 @@ function PinForm(props){
 
     const formValue = {
         pinType : pinType, //1이면 kpop 2면 culture
-        pinKeyNum : pinKeyNum //키값 받는 변수
+        pinKeyHash : pinKeyNum //키값 받는 변수
     }
 
     const sendData = {
