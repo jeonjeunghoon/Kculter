@@ -66,9 +66,6 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 					<div className={styles.modal_title}>
 						{title}
 					</div>
-					<div className={styles.modal_paragraph}>
-						<p>{explain}</p>
-					</div>
 					<div className={styles.modal_info}>
 						<div className={styles.modal_like_num}>
 							<img src='heart.png' />
@@ -78,6 +75,9 @@ function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_ma
 							<img src='spot.png' />
 							<p>{num_spot} Spots</p>
 						</div>
+					</div>
+					<div className={styles.modal_paragraph}>
+						<p>{explain}</p>
 					</div>
 					<div className={styles.modal_map}>
 
