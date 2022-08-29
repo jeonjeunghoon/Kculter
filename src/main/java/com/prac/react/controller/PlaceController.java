@@ -3,8 +3,11 @@ package com.prac.react.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.stream.events.EndDocument;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +22,12 @@ public class PlaceController {
     Logger logger = LoggerFactory.getLogger(PlaceController.class);
 
     private PlaceService ps;
+    private Encryption encryption;
 
-    public PlaceController(PlaceService ps){
+    @Autowired
+    public PlaceController(PlaceService ps,Encryption encryption){
         this.ps = ps;
+        this.encryption = encryption;
     }
     
     //Getting every place info in DB
@@ -30,12 +36,11 @@ public class PlaceController {
         List<Place> placeList = new ArrayList<>();
         logger.info("Getting place list from DB");
 
-        Encryption encrypt = new Encryption();
 
         placeList = ps.getPlaceList();
 
         for(Place place : placeList){
-            String placeNumHash = encrypt.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            String placeNumHash = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
             place.setPlaceHash(placeNumHash);
             place.setPlaceNum(0);
         }
@@ -48,16 +53,15 @@ public class PlaceController {
     public List<Place> getKpopPlaces(@RequestParam("keyhash")String keyHash,@RequestParam("type")String type){
 
         List<Place> typePlaceList = new ArrayList<>();
-        Encryption encrypt = new Encryption();
 
-        int keyNum = Integer.parseInt(encrypt.aesDecrypt(keyHash)); //keyHash 복호화
+        int keyNum = Integer.parseInt(encryption.aesDecrypt(keyHash)); //keyHash 복호화
 
         String found = "/"+keyNum+"/";
 
         typePlaceList = ps.getPlaceByType(found, type);
 
         for(Place place : typePlaceList){
-            String hashPlaceNum = encrypt.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            String hashPlaceNum = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
             place.setPlaceHash(hashPlaceNum);
             place.setPlaceNum(0);
         }
