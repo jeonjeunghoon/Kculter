@@ -294,7 +294,7 @@ const handleSubmit = (e) => {
       </Form>
 
       {/* Edit 버튼 */}
-      <button className="cp-btn" disabled={!(emailOk&&isNickName)} onClick={insertMember}>
+      <button className="cp-btn" disabled={!(emailOk||isNickName)} onClick={insertMember}>
         Edit
       </button>
 
