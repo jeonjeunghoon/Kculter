@@ -16,7 +16,6 @@ import {
 	useSelector,
 } from 'react-redux';
 import {
-	getPlaceApi,
 	getPinApi
 } from '../container/getInfo'
 import Search from './Search';

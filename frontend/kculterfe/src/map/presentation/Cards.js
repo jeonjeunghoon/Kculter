@@ -5,6 +5,7 @@ import {
 
 function Cards(props) {
 	let image = null;
+
 	if (props.item.firstimage) {
 		image = props.item.firstimage;
 	} else {
@@ -21,6 +22,9 @@ function Cards(props) {
 					src={image}
 					alt='Stay image'
 				/>
+				<p>
+					{props.item.title}
+				</p>
 			</button>
 		</div>
 	);

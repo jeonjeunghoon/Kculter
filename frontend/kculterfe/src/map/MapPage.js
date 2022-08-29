@@ -32,7 +32,6 @@ function MapPage(props) {
 	const kculterPlaceProps = {
 		keyNum: Number(window.sessionStorage.getItem("keyNum")),
 		type: Number(window.sessionStorage.getItem("type")),
-		title: window.sessionStorage.getItem("title"),
 	}
 	useEffect(() => {
 		const fetchData = async() => {
