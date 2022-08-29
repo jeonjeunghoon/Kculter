@@ -89,7 +89,6 @@ public class MemberController {
 
         String[] idPwd = memberInform.split("/");
         Member loginTry = new Member();
-        Encryption encrypt = new Encryption();
         loginTry.setEmail(idPwd[0]);
         loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
 

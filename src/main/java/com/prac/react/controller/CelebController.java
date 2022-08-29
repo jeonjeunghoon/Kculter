@@ -41,10 +41,6 @@ public class CelebController {
             celeb.setKeyNum(0);
         }
 
-        for(Celebrity celeb : celebList){
-            logger.info(celeb.toString());
-        }
-
         return celebList;
     }
 }
