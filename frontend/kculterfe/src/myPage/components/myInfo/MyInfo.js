@@ -9,12 +9,13 @@ import Select from 'react-select';
 import { EditInfo } from '../../container/EditInfo';
 // import crypto from 'crypto-js';
 import axios from 'axios';
+import { ChangeNewPwd } from '../../container/ChangeNewPwd';
 // import {hashPwd}  from '../presentation/Encryptpwd';
 
 function MyInfo({show, onHide}) {
 
   const [email, setEmail] = useState(""); //이메일
-  const [password, setPassword] = useState(''); //비밀번호
+  const [NewPwd, setNewPwd] = useState(''); //비밀번호
   const [nickName, setNickName] = useState(''); //닉네임
   const [country,setCountry] = useState();
   const [countryCode, setCountryCode] = useState('') //나라
@@ -24,14 +25,13 @@ function MyInfo({show, onHide}) {
   
   /*오류메세지*/
   const [verifyMessage, setVerMessage] = useState('');
-  const [pwdMessage, setPwdMessage] = useState('');
-  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
   const [nickNameMessage, setnickNameMessage] = useState('')
   
   /*유효성 검사*/
   const [emailOk, setEmailOk] = useState(false);
-  const [isPwd, setIsPwd] = useState(false);
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+  const [isCurrentPwd, setIsCurrentPwd] = useState(false);
+  const [isNewPwd, setIsNewPwd] = useState(false);
+  const [isNewPwdConfirm, setIsNewPwdConfirm] = useState(false)
   const [isNickName, setIsNickName] = useState(false);
   const [emailAvail,setEmailAvail] = useState(false);
   const [nickNameAvail,setNickNameAvail] = useState(false);
@@ -42,7 +42,7 @@ function MyInfo({show, onHide}) {
 
   const formData = {
     email : email,
-    pwd : password, //여기를 암호화 한 값을 넣어야 한다. 
+    pwd : NewPwd, //여기를 암호화 한 값을 넣어야 한다. 
     nickName : nickName,
     countryCode : countryCode,
     age : age,
@@ -52,25 +52,55 @@ function MyInfo({show, onHide}) {
 
 
 
-const checkPassword = (e) => {
+const checkCurrentPassword = (e) => {
   //  8 ~ 10자 영문, 숫자 조합
   let regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,50}$/
   // 형식에 맞는 경우 true 리턴
   const pwdRegex = e.target.value;
     if(pwdRegex === ""){
-      setPwdMessage("");
-      setIsPwd(false);
+      setIsCurrentPwd(false);
     }
     else if (!regExp.test(pwdRegex)) {
-      setPwdMessage('Must contain number, lowercase letter,\n specialcharecter(!@#$%^*+=-),\n and should be minimum 8 characters');
-      setIsPwd(false);
+      setIsCurrentPwd(false);
     }
-    else
-    {
-      setPassword(pwdRegex);
-      setPwdMessage('OK :)');
-      setIsPwd(true);
+    // 현재 패스워드와 비교해서 맞는지 확인.
+    // else if (regExp != currentPwd) {
+    //   setPwdMessage('Please enter a correct password.');
+    //   setIsPwd(false);
+    // }
+    else {
+      setIsCurrentPwd(true);
     }
+}
+
+const checkNewPassword = (e) => {
+  //  8 ~ 10자 영문, 숫자 조합
+  let regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,50}$/
+  // 형식에 맞는 경우 true 리턴
+  const pwdRegex = e.target.value;
+    if(pwdRegex === ""){
+      setIsNewPwd(false);
+    }
+    else if (!regExp.test(pwdRegex)) {
+      setIsNewPwd(false);
+    }
+    else {
+      setNewPwd(pwdRegex);
+      setIsNewPwd(true);
+    }
+}
+
+const onChangePasswordConfirm = (e) => {
+  const NewPwdConfirm = e.target.value
+  if(NewPwdConfirm === ""){
+    setIsNewPwdConfirm(false)
+  }
+  else if (NewPwd === NewPwdConfirm) {
+    setIsNewPwdConfirm(true);
+    // setNewPwd(hashPwd(password));
+  }else{
+    setIsNewPwdConfirm(false)    
+  }
 }
 
 const onChangeProfilImg = (e) => {
@@ -112,22 +142,6 @@ const onChangeEmail = (e) => {
       setEmailBtDis(false);
       setEmail(emailRegex);
     }
-}
-
-const onChangePasswordConfirm = (e) => {
-  const passwordConfirmCurrent = e.target.value
-  if(passwordConfirmCurrent === ""){
-    setPasswordConfirmMessage('')
-    setIsPasswordConfirm(false)
-  }
-  else if (password === passwordConfirmCurrent) {
-    setPasswordConfirmMessage('OK :)');
-    setIsPasswordConfirm(true);
-    // setPassword(hashPwd(password));
-  }else{
-    setPasswordConfirmMessage('The password is different')
-    setIsPasswordConfirm(false)    
-  }
 }
 
 const onChangeNickName = (e) => {
@@ -205,8 +219,21 @@ const insertMember = async () =>{
   }
 }
 
-const cancel = () => {
-  onHide();
+const newPasswordConfirm = async () =>{
+  if (!isCurrentPwd) {
+    alert("Please enter a correct password.");
+  }
+  else if (!isNewPwdConfirm) {
+    alert("These passwords don’t match.");
+  }
+  else {
+    const result = await ChangeNewPwd(formData);
+    if(result == 1){
+      alert("Success on change new password");
+    }else{
+      alert("New password change failed");
+    }
+  }
 }
 
 const handleSubmit = (e) => {
@@ -217,10 +244,10 @@ const handleSubmit = (e) => {
     <Container id="my-info">
       <Form>
         {/* 사진 업로드 */}
-        <img src={pfImg} alt="profile" width="500" height="600"></img>
         <Form.Group controlId="formFile" className="mb-3">
+          <img src={pfImg} alt="profile" width="100" height="130"></img>
           <Form.Label>Profile img upload</Form.Label>
-          <Form.Control onChange={onChangeProfilImg} type="file" />
+          <Form.Control accept="image/jpg, image/png, image/jpeg" onChange={onChangeProfilImg} type="file" />
         </Form.Group>
 
         {/* 이메일 */}
@@ -267,28 +294,34 @@ const handleSubmit = (e) => {
       </Form>
 
       {/* Edit 버튼 */}
-      <button className="cp-btn" disabled={!(emailOk&&isNickName)} onClick={insertMember}>
+      <button className="cp-btn" disabled={!(emailOk||isNickName)} onClick={insertMember}>
         Edit
       </button>
 
-      {/* 비밀번호 */}
+      {/* 현재 비밀번호 */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Current Password</Form.Label>
         <form onSubmit={handleSubmit}>
-          <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
+          <Form.Control type="password" placeholder="Current Password" onChange={checkCurrentPassword}/>
         </form>
-        <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
       </Form.Group>
 
-      {/* 비밀번호 확인 */}
+      {/* 새로운 비밀번호 */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={onChangePasswordConfirm}/>
-        <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
+        <Form.Label>New Password</Form.Label>
+        <form onSubmit={handleSubmit}>
+          <Form.Control type="password" placeholder="New Password" onChange={checkNewPassword}/>
+        </form>
+      </Form.Group>
+
+      {/* 새로운 비밀번호 확인 */}
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Confirm New Password</Form.Label>
+        <Form.Control type="password" placeholder="Confirm New Password" onChange={onChangePasswordConfirm}/>
       </Form.Group>
 
       {/* 비밀번호 변경 버튼으로 해야 할듯? */}
-      <button className="close-btn" disabled={!(isPwd&&isPasswordConfirm)} onClick={cancel}>password confirm</button>
+      <button className="close-btn" disabled={!(isCurrentPwd&&isNewPwd&&isNewPwdConfirm)} onClick={newPasswordConfirm}>confirm</button>
     </Container>
   )
 }

@@ -73,7 +73,8 @@ public class Encryption {
 							new IvParameterSpec(iv.getBytes()));
 				
 				return new String(Base64.getEncoder().encode(cipher.doFinal(key.getBytes("UTF-8"))));
-			} catch(Exception e) { 
+			} catch(Exception e) {
+				logger.error(e.toString());
 				return key;
 			}
 		}		

@@ -3,13 +3,17 @@ package com.prac.react.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.stream.events.EndDocument;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.model.dto.Place;
+import com.prac.react.security.Encryption;
 import com.prac.react.service.PlaceService;
 
 @RestController
@@ -18,33 +22,51 @@ public class PlaceController {
     Logger logger = LoggerFactory.getLogger(PlaceController.class);
 
     private PlaceService ps;
+    private Encryption encryption;
 
-    public PlaceController(PlaceService ps){
+    @Autowired
+    public PlaceController(PlaceService ps,Encryption encryption){
         this.ps = ps;
+        this.encryption = encryption;
     }
     
-    //ÀüÃ¼ Àå¼Ò Á¤º¸¸¦ °¡Á®¿À´Â Controller(Kpop°ú ¹®È­Ã¼Çè Æ÷ÇÔÇØ¼­ ¸ðµÎ)
+    //Getting every place info in DB
     @GetMapping("/places")
     public List<Place> getPlaceList(){
         List<Place> placeList = new ArrayList<>();
         logger.info("Getting place list from DB");
 
+
         placeList = ps.getPlaceList();
+
+        for(Place place : placeList){
+            String placeNumHash = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            place.setPlaceHash(placeNumHash);
+            place.setPlaceNum(0);
+        }
 
         return placeList;
     }
 
-    //¾ê´Â ÀÌÁ¦ Æ¯Á¤ kpop °¡¼ö¿Í °ü·ÃµÈ Àå¼ÒÁ¤º¸¸¦ Ã£¾Æ º¸³»ÁÖ´Â controller
+    //getting particular place info related by culture or celebrity keyNum
     @GetMapping("place")
-    public List<Place> getKpopPlaces(@RequestParam("key")int key,@RequestParam("type")String type){
+    public List<Place> getKpopPlaces(@RequestParam("keyhash")String keyHash,@RequestParam("type")String type){
 
-        List<Place> kpopPlaceList = new ArrayList<>();
+        List<Place> typePlaceList = new ArrayList<>();
 
-        String found = "/"+key+"/";
+        int keyNum = Integer.parseInt(encryption.aesDecrypt(keyHash)); //keyHash ë³µí˜¸í™”
 
-        kpopPlaceList = ps.getPlaceByType(found, type);
+        String found = "/"+keyNum+"/";
 
-        return kpopPlaceList;
+        typePlaceList = ps.getPlaceByType(found, type);
+
+        for(Place place : typePlaceList){
+            String hashPlaceNum = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
+            place.setPlaceHash(hashPlaceNum);
+            place.setPlaceNum(0);
+        }
+
+        return typePlaceList;
 
     }
 }

@@ -23,7 +23,7 @@ function CardItem({ props }) {
 					{/* 아이돌 카드 */}
 					<Card.Img variant="top" className="m-auto" src={ props.fileUrl } style={{ height: '6em', width: '100%' }}/>
 					<Card.Body className="body-card-body">
-						<Card.Title className="text-center color-dark">
+						<Card.Title className="text-center">
 							<span style={{fontSize: '1rem'}}>
 								{ props.name }
 							</span>

@@ -16,6 +16,7 @@ import com.prac.react.algorithm.QuikSort;
 import com.prac.react.model.dto.Course;
 import com.prac.react.model.dto.CourseWrapper;
 import com.prac.react.model.dto.Place;
+import com.prac.react.security.Encryption;
 import com.prac.react.service.CourseService;
 
 @RestController
@@ -23,9 +24,12 @@ import com.prac.react.service.CourseService;
 public class CourseController {
 
 	Logger logger = LoggerFactory.getLogger(CourseController.class);
-	private CourseService cs;
 
-	public CourseController(CourseService cs){
+	private CourseService cs;
+	private Encryption encryption;
+
+	public CourseController(CourseService cs,Encryption encryption){
+		this.encryption = encryption;
 		this.cs = cs;
 	}
 
@@ -39,7 +43,8 @@ public class CourseController {
 		//받은 Place에 접근을 하여서 placeNum이 없는 애들은 place를 저장하자.
 		for(Place place : placesList){
 			logger.info("Place Info : " + place.toString());
-			if(place.getPlaceNum() == 0){
+
+			if(place.getPlaceHash() == ""){
 				//placeNum이 없는 애들은 map에서 고른애들이다. 따라서 우리 DB에 있을수도 있고 없을수도 있다.
 				//따라서 우리는 장소이름과 경도와 위도가 DB에 없다면 추가를 할것이다.
 				// select placeNum from places where name = 이름 && lat = 위도 && lng = 경도
@@ -55,12 +60,17 @@ public class CourseController {
 				}else{ //placeNum이 해당 장소정보로 저장된 경우
 					places += placeNum + "/";
 				}
-			}else{//이미 백에 저장되어 placeNum이 넘어온경우
+			}else{//이미 백에 저장되어 placeHash 넘어온경우
+				//placeHash 복호화 하기
+				int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getPlaceHash()));
+				place.setPlaceNum(placeNum);
 				places += place.getPlaceNum() + "/";
 			}
 		}
 
-		Course course = new Course(0,cw.getCourseName(),places,cw.getMemberNum());
+		int memberNum = Integer.parseInt(encryption.aesDecrypt(cw.getMemeberHash()));
+
+		Course course = new Course(0,cw.getCourseName(),places,memberNum);
 		logger.info("Course : "+ course.toString());
 		result = cs.insertCourse(course);
 
@@ -70,12 +80,17 @@ public class CourseController {
 
 		return result;
 	}
-	@GetMapping("/{memberNum}")
-	public List<CourseWrapper> getCourses(@PathVariable("memberNum")int memberNum) throws InterruptedException{
+	@GetMapping("/{memberNumhash}")
+	public List<CourseWrapper> getCourses(@PathVariable("memberNumhash")String memberNumHash) throws InterruptedException{
 
 		List<CourseWrapper> memberCourseList = new ArrayList<>();
+
+		//암호화된 멤버 번호를 복호화 해야한다.
+		int memberNum = Integer.parseInt(encryption.aesDecrypt(memberNumHash));
+
+
 		//해당 멤버의 코스를 모두 불러와야한다.
-		List<Course> courses = cs.getCourses(memberNum); //코스를 모두 불러왔다.
+		List<Course> courses = cs.getCourses(memberNum); //멤버 번호로 코스를 모두 불러왔다.
 		if(courses.isEmpty()){
 			logger.warn("Member course is empty");
 		}else{
@@ -85,8 +100,17 @@ public class CourseController {
 
 		//memberCourseList를 불러왔지만 지금 정렬이 하나도 되어있지 않다
 		//따라서 courseNum에따라서 오름차순으로 정렬을 해야한다.
-		QuikSort qs = new QuikSort(memberCourseList);
+		QuikSort qs = new QuikSort();
+		qs.quikSort(memberCourseList);
 
-		return qs.getCwl();
+		//오름 차순 정렬을한 course들의 courseNum을 암호화해야한다.
+
+		for(CourseWrapper cw : memberCourseList){
+			String courseHash = encryption.aesEncrypt(Integer.toString(cw.getCourseNum()));
+			cw.setCourseHash(courseHash);
+			cw.setCourseNum(0);
+		}
+
+		return memberCourseList;
 	}
 }

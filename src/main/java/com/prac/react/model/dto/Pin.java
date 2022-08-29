@@ -1,11 +1,11 @@
 package com.prac.react.model.dto;
 
 public class Pin {
-    private int pinNum;
-    private String pinHash;
+    private int pinNum; //핀번호
+    private String pinHash; //핀번호 암호화
     private int pinType;
-    private int pinKeyNum;
-    private String pinKeyHash;
+    private int pinKeyNum; //핀 유형 키값
+    private String pinKeyHash;//핀 유형 키값 암호화
     private String imageUrl;
 
     public Pin() {
