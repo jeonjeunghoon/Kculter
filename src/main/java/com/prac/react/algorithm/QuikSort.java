@@ -8,19 +8,9 @@ import org.slf4j.LoggerFactory;
 import com.prac.react.model.dto.CourseWrapper;
 
 public class QuikSort {
-    private List<CourseWrapper> cwl;
     Logger logger = LoggerFactory.getLogger(QuikSort.class);
 
     public QuikSort(){}
-
-    public QuikSort(List<CourseWrapper> cwl) {
-        this.cwl = cwl;
-        if(cwl.isEmpty()){
-            logger.warn("CourseWrapper list is empty");
-        }else{
-            quikSort(this.cwl);
-        }
-    }
 
     public void quikSort(List<CourseWrapper> cwl){
         quikSort(cwl,0,cwl.size()-1);
@@ -56,13 +46,5 @@ public class QuikSort {
         int tmp = cwl.get(start).getCourseNum();
         cwl.get(start).setCourseNum(cwl.get(end).getCourseNum());
         cwl.get(end).setCourseNum(tmp);
-    }
-
-    public List<CourseWrapper> getCwl() {
-        return this.cwl;
-    }
-
-    public void setCwl(List<CourseWrapper> cwl) {
-        this.cwl = cwl;
     }
 }
