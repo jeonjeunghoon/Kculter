@@ -16,8 +16,12 @@
 	transform: translate(-50%);
 }
 
-.map-card .card-toggle {
+.card-toggle {
 	display: flex;
+	position: absolute;
+	top: 70%;
+	transform: translate(-50%);
+	margin-left: 70px;
 	width: 30px;
 	height: 30px;
 }
@@ -39,23 +43,33 @@
 	align-self: center;
 }
 
-.card-box button {
-	width: 130px;
-	height: 130px;
-	border: rgba(0, 0, 0, 0);
-	background-color: rgba(0, 0, 0, 0);
-}
-
-.card-box button img {
-	width: 100%;
-	height: 90%;
-	box-shadow: 3px 3px 5px gray;
-	border-radius: 8px;
-}
-
 .card-item {
 	display: flex;
 	justify-content: center;
+}
+
+.card-item button {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	background-color: white;
+	border: rgba(0, 0, 0, 0);
+	border-radius: 8px;
+	box-shadow: 5px 5px 10px gray;
+	overflow-y: auto;
+}
+
+.card-item button img {
+	width: 100%;
+	height: 80%;
+	margin-top: 5px;
+	border-radius: 8px;
+}
+
+.card-item p {
+	height: 20%;
+	margin: 0;
 }
 
 .autocomplete-input {

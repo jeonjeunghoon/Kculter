@@ -5,12 +5,9 @@ import React, {
 import {
 	Marker
 } from '@react-google-maps/api'
-import {
-	useSelector
-} from 'react-redux';
 
 function CustomMarker(props) {
-	const title = useSelector(state => state.idolCulture.title);
+	const title = window.sessionStorage.getItem("title");
 	const [kculterPlace, setKculterPlace] = useState(null);
 	const [icon, setIcon] = useState(null);
 	

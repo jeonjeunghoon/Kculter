@@ -7,13 +7,17 @@ import '../map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
+	const pin = useSelector(state => state.pin.imageUrl);
 
 	return (
 		<div className="map-sidebar">
-			<Head
-				src={place.src}
-				head={place.head}
-			/>
+			{
+				place.address &&
+				<Head
+					src={pin}
+					head={place.head}
+				/>
+			}
 			{
 				place.fileUrl &&
 				<img className="place-img"

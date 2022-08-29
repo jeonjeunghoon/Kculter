@@ -1,6 +1,7 @@
 // 데이터 추가는 여기에
 const initState = {
 	place: {
+		head: "",
 		address: "",
 		culture: "",
 		explain: "",
@@ -22,11 +23,6 @@ const initState = {
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
-	idolCulture: {
-		key: 0,
-		type: 0,
-		title: "K-CULTER",
-	},
 	kculterPlace: [],
 	pin: {
 		imageUrl: "",
@@ -53,7 +49,6 @@ export const CLEAR_MEMBER = 'CLEAR_MEMBER';
 export const PUSH_MEMBER = 'PUSH_MEMBER';
 export const SIDE_SET_DASHBOARD = 'SIDE_SET_DASHBOARD';
 export const SIDE_SET_SETTING = 'SIDE_SET_SETTING';
-export const SET_IDOL_CULTURE = 'SET_IDOL_CULTURE';
 export const CLEAR_COURSE = 'CLEAR_COURSE';
 export const CLEAR_PLACE = 'CLEAR_PLACE';
 export const SET_KCULTER_PLACE = 'SET_KCULTER_PLACE';
@@ -108,11 +103,6 @@ export default function reducer(state = initState, action) {
 			return {
 				...state,
 				settingSelected: action.data,
-			}
-		case SET_IDOL_CULTURE:
-			return {
-				...state,
-				idolCulture: action.data,
 			}
 		case CLEAR_COURSE:
 			return {

@@ -57,35 +57,36 @@ function MapCard(props) {
 	return (
 		props.near
 		?
-		<div className='map-card'>
+		<div className='map-card-container'>
 			<CardToggle
 				setIsStay={props.setIsStay}
 			/>
+			<div className='map-card'>
+				<CustomArrowPrev
+					sliderRef={sliderRef}
+				/>
 
-			<CustomArrowPrev
-				sliderRef={sliderRef}
-			/>
+				<Slider className="card-box"
+					ref={sliderRef}
+					{ ...settings }
+				>
+					{props.near &&
+					props.near.data &&
+					props.near.data.map((item, index) => 
+						<Cards
+							key={index}
+							item={item}
+							setCenter={props.setCenter}
+							setZoom={props.setZoom}
+							dispatch={props.dispatch}
+						/>
+					)}
+				</Slider>
 
-			<Slider className="card-box"
-				ref={sliderRef}
-				{ ...settings }
-			>
-				{props.near &&
-				props.near.data &&
-				props.near.data.map((item, index) => 
-					<Cards
-						key={index}
-						item={item}
-						setCenter={props.setCenter}
-						setZoom={props.setZoom}
-						dispatch={props.dispatch}
-					/>
-				)}
-			</Slider>
-			
-			<CustomArrowNext
-				sliderRef={sliderRef}
-			/>
+				<CustomArrowNext
+					sliderRef={sliderRef}
+				/>
+			</div>
 		</div>
 		:
 		<></>
