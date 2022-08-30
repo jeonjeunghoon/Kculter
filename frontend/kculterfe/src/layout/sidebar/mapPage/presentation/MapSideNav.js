@@ -10,37 +10,23 @@ function MapSideNav() {
 
 	return (
 		<div className="map-sidebar">
-			{
-				place.head &&
-				<Head
-					imageUrl={place.imageUrl}
-					head={place.head}
+			<Head
+				imageUrl={place.imageUrl}
+				head={place.head}
+			/>
+			<img className="place-img"
+				src={place.fileUrl}
+				alt={place.name}
 				/>
-			}
-			{
-				place.fileUrl &&
-				place.name &&
-				<img className="place-img"
-					src={place.fileUrl}
-					alt={place.name}
-					/>
-			}
 			<div className="map-sidebar-content">
-				{
-					place.name &&
-					place.address &&
-					<Place
-						name={place.name}
-						address={place.address}
-						explain={place.explain}
-					/>
-				}
-				{
-					place &&
-					<CourseBox
-						place={place}
-					/>
-				}
+				<Place
+					name={place.name}
+					address={place.address}
+					explain={place.explain}
+				/>
+				<CourseBox
+					place={place}
+				/>
 			</div>
 		</div>
 	);

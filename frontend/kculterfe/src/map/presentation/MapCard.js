@@ -1,5 +1,8 @@
 import React, {
 	useRef,
+	useState,
+	useEffect,
+	useLayoutEffect,
 } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
@@ -43,16 +46,18 @@ function MapCard(props) {
 	}
 	const sliderRef = useRef();
 
-	if (props.near && props.near.data) {
-		if (props.near.data.length < settings.slidesToShow) {
-			settings.slidesToShow = props.near.length;
-		}
-		settings.responsive.map((item) => {
-			if (props.near.data.length < item.settings.slidesToShow) {
-				item.settings.slidesToShow = props.near.data.length;
+	useEffect(() => {
+		if (props.near && props.near.data) {
+			if (props.near.data.length < settings.slidesToShow) {
+				settings.slidesToShow = props.near.length;
 			}
-		})
-	}
+			settings.responsive.map((item) => {
+				if (props.near.data.length < item.settings.slidesToShow) {
+					item.settings.slidesToShow = props.near.data.length;
+				}
+			})
+		}
+	}, [])
 
 	return (
 		props.near
@@ -72,15 +77,21 @@ function MapCard(props) {
 				>
 					{props.near &&
 					props.near.data &&
-					props.near.data.map((item, index) => 
-						<Cards
-							key={index}
-							item={item}
-							isStay={props.isStay}
-							setCenter={props.setCenter}
-							setZoom={props.setZoom}
-							dispatch={props.dispatch}
-						/>
+					props.near.data.map((item, index) => {
+						const head = props.isStay ? "STAY" : "TOUR";
+						const image = item.firstimage ? item.firstimage : "";
+						return (
+							<Cards
+								key={index}
+								item={item}
+								title={item.title}
+								image={image}
+								head={head}
+								setCenter={props.setCenter}
+								setZoom={props.setZoom}
+								dispatch={props.dispatch}
+							/>);
+						}
 					)}
 				</Slider>
 
@@ -90,7 +101,7 @@ function MapCard(props) {
 			</div>
 		</div>
 		:
-		<></>
+		<h1>로딩 중...</ h1>
 	);
 }
 

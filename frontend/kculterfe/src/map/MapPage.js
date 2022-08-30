@@ -15,20 +15,29 @@ import {
 import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
 
+const lib = ['places'];
+
 function MapPage() {
 	const { isLoaded } = useJsApiLoader({
 		id: 'map-page',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
 		language: 'en',
-		libraries: ['places'],
+		libraries: lib,
 	});
 	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
+	const [center, setCenter] = useState({
+		lat: 37.5509895,
+		lng: 126.9908991,
+	});
 	const [kculter, setKculter] = useState(null);
 	const kculterProps = {
 		keyHash: window.sessionStorage.getItem("keyHash"),
 		type: Number(window.sessionStorage.getItem("type")),
 	}
+	const mapConcert = useSelector(state => state.mapConcert);
+	const [concert, setConcert] = useState(null);
+	const [concertPin, setConcertPin] = useState(null);
 	useEffect(() => {
 		const fetchData = async() => {
 				let type = "";
@@ -45,6 +54,23 @@ function MapPage() {
 						pin: pin.data,
 					}))
 				}
+				if (mapConcert.lat && mapConcert.lng) {
+					const pin = await getPinApi("/pin/", "kpop", mapConcert.keyHash);
+					setConcertPin(() => pin);
+					setCenter(() => ({
+						lat: mapConcert.lat,
+						lng: mapConcert.lng,
+					}));
+					setConcert(() => [{
+						keyHash: mapConcert.keyHash,
+						head: mapConcert.starName,
+						name: mapConcert.concertName,
+						fileUrl: mapConcert.img,
+						explain: mapConcert.explain,
+						lat: mapConcert.lat,
+						lng: mapConcert.lng,
+					}]);
+				}
 				setIsLoadedApi(() => true);
 			}
 		fetchData();
@@ -54,7 +80,12 @@ function MapPage() {
 		isLoaded &&
 		isLoadedApi &&
 		<MapRender
+		center={center}
 		kculter={kculter}
+		kPlace={kculter.place}
+		kPin={kculter.pin}
+		concert={concert}
+		concertPin={concertPin}
 		/>
 	);
 }

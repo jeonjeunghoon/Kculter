@@ -13,11 +13,7 @@ import {
 } from '../container/handleGM';
 import {
 	useDispatch,
-	useSelector,
 } from 'react-redux';
-import {
-	getPinApi
-} from '../container/getInfo'
 import Search from './Search';
 import MapMarker from './MapMarker';
 import MapCard from './MapCard';
@@ -29,10 +25,7 @@ function MapRender(props) {
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);
-	const [center, setCenter] = useState({
-		lat: 37.5509895,
-		lng: 126.9908991,
-	});
+	const [center, setCenter] = useState(props.center);
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -50,8 +43,10 @@ function MapRender(props) {
 		},
 	};
 
-	const [isStay, setIsStay] = useState(null);
-	const [url, setUrl] = useState(null);
+	const [kPlace, setKPlace] = useState(props.kPlace);
+	const [kPin, setKPin] = useState(props.kPin);
+	const [isStay, setIsStay] = useState(true);
+	const [url, setUrl] = useState("/near/stay?lat=");
 	const [near, setNear] = useState(null);
 	useEffect(() => {
 		if (isStay === true) {
@@ -63,32 +58,6 @@ function MapRender(props) {
 		}
 	}, [isStay]);
 
-	const mapConcert = useSelector(state => state.mapConcert);
-	const [concert, setConcert] = useState(null);
-	const [concertPin, setConcertPin] = useState(null);
-	useEffect(() => {
-		if (mapConcert.lat && mapConcert.lng) {
-			const fetchData = async() => {
-				const pin = await getPinApi("/pin/", "kpop", mapConcert.keyHash);
-				setConcertPin(() => pin);
-				setCenter(() => ({
-					lat: mapConcert.lat,
-					lng: mapConcert.lng,
-				}));
-				setConcert(() => [{
-					keyHash: mapConcert.keyHash,
-					title: mapConcert.concertName,
-					starName: mapConcert.starName,
-					imageUrl: mapConcert.img,
-					explain: mapConcert.explain,
-					lat: mapConcert.lat,
-					lng: mapConcert.lng,
-				}]);
-			}
-			fetchData();
-		}
-	}, [map])
-
 	return (
 		<div className='map-container'>
 			{/* 구글맵 인스턴스 */}
@@ -97,7 +66,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={map => handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear)}
+				onLoad={map => handleOnLoad(map, setMap, url, setNear)}
 				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
 				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
@@ -117,12 +86,13 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					kculter={props.kculter}
+					kPlace={kPlace}
 					near={near}
-					concert={concert}
+					concert={props.concert}
+					kPin={kPin}
 					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
-					concertPin={concertPin}
+					concertPin={props.concertPin}
 					coursePin={""}
 					isStay={isStay}
 					setCenter={setCenter}

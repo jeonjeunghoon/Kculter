@@ -23,18 +23,15 @@ function MapMarker(props) {
 	return (
 		<div>
 			{/* KCULTER 마커 */}
-			{
-				props.kculter &&
 				<CustomMarker
-					place={props.kculter.place}
-					pin={props.kculter.pin}
+					place={props.kPlace}
+					pin={props.kPin}
 					title={window.sessionStorage.getItem("title")}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
 					setZoom={props.setZoom}
 					dispatch={props.dispatch}
 				/>
-			}
 			{/* 코스 마커 */}
 			<CustomMarker
 				place={course}
@@ -71,6 +68,7 @@ function MapMarker(props) {
 				:
 				<></>
 			}
+			{/* Concert 마커 */}
 			{
 				props.concert &&
 				props.concertPin &&
