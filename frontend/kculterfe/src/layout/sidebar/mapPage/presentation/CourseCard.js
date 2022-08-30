@@ -17,6 +17,7 @@ function CourseCard (props) {
 				>
 					<img
 						src={item.fileUrl}
+						alt={"Course item"}
 					/>
 					<p>
 						{item.name}

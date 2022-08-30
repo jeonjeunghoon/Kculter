@@ -33,10 +33,8 @@ export function handleOnUnmount(map, setMap, dispatch) {
 	})
 }
 
-export function handleOnLoad(map, setMap, setIsStay, url, setUrl, setNear) {
+export function handleOnLoad(map, setMap, url, setNear) {
 	setMap(() => map);
-	setIsStay(() => true);
-	setUrl(() => "/near/stay?lat=");
 	handleOnDragEndGM(map, url, setNear);
 }
 

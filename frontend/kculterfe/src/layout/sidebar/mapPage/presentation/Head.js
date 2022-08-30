@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Head({ imageUrl, head }) {
+function Head(props) {
 	return (
 		<div className="head">
-			<img src={imageUrl}></img>
-			<h3>{head}</h3>
+			<img src={props.imageUrl}></img>
+			<h3>{props.head}</h3>
 		</div>
 	);
 }

@@ -7,7 +7,9 @@ function CardToggle(props) {
 				style={{
 					backgroundColor:"red",
 				}}
-				onClick={() => props.setIsStay(() => true)}
+				onClick={() => {
+					props.setIsStay(() => true)
+				}}
 			>
 			</button>
 			<button className='tour-toggle'

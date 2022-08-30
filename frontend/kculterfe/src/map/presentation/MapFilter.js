@@ -59,7 +59,7 @@ function MapFilter(props) {
 				setPlaceholder={setPlaceholder}
 			/>
   		<Form.Select className='filter'
-				onChange={(e) => console.log(e.target.value)}
+				onChange={(e) => setSelected(e.target.value)}
 				style={{
 					width: "240px",
 					height: "32px",
