@@ -66,6 +66,7 @@ function CardItem(item) {
 										 </button>
             	</Link>
 					</div>
+					</div>
 				</Modal.Body>
 				{/* <Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
