@@ -27,16 +27,21 @@ function CourseBox({ place }) {
 				courseList={courseList}
 				setCourseList={setCourseList}
 			/>
+			<div className="course-button">
       <button
 				onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}
 			>
         ADD
       </button>
-			<button
-				onClick={() => handleOnClickSave(setModalIsOpen, courseList)}
-			>
-        SAVE TO BACK
-      </button>
+			{
+				courseList.length > 0 &&
+				<button
+					onClick={() => handleOnClickSave(setModalIsOpen, courseList)}
+				>
+      	  SAVE TO BACK
+      	</button>
+			}
+			</div>
 				<Modal
 					isOpen={modalIsOpen}
 					ariaHideApp={false}

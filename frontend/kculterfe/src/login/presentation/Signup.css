@@ -1,21 +1,50 @@
-.Signup-header {
-  font-size: 35px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 20px;
-  margin-bottom: 70px;
-  padding-bottom: 10px;
-  color: #f4029b;
-  font-weight: bold;
-  justify-content: center;
-  display: flex;
-  border-bottom: 1px solid #f4029b;
-  padding-bottom: 30px;
+@media all and (max-width: 812px) {
+  .Signup-headers {
+    font-size: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    color: #f4029b;
+    font-weight: bold;
+    justify-content: center;
+    display: flex;
+    border-bottom: 1px solid #f4029b;
+    padding-bottom: 30px;
+  }
 }
 
-#form-div {
-  padding: 200px 200px;
-  position: relative;
+@media all and (min-width: 812px) {
+  .Signup-headers {
+    font-size: 35px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    padding-bottom: 10px;
+    color: #f4029b;
+    font-weight: bold;
+    justify-content: center;
+    display: flex;
+    border-bottom: 1px solid #f4029b;
+    padding-bottom: 30px;
+  }
+
+  #loginform-div {
+    padding: 200px 200px;
+    position: relative;
+  }
+  .form-1 {
+    position: absolute;
+    left: 14%;
+    top: 0px;
+  }
+
+  .form-2 {
+    position: absolute;
+    left: 60%;
+    top: 0px;
+  }
 }
 
 #btn-check {
@@ -44,18 +73,6 @@
   color: #fff;
   background-color: #f4029b;
   border-radius: 10px;
-}
-
-.form-1 {
-  position: absolute;
-  left: 14%;
-  top: 0px;
-}
-
-.form-2 {
-  position: absolute;
-  left: 60%;
-  top: 0px;
 }
 
 .message {

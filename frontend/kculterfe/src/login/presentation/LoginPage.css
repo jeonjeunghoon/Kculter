@@ -7,16 +7,41 @@
   width: 100%;
 }
 
-.login-div {
-  border-radius: 5%;
-  background-color: #ffff;
-  padding: 100px 35px 70px 35px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 20%;
-  align-items: center;
-  right: 37%;
+@media all and (max-width: 812px) {
+  .login-con {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    background-image: url("../../src_asset/로그인배경.png");
+    height: 100vh;
+    background-size: cover;
+  }
+  .login-div {
+    border-radius: 5%;
+    background-color: #ffff;
+    padding: 100px 35px 70px 35px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 15%;
+    align-items: center;
+  }
+}
+
+@media all and (min-width: 812px) {
+  .login-div {
+    border-radius: 5%;
+    background-color: #ffff;
+    padding: 100px 35px 70px 35px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 20%;
+    align-items: center;
+    right: 37%;
+  }
 }
 
 .login-top {

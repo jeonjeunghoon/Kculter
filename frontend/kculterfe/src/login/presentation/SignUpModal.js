@@ -204,10 +204,10 @@ const handleSubmit = (e) => {
       centered
       id = "modal-body"
     >
-      <div className="Signup-header">
+      <div className="Signup-headers">
         Sign Up
       </div>
-      <Modal.Body id="form-div">
+      <Modal.Body id="loginform-div">
         <Form>
           <div className="form-1">
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -256,8 +256,8 @@ const handleSubmit = (e) => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Gender</Form.Label>
               <div className="select-gender">
-                <input type='radio' id = "select"name='gender' value='female' onClick={(e) =>setGender(e.target.value)} /><label for ="select">여성</label>
-                <input type='radio' id = "select2"name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/><label for="select2">남성</label>
+                <input type='radio' id = "select"name='gender' value='female' onClick={(e) =>setGender(e.target.value)} /><label for ="select">Female</label>
+                <input type='radio' id = "select2"name='gender' value='male' onClick={(e) =>setGender(e.target.value)}/><label for="select2">Male</label>
               </div>
             </Form.Group>
 
