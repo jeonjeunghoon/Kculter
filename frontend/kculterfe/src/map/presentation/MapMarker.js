@@ -23,7 +23,7 @@ function MapMarker(props) {
 		<div>
 			{/* KCULTER 마커 */}
 			<CustomMarker
-				kculterPlace={props.kculterPlace}
+				place={props.kPlace}
 				pin={props.kPin}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
@@ -32,7 +32,7 @@ function MapMarker(props) {
 			/>
 			{/* 코스 마커 */}
 			<CustomMarker
-				kculterPlace={useSelector(state => state.course)}
+				place={useSelector(state => state.course.courseList)}
 				pin={props.coursePin}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
@@ -44,7 +44,7 @@ function MapMarker(props) {
 				props.near ?
 					props.isStay ?
 					<CustomMarker
-						kculterPlace={nearData}
+						place={nearData}
 						pin={props.stayPin}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
@@ -53,7 +53,7 @@ function MapMarker(props) {
 					/>
 					:
 					<CustomMarker
-						kculterPlace={nearData}
+						place={nearData}
 						pin={props.tourPin}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
@@ -64,9 +64,9 @@ function MapMarker(props) {
 				<></>
 			}
 			{
-				props.concertPlace &&
+				props.concert &&
 				<CustomMarker
-					kculterPlace={props.concertPlace}
+					place={props.concert}
 					pin={props.concertPin}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}

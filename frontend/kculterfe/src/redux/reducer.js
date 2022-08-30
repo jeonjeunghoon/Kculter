@@ -2,6 +2,7 @@
 const initState = {
 	place: {
 		head: "",
+		imageUrl: "",
 		address: "",
 		culture: "",
 		explain: "",
@@ -26,13 +27,6 @@ const initState = {
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
-	kculterPlace: [],
-	pin: {
-		imageUrl: "",
-		pinKeyNum: 0,
-		pinNum: 0,
-		pinType: 0,
-	},
 	mapConcert: {
 		key: 0,
 		name: "",

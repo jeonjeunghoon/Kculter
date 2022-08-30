@@ -7,7 +7,7 @@ import '../map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
-	const pin = useSelector(state => state.pin.imageUrl);
+	const pin = useSelector(state => state.place.imageUrl);
 
 	return (
 		<div className="map-sidebar">
