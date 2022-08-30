@@ -6,7 +6,7 @@ export async function getPin(type, keyHash) {
     console.log("/pin/kpop?keyHash=" + keyHash);
     if (type == 1)
     {
-        return await axios.get("/pin/kpop/?keyHash=" + keyHash, {
+        return await axios.get("/pin/kpop?keyHash=" + keyHash, {
             responseType: 'json'
         })
         .then(function(res){
@@ -19,7 +19,7 @@ export async function getPin(type, keyHash) {
             alert("서버 통신 실패");
         });
     } else if (type == 2) {
-        return await axios.get("/pin/culture/?keyHash=" + keyHash, {
+        return await axios.get("/pin/culture?keyHash=" + keyHash, {
             responseType: 'json'
         })
         .then(function(res){
@@ -32,7 +32,7 @@ export async function getPin(type, keyHash) {
             alert("서버 통신 실패");
         });
     } else {
-        return alert("pin type error");
+        return alert("컬처 타입 오류");
     }
 }
 

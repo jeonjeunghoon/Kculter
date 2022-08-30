@@ -21,7 +21,6 @@ function CultureList({}) {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data);
 	}, []);
 
 	const filterTitle = data.filter((p) => {
