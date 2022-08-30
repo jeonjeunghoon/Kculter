@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import {
 	Link
 } from 'react-router-dom';
+import { getPin } from '../container/GetPinData';
 // css module
 import styles from './IdolCard.module.css';
 // fonts
 import '../../../index.css';
 
-function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, path_map, explain}) {
+function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, explain}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -17,6 +18,18 @@ function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, path_m
 	window.sessionStorage.setItem("keyHash", keyHash);
 	window.sessionStorage.setItem("title", title);
 	window.sessionStorage.setItem("type", type);
+
+	const [pin, setPin] = useState([]);
+
+	useEffect(() => {
+		getPin(type, keyHash)
+		.then(resPin => {
+			setPin(resPin);
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	}, []);
 
 	return (
 		<>
@@ -29,17 +42,12 @@ function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, path_m
 						</div>
 					</div>
 					<div className={styles.card_content}>
-						<div className={styles.pin}>
-							<div className={styles.like_num}>
-								<p>{num_like }</p>
-								<p>likes</p>
-								<img src='heart.png' />
-							</div>
-							<div className={styles.spot_num}>
-								<p>{num_spot }</p>
-								<p>spots</p>
-								<img src='spot.png' />
-							</div>
+						<div className={styles.card_content_pin}>
+							<img src={pin.imageUrl} />
+						</div>
+						<div className={styles.card_content_spot}>
+							<p>{num_spot }</p>
+							<img src='spot.png' />
 						</div>
 					</div>
 				</div>
@@ -56,12 +64,9 @@ function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, path_m
 				<Modal.Body className={styles.modal_body}>
 					<div className={styles.modal_title}>
 						{title}
+						<img src={pin.imageUrl} />
 					</div>
 					<div className={styles.modal_info}>
-						<div className={styles.modal_like_num}>
-							<img src='heart.png' />
-							<p>{num_like} Likes</p>
-						</div>
 						<div className={styles.modal_spot_num}>
 							<img src='spot.png' />
 							<p>{num_spot} Spots</p>
