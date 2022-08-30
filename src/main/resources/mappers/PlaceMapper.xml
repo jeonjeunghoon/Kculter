@@ -12,7 +12,8 @@
 	<!--특정 문화체험의 장소정보를 가져오는 메소드-->
 	<select id="getCulturePlaces" parameterType="String" resultType="Place">
 		select * from places where culture like CONCAT('%',#{found},'%')
-	</select>	
+	</select>
+	<!--특정 장소정보 조회-->	
 	<select id="getPlaceInfo" parameterType="int" resultType="Place">
 		select * from places where placeNum = #{placeNum}
 	</select>

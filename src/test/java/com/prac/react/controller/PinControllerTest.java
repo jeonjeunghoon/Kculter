@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.prac.react.security.Encryption;
 import com.prac.react.service.PinService;
 
-@WebMvcTest(PinController.class) 
+@WebAppConfiguration
 public class PinControllerTest {
 
     @MockBean

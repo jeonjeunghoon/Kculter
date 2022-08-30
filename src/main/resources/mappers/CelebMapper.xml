@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.CelebDao">
-	<!-- member count 가져오는 메소드 -->
+	<!-- 모든 연예인 정보 가져온다 -->
 	<select id="getCelebrities" resultType="Celebrity">
 		select * from celebrities
 	</select>
+	<!--연예인 이름으로 연예인 키값 가져온다.-->
 	<select id="getCelebKeyNumByName" parameterType="String" resultType="int">
 		select keyNum from celebrities where name= #{name}
 	</select>

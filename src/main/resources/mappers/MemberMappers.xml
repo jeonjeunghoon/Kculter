@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.MemberDao">
-	<!-- member count 가져오는 메소드 -->
+	<!--checking email duplicate -->
 	<select id="checkMember" resultType="integer" parameterType='String'>
 		select count(*) from member where email=#{email}
 	</select>
+	<!--checking nickname duplicate-->
 	<select id="checkNickName" resultType="integer" parameterType='String'>
 		select count(*) from member where nickName=#{nickName}
 	</select>
+	<!--inserting member info-->
 	<insert id="insertMember" parameterType="Member">
 		insert into member(memberNum,email,pwd,nickName,countryCode,age,gender,pf_image) 
 		values(null,#{email},#{pwd},#{nickName},#{countryCode},#{age},#{gender},#{pf_image})
 	</insert>
+	<!--login with email and pwd-->
 	<select id="login" parameterType="Member" resultType="Member">
 		select memberNum, email, nickName, pf_image from member where email=#{email} and pwd=#{pwd}
 	</select>
