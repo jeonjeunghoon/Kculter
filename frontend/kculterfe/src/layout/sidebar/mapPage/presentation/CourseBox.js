@@ -1,4 +1,5 @@
 import React, {
+	useEffect,
 	useState,
 } from 'react';
 import {
@@ -16,9 +17,14 @@ import {
 function CourseBox({ place }) {
 	const memberNum = window.sessionStorage.getItem("memberNum");
 	const dispatch = useDispatch();
+	const reduxCourseList = useSelector(state => state.course);
 	const [courseList, setCourseList] = useState([])
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [courseName, setCourseName] = useState("");
+
+	useEffect(() => {
+		setCourseList(() => reduxCourseList);
+	}, [courseList]);
 
 	return (
 		<div className="course">
@@ -28,19 +34,19 @@ function CourseBox({ place }) {
 				setCourseList={setCourseList}
 			/>
 			<div className="course-button">
-      <button
-				onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}
-			>
-        ADD
-      </button>
-			{
-				courseList.length > 0 &&
-				<button
-					onClick={() => handleOnClickSave(setModalIsOpen, courseList)}
+      	<button
+					onClick={() => handleOnClickAdd(place, courseList, setCourseList, dispatch)}
 				>
-      	  SAVE TO BACK
+      	  ADD
       	</button>
-			}
+				{
+					courseList.length > 0 &&
+					<button
+						onClick={() => handleOnClickSave(setModalIsOpen, courseList)}
+					>
+      		  SAVE TO BACK
+      		</button>
+				}
 			</div>
 				<Modal
 					isOpen={modalIsOpen}

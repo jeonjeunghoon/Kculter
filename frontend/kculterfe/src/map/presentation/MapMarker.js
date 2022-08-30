@@ -12,7 +12,7 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
-	const course = useSelector(state => state.course.courseList)
+	const course = useSelector(state => state.course);
 	const [nearData, setNearData] = useState(null);
 
 	useEffect(() => {

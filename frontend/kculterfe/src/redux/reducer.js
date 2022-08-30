@@ -16,11 +16,7 @@ const initState = {
 		placeType: 0,
 		status: 0,
 	},
-	course: {
-		courseNum: 0,
-		courseName: "",
-		courseList: [],
-	},
+	course: [],
 	member: null,
 	idolSelected: true,
 	attrSelected: false,
