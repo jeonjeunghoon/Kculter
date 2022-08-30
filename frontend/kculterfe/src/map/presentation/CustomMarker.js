@@ -12,7 +12,6 @@ function CustomMarker(props) {
 	const [icon, setIcon] = useState(null);
 	
 	useEffect(() => {
-		console.log(props.place);
 		if (props.place) {
 			setPlace(() => props.place);
 			const icon = new window.google.maps.MarkerImage(

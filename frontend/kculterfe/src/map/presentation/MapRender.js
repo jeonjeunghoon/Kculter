@@ -27,7 +27,6 @@ import staypin from '../test.png';
 
 function MapRender(props) {
 	const dispatch = useDispatch();
-
 	const google = window.google;
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
@@ -116,9 +115,10 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					kPlace={props.kculter}
+					kPlace={props.kculter.place}
 					near={near}
 					concert={concert}
+					kPin={props.kculter.pin}
 					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					concertPin={concertPin}
