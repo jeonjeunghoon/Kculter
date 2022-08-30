@@ -5,4 +5,8 @@
 	<select id="getCultureList" resultType="Culture">
 		select * from culture
 	</select>
+	<!--getting culture spot count-->
+	<select id="getSpot" resultType="integer" parameterType="String">
+		select count(*) from places where culture like CONCAT('%',#{key},'%')
+	</select>
 </mapper>

@@ -9,4 +9,8 @@
 	<select id="getCelebKeyNumByName" parameterType="String" resultType="int">
 		select keyNum from celebrities where name= #{name}
 	</select>
+	<!--getting particular star places count-->
+	<select id="getSpot" parameterType="String" resultType="integer">
+		select count(*) from places where kpop like CONCAT('%',#{key},'%')
+	</select>
 </mapper>

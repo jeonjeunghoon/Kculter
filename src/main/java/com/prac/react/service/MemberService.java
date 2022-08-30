@@ -32,4 +32,20 @@ public class MemberService {
     public Member login(Member loginTry) {
         return md.login(loginTry);
     }
+
+    public Member getMemberInfo(int memberKeyNum) {
+        return md.getMemberInfo(memberKeyNum);
+    }
+
+    public int updateMember(Member member) {
+        return md.updateMember(member);
+    }
+
+    public Integer checkPwd(Member member) {
+        return md.checkPwd(member);
+    }
+
+    public int updatePwd(Member member) {
+        return md.updatePwd(member);
+    }
 }

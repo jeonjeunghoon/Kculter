@@ -2,6 +2,7 @@ package com.prac.react.model.dto;
 
 public class Member {
 	private int memberNum;
+	private String memberNumHash;
 	private String email;
 	private String pwd;
 	private String nickName;
@@ -24,12 +25,21 @@ public class Member {
 		this.pf_image = pf_image;
 	}
 
+
 	public int getMemberNum() {
 		return this.memberNum;
 	}
 
 	public void setMemberNum(int memberNum) {
 		this.memberNum = memberNum;
+	}
+
+	public String getMemberNumHash() {
+		return this.memberNumHash;
+	}
+
+	public void setMemberNumHash(String memberNumHash) {
+		this.memberNumHash = memberNumHash;
 	}
 
 	public String getEmail() {

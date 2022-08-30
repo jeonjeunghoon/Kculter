@@ -10,4 +10,5 @@ import com.prac.react.model.dto.Celebrity;
 public interface CelebDao {
     List<Celebrity> getCelebrities();
     int getCelebKeyNumByName(String name);
+    Integer getSpot(String key);
 }

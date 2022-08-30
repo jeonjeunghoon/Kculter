@@ -18,4 +18,20 @@
 	<select id="login" parameterType="Member" resultType="Member">
 		select memberNum, email, nickName, pf_image from member where email=#{email} and pwd=#{pwd}
 	</select>
+	<!--getting member info by keyNum-->
+	<select id="getMemberInfo" parameterType="int" resultType="Member">
+		select nickName, countryCode,gender,pf_image from member where memberNum=#{memberKeyNum}
+	</select>
+	<!--updating member info by keyNum-->
+	<update id="updateMember" parameterType="Member">
+		update member set nickName=#{nickName}, countryCode=#{countryCode}, gender=#{gender},pf_image=#{pf_image} where memberNum=#{memberNum}
+	</update>
+	<!--checking member pwd-->
+	<select id="checkPwd" parameterType="Member" resultType="integer">
+		select count(*) from member where memberNum=#{memberNum} and pwd=#{pwd}
+	</select>
+	<!--updating pwd-->
+	<update id="updatePwd" parameterType="Member">
+		update member set pwd = #{pwd} where memberNum = #{memberNum}
+	</update>
 </mapper>

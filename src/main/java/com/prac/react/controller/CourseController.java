@@ -76,6 +76,10 @@ public class CourseController {
 
 		if(result < 0){
 			return 500;
+		}else if(result == 1){
+			logger.info("Course insert success");
+		}else if(result == 2){
+			logger.info("Course update success");
 		}
 
 		return result;

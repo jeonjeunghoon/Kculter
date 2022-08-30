@@ -6,9 +6,10 @@
         insert into places (placeNum,culture,kpop,lat,lng,status,name,`explain`,address,fileUrl) 
 		values (null, #{culture}, #{kpop},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
     </insert>
-    <!--inserting course info-->
+    <!--inserting course info. If key exist udpate. This return result 2-->
     <insert id="insertCourse" parameterType="Course">
-        insert into course(courseNum,courseName,memberNum,places) values (null,#{courseName},#{memberNum},#{places})
+        insert into course(courseNum,courseName,memberNum,places) values (#{courseNum},#{courseName},#{memberNum},#{places})
+        on duplicate key update courseName=#{courseName}, memberNum=#{memberNum}, places=#{places}
     </insert>
     <!--Verify that the same Place information exists -->
     <select id="checkPlaceDb" parameterType="Place" resultType="integer">
