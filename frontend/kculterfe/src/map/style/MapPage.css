@@ -57,7 +57,7 @@
 	border: rgba(0, 0, 0, 0);
 	border-radius: 8px;
 	box-shadow: 5px 5px 10px gray;
-	overflow-y: auto;
+	overflow-y: hidden;
 }
 
 .card-item button img {

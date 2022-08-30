@@ -3,6 +3,16 @@ import React, {
 	useState,
 } from 'react';
 import Form from 'react-bootstrap/Form';
+import {
+	getKpopList
+} from '../../manager/common/container/GetKpopList';
+import {
+	getCultureList
+} from '../../manager/common/container/GetCultureList';
+import {
+	getPlaceApi,
+	getPinApi,
+} from '../container/getInfo';
 
 function FilterToggle(props) {
 	return (
@@ -29,27 +39,44 @@ function FilterToggle(props) {
 }
 
 function MapFilter(props) {
-	// 토글 선택 시
-	// 선택한 토글의 리스트 테이블에서 뽑아오기
-	// 뽑아온 리스트를 보여준다.
 	const [isKpop, setIsKpop] = useState(true);
 	const [placeholder, setPlaceholder] = useState("Select k-pop stars!");
-	const [list, setList] = useState(null);
-	const [selected, setSelected] = useState(null);
+	const [list, setList] = useState([]);
 
-	// 리스트 선택 시
-	// 선택한 리스트의 keyHash 값을 뽑아 온다.
-	// getPlaceApi(url, keyHash, type), getPinApi(url, keyHash, type) 사용
-	// setKculter(() => {
-	// 	place: place,
-	//	pin: pin,
-	// });
 	useEffect(() => {
-		setList(() => [
-			"a",
-			"b",
-			"c"
-		]);
+		const fetchData = async() => {
+			let kList = [];
+			if (isKpop) {
+				getKpopList()
+				.then(function(res) {
+					res.map(item => {
+						kList.push({
+							hash: item.keyHash,
+							name: item.name,
+						});
+					})
+					setList(kList);
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
+			} else {
+				getCultureList()
+				.then(function(res) {
+					res.map(item => {
+						kList.push({
+							hash: item.keyHash,
+							name: item.name,
+						});
+					})
+					setList(kList);
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
+			}
+		}
+		fetchData();
 	}, [isKpop]);
 
   return(
@@ -59,7 +86,28 @@ function MapFilter(props) {
 				setPlaceholder={setPlaceholder}
 			/>
   		<Form.Select className='filter'
-				onChange={(e) => setSelected(e.target.value)}
+				onChange={(e) => {
+					console.log(e.target.value);
+					const fetchData = async() => {
+						let type = "";
+						if (isKpop) {
+							type = "kpop";
+						} else {
+							type = "culture";
+						}
+						const place = await getPlaceApi("/place/", e.target.value, type);
+						const pin = await getPinApi("/pin/", type, e.target.value);
+						if (place) {
+							props.setKPlace(place.data);
+						}
+						if (pin) {
+							props.setKPin(pin.data);
+						}
+					}
+					if (e.target.value !== "placeholder") {
+						fetchData();
+					}
+				}}
 				style={{
 					width: "240px",
 					height: "32px",
@@ -78,9 +126,9 @@ function MapFilter(props) {
 					return (
 						<option
 						key={index}
-						value={item}
+						value={item.hash}
 						>
-							{item}
+							{item.name}
 						</option>
 					);
 				})}

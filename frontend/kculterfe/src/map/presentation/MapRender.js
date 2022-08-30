@@ -81,6 +81,8 @@ function MapRender(props) {
 
 				{/* 필터 */}
 				<MapFilter
+					setKPlace={setKPlace}
+					setKPin={setKPin}
 					list={["a", "b", "c"]}
 				/>
 
