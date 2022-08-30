@@ -5,6 +5,8 @@ import { getCourseList } from '../../container/GetCours';
 function BoxCardList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
+
+	// promise 데이터 한번더 .then 으로 받아와 사용 / 추후 리팩토링 가능성 있음
 	useEffect(() => {
 		getCourseList()
 		.then(resData => {
@@ -13,7 +15,6 @@ function BoxCardList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data);
 	}, []);
 
 	return (

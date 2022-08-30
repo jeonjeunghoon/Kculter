@@ -8,11 +8,9 @@ export async function getCourseList() {
     })
     .then(function(res){
         list = res.data;
-        console.log(list);
         return list;
     })
     .catch(function(error){
-        console.log(error);
         alert("서버 통신 실패");
     });
 }

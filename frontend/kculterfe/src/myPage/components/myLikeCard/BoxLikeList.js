@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Row } from 'react-bootstrap';
 import BoxLikeItem from './BoxLikeItem';
-import items from '../../data/myLikeList.json'
 import { getLikeList } from '../../container/GetLikeList';
 import '../../styles/BoxLikeList.css';
 
