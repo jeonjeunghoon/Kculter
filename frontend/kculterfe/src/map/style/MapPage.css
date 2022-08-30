@@ -80,15 +80,28 @@
   height: 32px;
   border: 1px solid transparent;
   border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px gray;
   font-size: 14px;
 	text-overflow: ellipses;
 }
 
-.map-filter {
+.map-filter-container {
 	position: absolute;
+	display: flex;
 	top: 20px;
 	right: 30px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-	text-overflow: ellipses;
+}
+
+.kpop-toggle {
+	width: 30px;
+	height: 30px;
+}
+
+.culture-toggle {
+	width: 30px;
+	height: 30px;
+}
+
+.filter {
+	box-shadow: 5px 5px 10px gray;
 }

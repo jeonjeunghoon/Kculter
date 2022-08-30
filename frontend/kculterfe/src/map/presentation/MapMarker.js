@@ -23,18 +23,23 @@ function MapMarker(props) {
 	return (
 		<div>
 			{/* KCULTER 마커 */}
-			<CustomMarker
-				place={props.kPlace}
-				pin={props.kPin}
-				markerHandler={handleCustomMarker}
-				setCenter={props.setCenter}
-				setZoom={props.setZoom}
-				dispatch={props.dispatch}
-			/>
+			{
+				props.kculter &&
+				<CustomMarker
+					place={props.kculter.place}
+					pin={props.kculter.pin}
+					title={window.sessionStorage.getItem("title")}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 			{/* 코스 마커 */}
 			<CustomMarker
 				place={course}
 				pin={props.coursePin}
+				title={"COURSE"}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
@@ -47,6 +52,7 @@ function MapMarker(props) {
 					<CustomMarker
 						place={nearData}
 						pin={props.stayPin}
+						title={"STAY"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
 						setZoom={props.setZoom}
@@ -56,6 +62,7 @@ function MapMarker(props) {
 					<CustomMarker
 						place={nearData}
 						pin={props.tourPin}
+						title={"TOUR"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
 						setZoom={props.setZoom}
@@ -66,9 +73,11 @@ function MapMarker(props) {
 			}
 			{
 				props.concert &&
+				props.concertPin &&
 				<CustomMarker
 					place={props.concert}
-					pin={props.kPin}
+					pin={props.concertPin.data}
+					title={props.concert.starName}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
 					setZoom={props.setZoom}

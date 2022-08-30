@@ -7,7 +7,6 @@ import {
 } from '@react-google-maps/api'
 
 function CustomMarker(props) {
-	const title = window.sessionStorage.getItem("title");
 	const [place, setPlace] = useState(null);
 	const [icon, setIcon] = useState(null);
 	
@@ -37,7 +36,7 @@ function CustomMarker(props) {
 						lng: item.lng
 					}}
 					onClick={() => {
-						props.markerHandler(item, props.setCenter, props.setZoom, props.dispatch, title, props.pin.imageUrl);
+						props.markerHandler(item, props.title, props.setCenter, props.setZoom, props.dispatch, props.pin.imageUrl);
 					}}
 				/>
 			);

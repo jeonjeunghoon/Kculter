@@ -111,14 +111,15 @@ function MapRender(props) {
 				/>
 
 				{/* 필터 */}
-				<MapFilter />
+				<MapFilter
+					list={["a", "b", "c"]}
+				/>
 
 				{/* 마커 */}
 				<MapMarker
-					kPlace={props.kculter.place}
+					kculter={props.kculter}
 					near={near}
 					concert={concert}
-					kPin={props.kculter.pin}
 					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					concertPin={concertPin}
@@ -132,6 +133,7 @@ function MapRender(props) {
 				{/* 카드 */}
 				<MapCard
 					near={near}
+					isStay={isStay}
 					setIsStay={setIsStay}
 					setCenter={setCenter}
 					setZoom={setZoom}

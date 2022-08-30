@@ -14,16 +14,16 @@ function useFocusOn(place, setCenter, setZoom, dispatch) {
 	});
 }
 
-export function handleCard(data, setCenter, setZoom, dispatch) {
+export function handleCard(data, head, setCenter, setZoom, dispatch) {
 	const place = {
-		head: "K-CULTER",
+		head: head,
 		imageUrl: "",
 		address: data.addr1,
 		culture: "",
 		explain: "",
 		fileUrl: data.firstimage,
 		kpop: "",
-		name: data.title,
+		name: data.head,
 		courseName: "",
 		lat: Number(data.mapy),
 		lng: Number(data.mapx),
@@ -34,9 +34,9 @@ export function handleCard(data, setCenter, setZoom, dispatch) {
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
 
-export function handleCustomMarker(data, setCenter, setZoom, dispatch, title, pin) {
+export function handleCustomMarker(data, head, setCenter, setZoom, dispatch, pin) {
 	const place = {
-		head: title,
+		head: head,
 		imageUrl: pin,
 		address: data.address,
 		culture: data.culture,
@@ -54,9 +54,9 @@ export function handleCustomMarker(data, setCenter, setZoom, dispatch, title, pi
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
 
-export function handleGoogleMarkerAndSearch(data, setCenter, setZoom, dispatch) {
+export function handleGoogleMarkerAndSearch(data, head, setCenter, setZoom, dispatch) {
 	const place = {
-		head: "K-CULTER",
+		head: head,
 		imageUrl: "",
 		address: data.formatted_address,
 		culture: "",

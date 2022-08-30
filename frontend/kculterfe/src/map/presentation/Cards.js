@@ -1,21 +1,34 @@
-import React from 'react';
+import React, {
+	useState,
+	useEffect,
+} from 'react';
 import {
 	handleCard
 } from '../container/handleOnMarker';
 
 function Cards(props) {
-	let image = null;
+	const [image, setImage] = useState("");
+	const [head, setHead] = useState("");
 
-	if (props.item.firstimage) {
-		image = props.item.firstimage;
-	} else {
-		image = "https://www.pngall.com/wp-content/uploads/5/Hotel-PNG-Image.png";
-	}
+	useEffect(() => {
+		if (props.isStay === true) {
+			setHead(() => "STAY");
+			if (props.item.firstimage) {
+				setImage(() => props.item.firstimage);
+			}
+		} else {
+			setHead(() => "TOUR");
+			if (props.item.firstimage) {
+				setImage(() => props.item.firstimage);
+			}
+		}
+	}, [props.isStay])
 	return (
 		<div className="card-item">
 			<button
 				onClick={() => {
-					handleCard(props.item, props.setCenter, props.setZoom, props.dispatch);
+					console.log(head);
+					handleCard(props.item, head, props.setCenter, props.setZoom, props.dispatch);
 				}}
 			>
 				<img

@@ -29,35 +29,24 @@ function MapPage() {
 		keyHash: window.sessionStorage.getItem("keyHash"),
 		type: Number(window.sessionStorage.getItem("type")),
 	}
-	const concert = useSelector(state => state.mapConcert);
 	useEffect(() => {
 		const fetchData = async() => {
-			let type = "";
-			let keyHash = "";
-			if (concert.lat && concert.lng) {
-				type = "kpop";
-				keyHash = concert.keyHash;
-				window.sessionStorage.setItem("type", 1);
-				window.sessionStorage.setItem("keyHash", keyHash);
-			} else {
-			 	if (kculterProps.type === 1) {
+				let type = "";
+				if (kculterProps.type === 1) {
 					type = "kpop";
-					keyHash = kculterProps.keyHash;
 				} else {
 					type = "culture";
-					keyHash = kculterProps.keyHash;
 				}
-			}
-				const place = await getPlaceApi("/place/", keyHash, type);
-				const pin = await getPinApi("/pin/", type, keyHash);
+				const place = await getPlaceApi("/place/", kculterProps.keyHash, type);
+				const pin = await getPinApi("/pin/", type, kculterProps.keyHash);
 				if (place && pin) {
 					setKculter(() => ({
 						place: place.data,
 						pin: pin.data,
 					}))
 				}
-			setIsLoadedApi(() => true);
-		}
+				setIsLoadedApi(() => true);
+			}
 		fetchData();
 	}, [])
 

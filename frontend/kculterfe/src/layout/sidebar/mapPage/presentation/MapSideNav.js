@@ -12,7 +12,6 @@ function MapSideNav() {
 		<div className="map-sidebar">
 			{
 				place.head &&
-				place.imageUrl &&
 				<Head
 					imageUrl={place.imageUrl}
 					head={place.head}

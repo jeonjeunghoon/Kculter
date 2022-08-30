@@ -63,7 +63,7 @@ export function handleOnClickGM(map, e, google, setCenter, setZoom, dispatch) {
 			placeData.geometry &&
 			placeData.geometry.location
 		) {
-			handleGoogleMarkerAndSearch(placeData, setCenter, setZoom, dispatch);
+			handleGoogleMarkerAndSearch(placeData, "PLACE", setCenter, setZoom, dispatch);
 		}
 	})
 }
