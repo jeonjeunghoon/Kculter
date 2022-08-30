@@ -1,25 +1,31 @@
 package com.prac.react.controller;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.prac.react.model.dto.Member;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.MemberService;
+import com.prac.react.service.S3FileUploadService;
 
 /* 이파일은 회원가입,로그인,회원정보수정 등등
  회원 정보와 관련된 일을 할때 들어올 Controller 입니다 */
 
 @RestController
-@RequestMapping("/member/")
+@RequestMapping("/member")
 public class MemberController {
 
     // 로그를 찍어보기 위해서 만든 인스턴스
@@ -27,11 +33,13 @@ public class MemberController {
     // MemberService 의존성 주입을 위해 사용할 인스턴스
     private MemberService ms;
     private Encryption encrypt;
+    private S3FileUploadService sfu;
 
     @Autowired
-    public MemberController(MemberService ms, Encryption encrypt) {
+    public MemberController(MemberService ms, Encryption encrypt,S3FileUploadService sfu) {
         this.ms = ms; // 의존성 주입
         this.encrypt = encrypt;
+        this.sfu = sfu;
     }
 
     // @PostMapping("member")
@@ -48,21 +56,21 @@ public class MemberController {
     // }
     // }
 
-    @GetMapping("emaildup")
+    @GetMapping("/emaildup")
     public int checkEmail(@RequestParam("email") String email) {
         logger.info("Email : " + email);
         int result = ms.checkMember(email);
         return result;
     }
 
-    @GetMapping("nicknamedup")
+    @GetMapping("/nicknamedup")
     public int checkNickName(@RequestParam("nickname") String nickName) {
         logger.info("NickName : " + nickName);
         int result = ms.checkNickName(nickName);
         return result;
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public int insertMember(@RequestBody Member member) {
         logger.info(member.toString());
 
@@ -75,13 +83,13 @@ public class MemberController {
 
         int result = ms.insertMember(member);
         if (result == 1) {
-            return 1;
+            return 200;
         } else {
             return 500;
         }
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public Member login(@RequestHeader("Authorization") String autho) {
         logger.info("Authorization : " + autho);
 
@@ -99,5 +107,99 @@ public class MemberController {
             logger.info(authorizedUser.toString());
         }
         return authorizedUser;
+    }
+
+    //회원번호로 회원정보 조회 api
+    @GetMapping("")
+    public Member getMemberInfo(@RequestHeader("Authorization") String autho) {
+        logger.info("Member info get login start");
+
+        int memberKeyNum = Integer.parseInt(encrypt.aesDecrypt(autho)); //멤버번호
+
+        Member member = ms.getMemberInfo(memberKeyNum);
+
+        //member 받아왔으니 이제 보내주자.
+        if(member == null){
+            return null;
+        }else{
+            return member;
+        }
+    }
+
+    //회원정보 변경 api
+    @PutMapping("")
+    public int updateMemberInfo(@RequestPart("formValue") Member member,@RequestPart(value="file", required=false) MultipartFile mpf) throws IOException{
+
+        /*
+         * formValue : {
+                memberNumHash : 
+                nickName : 
+                countryCode : 
+                gender : 
+                pf_image : 
+         * }
+         * 이렇게 받을 예정임
+         */
+        //일단은 memberHash를 복호화 해야함
+        int memberKeyNum =  Integer.parseInt(encrypt.aesDecrypt(member.getMemberNumHash()));
+        member.setMemberNum(memberKeyNum);
+
+        //이제 이미지를 저장하자.
+        String imageUrl = sfu.uploadtoS3(mpf,"/pf-image");
+        member.setPf_image(imageUrl);
+
+        int result = ms.updateMember(member);
+        if(result <= 0){
+            return 500;
+        }else{
+            return 200;
+        }
+    }
+    //비밀번호 확인 api
+    //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
+    @GetMapping("/pwd")
+    public int checkPwd(@RequestHeader("Authorization") String autho){
+        String decrypt = encrypt.aesDecrypt(autho);
+
+        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
+        String memberNum = encrypt.aesDecrypt(memberNumHash);
+        logger.info("MemberNum : "+encrypt.aesDecrypt(memberNum));
+        String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
+        logger.info("Pwd : "+pwd);
+
+        Member member = new Member();
+        member.setMemberNum(Integer.parseInt(memberNum));
+        member.setPwd(encrypt.shaEncryption(pwd));
+
+        Integer result = ms.checkPwd(member);
+        if (result == null){
+            return 401; //인증 실패
+        }else{
+            return 200; //성공
+        }
+    }
+
+    //비밀번호 변경 api
+    //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
+    @PutMapping("/pwd")
+    public int updatePwd(@RequestHeader("Authorization") String autho){
+        String decrypt = encrypt.aesDecrypt(autho);
+
+        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
+        String memberNum = encrypt.aesDecrypt(memberNumHash);
+        logger.info("MemberNum : "+encrypt.aesDecrypt(memberNum));
+        String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
+        logger.info("Pwd : "+pwd);
+
+        Member member = new Member();
+        member.setMemberNum(Integer.parseInt(memberNum));
+        member.setPwd(encrypt.shaEncryption(pwd));
+
+        int result = ms.updatePwd(member);
+        if(result <= 0){
+            return 500; //서버
+        }else{
+            return 200; //성공
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.prac.react.service;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +39,15 @@ public class CultureServiceTest {
                 logger.info("Culture : "+ culture.toString());
             }            
         }
+    }
+    @Test
+    void testGetSpot(){
+        //given
+        String key = "/2/";
+        //when
+        Integer count = cs.getSpot(key);
+        logger.info("Count : "+count);
+        //then
+        assertNotNull(count);
     }
 }

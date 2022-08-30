@@ -35,6 +35,15 @@ public class CultureController {
         cultureList = cs.getCultureList();
         
         for(Culture culture : cultureList){
+
+            Integer spot = cs.getSpot("/"+culture.getKeyNum()+"/");
+
+            if(spot == null){
+                culture.setSpot(0);
+            }else{
+                culture.setSpot(spot);
+            }
+            
             String keyHash = encryption.aesEncrypt(Integer.toString(culture.getKeyNum()));
             culture.setKeyHash(keyHash);
             culture.setKeyNum(0);

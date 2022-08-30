@@ -10,4 +10,8 @@ public interface MemberDao {
     Integer checkNickName(String nickName);
     int insertMember(Member member);
     Member login(Member loginTry);
+    Member getMemberInfo(int memberKeyNum);
+    int updateMember(Member member);
+    Integer checkPwd(Member member);
+    int updatePwd(Member member);
 }

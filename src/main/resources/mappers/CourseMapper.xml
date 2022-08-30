@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.CourseDao">
+    <!--saving new place info that is not stored in DB-->
     <insert id="saveNewPlace"  useGeneratedKeys="true" keyProperty="placeNum" parameterType="Place">
         insert into places (placeNum,culture,kpop,lat,lng,status,name,`explain`,address,fileUrl) 
 		values (null, #{culture}, #{kpop},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
     </insert>
+    <!--inserting course info. If key exist udpate. This return result 2-->
     <insert id="insertCourse" parameterType="Course">
-        insert into course(courseNum,courseName,memberNum,places) values (null,#{courseName},#{memberNum},#{places})
+        insert into course(courseNum,courseName,memberNum,places) values (#{courseNum},#{courseName},#{memberNum},#{places})
+        on duplicate key update courseName=#{courseName}, memberNum=#{memberNum}, places=#{places}
     </insert>
+    <!--Verify that the same Place information exists -->
     <select id="checkPlaceDb" parameterType="Place" resultType="integer">
         select placeNum from places where name = #{name} and lat = #{lat} and lng = #{lng}
     </select>
+    <!--Get all Course information for a specific member-->
     <select id="getCourses" parameterType="int" resultType="Course">
         select * from course where memberNum=#{memberNum}
     </select>

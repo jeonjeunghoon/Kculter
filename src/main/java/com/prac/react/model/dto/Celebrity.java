@@ -8,6 +8,7 @@ public class Celebrity {
     private String explain;
     private String fileUrl;
     private String keyHash;
+    private int spot;
 
     public Celebrity() {
     }
@@ -78,6 +79,14 @@ public class Celebrity {
         this.keyHash = keyHash;
     }
 
+    public int getSpot() {
+        return this.spot;
+    }
+
+    public void setSpot(int spot) {
+        this.spot = spot;
+    }
+
 
     @Override
     public String toString() {
@@ -89,8 +98,10 @@ public class Celebrity {
             ", explain='" + getExplain() + "'" +
             ", fileUrl='" + getFileUrl() + "'" +
             ", keyHash='" + getKeyHash() + "'" +
+            ", spot='" + getSpot() + "'" +
             "}";
     }
+
 
 
 }

@@ -1,5 +1,7 @@
 package com.prac.react.service;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +49,17 @@ public class CelebServiceTest {
         int celebKeyNum = cs.getCelebKeyNumByName(celebName);
 
         logger.info("celebKeyNum : "+celebKeyNum);
+    }
+    @Test
+    void testGetSpot(){
+        //given
+        String celebKey = "/1/";
+
+        //when
+        Integer count = cs.getSpot(celebKey);
+        logger.info("Spot count : "+count);
+
+        //then
+        assertNotNull(count);
     }
 }

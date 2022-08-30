@@ -19,5 +19,9 @@ public class CultureService {
     public List<Culture> getCultureList(){
         return cd.getCultureList();
     }
+
+    public Integer getSpot(String key) {
+        return cd.getSpot(key);
+    }
     
 }

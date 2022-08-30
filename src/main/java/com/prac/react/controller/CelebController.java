@@ -36,6 +36,15 @@ public class CelebController {
 
         //받아온 키값을 암호화한다.
         for(Celebrity celeb : celebList){
+
+            Integer spot = cs.getSpot("/"+celeb.getKeyNum()+"/");
+            
+            if(spot == null){
+                celeb.setSpot(0);
+            }else{
+                celeb.setSpot(spot);
+            }
+            
             String hashKey = encryption.aesEncrypt(Integer.toString(celeb.getKeyNum()));
             celeb.setKeyHash(hashKey);
             celeb.setKeyNum(0);

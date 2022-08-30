@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.CultureDao">
-	<!-- member count 가져오는 메소드 -->
+	<!-- getting every culture info -->
 	<select id="getCultureList" resultType="Culture">
 		select * from culture
+	</select>
+	<!--getting culture spot count-->
+	<select id="getSpot" resultType="integer" parameterType="String">
+		select count(*) from places where culture like CONCAT('%',#{key},'%')
 	</select>
 </mapper>

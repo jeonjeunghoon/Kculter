@@ -22,4 +22,8 @@ public class CelebService {
     public int getCelebKeyNumByName(String name){
         return cd.getCelebKeyNumByName(name);
     }
+
+    public Integer getSpot(String key) {
+        return cd.getSpot(key);
+    }
 }

@@ -8,6 +8,8 @@ public class Culture {
     private int status;
     private String explain;
     private String fileUrl;
+    private int spot;
+
     
     public Culture() {
     }
@@ -76,6 +78,13 @@ public class Culture {
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
     }
+    public int getSpot() {
+        return this.spot;
+    }
+
+    public void setSpot(int spot) {
+        this.spot = spot;
+    }
 
 
     @Override
@@ -88,8 +97,11 @@ public class Culture {
             ", status='" + getStatus() + "'" +
             ", explain='" + getExplain() + "'" +
             ", fileUrl='" + getFileUrl() + "'" +
+            ", spot='" + getSpot() + "'" +
             "}";
     }
+
+
 
 
 }

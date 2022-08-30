@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.ManagerDao">
-	<!-- 문화 체험 입력 -->
+	<!-- inserting culture info -->
 	<insert id="insertCulture" parameterType="Culture">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
 		insert into culture (keyNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
 	</insert>
+	<!--inserting kpop star-->
 	<insert id="insertKpop" parameterType="Celebrity">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
 		insert into celebrities (keyNum,name,likeCount,status,`explain`,fileUrl) values (null, #{name}, null, 1, #{explain}, #{fileUrl})
 	</insert>
+	<!--inserting place info-->
 	<insert id="insertPlace" parameterType="Place">
 		<!-- explain이 예약어라서 explain 같은경우는 ``을 붙여줘야 함 -->
 		insert into places (placeNum,culture,kpop,lat,lng,status,name,`explain`,address,fileUrl) 
 		values (null, #{culture}, #{kpop},#{lat},#{lng},null,#{name},#{explain},#{address},#{fileUrl})
-	</insert>	
+	</insert>
+	<!--inserting concert info-->	
 	<insert id="insertConcert" parameterType="Concert">
 		insert into concerts (concertNum,lat,startDate,starKey,status,endDate,`explain`,imageUrl,lng,concertName,starName) 
 		values (null, #{lat}, #{startDate},#{starKey},null,#{endDate},#{explain},#{imageUrl},#{lng},#{concertName},#{starName})		
 	</insert>
+	<!--adding kpop star into place info-->
 	<update id="updatePlaceKpop" parameterType="Place">
 		update places set kpop = concat(kpop,concat("/",#{kpop},"/")) where placeNum=#{placeNum}
 	</update>
+	<!--adding culture into place info-->
 	<update id="updatePlaceCulture" parameterType="Place">
 		update places set culture = concat(culture,concat("/",#{culture},"/")) where placeNum=#{placeNum}
 	</update>
+	<!--checking kpop place count-->
 	<select id="checkKpopPlace" parameterType="String" resultType="int">
 		select count(*) from places where kpop like CONCAT('%', #{kpop}, '%)
 	</select>
+	<!--checking culture place count-->
 	<select id="checkCulturePlace" parameterType="String" resultType="int">
 		select count(*) from places where culture like CONCAT('%', #{culture}, '%')
 	</select>	
+	<!--insert pin info-->
 	<insert id="insertPin" parameterType="Pin">
 		insert into pin (pinNum,pinType,pinKeyNum,imageUrl) values (null,#{pinType},#{pinKeyNum},#{imageUrl})
 	</insert>		

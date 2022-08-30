@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prac.react.model.dao.ConcertDao">
-
+    <!--getting concert num by celeb name-->
 	<select id="getConcertNumbyCelebName" resultType="integer" parameterType="String">
 		select concertNum from concerts where starName=#{celebName}
 	</select>
+    <!--updating starkeyNum at particular concertNum-->
     <update id="updateCelebNum" parameterType="int">
         update concerts set starKey = #{celebNum} where concertNum = #{concertNum}
     </update>
+    <!--getting all concert info-->
     <select id="getConcertList" resultType="Concert">
         select * from concerts
     </select>

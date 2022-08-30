@@ -29,7 +29,7 @@ public class CourseServiceTest {
     @Test
     void testInsertCourse() {
         //given
-        Course course = new Course(0,"가즈아","1/2/3/",1);
+        Course course = new Course(3,"가즈아","1/2/3/",1);
         //when
         int result = cs.insertCourse(course);
         //then

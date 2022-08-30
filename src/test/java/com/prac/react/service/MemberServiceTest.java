@@ -1,5 +1,8 @@
 package com.prac.react.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,5 +86,49 @@ public class MemberServiceTest {
             logger.info("Member : "+ member.toString());
         }
 
+    }
+    @Test
+    void testGetMemberInfo(){
+        //given
+        int keyNum = 1;
+        //when
+        Member member = ms.getMemberInfo(keyNum);
+        //then
+        assertNotNull(member);
+    }
+    @Test
+    void testUpdateMember(){
+        //given
+        Member member = new Member(1, "", "", "nickName", "KR", 0, "male", "test");
+        //when
+        int result = ms.updateMember(member);
+        //then
+        assertEquals(result, 1);
+    }
+    @Test
+    void testCheckPwd(){
+        //given
+        Member member = new Member();
+        member.setMemberNum(1);
+        member.setPwd("bade96ec9deb0adb28d2d82800194776b1329f3bd54366f338a5567a473f0df1");
+
+        //when
+        Integer result = ms.checkPwd(member);
+
+        //then
+        assertNotNull(result);
+    }
+    @Test
+    void testUpdatePwd(){
+        //given
+        Member member = new Member();
+        member.setMemberNum(1);
+        member.setPwd("test");
+
+        //when
+        int result = ms.updatePwd(member);
+        
+        //then
+        assertEquals(result, 1);
     }
 }
