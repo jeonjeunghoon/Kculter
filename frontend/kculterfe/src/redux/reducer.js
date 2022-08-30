@@ -8,7 +8,6 @@ const initState = {
 		fileUrl: "",
 		kpop: "",
 		name: "",
-		courseName: "",
 		memberNum: 0,
 		lat: 0,
 		lng: 0,
@@ -16,7 +15,11 @@ const initState = {
 		placeType: 0,
 		status: 0,
 	},
-	course: [],
+	course: {
+		courseNum: 0,
+		courseName: "",
+		courseList: [],
+	},
 	member: null,
 	idolSelected: true,
 	attrSelected: false,
@@ -36,7 +39,7 @@ const initState = {
 		explain: "",
 		lat: 0,
 		lng: 0,
-	}
+	},
 }
 
 // 액션 추가 여기

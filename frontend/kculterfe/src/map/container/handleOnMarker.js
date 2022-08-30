@@ -30,8 +30,6 @@ export function handleCard(data, setCenter, setZoom, dispatch) {
 		placeNum: 0,
 		placeType: 0,
 		status: 0,
-		tel: data.tel,
-		contenttypeid: data.contenttypeid,
 	}
 	useFocusOn(place, setCenter, setZoom, dispatch);
 }
@@ -72,7 +70,6 @@ export function handleGoogleMarkerAndSearch(data, setCenter, setZoom, dispatch) 
 		placeNum: 0,
 		placeType: 0,
 		status: 0,
-		tel: data.international_phone_number,
 	}
 	if (data.photos) {
 		place.fileUrl = data.photos[0].getUrl();

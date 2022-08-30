@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Outlet,
 	useLocation
@@ -14,15 +14,21 @@ import Header from './header/presentation/Header';
 
 import MapSideNav from './sidebar/mapPage/presentation/MapSideNav';
 
+import { useSelector } from 'react-redux';
+
 const Layout = () => {
 	const location = useLocation();
 	const [open, setOpen] = useState(true);
 	const handleOpen = (e) => setOpen(e);
+	// const 
 
+	// useEffect(() => {
+		
+	// }, []);
 	return (
 		<div className={open ? 'layout open' : 'layout close'}>
 			{location.pathname == "/IdolListPage" && <IdolListSideNav pageidx={0} items={idolListItem}/>}
-			{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem}/>}
+			{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem} open={open} handleOpen={handleOpen}/>}
 			{location.pathname == "/Mypage" && <MySideNav pageidx={2} items={myPageItem}/>}
 			<Header handleOpen={handleOpen}/>
 			<Outlet />
