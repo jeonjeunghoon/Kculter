@@ -81,6 +81,8 @@ public class Encryption {
 
 		// 복호화
 		public String aesDecrypt(String encryptedText) {
+			//http 통신을 하면서 기존에 +가 공백으로 처리되어서 넘어온다 따라서 공백을 +로 다시 돌려줘야한다.
+			encryptedText = encryptedText.replace(" ", "+");
 			logger.info("autho : "+encryptedText);
 			try {
 				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
