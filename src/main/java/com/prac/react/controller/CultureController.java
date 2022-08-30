@@ -33,11 +33,9 @@ public class CultureController {
         logger.info("Culture list get API start");
 
         cultureList = cs.getCultureList();
-
-        Encryption encrypt = new Encryption();
-
+        
         for(Culture culture : cultureList){
-            String keyHash = encrypt.aesEncrypt(Integer.toString(culture.getKeyNum()));
+            String keyHash = encryption.aesEncrypt(Integer.toString(culture.getKeyNum()));
             culture.setKeyHash(keyHash);
             culture.setKeyNum(0);
         }
