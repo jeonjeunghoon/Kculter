@@ -9,18 +9,10 @@ import {
 	getPlaceApi,
 	getPinApi
 } from './container/getInfo'
-import {
-	useDispatch,
-} from 'react-redux';
-import {
-	SET_KCULTER_PLACE,
-	SET_PIN
-} from '../redux/reducer';
 import MapRender from './presentation/MapRender';
 import './style/MapPage.css';
 
-function MapPage(props) {
-	const dispatch = useDispatch();
+function MapPage() {
 	const { isLoaded } = useJsApiLoader({
 		id: 'map-page',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
@@ -29,28 +21,23 @@ function MapPage(props) {
 	});
 	const [isLoadedApi, setIsLoadedApi] = useState(false);
 
-	const kculterPlaceProps = {
-		keyNum: Number(window.sessionStorage.getItem("keyNum")),
+	const [kculter, setKculter] = useState(null);
+	const kculterProps = {
+		keyHash: window.sessionStorage.getItem("keyHash"),
 		type: Number(window.sessionStorage.getItem("type")),
 	}
 	useEffect(() => {
 		const fetchData = async() => {
-			console.log(kculterPlaceProps);
-			const url = "/place";
-			if (kculterPlaceProps.type) {
-				kculterPlaceProps.type = "kpop";
+			if (kculterProps.type) {
+				kculterProps.type = "kpop";
 			} else {
-				kculterPlaceProps.type = "culture";
+				kculterProps.type = "culture";
 			}
-			const kculterPlace = await getPlaceApi(url, kculterPlaceProps.keyNum, kculterPlaceProps.type);
-			const pin = await getPinApi("/pin/" + kculterPlaceProps.type, kculterPlaceProps.keyNum);
-			dispatch({
-				type: SET_KCULTER_PLACE,
-				data: kculterPlace.data,
-			})
-			dispatch({
-				type: SET_PIN,
-				data: pin.data,
+			const place = await getPlaceApi("/place/", kculterProps.keyHash, kculterProps.type);
+			const pin = await getPinApi("/pin/", kculterProps.type, kculterProps.keyHash);
+			setKculter({
+				place: place.data,
+				pin: pin.data,
 			})
 			setIsLoadedApi(() => true);
 		}
@@ -61,7 +48,7 @@ function MapPage(props) {
 		isLoaded &&
 		isLoadedApi &&
 		<MapRender
-		type={props.type}
+		kculter={kculter}
 		/>
 	);
 }

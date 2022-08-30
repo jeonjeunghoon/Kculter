@@ -2,13 +2,13 @@
 const initState = {
 	place: {
 		head: "",
+		imageUrl: "",
 		address: "",
 		culture: "",
 		explain: "",
 		fileUrl: "",
 		kpop: "",
 		name: "",
-		courseName: "",
 		memberNum: 0,
 		lat: 0,
 		lng: 0,
@@ -16,27 +16,24 @@ const initState = {
 		placeType: 0,
 		status: 0,
 	},
-	course: [],
+	course: {
+		courseNum: 0,
+		courseName: "",
+		courseList: [],
+	},
 	member: null,
 	idolSelected: true,
 	attrSelected: false,
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
-	kculterPlace: [],
-	pin: {
-		imageUrl: "",
-		pinKeyNum: 0,
-		pinNum: 0,
-		pinType: 0,
-	},
 	mapConcert: {
 		key: 0,
 		name: "",
 		explain: "",
 		lat: 0,
 		lng: 0,
-	}
+	},
 }
 
 // 액션 추가 여기

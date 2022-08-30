@@ -45,7 +45,7 @@ function IdolList({}) {
 				{ filterTitle.map(idolcard => 
 				<div className={styles.CardDiv}>
 					<IdolCard
-					keyNum={idolcard.keyNum}
+					keyHash={idolcard.keyHash}
 					type={1}
 					title={idolcard.name.replace(/\n/g, " ")}
 					path_photo={idolcard.fileUrl}

@@ -8,15 +8,15 @@ import styles from './IdolCard.module.css';
 // fonts
 import '../../../index.css';
 
-function IdolCard( {keyNum, type, path_photo, title, num_like, num_spot, path_map, explain}) {
+function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, path_map, explain}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	window.sessionStorage.setItem("keyNum",keyNum);
-	window.sessionStorage.setItem("title",title);
-	window.sessionStorage.setItem("type",type);
+	window.sessionStorage.setItem("keyHash", keyHash);
+	window.sessionStorage.setItem("title", title);
+	window.sessionStorage.setItem("type", type);
 
 	return (
 		<>

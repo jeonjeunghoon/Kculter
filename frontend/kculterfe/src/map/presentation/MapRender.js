@@ -25,15 +25,13 @@ import MapFilter from './MapFilter'
 
 function MapRender(props) {
 	const dispatch = useDispatch();
-	const concert = useSelector(state => state.mapConcert);
-	const kculterPlace = useSelector(state => state.kculterPlace);
-	const pin = useSelector(state => state.pin);
+	const mapConcert = useSelector(state => state.mapConcert);
 	const google = window.google;
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
 		lat: 37.5509895,
 		lng: 126.9908991,
-	});;
+	});
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -62,20 +60,21 @@ function MapRender(props) {
 			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
 	}, [isStay]);
-	const [concertPlace, setConcertPlace] = useState(null);
+
+	const [concert, setConcert] = useState(null);
 	const [concertPin, setConcertPin] = useState(null);
 	useEffect(() => {
-		if (concert.lat && concert.lng) {
+		if (mapConcert.lat && mapConcert.lng) {
 			const fetchData = async() => {
-				const pin = await getPinApi("/pin/" + "kpop", concert.key);
+				const pin = await getPinApi("/pin/" + "kpop", mapConcert.key);
 				setConcertPin(() => pin);
 				setCenter(() => ({
-					lat: concert.lat,
-					lng: concert.lng,
+					lat: mapConcert.lat,
+					lng: mapConcert.lng,
 				}));
-				setConcertPlace([{
-					lat: concert.lat,
-					lng: concert.lng,
+				setConcert([{
+					lat: mapConcert.lat,
+					lng: mapConcert.lng,
 				}]);
 			}
 			fetchData();
@@ -108,10 +107,10 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					kculterPlace={kculterPlace}
+					kPlace={props.kculter.place}
 					near={near}
-					concertPlace={concertPlace}
-					kPin={pin}
+					concert={concert}
+					kPin={props.kculter.pin}
 					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					concertPin={concertPin}
