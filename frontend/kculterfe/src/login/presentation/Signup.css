@@ -12,11 +12,6 @@
     border-bottom: 1px solid #f4029b;
     padding-bottom: 30px;
   }
-
-  .form-1 {
-    padding: 0px 0px;
-    left: 0%;
-  }
 }
 
 @media all and (min-width: 812px) {
