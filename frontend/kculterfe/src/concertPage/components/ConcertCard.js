@@ -5,6 +5,7 @@ import './ConcertCardContent.css'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MAP_IN_CONCERT } from '../../redux/reducer';
+import '../../index.css';
 
 function CardItem(item) {
 	const [show, setShow] = useState(false);
@@ -18,12 +19,14 @@ function CardItem(item) {
 				<div className="card-container">
 					<div className="image-container">
 						<img src={item.img} />
-						<div className="image-title"><h3>{item.title}</h3></div>
+						<div className="image-title">{item.title}</div>
 					</div>
 					<div className="card-content">
-						<div className="like-num">
-							<img src='heart.png' />
-							<p> Likes</p>
+						<div className='pin'>
+							<div className="like-num">
+								<p> Likes</p>
+								<img src='heart.png' />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -42,13 +45,13 @@ function CardItem(item) {
 							<div className='concert_closebtn'>
 								<i class="bi bi-x" onClick={handleClose}></i>
 							</div>
-							<h1>{item.title}</h1>
+							<div className='concert_title'> {item.title} </div>
 							<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
 							<div className='concert_explain'>{item.explain}</div>
 						</div>
 						<div className='body_r_end'>
 							<Link to="/MapPage">
-            	       <button onClick={() => {
+            	       <Button onClick={() => {
 											dispatch({
 												type: MAP_IN_CONCERT,
 												data: {
@@ -63,7 +66,7 @@ function CardItem(item) {
 											})
 										 }}>
 											go to map
-										 </button>
+										 </Button>
             	</Link>
 					</div>
 					</div>
