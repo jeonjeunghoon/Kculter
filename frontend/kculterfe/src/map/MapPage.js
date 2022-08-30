@@ -35,10 +35,12 @@ function MapPage() {
 			}
 			const place = await getPlaceApi("/place/", kculterProps.keyHash, kculterProps.type);
 			const pin = await getPinApi("/pin/", kculterProps.type, kculterProps.keyHash);
-			setKculter({
-				place: place.data,
-				pin: pin.data,
-			})
+			if (place && pin) {
+				setKculter({
+					place: place.data,
+					pin: pin.data,
+				})
+			}
 			setIsLoadedApi(() => true);
 		}
 		fetchData();

@@ -23,9 +23,11 @@ import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import MapFilter from './MapFilter'
 
+import staypin from '../test.png';
+
 function MapRender(props) {
 	const dispatch = useDispatch();
-	const mapConcert = useSelector(state => state.mapConcert);
+
 	const google = window.google;
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
@@ -48,6 +50,7 @@ function MapRender(props) {
 			},
 		},
 	};
+
 	const [isStay, setIsStay] = useState(null);
 	const [url, setUrl] = useState(null);
 	const [near, setNear] = useState(null);
@@ -61,18 +64,24 @@ function MapRender(props) {
 		}
 	}, [isStay]);
 
+	const mapConcert = useSelector(state => state.mapConcert);
 	const [concert, setConcert] = useState(null);
 	const [concertPin, setConcertPin] = useState(null);
 	useEffect(() => {
 		if (mapConcert.lat && mapConcert.lng) {
 			const fetchData = async() => {
-				const pin = await getPinApi("/pin/" + "kpop", mapConcert.key);
+				const pin = await getPinApi("/pin/", "kpop", mapConcert.keyHash);
 				setConcertPin(() => pin);
 				setCenter(() => ({
 					lat: mapConcert.lat,
 					lng: mapConcert.lng,
 				}));
-				setConcert([{
+				setConcert(() => [{
+					keyHash: mapConcert.keyHash,
+					title: mapConcert.concertName,
+					starName: mapConcert.starName,
+					imageUrl: mapConcert.img,
+					explain: mapConcert.explain,
 					lat: mapConcert.lat,
 					lng: mapConcert.lng,
 				}]);
@@ -107,11 +116,10 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
-					kPlace={props.kculter.place}
+					kPlace={props.kculter}
 					near={near}
 					concert={concert}
-					kPin={props.kculter.pin}
-					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
+					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					concertPin={concertPin}
 					coursePin={""}

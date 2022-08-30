@@ -12,6 +12,7 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
+	const course = useSelector(state => state.course.courseList)
 	const [nearData, setNearData] = useState(null);
 
 	useEffect(() => {
@@ -22,17 +23,20 @@ function MapMarker(props) {
 	return (
 		<div>
 			{/* KCULTER 마커 */}
-			<CustomMarker
-				place={props.kPlace}
-				pin={props.kPin}
-				markerHandler={handleCustomMarker}
-				setCenter={props.setCenter}
-				setZoom={props.setZoom}
-				dispatch={props.dispatch}
-			/>
+			{
+				props.kculter &&
+				<CustomMarker
+					place={props.kculter.kPlace}
+					pin={props.kculter.kPin}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 			{/* 코스 마커 */}
 			<CustomMarker
-				place={useSelector(state => state.course.courseList)}
+				place={course}
 				pin={props.coursePin}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}

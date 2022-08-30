@@ -48,12 +48,13 @@ function CardItem(item) {
 						<p>{item.lat}</p>
 							<Link to="/MapPage">
             	       <button onClick={() => {
-											console.log(item);
 											dispatch({
 												type: MAP_IN_CONCERT,
 												data: {
-													key: item.starKey,
-													name: item.title,
+													keyHash: item.starHash,
+													concertName: item.title,
+													starName: item.starName,
+													img: item.img,
 													explain: item.explain,
 													lat: item.lat,
 													lng: item.lng,

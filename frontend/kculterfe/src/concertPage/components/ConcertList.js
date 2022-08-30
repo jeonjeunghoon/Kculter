@@ -45,8 +45,9 @@ function ConcertList() {
 							lat = {concertData.lat}				// 위도
 							lng = {concertData.lng}				// 경도
 							starKey = {concertData.starKey}	// kpop key번호
+							starHash = {concertData.starHash} // 스타 해쉬
 							img = {concertData.imageUrl}		// 이미지 url
-							startName = {concertData.startName}	// 연예인 이름
+							starName = {concertData.starName}	// 연예인 이름
 							/>
 						</div>
 					)}

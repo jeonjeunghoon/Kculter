@@ -27,13 +27,15 @@ const initState = {
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
-	mapConcert: {
-		key: 0,
-		name: "",
+	mapConcert: [{
+		keyHash: 0,
+		title: "",
+		starName: "",
+		img: "",
 		explain: "",
 		lat: 0,
 		lng: 0,
-	},
+	}],
 }
 
 // 액션 추가 여기
