@@ -30,6 +30,7 @@
     "react-select-country-list": "^2.2.3",
     "react-slick": "0.29.0",
     "redux": "4.2.0",
+    "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "slick-carousel": "1.8.1",
     "styled-components": "^5.3.5",

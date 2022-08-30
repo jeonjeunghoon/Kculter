@@ -1,54 +1,43 @@
 import React from 'react';
 import { useState } from 'react';
-import { Card, Button, Modal } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import "../../styles/MyPage.css"
 
 function CardItem({ props }) {
-	const [show, setShow] = useState(false);
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const [toMap, setToMap] = useState(false); // 맵 페이지로 이동
+	const moveToMap = () => {
+		setToMap(true);
+	}
+	// window.sessionStorage.setItem("keyHash", keyHash);
+	// window.sessionStorage.setItem("title", title);
+	// window.sessionStorage.setItem("type", type);
 	return (
 		<>
 			<div className="my-5">
 				<Card className="body-card">
 					{/* 카드 호버 기능 */}
-					<Card className="body-card-hover" onClick={handleShow}>
-						<div className="square border border-1 rounded-pill m-auto" style={{ color: 'white', width: '6em' }}>
-							<span className="px-2" style={{ width: '20px' }}>
-								view more
-							</span>
-						</div>
-					</Card>
+					<Link className="" to='/MapPage'>
+						<Card className="body-card-hover" onClick={moveToMap}>
+							<div className="square border border-1 rounded-pill m-auto" style={{ color: 'white', width: '6em' }}>
+								<span className="px-2" style={{ width: '20px' }}>
+									view more
+								</span>
+							</div>
+						</Card>
+					</Link>
 					{/* 아이돌 카드 */}
 					<Card.Img variant="top" className="m-auto" src={ props.fileUrl } style={{ height: '6em', width: '100%' }}/>
 					<Card.Body className="body-card-body">
 						<Card.Title className="text-center">
-							<span style={{fontSize: '1rem'}}>
+							<span style={{ fontSize: '1rem' }}>
 								{ props.name }
 							</span>
 						</Card.Title>
 					</Card.Body>
 				</Card>
 			</div>
-
-			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-				<Modal.Title>{props.name}</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<img width="200" height="300" src={props.fileUrl}></img>
-					{props.name}
-				</Modal.Body>
-				<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-					Close
-				</Button>
-				<Button variant="primary" onClick={handleClose}>
-					Save Changes
-				</Button>
-				</Modal.Footer>
-			</Modal>
 		</>
 	);
 }
