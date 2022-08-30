@@ -51,34 +51,33 @@
 	margin: auto;
 	position: absolute;
 	bottom: 0;
-	left: 1rem;
+	left: 0.5rem;
 	color: white;
 }
 
 .card_content{
 	display: flex;
-	flex-direction: column;
-	justify-content: space_around;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .card_content *{
-	margin: 0.3rem;
 	text-align: center;
-	display: flex;
+}
+
+.card_content img {
+	width: 1.3rem;
+	margin: 0.7rem;
+}
+
+.card_content_spot{
+	font-family: 'Noto Sans CJK KR';
 	justify-content: right;
 	align-items: center;
 }
 
-.pin {
-	width: 100%;
-	display: block;
-	flex-direction: row;
-	margin: auto;
-}
-
-.card_content img {
-	width: 1rem;
-	margin-right: 1rem;
+.card_content_spot *{
+	display: inline;
 }
 
 h3,p{
@@ -123,6 +122,11 @@ h3,p{
 	display: block;
 	width: 100%;
 	text-align: left;
+}
+
+.modal_title img{
+	margin: 1rem;
+	width: 1.5rem;
 }
 
 .modal_paragraph {
