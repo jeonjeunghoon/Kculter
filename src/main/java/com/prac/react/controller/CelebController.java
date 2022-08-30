@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,11 @@ public class CelebController {
     Logger logger = LoggerFactory.getLogger(CelebController.class);
 
     private CelebService cs;
+    private Encryption encryption;
 
-    public CelebController(CelebService cs){
+    @Autowired
+    public CelebController(CelebService cs,Encryption encryption){
+        this.encryption = encryption;
         this.cs = cs;
     }
 
@@ -32,8 +36,7 @@ public class CelebController {
 
         //받아온 키값을 암호화한다.
         for(Celebrity celeb : celebList){
-            Encryption encrypt = new Encryption();
-            String hashKey = encrypt.aesEncrypt(Integer.toString(celeb.getKeyNum()));
+            String hashKey = encryption.aesEncrypt(Integer.toString(celeb.getKeyNum()));
             celeb.setKeyHash(hashKey);
             celeb.setKeyNum(0);
         }

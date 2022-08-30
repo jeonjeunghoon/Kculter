@@ -21,7 +21,7 @@ public class EncryptionTest {
     @Test
     void testAesDecrypt() {
         //given
-        String ecrypt = "NsBru5sAKx/S/CCO6u1Hng==";
+        String ecrypt = "/Y8NsMQnOIFG HP2F5Cc2Q==";
         //when
         String decrypt = ec.aesDecrypt(ecrypt);
         //then
@@ -31,7 +31,7 @@ public class EncryptionTest {
     @Test
     void testAesEncrypt(){
         //given
-        int key = 1;
+        int key = 30;
         String keyString = Integer.toString(key);
         //when
         String encrypt = ec.aesEncrypt(keyString);

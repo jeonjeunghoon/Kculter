@@ -54,7 +54,7 @@ function ConcertForm(props){
         starName : starName,
         lat : lat,
         lng : lng,
-        starKey : starKeyNum,
+        starHash : starKeyNum,
     }
 
     //container component로 보낼 객체
@@ -167,6 +167,7 @@ function ConcertForm(props){
     //기존 가수에서 선택했을때
     const changedKpop = (e) => {
         const check = e.target.value;
+        alert(check);
         if(check !== ""){ //값이 바뀌었을때 들어가는곳
             setNameDis(true);
             setStarDis(true);

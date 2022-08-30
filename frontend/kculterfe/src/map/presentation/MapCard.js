@@ -76,6 +76,7 @@ function MapCard(props) {
 						<Cards
 							key={index}
 							item={item}
+							isStay={props.isStay}
 							setCenter={props.setCenter}
 							setZoom={props.setZoom}
 							dispatch={props.dispatch}

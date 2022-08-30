@@ -23,17 +23,16 @@ import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import MapFilter from './MapFilter'
 
+import staypin from '../test.png';
+
 function MapRender(props) {
 	const dispatch = useDispatch();
-	const concert = useSelector(state => state.mapConcert);
-	const kculterPlace = useSelector(state => state.kculterPlace);
-	const pin = useSelector(state => state.pin);
 	const google = window.google;
 	const [map, setMap] = useState(null);
 	const [center, setCenter] = useState({
 		lat: 37.5509895,
 		lng: 126.9908991,
-	});;
+	});
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -50,6 +49,7 @@ function MapRender(props) {
 			},
 		},
 	};
+
 	const [isStay, setIsStay] = useState(null);
 	const [url, setUrl] = useState(null);
 	const [near, setNear] = useState(null);
@@ -62,20 +62,27 @@ function MapRender(props) {
 			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
 	}, [isStay]);
-	const [concertPlace, setConcertPlace] = useState(null);
+
+	const mapConcert = useSelector(state => state.mapConcert);
+	const [concert, setConcert] = useState(null);
 	const [concertPin, setConcertPin] = useState(null);
 	useEffect(() => {
-		if (concert.lat && concert.lng) {
+		if (mapConcert.lat && mapConcert.lng) {
 			const fetchData = async() => {
-				const pin = await getPinApi("/pin/" + "kpop", concert.key);
+				const pin = await getPinApi("/pin/", "kpop", mapConcert.keyHash);
 				setConcertPin(() => pin);
 				setCenter(() => ({
-					lat: concert.lat,
-					lng: concert.lng,
+					lat: mapConcert.lat,
+					lng: mapConcert.lng,
 				}));
-				setConcertPlace([{
-					lat: concert.lat,
-					lng: concert.lng,
+				setConcert(() => [{
+					keyHash: mapConcert.keyHash,
+					title: mapConcert.concertName,
+					starName: mapConcert.starName,
+					imageUrl: mapConcert.img,
+					explain: mapConcert.explain,
+					lat: mapConcert.lat,
+					lng: mapConcert.lng,
 				}]);
 			}
 			fetchData();
@@ -104,15 +111,16 @@ function MapRender(props) {
 				/>
 
 				{/* 필터 */}
-				<MapFilter />
+				<MapFilter
+					list={["a", "b", "c"]}
+				/>
 
 				{/* 마커 */}
 				<MapMarker
-					kculterPlace={kculterPlace}
+					kculter={props.kculter}
 					near={near}
-					concertPlace={concertPlace}
-					kPin={pin}
-					stayPin={{imageUrl: "https://www.freepnglogos.com/uploads/logo-home-png/chimney-home-icon-transparent-1.png"}}
+					concert={concert}
+					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
 					concertPin={concertPin}
 					coursePin={""}
@@ -125,6 +133,7 @@ function MapRender(props) {
 				{/* 카드 */}
 				<MapCard
 					near={near}
+					isStay={isStay}
 					setIsStay={setIsStay}
 					setCenter={setCenter}
 					setZoom={setZoom}

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Head({ src, head }) {
+function Head({ imageUrl, head }) {
 	return (
 		<div className="head">
-			<img src={src}></img>
+			<img src={imageUrl}></img>
 			<h3>{head}</h3>
 		</div>
 	);

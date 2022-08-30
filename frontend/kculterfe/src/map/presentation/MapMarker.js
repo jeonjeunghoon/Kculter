@@ -12,6 +12,7 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
+	const course = useSelector(state => state.course);
 	const [nearData, setNearData] = useState(null);
 
 	useEffect(() => {
@@ -22,18 +23,23 @@ function MapMarker(props) {
 	return (
 		<div>
 			{/* KCULTER 마커 */}
-			<CustomMarker
-				kculterPlace={props.kculterPlace}
-				pin={props.kPin}
-				markerHandler={handleCustomMarker}
-				setCenter={props.setCenter}
-				setZoom={props.setZoom}
-				dispatch={props.dispatch}
-			/>
+			{
+				props.kculter &&
+				<CustomMarker
+					place={props.kculter.place}
+					pin={props.kculter.pin}
+					title={window.sessionStorage.getItem("title")}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 			{/* 코스 마커 */}
 			<CustomMarker
-				kculterPlace={useSelector(state => state.course)}
+				place={course}
 				pin={props.coursePin}
+				title={"COURSE"}
 				markerHandler={handleCustomMarker}
 				setCenter={props.setCenter}
 				setZoom={props.setZoom}
@@ -44,8 +50,9 @@ function MapMarker(props) {
 				props.near ?
 					props.isStay ?
 					<CustomMarker
-						kculterPlace={nearData}
+						place={nearData}
 						pin={props.stayPin}
+						title={"STAY"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
 						setZoom={props.setZoom}
@@ -53,8 +60,9 @@ function MapMarker(props) {
 					/>
 					:
 					<CustomMarker
-						kculterPlace={nearData}
+						place={nearData}
 						pin={props.tourPin}
+						title={"TOUR"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
 						setZoom={props.setZoom}
@@ -64,10 +72,12 @@ function MapMarker(props) {
 				<></>
 			}
 			{
-				props.concertPlace &&
+				props.concert &&
+				props.concertPin &&
 				<CustomMarker
-					kculterPlace={props.concertPlace}
-					pin={props.concertPin}
+					place={props.concert}
+					pin={props.concertPin.data}
+					title={props.concert.starName}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
 					setZoom={props.setZoom}

@@ -7,32 +7,36 @@ import '../map-sidebar.css';
 
 function MapSideNav() {
 	const place = useSelector(state => state.place);
-	const pin = useSelector(state => state.pin.imageUrl);
 
 	return (
 		<div className="map-sidebar">
 			{
-				place.address &&
+				place.head &&
 				<Head
-					src={pin}
+					imageUrl={place.imageUrl}
 					head={place.head}
 				/>
 			}
 			{
 				place.fileUrl &&
+				place.name &&
 				<img className="place-img"
 					src={place.fileUrl}
 					alt={place.name}
 					/>
 			}
 			<div className="map-sidebar-content">
-				<Place
-					name={place.name}
-					address={place.address}
-					explain={place.explain}
-				/>
 				{
 					place.name &&
+					place.address &&
+					<Place
+						name={place.name}
+						address={place.address}
+						explain={place.explain}
+					/>
+				}
+				{
+					place &&
 					<CourseBox
 						place={place}
 					/>

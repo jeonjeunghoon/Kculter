@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,23 +18,24 @@ public class CultureController {
     Logger logger = LoggerFactory.getLogger(CultureController.class);
 
     private CultureService cs;
+    private Encryption encryption;
 
-    public CultureController(CultureService cs){
+    @Autowired
+    public CultureController(CultureService cs,Encryption encryption){
+        this.encryption = encryption;
         this.cs = cs;
     }
 
 
-    @GetMapping("/culture")
+    @GetMapping("/cultures")
     public List<Culture> getCultures(){
         List<Culture> cultureList = new ArrayList<>();
         logger.info("Culture list get API start");
 
         cultureList = cs.getCultureList();
-
-        Encryption encrypt = new Encryption();
-
+        
         for(Culture culture : cultureList){
-            String keyHash = encrypt.aesEncrypt(Integer.toString(culture.getKeyNum()));
+            String keyHash = encryption.aesEncrypt(Integer.toString(culture.getKeyNum()));
             culture.setKeyHash(keyHash);
             culture.setKeyNum(0);
         }

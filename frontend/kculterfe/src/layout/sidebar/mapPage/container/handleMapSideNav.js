@@ -33,6 +33,7 @@ export function handleOnSubmit(e, courseList, setCourseList, courseName, memberN
 	e.preventDefault();
 	const jsonData = JSON.stringify({
 		memberNum: memberNum,
+		courseNum: 0,
 		courseName: courseName,
 		course: courseList,
 	});

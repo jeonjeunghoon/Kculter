@@ -48,23 +48,23 @@ function CardItem(item) {
 						</div>
 						<div className='body_r_end'>
 							<Link to="/MapPage">
-								<Button variant="primary" onClick={() => {
-												console.log(item);
-												dispatch({
-													type: MAP_IN_CONCERT,
-													data: {
-														key: item.starKey,
-														name: item.title,
-														explain: item.explain,
-														lat: item.lat,
-														lng: item.lng,
-													}
-												})
-											}}>
-									go to map
-								</Button>
-							</Link>
-						</div>
+            	       <button onClick={() => {
+											dispatch({
+												type: MAP_IN_CONCERT,
+												data: {
+													keyHash: item.starHash,
+													concertName: item.title,
+													starName: item.starName,
+													img: item.img,
+													explain: item.explain,
+													lat: item.lat,
+													lng: item.lng,
+												}
+											})
+										 }}>
+											go to map
+										 </button>
+            	</Link>
 					</div>
 				</Modal.Body>
 				{/* <Modal.Footer>

@@ -24,6 +24,10 @@
   }
 
   .layout.close > .sidebar {
-    display: none;
+		display: none;
   }
+	
+	.layout.close > .map-sidebar {
+		display: none;
+	}
 }

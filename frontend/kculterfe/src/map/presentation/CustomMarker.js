@@ -7,26 +7,26 @@ import {
 } from '@react-google-maps/api'
 
 function CustomMarker(props) {
-	const title = window.sessionStorage.getItem("title");
-	const [kculterPlace, setKculterPlace] = useState(null);
+	const [place, setPlace] = useState(null);
 	const [icon, setIcon] = useState(null);
 	
 	useEffect(() => {
-		if (props.kculterPlace) {
-		setKculterPlace(() => props.kculterPlace);
-		const icon = new window.google.maps.MarkerImage(
-			props.pin.imageUrl,
-			null,
-			null,
-			null,
-			new window.google.maps.Size(30, 30)
-		);
-		setIcon(() => icon);
+		if (props.place) {
+			setPlace(() => props.place);
+			const icon = new window.google.maps.MarkerImage(
+				props.pin.imageUrl,
+				null,
+				null,
+				null,
+				new window.google.maps.Size(30, 30),
+			);
+			setIcon(() => icon);
 		}
-	}, [props.kculterPlace])
+	}, [props.place])
+
 	return (
-		kculterPlace &&
-		kculterPlace.map((item, index) => {
+		place &&
+		place.map((item, index) => {
 			return (
 				<Marker
 					key={index}
@@ -36,7 +36,7 @@ function CustomMarker(props) {
 						lng: item.lng
 					}}
 					onClick={() => {
-						props.markerHandler(item, props.setCenter, props.setZoom, props.dispatch, title);
+						props.markerHandler(item, props.title, props.setCenter, props.setZoom, props.dispatch, props.pin.imageUrl);
 					}}
 				/>
 			);

@@ -16,6 +16,7 @@ import com.prac.react.model.dto.Concert;
 import com.prac.react.model.dto.Culture;
 import com.prac.react.model.dto.Pin;
 import com.prac.react.model.dto.Place;
+import com.prac.react.security.Encryption;
 import com.prac.react.service.CelebService;
 import com.prac.react.service.ConcertService;
 import com.prac.react.service.ManagerService;
@@ -31,14 +32,15 @@ public class ManagerController{
     private ManagerService ms;
     private CelebService celebS;
     private ConcertService concertS;
-
+    private Encryption encryption;
     //의존성 주입
     @Autowired
-    public ManagerController(S3FileUploadService sfu,ManagerService ms,CelebService celebS,ConcertService concertS){
+    public ManagerController(S3FileUploadService sfu,ManagerService ms,CelebService celebS,ConcertService concertS, Encryption encryption){
         this.sfu = sfu;
         this.ms = ms; 
         this.celebS = celebS;
         this.concertS = concertS;
+        this.encryption = encryption;
     }
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
@@ -46,6 +48,9 @@ public class ManagerController{
     public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("문화 저장 들어옴");
         logger.info("culture : "+ culture.toString());
+
+        int cultureNum = Integer.parseInt(encryption.aesDecrypt(culture.getKeyHash()));
+        culture.setKeyNum(cultureNum);
 
         //의존성 주입 받은 S3FileUploadService 를 가지고 aws s3에 이미지 파일을 저장한다.
         String imageUrl = sfu.uploadtoS3(mpf,"/culture-img");
@@ -67,6 +72,9 @@ public class ManagerController{
     public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart(value = "file") MultipartFile mpf) throws IOException{
         logger.info("kpop 저장 들어옴");
         logger.info("celeb : "+ celeb.toString());
+
+        int celebNum = Integer.parseInt(encryption.aesDecrypt(celeb.getKeyHash()));
+        celeb.setKeyNum(celebNum);
 
         //이제 파일명을 바꿨으니 이제 해야할일은 aws s3에 저장을 하는일이 남았다.
         String imageUrl = sfu.uploadtoS3(mpf,"/kpop-img");
@@ -108,22 +116,27 @@ public class ManagerController{
 
         //일단 여기는 장소를 입력할때 들어오는곳이잔아.
         //그럼 먼저 확인해야할것은 request로 들어온 Place의 placeNum이 있는지 먼저 확인을 해보자.
-        if(place.getPlaceNum() == 0){ //이말인 즉슨 기존에 장소가 아니라는 얘기이다.
+        if(place.getPlaceHash() == ""){ //이말인 즉슨 기존에 DB에 있는 장소가 아니라는 얘기이다.
             //그럼 얘는 새로 insert 해줘야 한다.
             if(place.getPlaceType() == 1){ // kpop = 1, 즉 kpop 장소일때
                 logger.info("type : "+ place.getPlaceType());
                 place.setCulture("");
-                place.setKpop("/"+place.getKpop()+"/");
+                //placekpop을 /키넘버/ 이렇게 저장을 함 근데 문제는 뭐냐
+                //place.getKpop의 값이 암호화 되어있음
+                //고로 place.getKpop을 복호화 해야함
+                String kpopKey = encryption.aesDecrypt(place.getKpop());
+                place.setKpop("/"+kpopKey+"/"); //placekpop을 /키넘버/ 이렇게 저장을 함 근데 문제는 뭐냐
                 logger.info("culture : "+ place.getCulture());
-                logger.info("kpop : "+ place.getKpop());
+                logger.info("kpop : "+ kpopKey);
             }else{
                 logger.info("type : "+ place.getPlaceType());
                 place.setKpop("");
-                place.setCulture("/"+place.getCulture()+"/");
-                logger.info("culture : "+ place.getCulture());
+                String cultureKey = encryption.aesDecrypt(place.getCulture());
+                place.setCulture("/"+cultureKey+"/");
+                logger.info("culture : "+ cultureKey);
                 logger.info("kpop : "+ place.getKpop());
             }
-            logger.info("No place info, starting insert process");
+            logger.info("No place info exist, starting insert process");
             url = sfu.uploadtoS3(mpf, "/place");
             place.setFileUrl(url);
             result = ms.insertPlace(place);
@@ -138,6 +151,9 @@ public class ManagerController{
              * placeNum(3) - kpop :  /1/2/3 
              * 그럼 placeNum과 관련있는 kpop들은 1번 2번 3번이 된다.
              */
+            place.setKpop(encryption.aesDecrypt(place.getKpop()));
+            place.setCulture(encryption.aesDecrypt(place.getCulture()));
+
             if(ms.checkDuplicate(place)>0){
                 result = 201; //201 : 이미 존재하는 데이터입니다.
             }else{
@@ -151,6 +167,9 @@ public class ManagerController{
     public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("Concert insert : "+concert.toString());
 
+        //암호화된 연예인 키값을 복호화 해서 설정
+        concert.setStarKey(Integer.parseInt(encryption.aesDecrypt(concert.getStarHash())));
+
         String url = "";
         url = sfu.uploadtoS3(mpf, "/concert");
         concert.setImageUrl(url);
@@ -161,6 +180,10 @@ public class ManagerController{
     @PostMapping("/pin")
     public int insertPin(@RequestPart("formValue") Pin pin,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("Pin insert : "+ pin.toString());
+
+        //암호화된 핀이 속한 키값을 복호화해서 pinKeyNum으로 재설정
+        pin.setPinKeyNum(Integer.parseInt(encryption.aesDecrypt(pin.getPinKeyHash())));
+
         String url = "";
         url = sfu.uploadtoS3(mpf, "/pin");
         pin.setImageUrl(url);

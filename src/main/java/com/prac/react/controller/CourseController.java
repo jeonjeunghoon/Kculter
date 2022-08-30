@@ -24,17 +24,18 @@ import com.prac.react.service.CourseService;
 public class CourseController {
 
 	Logger logger = LoggerFactory.getLogger(CourseController.class);
-	private CourseService cs;
 
-	public CourseController(CourseService cs){
+	private CourseService cs;
+	private Encryption encryption;
+
+	public CourseController(CourseService cs,Encryption encryption){
+		this.encryption = encryption;
 		this.cs = cs;
 	}
 
 	@PostMapping("")
 	public int insertCourse(@RequestBody CourseWrapper cw) {
 		List<Place> placesList = cw.getCourse();
-
-		Encryption encrypt = new Encryption();
 
 		int result = 0;
 
@@ -61,13 +62,13 @@ public class CourseController {
 				}
 			}else{//이미 백에 저장되어 placeHash 넘어온경우
 				//placeHash 복호화 하기
-				int placeNum = Integer.parseInt(encrypt.aesDecrypt(place.getPlaceHash()));
+				int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getPlaceHash()));
 				place.setPlaceNum(placeNum);
 				places += place.getPlaceNum() + "/";
 			}
 		}
 
-		int memberNum = Integer.parseInt(encrypt.aesDecrypt(cw.getMemeberHash()));
+		int memberNum = Integer.parseInt(encryption.aesDecrypt(cw.getMemeberHash()));
 
 		Course course = new Course(0,cw.getCourseName(),places,memberNum);
 		logger.info("Course : "+ course.toString());
@@ -85,8 +86,7 @@ public class CourseController {
 		List<CourseWrapper> memberCourseList = new ArrayList<>();
 
 		//암호화된 멤버 번호를 복호화 해야한다.
-		Encryption encrypt = new Encryption();
-		int memberNum = Integer.parseInt(encrypt.aesDecrypt(memberNumHash));
+		int memberNum = Integer.parseInt(encryption.aesDecrypt(memberNumHash));
 
 
 		//해당 멤버의 코스를 모두 불러와야한다.
@@ -106,7 +106,7 @@ public class CourseController {
 		//오름 차순 정렬을한 course들의 courseNum을 암호화해야한다.
 
 		for(CourseWrapper cw : memberCourseList){
-			String courseHash = encrypt.aesEncrypt(Integer.toString(cw.getCourseNum()));
+			String courseHash = encryption.aesEncrypt(Integer.toString(cw.getCourseNum()));
 			cw.setCourseHash(courseHash);
 			cw.setCourseNum(0);
 		}

@@ -32,21 +32,25 @@ function ConcertList() {
 				<ConcertSearchBar value={search} onChange={onChange} />
 			</div>
 			<div className="CardContainer">
-				{ filterTitle.map(concertData => 
-				<div className='CardDiv'>
-					<ConcertCard 
-					keynum = {concertData.concertNum}	// 콘서트 번호
-					title = {concertData.concertName}	// 콘서트 이름
-					explain = {concertData.explain}		// 콘서트 설명
-					startDate = {concertData.startDate}	// 콘서트 시작일자
-					endDate = {concertData.endDate}		// 콘서트 끝나는 일자
-					lat = {concertData.lat}				// 위도
-					lng = {concertData.lng}				// 경도
-					starKey = {concertData.starKey}	// kpop key번호
-					img = {concertData.imageUrl}		// 이미지 url
-					startName = {concertData.startName}	// 연예인 이름
-					/>
-				</div>)}
+				{ filterTitle.map((concertData, index) => 
+						<div className='CardDiv'
+							key={index}
+						>
+							<ConcertCard 
+							keynum = {concertData.concertNum}	// 콘서트 번호
+							title = {concertData.concertName}	// 콘서트 이름
+							explain = {concertData.explain}		// 콘서트 설명
+							startDate = {concertData.startDate}	// 콘서트 시작일자
+							endDate = {concertData.endDate}		// 콘서트 끝나는 일자
+							lat = {concertData.lat}				// 위도
+							lng = {concertData.lng}				// 경도
+							starKey = {concertData.starKey}	// kpop key번호
+							starHash = {concertData.starHash} // 스타 해쉬
+							img = {concertData.imageUrl}		// 이미지 url
+							starName = {concertData.starName}	// 연예인 이름
+							/>
+						</div>
+					)}
 			</div>
 		</div>
 	)
