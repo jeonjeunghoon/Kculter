@@ -1,4 +1,5 @@
 .card-container{
+	font-family: 'Noto Sans CJK KR';
 	display: grid;
 	width: 1fr;
 	overflow: hidden;
@@ -7,11 +8,11 @@
 	animation: ease-in-out;
 	background-color: white;
 	margin: 5%;
+	border-radius: 2rem;
 }
 
 .card-container:hover{
-	transform: scale(1.1);
-	box-shadow:0px 0px 15px 0px;
+	transform: scale(1.05);
 }
 
 .image-container {
@@ -36,37 +37,47 @@
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
-	opacity: 0.7;
+	opacity: 0.75;
 }
 
 .image-container img:hover{
-	opacity: 0.85;
+	opacity: 0.95;
 }
 
 .image-title{
-	font-size: x-large;
-	font-weight: bold;
+	/* font-family: 'Noto Sans CJK KR'; */
+	/* font-size: xx-large; */
+	font-size: large;
+	font-weight: 800;
+	text-align: center;
+	margin: auto;
 	position: absolute;
-	bottom: 8px;
-	left: 16px;
-
+	bottom: 0;
+	color: white;
 }
 
 .card-content{
 	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: space_around;
 }
 
 .card-content *{
-	width: 4rem;
 	margin: 0.3rem;
 	text-align: center;
 	display: flex;
-	justify-content: center;
+	justify-content: right;
 	align-items: center;
 }
 
+.pin {
+	width: 100%;
+	display: block;
+	flex-direction: row;
+	margin: auto;
+}
+
 .card-content img {
-	width: 2rem;
+	width: 1rem;
+	margin-right: 1rem;
 }
