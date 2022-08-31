@@ -16,6 +16,8 @@ export default function EditBasicInfo() {
   const [gender,setGender] = useState('');
   const [pfImg, setPfImg] = useState('');
 
+  const [memberInfo, setMemberInfo] = useState([]);
+
   /*오류메세지*/
   const [verifyMessage, setVerMessage] = useState('');
   const [nickNameMessage, setnickNameMessage] = useState('');
@@ -44,6 +46,17 @@ export default function EditBasicInfo() {
     gender : gender,
     pf_image : pfImg
   }
+
+  useEffect(() => {
+    getMemberInfo()
+    .then(resData => {
+      console.log(resData);
+      setMemberInfo(resData)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },[]);
 
   const onChangeProfilImg = (e) => {
     e.preventDefault();

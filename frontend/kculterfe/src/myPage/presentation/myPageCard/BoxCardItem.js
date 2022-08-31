@@ -12,7 +12,7 @@ function BoxCardItem({ props }) {
 
     const courseMoveToMapBtn = () => {
         let newCourseList = props.course;
-        let place = props.course
+        let place = props
 
         dispatch({
             type: MODIFY_COURSE,
