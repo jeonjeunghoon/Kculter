@@ -2,7 +2,6 @@ import React, {
 	useEffect,
 	useState,
 } from 'react';
-import Form from 'react-bootstrap/Form';
 import {
 	getKpopList
 } from '../../manager/common/container/GetKpopList';
@@ -42,6 +41,7 @@ function MapFilter(props) {
 	const [isKpop, setIsKpop] = useState(true);
 	const [placeholder, setPlaceholder] = useState("Select k-pop stars!");
 	const [list, setList] = useState([]);
+	const [selected, setSelected] = useState("");
 
 	useEffect(() => {
 		const fetchData = async() => {
@@ -85,10 +85,12 @@ function MapFilter(props) {
 				setIsKpop={setIsKpop}
 				setPlaceholder={setPlaceholder}
 			/>
-  		<Form.Select className='filter'
+  		<select className='filter'
 				onChange={(e) => {
-					console.log(e.target.value);
 					const fetchData = async() => {
+						const found = list.find(obj => obj.hash == e.target.value);
+						console.log(found.name);
+						window.sessionStorage.setItem("title", found.name);
 						let type = "";
 						if (isKpop) {
 							type = "kpop";
@@ -132,7 +134,7 @@ function MapFilter(props) {
 						</option>
 					);
 				})}
-  		</Form.Select>
+  		</select>
 		</div>
   );
 }
