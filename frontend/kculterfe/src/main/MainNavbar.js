@@ -34,9 +34,10 @@ function MainNavbar() {
       setStatus("login");
       setLogin("LOGIN");
       setMypage(false);
-      sessionStorage.removeItem("nickname");
-      sessionStorage.removeItem("memberNum");
-      sessionStorage.removeItem("email");
+      sessionStorage.removeItem("memberHash");
+      sessionStorage.removeItem("memberName");
+      sessionStorage.removeItem("pf_image");
+      sessionStorage.removeItem("mgHash");
     }
   }
 

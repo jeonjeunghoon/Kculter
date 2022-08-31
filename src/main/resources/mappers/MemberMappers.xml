@@ -16,7 +16,7 @@
 	</insert>
 	<!--login with email and pwd-->
 	<select id="login" parameterType="Member" resultType="Member">
-		select memberNum, email, nickName, pf_image from member where email=#{email} and pwd=#{pwd}
+		select memberNum, email, nickName, pf_image, mg from member where email=#{email} and pwd=#{pwd} and `status` = true
 	</select>
 	<!--getting member info by keyNum-->
 	<select id="getMemberInfo" parameterType="int" resultType="Member">

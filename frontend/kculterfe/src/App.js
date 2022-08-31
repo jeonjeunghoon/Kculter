@@ -14,12 +14,15 @@ import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
 import ForgotPwd from './login/presentation/ForgotPwd';
 import Aboutus from './aboutus/Aboutus';
+import ManagerRoute from './privateRoute/ManagerRoute';
 
 function App() {
   return (
     <BrowserRouter>
 			<Routes>
-				<Route path="/manager/*" element={<ManagerMain/>}></Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
+				<Route path="/manager/*" element={<ManagerRoute component={<ManagerMain/>}/>}>
+					<Route path="/manager/*" element={<ManagerMain/>}></Route>
+				</Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
 				<Route path="/" element={<MainPage/>}></Route>
 				<Route path="/Aboutus" element={<Aboutus/>}></Route>
 				<Route path="/login" element={<Login/>}/>
