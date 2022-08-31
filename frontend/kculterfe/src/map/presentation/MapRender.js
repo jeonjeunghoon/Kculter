@@ -22,10 +22,11 @@ import MapFilter from './MapFilter'
 import staypin from '../test.png';
 
 function MapRender(props) {
+	console.log(props.data);
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);
-	const [center, setCenter] = useState(props.center);
+	const [center, setCenter] = useState(props.data.center);
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -43,8 +44,6 @@ function MapRender(props) {
 		},
 	};
 
-	const [kPlace, setKPlace] = useState(props.kPlace);
-	const [kPin, setKPin] = useState(props.kPin);
 	const [isStay, setIsStay] = useState(true);
 	const [url, setUrl] = useState("/near/stay?lat=");
 	const [near, setNear] = useState(null);
@@ -81,20 +80,19 @@ function MapRender(props) {
 
 				{/* 필터 */}
 				<MapFilter
-					setKPlace={setKPlace}
-					setKPin={setKPin}
+					data={props.data}
+					setData={props.setData}
 					list={["a", "b", "c"]}
 				/>
 
 				{/* 마커 */}
 				<MapMarker
-					kPlace={kPlace}
+					kculter={props.data.kculter}
 					near={near}
 					concert={props.concert}
-					kPin={kPin}
+					myPagePlace={props.myPagePlace}
 					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
-					concertPin={props.concertPin}
 					coursePin={""}
 					isStay={isStay}
 					setCenter={setCenter}

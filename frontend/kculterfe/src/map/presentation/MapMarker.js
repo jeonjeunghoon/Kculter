@@ -23,25 +23,44 @@ function MapMarker(props) {
 	return (
 		<div>
 			{/* KCULTER 마커 */}
+			{
+				props.kculter &&
 				<CustomMarker
-					place={props.kPlace}
-					pin={props.kPin}
+					place={props.kculter.place}
+					pin={props.kculter.pin}
 					title={window.sessionStorage.getItem("title")}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
 					setZoom={props.setZoom}
 					dispatch={props.dispatch}
 				/>
+			}
 			{/* 코스 마커 */}
-			<CustomMarker
-				place={course}
-				pin={props.coursePin}
-				title={"COURSE"}
-				markerHandler={handleCustomMarker}
-				setCenter={props.setCenter}
-				setZoom={props.setZoom}
-				dispatch={props.dispatch}
-			/>
+			{
+				props.course &&
+				<CustomMarker
+					place={course}
+					pin={props.coursePin}
+					title={"COURSE"}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
+			{/* MyPage 마커 */}
+			{
+				props.mayPagePlace &&
+				<CustomMarker
+					place={props.myPagePlace}
+					pin={props.coursePin}
+					title={"COURSE"}
+					markerHandler={handleCustomMarker}
+					setCenter={props.setCenter}
+					setZoom={props.setZoom}
+					dispatch={props.dispatch}
+				/>
+			}
 			{/* Near 마커 */}
 			{
 				props.near ?
@@ -71,10 +90,9 @@ function MapMarker(props) {
 			{/* Concert 마커 */}
 			{
 				props.concert &&
-				props.concertPin &&
 				<CustomMarker
-					place={props.concert}
-					pin={props.concertPin.data}
+					place={props.concert.place}
+					pin={props.concert.pin}
 					title={props.concert.starName}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
