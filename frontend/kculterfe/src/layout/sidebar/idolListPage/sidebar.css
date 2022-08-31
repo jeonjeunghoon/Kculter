@@ -39,6 +39,10 @@
 	text-decoration: none;
 }
 
+.link-to-login {
+	text-decoration: none;
+}
+
 .sidebar i.bi-chevron-left {
 	font-size: 30px;
 	color: #fff;

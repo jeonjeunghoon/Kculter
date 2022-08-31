@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import common from "../sidebarCommonData.json"
 import { SIDE_SET_DASHBOARD, SIDE_SET_SETTING } from "../../../redux/reducer";
 import './sidebar.css';
+import SidebarProfile from '../SidebarProfile';
 import { useSelector } from 'react-redux';
 
 export default function Sidebar(props) {
@@ -15,10 +16,7 @@ export default function Sidebar(props) {
 		<div className="sidebar">
 			<Link to='/.'><i className="bi-chevron-left"/></Link>
 			<div className='sidebarTitle'><i className={common[0].page[props.pageidx].icon}></i>{common[0].page[props.pageidx].title}</div>
-			<Link to='/Mypage' className='link-to-mypage'>
-				<i className="bi-person-circle"></i>
-				<div className="name">{common[1].name}</div>
-			</Link>
+			<SidebarProfile/>
 			<br></br>
 			<br></br>
 			<br></br>

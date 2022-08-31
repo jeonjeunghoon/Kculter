@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
 import common from "../sidebarCommonData.json"
+import { useDispatch } from "react-redux";
 import { SIDE_SET_CONCERT, SIDE_SET_IDOL, SIDE_SET_ATTR } from "../../../redux/reducer";
 import './sidebar.css';
 import { useSelector } from 'react-redux';
+import SidebarProfile from '../SidebarProfile';
 
 export default function Sidebar(props) {
 	const dispatch = useDispatch();
@@ -16,10 +17,7 @@ export default function Sidebar(props) {
 		<div className="sidebar">
 			<Link to='/.'><i className="bi-chevron-left"/></Link>
 			<div className='sidebarTitle'><i className={common[0].page[props.pageidx].icon}></i>{common[0].page[props.pageidx].title}</div>
-			<Link to='/Mypage' className='link-to-mypage'>
-				<i className="bi-person-circle"></i>
-				<div className="name">{common[1].name}</div>
-			</Link>
+			<SidebarProfile/>
 			<br></br>
 			<br></br>
 			<br></br>
