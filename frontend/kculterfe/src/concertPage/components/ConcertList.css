@@ -2,9 +2,20 @@
 	background-color: #eeeeee;
 }
 
+.Filter {
+	display: grid;
+	grid-template-columns: 1fr auto;
+}
+
 .ConcertSearchBar{
-	display: flex;
-	justify-content: left;
+	display:flex;
+	justify-content: flex-start;
+	margin-top: 1rem;
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+.IdolSelect{
 	margin-top: 1rem;
 	margin-left: 2rem;
 	margin-right: 2rem;

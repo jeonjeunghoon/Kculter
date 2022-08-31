@@ -3,6 +3,7 @@ import './ConcertList.css';
 import ConcertCard from './ConcertCard';
 import { getConcertList } from '../container/GetConcertListData';
 import ConcertSearchBar from './ConcertSearchBar';
+import IdolSelect from './IdolSelect';
 import items from '../data/card.json';
 
 function ConcertList() {
@@ -22,14 +23,20 @@ function ConcertList() {
 		});
 		console.log(data);
 	}, []);
+
 	const filterTitle = data.filter((p) => {
 		return p.concertName.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 
 	return (
 		<div className='ConcertListBody'>
-			<div className="ConcertSearchBar">
-				<ConcertSearchBar value={search} onChange={onChange} />
+			<div className='Filter'>
+				<div className="ConcertSearchBar">
+					<ConcertSearchBar value={search} onChange={onChange} />
+				</div>
+				<div className='IdolSelect'>
+					<IdolSelect/>
+				</div>
 			</div>
 			<div className="CardContainer">
 				{ filterTitle.map((concertData, index) => 
