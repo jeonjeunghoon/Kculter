@@ -48,4 +48,12 @@ public class MemberService {
     public int updatePwd(Member member) {
         return md.updatePwd(member);
     }
+
+    public int memberSecession(int memberNum) {
+        return md.memberSecession(memberNum);
+    }
+
+    public int checkManager(int memberNum) {
+        return md.checkManager(memberNum);
+    }
 }

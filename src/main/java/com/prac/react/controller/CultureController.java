@@ -33,12 +33,17 @@ public class CultureController {
         logger.info("Culture list get API start");
 
         cultureList = cs.getCultureList();
+
+        if(cultureList.isEmpty()){
+            logger.error("No culture list in DB");
+        }
         
         for(Culture culture : cultureList){
 
             Integer spot = cs.getSpot("/"+culture.getKeyNum()+"/");
 
             if(spot == null){
+                logger.warn("No spot with this culture");
                 culture.setSpot(0);
             }else{
                 culture.setSpot(spot);

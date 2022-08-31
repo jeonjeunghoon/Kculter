@@ -31,6 +31,7 @@ public class Encryption {
 
 	public String shaEncryption(String pwd) {
 		try {
+			//salt를 더해서 sha256 함 그럼 DB 털려도 비번은 절대 모름ㅋ
 			String pwdSalt = sk.getSecretKey()+pwd;
 			//try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -92,7 +93,7 @@ public class Encryption {
 				
 				return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText.getBytes("UTF-8"))));
 			} catch(Exception e) {
-				logger.info("Exception occur : "+e.toString());
+				logger.error("Exception occur : "+e.toString());
 				return encryptedText;
 			}
 		}

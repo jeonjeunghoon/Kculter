@@ -34,6 +34,12 @@ public class PinController {
 
         Pin pin = ps.getKpopPin(keyNum);
 
+        if(pin == null){
+            logger.error("Getting kpop pin error");
+            return null;
+        }
+
+
         String pinHash = encryption.aesEncrypt(Integer.toString(pin.getPinNum())); //핀번호 암호화
         String pinKeyHash = encryption.aesEncrypt(Integer.toString(pin.getPinKeyNum())); //핀번호 유형키 암호화
         pin.setPinHash(pinHash);
@@ -52,13 +58,17 @@ public class PinController {
 
         Pin pin = ps.getCulturePin(keyNum);
 
+        if(pin == null){
+            logger.error("Getting culture pin error");
+            return null;
+        }
+
         String pinHash = encryption.aesEncrypt(Integer.toString(pin.getPinNum())); //핀번호 암호화
         String pinKeyHash = encryption.aesEncrypt(Integer.toString(pin.getPinKeyNum())); //핀번호 유형키 암호화
         pin.setPinHash(pinHash);
         pin.setPinNum(0);
         pin.setPinKeyHash(pinKeyHash);
         pin.setPinKeyNum(0);
-
         return pin;
     }
 }

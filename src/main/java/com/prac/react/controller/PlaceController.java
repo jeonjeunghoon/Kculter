@@ -37,6 +37,11 @@ public class PlaceController {
 
         placeList = ps.getPlaceList();
 
+        if(placeList.isEmpty()){
+            logger.error("No Place List");
+            return null;
+        }
+
         for(Place place : placeList){
             String placeNumHash = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
             place.setPlaceHash(placeNumHash);
@@ -57,6 +62,11 @@ public class PlaceController {
         String found = "/"+keyNum+"/";
 
         typePlaceList = ps.getPlaceByType(found, type);
+
+        if(typePlaceList.isEmpty()){
+            logger.warn("No Place with this type");
+            return null;
+        }
 
         for(Place place : typePlaceList){
             String hashPlaceNum = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));

@@ -1,5 +1,7 @@
 package com.prac.react.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,5 +90,16 @@ public class CourseServiceTest {
 
         //then
         assert(!courses.isEmpty()&&!cwl.isEmpty());
+    }
+    @Test
+    void testDeleteCourse(){
+        //given
+        int courseNum = 2;
+        
+        //when
+        int result = cs.deleteCourse(courseNum);
+
+        //then
+        assertEquals(result, 1);
     }
 }

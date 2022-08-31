@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -90,6 +92,7 @@ public class CourseController {
 		List<CourseWrapper> memberCourseList = new ArrayList<>();
 
 		//암호화된 멤버 번호를 복호화 해야한다.
+		logger.info("MemberHash : "+memberNumHash);
 		int memberNum = Integer.parseInt(encryption.aesDecrypt(memberNumHash));
 
 
@@ -116,5 +119,16 @@ public class CourseController {
 		}
 
 		return memberCourseList;
+	}
+	@DeleteMapping("")
+	public int deleteCourse(@RequestHeader("CourseHash") String courseHash){
+		logger.info("Course Delete operation start!!!!");
+
+		int courseNum = Integer.parseInt(encryption.aesDecrypt(courseHash));
+
+		int result = cs.deleteCourse(courseNum);
+		if(result <= 0)
+			return 500;
+		return 200;
 	}
 }

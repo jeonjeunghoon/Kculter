@@ -33,6 +33,10 @@ public class ConcertController {
         logger.info("Getting ConcertList");
         concertList = cs.getConcertList();
 
+        if(concertList.isEmpty()){
+            logger.error("No concert info in DB");
+        }
+
         for(Concert concert : concertList){
             int concertKey = concert.getConcertNum();
             int starKey = concert.getStarKey();

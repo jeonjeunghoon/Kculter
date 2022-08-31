@@ -3,7 +3,7 @@
 <mapper namespace="com.prac.react.model.dao.MemberDao">
 	<!--checking email duplicate -->
 	<select id="checkMember" resultType="integer" parameterType='String'>
-		select count(*) from member where email=#{email}
+		select count(*) from member where email=#{email} and `status` = 1
 	</select>
 	<!--checking nickname duplicate-->
 	<select id="checkNickName" resultType="integer" parameterType='String'>
@@ -34,4 +34,12 @@
 	<update id="updatePwd" parameterType="Member">
 		update member set pwd = #{pwd} where memberNum = #{memberNum}
 	</update>
+	<!--secession member-->
+	<update id="memberSecession" parameterType="int">
+		update member set `status` = false where memberNum=#{memberNum}
+	</update>
+	<!--checking manager-->
+	<select id="checkManager" parameterType="int" resultType="int">
+		select mg from member where memberNum=#{memberNum}
+	</select>
 </mapper>
