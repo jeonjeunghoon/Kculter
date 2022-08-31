@@ -131,4 +131,28 @@ public class MemberServiceTest {
         //then
         assertEquals(result, 1);
     }
+
+    @Test
+    void testMemberSecession(){
+        //given
+        int memberNum = 1;
+
+        //when
+        int result = ms.memberSecession(memberNum);
+
+        //then
+        assertEquals(result, 1);
+    }
+
+    @Test
+    void testCheckManager(){
+        //given
+        int memberNum = 1;
+
+        //when
+        int result = ms.checkManager(memberNum);
+
+        //then
+        assertEquals(result, 0);
+    }
 }

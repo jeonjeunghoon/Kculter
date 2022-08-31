@@ -99,4 +99,8 @@ public class CourseService {
         return memberCourseList;
 
     }
+
+    public int deleteCourse(int courseNum) {
+        return cd.deleteCourse(courseNum);
+    }
 }

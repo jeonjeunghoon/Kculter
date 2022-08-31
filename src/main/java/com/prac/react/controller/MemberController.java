@@ -86,6 +86,7 @@ public class MemberController {
         if (result == 1) {
             return 200;
         } else {
+            logger.error("SignUp Error!!");
             return 500;
         }
     }
@@ -101,7 +102,7 @@ public class MemberController {
         loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
         Member authorizedUser = ms.login(loginTry);
         if(authorizedUser == null){
-            logger.info("No member info");
+            logger.warn("No member info");
             return null;
         }else{
             String hashMemberNum = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMemberNum()));
@@ -122,6 +123,7 @@ public class MemberController {
 
         //member 받아왔으니 이제 보내주자.
         if(member == null){
+            logger.error("Error!!!! No member Info with memberNum");
             return null;
         }else{
             return member;
@@ -152,6 +154,7 @@ public class MemberController {
 
         int result = ms.updateMember(member);
         if(result <= 0){
+            logger.error("Update failure");
             return 500;
         }else{
             return 200;
@@ -176,6 +179,7 @@ public class MemberController {
 
         Integer result = ms.checkPwd(member);
         if (result == null){
+            logger.warn("No pwd found");
             return 401; //인증 실패
         }else{
             return 200; //성공
@@ -201,9 +205,44 @@ public class MemberController {
 
         int result = ms.updatePwd(member);
         if(result <= 0){
+            logger.error("Update failure");
             return 500; //서버
         }else{
             return 200; //성공
+        }
+    }
+
+    //회원 탈퇴 api
+    //멤버해쉬를 header로 받아옴
+    @PutMapping("/secession")
+    public int memberSecession(@RequestHeader("Authorization") String autho){
+        logger.info("Member secession api start");
+
+        int memberNum = Integer.parseInt(encrypt.aesDecrypt(autho));
+
+        int result = ms.memberSecession(memberNum);
+
+        if(result <= 0 || result > 1){
+            logger.error("Error during member secession");
+            return 500;
+        }
+        return 200;
+    }
+
+    //관리자 확인 api
+    //멤버번호를 Authorization으로 받아옴
+    @GetMapping("/mg")
+    public int checkManager(@RequestHeader("Authorization") String autho){
+        logger.info("Manager checking api start");
+
+        int memberNum = Integer.parseInt(encrypt.aesDecrypt(autho));
+        
+        int result = ms.checkManager(memberNum);
+        if(result == 0){
+            logger.warn("No Authority to go manager");
+            return 401;
+        }else{
+            return 200;
         }
     }
 }

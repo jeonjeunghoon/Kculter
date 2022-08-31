@@ -19,4 +19,8 @@
     <select id="getCourses" parameterType="int" resultType="Course">
         select * from course where memberNum=#{memberNum}
     </select>
+    <!--Delete particular course-->
+    <delete id="deleteCourse" parameterType="int">
+        delete from course where courseNum=#{courseNum}
+    </delete>
 </mapper>

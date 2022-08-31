@@ -14,4 +14,6 @@ public interface MemberDao {
     int updateMember(Member member);
     Integer checkPwd(Member member);
     int updatePwd(Member member);
+    int memberSecession(int memberNum);
+    int checkManager(int memberNum);
 }

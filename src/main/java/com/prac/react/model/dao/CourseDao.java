@@ -13,4 +13,5 @@ public interface CourseDao {
     public int saveNewPlace(Place place);
     public int insertCourse(Course course);
     public List<Course> getCourses(int memberNum);
+    public int deleteCourse(int courseNum);
 }

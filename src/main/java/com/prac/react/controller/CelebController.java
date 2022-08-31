@@ -40,6 +40,7 @@ public class CelebController {
             Integer spot = cs.getSpot("/"+celeb.getKeyNum()+"/");
             
             if(spot == null){
+                logger.warn("No spot with this celeb");
                 celeb.setSpot(0);
             }else{
                 celeb.setSpot(spot);
@@ -49,7 +50,10 @@ public class CelebController {
             celeb.setKeyHash(hashKey);
             celeb.setKeyNum(0);
         }
-
+        
+        if(celebList.isEmpty()){
+            logger.error("No Celebrity Info");
+        }
         return celebList;
     }
 }

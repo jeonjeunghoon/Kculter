@@ -64,6 +64,7 @@ public class ManagerController{
         if(result > 0){ //데이터가 잘 입력 됐을때
             return 200;
         }else{ //데이터가 잘 들어가지 않았을때
+            logger.error("Culture insert error");
             return 500;
         }
     }
@@ -103,6 +104,7 @@ public class ManagerController{
         if(kpopResult > 0){ //데이터가 잘 입력 됐을때
             return 200;
         }else{ //데이터가 잘 들어가지 않았을때
+            logger.error("Kpop insert error");
             return 500;
         }
     }
@@ -140,6 +142,10 @@ public class ManagerController{
             url = sfu.uploadtoS3(mpf, "/place");
             place.setFileUrl(url);
             result = ms.insertPlace(place);
+            if(result <= 0){
+                logger.error("Place insert error");
+                return 500;
+            }
         }else{ //얘는 기존에 있는 장소에서 따로 추가하는것이니 placeNum만 있을것이다.
 
             logger.info("Place info exist, updating insert process");
@@ -155,9 +161,13 @@ public class ManagerController{
             place.setCulture(encryption.aesDecrypt(place.getCulture()));
 
             if(ms.checkDuplicate(place)>0){
+                logger.info("Already have place data");
                 result = 201; //201 : 이미 존재하는 데이터입니다.
             }else{
                 result = ms.updatePlace(place);
+                if(result <= 0){
+                    logger.error("Place update failure");
+                }
             }
         }
         return result;
@@ -174,6 +184,10 @@ public class ManagerController{
         url = sfu.uploadtoS3(mpf, "/concert");
         concert.setImageUrl(url);
         int result = ms.insertConcert(concert);
+        if(result <= 0){
+            logger.error("Concert insert error");
+            return 500;
+        }
         return result;
     }
 
@@ -189,6 +203,10 @@ public class ManagerController{
         pin.setImageUrl(url);
 
         int result = ms.insertPin(pin);
+        if(result <= 0){
+            logger.error("Pin insert error");
+            return 500;
+        }
         return result;
     }
 }
