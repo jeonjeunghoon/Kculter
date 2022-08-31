@@ -95,12 +95,6 @@ public class CourseService {
         if(memberCourseList.isEmpty()){
             logger.error("Memeber course list is empty");
         }
-        
-        logger.info("------------Result------------");
-
-        for(CourseWrapper cw : memberCourseList){
-            logger.info(cw.toString());
-        }
 
         return memberCourseList;
 

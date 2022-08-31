@@ -16,6 +16,7 @@ import com.prac.react.security.Encryption;
 public class CourseThread implements Runnable{
 
     private Course course;
+    private Encryption encrypt;
     private PlaceDao pd;
     private CompletionHandler<CourseWrapper,Void> callBack;
     private int memberNum;
@@ -34,11 +35,10 @@ public class CourseThread implements Runnable{
         // TODO Auto-generated method stub
         logger.info("Thread Started");
 
-        Encryption encrypt = new Encryption();
-
         String[] placeArr = course.getPlaces().split("/");
 
-        pd = ApplicationContextProvider.getBean(PlaceDao.class);
+        pd = ApplicationContextProvider.getBean(PlaceDao.class); //Thread에서는 Autowired가 되지 않아서 따로 이 클래스를 이용해서 의존성 주입을 받아야함
+        encrypt = ApplicationContextProvider.getBean(Encryption.class);
 
         List<Place> placeList = new ArrayList<>(); //Place정보를 List에 담기 위해서
 

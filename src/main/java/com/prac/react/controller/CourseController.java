@@ -90,6 +90,7 @@ public class CourseController {
 		List<CourseWrapper> memberCourseList = new ArrayList<>();
 
 		//암호화된 멤버 번호를 복호화 해야한다.
+		logger.info("MemberHash : "+memberNumHash);
 		int memberNum = Integer.parseInt(encryption.aesDecrypt(memberNumHash));
 
 
