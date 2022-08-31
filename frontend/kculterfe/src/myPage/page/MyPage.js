@@ -1,6 +1,6 @@
 import React from 'react';
-import MyPageBody from '../components/MyPageBody';
-import MyInfoPage from '../components/MyInfoPage';
+import MyPageBody from '../presentation/MyPageBody';
+import MyInfoPage from '../presentation/MyInfoPage';
 import { useSelector } from 'react-redux';
 
 function MyPage() {

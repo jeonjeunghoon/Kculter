@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function  EditInfo(formData) {
+export async function  EditMemberInfo(formData) {
     let result;
     console.log(formData);
     return await axios.put("/member",formData)

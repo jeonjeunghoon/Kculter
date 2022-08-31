@@ -2,14 +2,23 @@ import React from 'react';
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { CLICK_PLACE } from '../../../redux/reducer';
 import "../../styles/MyPage.css"
+import { useDispatch } from 'react-redux';
 
 function CardItem({ props }) {
+	const dispatch = useDispatch();
 
-	const [toMap, setToMap] = useState(false); // 맵 페이지로 이동
-	const moveToMap = () => {
-		setToMap(true);
-	}
+    const moveToMap = () => {
+        let place = {
+			lat: props.lat,
+			lng: props.lng
+		}
+        dispatch({
+            type: CLICK_PLACE,
+            data: place
+        })
+    }
 	// window.sessionStorage.setItem("keyHash", keyHash);
 	// window.sessionStorage.setItem("title", title);
 	// window.sessionStorage.setItem("type", type);
