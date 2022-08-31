@@ -4,15 +4,17 @@ public class FrontMember {
     private String memberHash;
     private String memberName;
     private String pf_image;
-
+    private String mgHash;
 
     public FrontMember() {
     }
 
-    public FrontMember(String memberHash, String memberName, String pf_image) {
+
+    public FrontMember(String memberHash, String memberName, String pf_image, String mgHash) {
         this.memberHash = memberHash;
         this.memberName = memberName;
         this.pf_image = pf_image;
+        this.mgHash = mgHash;
     }
 
     public String getMemberHash() {
@@ -39,13 +41,23 @@ public class FrontMember {
         this.pf_image = pf_image;
     }
 
+    public String getMgHash() {
+        return this.mgHash;
+    }
+
+    public void setMgHash(String mgHash) {
+        this.mgHash = mgHash;
+    }
+
     @Override
     public String toString() {
         return "{" +
             " memberHash='" + getMemberHash() + "'" +
             ", memberName='" + getMemberName() + "'" +
             ", pf_image='" + getPf_image() + "'" +
+            ", mgHash='" + getMgHash() + "'" +
             "}";
     }
+
 
 }

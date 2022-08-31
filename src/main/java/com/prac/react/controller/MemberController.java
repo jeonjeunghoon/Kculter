@@ -106,7 +106,8 @@ public class MemberController {
             return null;
         }else{
             String hashMemberNum = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMemberNum()));
-            FrontMember fm = new FrontMember(hashMemberNum, authorizedUser.getNickName(), authorizedUser.getPf_image());
+            String mgHash = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMg()));
+            FrontMember fm = new FrontMember(hashMemberNum, authorizedUser.getNickName(), authorizedUser.getPf_image(),mgHash);
             logger.info("Login User : "+fm.toString());
             return fm;
         }

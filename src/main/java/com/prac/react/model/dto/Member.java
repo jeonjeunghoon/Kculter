@@ -10,6 +10,8 @@ public class Member {
 	private int age;
 	private String gender;
 	private String pf_image;
+	private int mg;
+	private int status;
 
 	public Member() {
 	}
@@ -98,11 +100,27 @@ public class Member {
 		this.pf_image = pf_image;
 	}
 
+	public int getMg() {
+		return this.mg;
+	}
+
+	public void setMg(int mg) {
+		this.mg = mg;
+	}
+
+	public int getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "{" +
 			" memberNum='" + getMemberNum() + "'" +
+			", memberNumHash='" + getMemberNumHash() + "'" +
 			", email='" + getEmail() + "'" +
 			", pwd='" + getPwd() + "'" +
 			", nickName='" + getNickName() + "'" +
@@ -110,7 +128,10 @@ public class Member {
 			", age='" + getAge() + "'" +
 			", gender='" + getGender() + "'" +
 			", pf_image='" + getPf_image() + "'" +
+			", mg='" + getMg() + "'" +
+			", status='" + getStatus() + "'" +
 			"}";
 	}
+
 
 }

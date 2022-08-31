@@ -37,16 +37,22 @@ public class EncryptionTest {
     @Test
     void testAesEncrypt(){
         //given
-        int key = 3;
+        int key = 0;
         String keyString = Integer.toString(key);
         //when
-        String encrypt = ec.aesEncrypt("3sGjhUh evgXxRYcsuwxeg==ed0119");
+        String encrypt = ec.aesEncrypt(keyString);
         //then
         logger.info("Encrypt : "+encrypt);
 
     }
     @Test
     void testShaEncryption() {
+        //given
+        String  pwd = "-dldnrwo9595";
+        //when
+        String encrypt = ec.shaEncryption(pwd);
+        //then
+        logger.info(encrypt);
 
     }
 }

@@ -18,6 +18,7 @@ import com.prac.react.security.Encryption;
 public class MemberServiceTest {
 
     @Autowired MemberService ms;
+    @Autowired Encryption encryption;
 
     Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 
@@ -69,10 +70,9 @@ public class MemberServiceTest {
     @Test
     void testLogin(){
         //given
-        Encryption encryption = new Encryption();
-        String pwd = encryption.shaEncryption("h1267915h!");
+        String pwd = encryption.shaEncryption("-dldnrwo9595");
         Member member = new Member();
-        member.setEmail("irang1205@naver.com");
+        member.setEmail("hankgood95@naver.com");
         member.setPwd(pwd);
 
 
@@ -83,7 +83,7 @@ public class MemberServiceTest {
         if(result == null){
             logger.info("ID or Pwd is not correct");
         }else{
-            logger.info("Member : "+ member.toString());
+            logger.info("Member : "+ result.toString());
         }
 
     }
