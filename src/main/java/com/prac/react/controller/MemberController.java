@@ -99,7 +99,6 @@ public class MemberController {
         Member loginTry = new Member();
         loginTry.setEmail(idPwd[0]);
         loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
-
         Member authorizedUser = ms.login(loginTry);
         if(authorizedUser == null){
             logger.info("No member info");
