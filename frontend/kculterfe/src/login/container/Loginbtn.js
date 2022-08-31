@@ -28,9 +28,11 @@ function Loginbtn (props) {
           alert("login fail");
         }
         else{
+          console.log(result);
           window.sessionStorage.setItem("memberNum",result.memberNum);
           window.sessionStorage.setItem("nickname",result.nickName);
           window.sessionStorage.setItem("email",result.email);
+          window.sessionStorage.setItem("profile",result)
           window.location.href= "/";
         }
       }
