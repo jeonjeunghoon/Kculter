@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.prac.react.model.dto.FrontMember;
 import com.prac.react.model.dto.Member;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.MemberService;
@@ -90,7 +91,7 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public Member login(@RequestHeader("Authorization") String autho) {
+    public FrontMember login(@RequestHeader("Authorization") String autho) {
         logger.info("Authorization : " + autho);
 
         String memberInform = encrypt.aesDecrypt(autho);
@@ -102,10 +103,13 @@ public class MemberController {
         Member authorizedUser = ms.login(loginTry);
         if(authorizedUser == null){
             logger.info("No member info");
+            return null;
         }else{
-            logger.info(authorizedUser.toString());
+            String hashMemberNum = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMemberNum()));
+            FrontMember fm = new FrontMember(hashMemberNum, authorizedUser.getNickName(), authorizedUser.getPf_image());
+            logger.info("Login User : "+fm.toString());
+            return fm;
         }
-        return authorizedUser;
     }
 
     //회원번호로 회원정보 조회 api

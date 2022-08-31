@@ -28,11 +28,10 @@ function Loginbtn (props) {
           alert("login fail");
         }
         else{
-          console.log(result);
-          window.sessionStorage.setItem("memberNum",result.memberNum);
-          window.sessionStorage.setItem("nickname",result.nickName);
-          window.sessionStorage.setItem("email",result.email);
-          window.sessionStorage.setItem("profile",result)
+          console.log("Hi welcome to Kculter");
+          window.sessionStorage.setItem("memberHash",result.memberHash);
+          window.sessionStorage.setItem("memberName",result.memberName);
+          window.sessionStorage.setItem("pf_image",result.pf_image);
           window.location.href= "/";
         }
       }
