@@ -13,7 +13,6 @@ export async function getMemberInfo() {
     })
     .then(function(res){
         list = res.data;
-        console.log(res);
         return list;
     })
     .catch(function(error){
