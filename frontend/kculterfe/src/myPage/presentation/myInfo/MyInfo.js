@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import EditBasicInfo from './EditBasicInfo';
-import EditPwdInfo from './EditPwdInfo';
+import BasicInfoPage from './BasicInfoPage';
+import PwdInfoPage from './PwdInfoPage';
 
 function MyInfo() {
   // 페이지 렌더링
@@ -18,7 +18,7 @@ function MyInfo() {
               } style={{ color:btnLikeColor }}>Security</button>
           </div>
           {/* 저장한 경로 리스트 */}
-          { viewMyMap ? <EditBasicInfo/> : <EditPwdInfo/> }
+          { viewMyMap ? <BasicInfoPage/> : <PwdInfoPage/> }
       </div>
 
   )

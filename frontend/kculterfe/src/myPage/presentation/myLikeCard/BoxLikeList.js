@@ -21,7 +21,7 @@ function BoxLikeList() {
 	return (
 		<>
 			<Row id="box-like-list">
-				{ data.map((LikeList, index) => <BoxLikeItem key={index} props={LikeList} {...LikeList} />)}
+				{ data&&data.map((LikeList, index) => <BoxLikeItem key={index} props={LikeList} {...LikeList} />) || <div>데이터가 없을 때 화면</div>}
 			</Row>
 		</>
 	)

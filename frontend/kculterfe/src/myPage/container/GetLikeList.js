@@ -11,6 +11,6 @@ export async function getLikeList() {
         return list;
     })
     .catch(function(error){
-        alert("서버 통신 실패");
+        return ;
     });
 }
