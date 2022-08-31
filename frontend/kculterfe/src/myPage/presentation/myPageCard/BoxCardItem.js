@@ -5,15 +5,22 @@ import "../../styles/Button.css"
 import CardList from './CardList';
 import { useDispatch } from 'react-redux';
 import { MODIFY_COURSE } from '../../../redux/reducer';
+import { CLICK_PLACE } from '../../../redux/reducer';
 
 function BoxCardItem({ props }) {
 	const dispatch = useDispatch();
 
     const courseMoveToMapBtn = () => {
         let newCourseList = props.course;
+        let place = props.course
+
         dispatch({
             type: MODIFY_COURSE,
-            data: newCourseList,
+            data: newCourseList
+        })
+        dispatch({
+            type: CLICK_PLACE,
+            data: place
         })
     }
 	return (
