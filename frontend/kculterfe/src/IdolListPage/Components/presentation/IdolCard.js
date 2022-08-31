@@ -9,7 +9,7 @@ import styles from './IdolCard.module.css';
 // fonts
 import '../../../index.css';
 
-function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, explain}) {
+function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -19,17 +19,17 @@ function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, explai
 	window.sessionStorage.setItem("title", title);
 	window.sessionStorage.setItem("type", type);
 
-	const [pin, setPin] = useState([]);
+	// const [pin, setPin] = useState([]);
 
-	useEffect(() => {
-		getPin(type, keyHash)
-		.then(resPin => {
-			setPin(resPin);
-		})
-		.catch(err => {
-			console.log(err)
-		})
-	}, []);
+	// useEffect(() => {
+	// 	getPin(type, keyHash)
+	// 	.then(resPin => {
+	// 		setPin(resPin);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err)
+	// 	})
+	// }, []);
 
 	return (
 		<>
@@ -64,21 +64,17 @@ function IdolCard( {keyHash, type, path_photo, title, num_like, num_spot, explai
 				<Modal.Body className={styles.modal_body}>
 					<div className={styles.modal_title}>
 						{title}
-						<img src={pin.imageUrl} />
+						<img src={pin.imageUrl} alt='pin' />
 					</div>
 					<div className={styles.modal_info}>
 						<div className={styles.modal_spot_num}>
-							<img src='spot.png' />
+							<img src='spot.png' alt='spot'/>
 							<p>{num_spot} Spots</p>
 						</div>
 					</div>
 					<div className={styles.modal_paragraph}>
 						<p>{explain}</p>
 					</div>
-					<div className={styles.modal_map}>
-
-					</div>
-
 				</Modal.Body>
 				<Modal.Footer>
 				<Button variant={styles.modal_secondary} onClick={handleClose}>
