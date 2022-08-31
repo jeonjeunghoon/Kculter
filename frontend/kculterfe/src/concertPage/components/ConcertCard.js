@@ -45,7 +45,8 @@ function CardItem(item) {
 							<div className='concert_closebtn'>
 								<i class="bi bi-x" onClick={handleClose}></i>
 							</div>
-							<div className='concert_title'> {item.title} </div>
+							<h2>{item.title}</h2>
+							<p></p>
 							<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
 							<div className='concert_explain'>{item.explain}</div>
 						</div>
