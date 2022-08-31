@@ -1,107 +1,113 @@
 .map-container {
-	position: relative;
-	width: 100%;
-	height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .map-card {
-	position: absolute;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	height: 135px;
-	width: 100%;
-	top: 75%;
-	left: 50%;
-	transform: translate(-50%);
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 135px;
+  width: 100%;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .card-toggle {
-	display: flex;
-	position: absolute;
-	top: 70%;
-	transform: translate(-50%);
-	margin-left: 70px;
-	width: 30px;
-	height: 30px;
+  display: flex;
+  position: absolute;
+  top: 70%;
+  transform: translate(-50%);
+  margin-left: 70px;
+  width: 30px;
+  height: 30px;
 }
 
 .map-card .arrow {
-	width: 30px;
-	height: 30px;
-	background-color: rgba(0, 0, 0, 0);
-	border: 0;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
 }
 
 .map-card .arrow img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .card-box {
-	width: 85%;
-	align-self: center;
+  width: 85%;
+  align-self: center;
 }
 
 .card-item {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .card-item button {
-	width: 150px;
-	height: 150px;
-	margin-bottom: 5px;
-	margin-right: 5px;
-	background-color: white;
-	border: rgba(0, 0, 0, 0);
-	border-radius: 8px;
-	box-shadow: 5px 5px 10px gray;
-	overflow-y: hidden;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  background-color: white;
+  border: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px gray;
+  overflow-y: hidden;
 }
 
 .card-item button img {
-	width: 100%;
-	height: 80%;
-	margin-top: 5px;
-	border-radius: 8px;
+  width: 100%;
+  height: 80%;
+  margin-top: 5px;
+  border-radius: 8px;
 }
 
 .card-item p {
-	height: 20%;
-	margin: 0;
+  height: 20%;
+  margin: 0;
 }
 
 .autocomplete-input {
-	position: absolute;
-	top: 20px;
-	left: 30px;
-  width: 240px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 200px;
   height: 32px;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: 13px;
   box-shadow: 5px 5px 10px gray;
   font-size: 14px;
-	text-overflow: ellipses;
+  text-overflow: ellipses;
+}
+
+.search-box {
+  background-color: #949ba0;
+  height: 40px;
+  padding: 10px;
 }
 
 .map-filter-container {
-	position: absolute;
-	display: flex;
-	top: 20px;
-	right: 30px;
+  position: absolute;
+  display: flex;
+  top: 20px;
+  right: 30px;
 }
 
 .kpop-toggle {
-	width: 30px;
-	height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .culture-toggle {
-	width: 30px;
-	height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .filter {
-	box-shadow: 5px 5px 10px gray;
+  box-shadow: 5px 5px 10px gray;
 }

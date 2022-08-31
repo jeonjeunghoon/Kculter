@@ -6,6 +6,7 @@ import './MainPage.css';
 import mainimg from '../src_asset/메인홈.png'
 import MainNavbar from './MainNavbar';
 import { Button } from './Button';
+import {Link} from 'react-router-dom';
 
 function MainPage() {
 
@@ -17,6 +18,9 @@ function MainPage() {
             <div className='maindiv'> 
               <MainNavbar className='MainNav'/>
               </div>
+            <div className='mainbtn-2'>
+                <Link to="Aboutus">aa</Link>
+            </div>
         <div className='mainbtn'>
            <Button/>
            </div>
