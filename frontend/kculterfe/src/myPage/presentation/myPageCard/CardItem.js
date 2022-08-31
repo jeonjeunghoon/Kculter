@@ -10,10 +10,8 @@ function CardItem({ props }) {
 	const dispatch = useDispatch();
 
     const moveToMap = () => {
-        let place = {
-			lat: props.lat,
-			lng: props.lng
-		}
+        let place = props
+		
         dispatch({
             type: CLICK_PLACE,
             data: place
