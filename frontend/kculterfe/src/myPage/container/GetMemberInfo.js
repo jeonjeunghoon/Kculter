@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function getMemberInfo() {
     let list;
     //await 한 값을 보내준다.
-    const keyHash = window.sessionStorage.getItem("keyHash")
+    const keyHash = window.sessionStorage.getItem("memberHash")
 
     return await axios.get('/member', {
         headers: {
