@@ -99,7 +99,6 @@ public class MemberController {
         Member loginTry = new Member();
         loginTry.setEmail(idPwd[0]);
         loginTry.setPwd(encrypt.shaEncryption(idPwd[1])); // 받은 비밀번호 sha256 암호화
-
         Member authorizedUser = ms.login(loginTry);
         if(authorizedUser == null){
             logger.info("No member info");
@@ -112,7 +111,7 @@ public class MemberController {
     //회원번호로 회원정보 조회 api
     @GetMapping("")
     public Member getMemberInfo(@RequestHeader("Authorization") String autho) {
-        logger.info("Member info get login start");
+        logger.info("Member info get login start!!!");
 
         int memberKeyNum = Integer.parseInt(encrypt.aesDecrypt(autho)); //멤버번호
 
@@ -129,7 +128,7 @@ public class MemberController {
     //회원정보 변경 api
     @PutMapping("")
     public int updateMemberInfo(@RequestPart("formValue") Member member,@RequestPart(value="file", required=false) MultipartFile mpf) throws IOException{
-
+        logger.info("Member update Start!!!");
         /*
          * formValue : {
                 memberNumHash : 
@@ -159,6 +158,7 @@ public class MemberController {
     //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
     @GetMapping("/pwd")
     public int checkPwd(@RequestHeader("Authorization") String autho){
+        logger.info("Checking pwd!!!");
         String decrypt = encrypt.aesDecrypt(autho);
 
         String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
@@ -183,6 +183,7 @@ public class MemberController {
     //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
     @PutMapping("/pwd")
     public int updatePwd(@RequestHeader("Authorization") String autho){
+        logger.info("Changing pwd!!!");
         String decrypt = encrypt.aesDecrypt(autho);
 
         String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);

@@ -176,7 +176,7 @@ const insertMember = async () =>{
     alert("Please check nickname duplication");
   }else{
     const result = await storeMember(formData);
-    if(result == 1){
+    if(result == 200){
       alert("success on signup");
       cancel();
     }else{
