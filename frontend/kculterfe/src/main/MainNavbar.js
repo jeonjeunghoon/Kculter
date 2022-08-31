@@ -12,7 +12,7 @@ function MainNavbar() {
   const [status,setStatus] = useState();
   const [login,setLogin] = useState('LOGIN');
   const [mypage,setMypage] = useState(false);
-  const result = sessionStorage.getItem("nickname");
+  const result = sessionStorage.getItem("memberHash");
   
 
 
