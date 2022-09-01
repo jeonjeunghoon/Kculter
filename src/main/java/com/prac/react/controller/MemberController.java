@@ -148,8 +148,12 @@ public class MemberController {
          */
         //일단은 memberHash를 복호화 해야함
         int memberKeyNum =  Integer.parseInt(encrypt.aesDecrypt(member.getMemberNumHash()));
+        member.setMemberNum(memberKeyNum);
+        logger.info("MemberKeyNum : "+memberKeyNum);
 
         Member oldMember = ms.getMemberInfo(memberKeyNum); //기존 회원의 정보를 가져온다.
+
+        logger.info("Old member : "+oldMember.toString());
 
         if(mpf == null){ //프로필 이미지가 비어있다면 즉 프로필 사진 변경을 안했다면 진입
             logger.warn("No profile image to update");
@@ -159,6 +163,7 @@ public class MemberController {
             member.setPfUrl(imageUrl);            
         }
 
+        logger.info("Update member info : "+ member.toString());
 
         int result = ms.updateMember(member);
         if(result <= 0){
