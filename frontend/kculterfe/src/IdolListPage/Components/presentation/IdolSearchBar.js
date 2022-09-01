@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Form } from 'react-bootstrap';
+import styles from './IdolSearchBar.module.css';
 
 function IdolSearchBar({search, onChange}) {
 	return (
-		<div>
-			<Form>
-				<Form.Group className="mb-3" controlId="formBasicEmail">
+		<>
+			{/* <Form>
+				<Form.Group className={styles.search_box} controlId="formBasicEmail">
 					<Form.Control placeholder="SEARCH" onChange={onChange} />
      			</Form.Group>
-			</Form>
-		
-		</div>
-
-
+			</Form> */}
+			<form>
+				<input className={styles.no_submit} type="search" placeholder="SEARCH" onChange={onChange}></input>
+			</form>
+		</>
 	)
 }
 IdolSearchBar.propTypes = {
