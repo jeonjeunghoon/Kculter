@@ -18,7 +18,7 @@ import com.prac.react.model.dto.SecretKey;
 @Component
 public class Encryption {
 	private SecretKey sk;
-	private String iv = "abcdefghijklmnop"; // 16자리 iv
+	private String iv = "AlyjNGZKzkfEsasZ"; // 16자리 iv
 
 	Logger logger = LoggerFactory.getLogger(Encryption.class);
 
