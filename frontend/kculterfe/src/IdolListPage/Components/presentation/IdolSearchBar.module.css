@@ -1,0 +1,31 @@
+
+.no_submit{
+	background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+	background-size: 1rem;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	width: 100%;
+}
+
+input[type=search] {
+	width: 15rem;
+	height: 2.5rem;
+	border-radius: 2rem;
+	padding-left: 2rem;
+	padding-bottom: 0.2rem;
+	outline: none;
+	border-color: #0074ff;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	background-color: white;
+}
+
+input[type=search]::placeholder{
+	color: black;
+}
+
+input[type=search]:focus{
+	box-shadow: 0 0 3px 0 #0074ff;
+	border-color: #0074ff;
+	outline: none;
+}
