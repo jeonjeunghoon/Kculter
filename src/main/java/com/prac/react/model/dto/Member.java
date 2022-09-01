@@ -9,14 +9,14 @@ public class Member {
 	private String countryCode;
 	private int age;
 	private String gender;
-	private String pf_image;
+	private String pfUrl;
 	private int mg;
 	private int status;
 
 	public Member() {
 	}
 
-	public Member(int memberNum, String email, String pwd, String nickName, String countryCode, int age, String gender, String pf_image) {
+	public Member(int memberNum, String email, String pwd, String nickName, String countryCode, int age, String gender, String pfUrl) {
 		this.memberNum = memberNum;
 		this.email = email;
 		this.pwd = pwd;
@@ -24,7 +24,7 @@ public class Member {
 		this.countryCode = countryCode;
 		this.age = age;
 		this.gender = gender;
-		this.pf_image = pf_image;
+		this.pfUrl = pfUrl;
 	}
 
 
@@ -92,12 +92,12 @@ public class Member {
 		this.gender = gender;
 	}
 
-	public String getPf_image() {
-		return this.pf_image;
+	public String getPfUrl() {
+		return this.pfUrl;
 	}
 
-	public void setPf_image(String pf_image) {
-		this.pf_image = pf_image;
+	public void setPfUrl(String pfUrl) {
+		this.pfUrl = pfUrl;
 	}
 
 	public int getMg() {
@@ -127,7 +127,7 @@ public class Member {
 			", countryCode='" + getCountryCode() + "'" +
 			", age='" + getAge() + "'" +
 			", gender='" + getGender() + "'" +
-			", pf_image='" + getPf_image() + "'" +
+			", pfUrl='" + getPfUrl() + "'" +
 			", mg='" + getMg() + "'" +
 			", status='" + getStatus() + "'" +
 			"}";

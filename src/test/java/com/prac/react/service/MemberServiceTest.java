@@ -93,6 +93,7 @@ public class MemberServiceTest {
         int keyNum = 1;
         //when
         Member member = ms.getMemberInfo(keyNum);
+        logger.info(member.toString());
         //then
         assertNotNull(member);
     }

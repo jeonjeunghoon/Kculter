@@ -75,7 +75,7 @@ public class MemberController {
     public int insertMember(@RequestBody Member member) {
         logger.info(member.toString());
 
-        member.setPf_image("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
+        member.setPfUrl("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
         String pwd = encrypt.aesDecrypt(member.getPwd()); // 대칭키로 복호화
         String enccryptPwd = encrypt.shaEncryption(pwd); // 복호화 한걸 sha256 암호화
         member.setPwd(enccryptPwd);
@@ -105,9 +105,10 @@ public class MemberController {
             logger.warn("No member info");
             return null;
         }else{
+            logger.info("Member Get : "+authorizedUser.toString());
             String hashMemberNum = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMemberNum()));
             String mgHash = encrypt.aesEncrypt(Integer.toString(authorizedUser.getMg()));
-            FrontMember fm = new FrontMember(hashMemberNum, authorizedUser.getNickName(), authorizedUser.getPf_image(),mgHash);
+            FrontMember fm = new FrontMember(hashMemberNum, authorizedUser.getNickName(), authorizedUser.getPfUrl(),mgHash);
             logger.info("Login User : "+fm.toString());
             return fm;
         }
@@ -147,11 +148,17 @@ public class MemberController {
          */
         //일단은 memberHash를 복호화 해야함
         int memberKeyNum =  Integer.parseInt(encrypt.aesDecrypt(member.getMemberNumHash()));
-        member.setMemberNum(memberKeyNum);
 
-        //이제 이미지를 저장하자.
-        String imageUrl = sfu.uploadtoS3(mpf,"/pf-image");
-        member.setPf_image(imageUrl);
+        Member oldMember = ms.getMemberInfo(memberKeyNum); //기존 회원의 정보를 가져온다.
+
+        if(mpf == null){ //프로필 이미지가 비어있다면 즉 프로필 사진 변경을 안했다면 진입
+            logger.warn("No profile image to update");
+            member.setPfUrl(oldMember.getPfUrl());
+        }else{//프로필 이미지 변경했다면 진입
+            String imageUrl = sfu.uploadtoS3(mpf,"/pf-image");
+            member.setPfUrl(imageUrl);            
+        }
+
 
         int result = ms.updateMember(member);
         if(result <= 0){
