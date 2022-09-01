@@ -127,23 +127,24 @@ export default function EditBasicInfo() {
   const editMember = async () => {
     var gender_ = gender;
     var countryCode_ = countryCode;
+    var nickName_ = nickName;
 
-    if (!nickName){ setNickName("success"); } // 현재 와 동일하게 해야함.
-    if (gender == '') {gender_ = gender; }
-    if (countryCode == '') {countryCode_ = "TEST"; }
-    if (!pfImg) {setPfImg(""); } // 사진 넣어야함
+    if (nickName == ''){ nickName_ = "TEST_NICKNAME"; } // 현재 와 동일하게 해야함.
+    if (gender == '') { gender_ = "TEST_FEMALE"; }
+    if (countryCode == '') { countryCode_ = "TEST_COUNTRY"; }
 
     const memberNumHash = window.sessionStorage.getItem("memberHash")
 
     const formData = {
       memberNumHash: memberNumHash,
-      nickName : nickName,
+      nickName : nickName_,
       // 여기서 밑에 두 변수는 useState 변하고 값이 안들어 와서 따로 지역 변수로 선언해줌(다른 분들에게 물어봐야할 듯)
       countryCode : countryCode_,
       gender : gender_,
     }
 
     console.log(formData) // 잘 찍히는지 확인
+    // console.log(pfImg) // 잘 찍히는지 확인
 
     const fmd = new FormData();
     const jsonForm = JSON.stringify(formData);
@@ -152,7 +153,7 @@ export default function EditBasicInfo() {
     })
 
     fmd.append('formValue', blobForm);
-    fmd.append('file', '');
+    fmd.append('file', pfImg);
 
     const result = await EditMemberInfo(fmd);
     if(result == 200){
