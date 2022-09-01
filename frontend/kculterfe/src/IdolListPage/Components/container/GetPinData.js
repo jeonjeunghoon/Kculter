@@ -11,7 +11,7 @@ export async function getPin(type, keyHash) {
         })
         .then(function(res){
             list = res.data;
-            console.log(list);
+            // console.log(list);
             return list;
         })
         .catch(function(error){
@@ -24,7 +24,7 @@ export async function getPin(type, keyHash) {
         })
         .then(function(res){
             list = res.data;
-            console.log(list);
+            // console.log(list);
             return list;
         })
         .catch(function(error){
@@ -35,4 +35,3 @@ export async function getPin(type, keyHash) {
         return alert("컬처 타입 오류");
     }
 }
-

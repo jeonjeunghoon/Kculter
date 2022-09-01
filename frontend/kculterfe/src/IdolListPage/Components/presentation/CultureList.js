@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import IdolCard from './IdolCard.js';
 import IdolSearchBar from './IdolSearchBar';
 import { getCultureList } from '../container/GetCultureListData';
+import { getPin } from '../container/GetPinData.js';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 /** css module */
 import styles from './IdolList.module.css';
@@ -16,11 +17,29 @@ function CultureList({}) {
 	useEffect(() => {
 		getCultureList()
 		.then(resData => {
-			setData(resData)
+			return resData.map((e, i) => {
+				getPin(2, e.keyHash)
+				.then(resPin => {
+					let temp = {
+						...e,
+						"key": i,
+						"pin": resPin,
+					};
+					setData(prevState => [
+					...prevState,
+					temp
+					]);
+					console.log(i + "th" + e);
+					console.log("loaded");
+				})
+				.catch(err => {
+					console.log(err)
+				})
+			})
 		})
 		.catch(err => {
-			console.log(err);
-		});
+			console.log(err)
+		})
 	}, []);
 
 	const filterTitle = data.filter((p) => {
