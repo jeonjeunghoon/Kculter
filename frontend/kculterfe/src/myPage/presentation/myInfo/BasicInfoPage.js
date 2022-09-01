@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import './MyInfo.css';
-import { checkEmail } from '../../container/EmailCheck';
 import { checkNick } from '../../container/NickCheck';
 import countryList from 'react-select-country-list';
 import Select from 'react-select';
@@ -9,14 +8,13 @@ import { EditMemberInfo } from '../../container/EditMemberInfo';
 import { getMemberInfo } from '../../container/GetMemberInfo';
 
 export default function EditBasicInfo() {
-  const [email, setEmail] = useState(""); //이메일
   const [nickName, setNickName] = useState(''); //닉네임
   const [countryCode, setCountryCode] = useState('') //나라
   const [countryLabel, setCountryLabel] = useState('') //나라
-  const [age, setAge] = useState('');
+  const [countryDefault, setCountryDefault] = useState('') //나라
   const [gender,setGender] = useState('');
   const [pfImg, setPfImg] = useState('');
-  const [formValue, setFormValue] = useState(''); // 폼 변경 변수
+  const [pfImgPr, setPfImgPr] = useState('');
 
   const [memberInfo, setMemberInfo] = useState([]);
 
@@ -40,15 +38,22 @@ export default function EditBasicInfo() {
   useEffect(() => {
     getMemberInfo()
     .then(resData => {
-      // console.log('resData: ' + resData);
       setMemberInfo(resData)
-      // console.log('gender: ' + resData.entries().gender);
-      if (memberInfo.gender == "male") {
+      const pfUrl = window.sessionStorage.getItem("pfUrl")
+      setPfImg(pfUrl);
+
+      // gender 파악
+      if (resData.gender == "female") {
         setCheckDefaultGender(false);
       }
       else {
         setCheckDefaultGender(true);
       }
+
+        // 값이 안찍힘 진짜 왜이라냐~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // useState 값을 set 으로 변경하면 렌더링이 되야 하나? 약간 그 순서가 있는듯 아직 모르겠, 여기 안에 넣어서 해결!!!!
+      const code = resData.countryCode;
+      setCountryDefault(countryList().getLabel(code));
     })
     .catch(err => {
       console.log(err);
@@ -59,17 +64,20 @@ export default function EditBasicInfo() {
   const onChangeProfilImg = (e) => {
     e.preventDefault();
     const imgUrl = e.target.files[0];
+    const imgUrlPr = e.target.files[0];
     var reader = new FileReader();
 
     if (imgUrl == null) {
       setPfImageAvail(false);
       setPfImg("");
+      alert("Upload image");
       return 0;
     }
-    reader.readAsDataURL(imgUrl);
+    reader.readAsDataURL(imgUrlPr);
     reader.onloadend = function(e) {
       setPfImageAvail(true);
-      setPfImg(e.target.result);
+      setPfImg(imgUrl);
+      setPfImgPr(e.target.result);
     }
   }
 
@@ -129,9 +137,9 @@ export default function EditBasicInfo() {
     var countryCode_ = countryCode;
     var nickName_ = nickName;
 
-    if (nickName == ''){ nickName_ = "TEST_NICKNAME"; } // 현재 와 동일하게 해야함.
-    if (gender == '') { gender_ = "TEST_FEMALE"; }
-    if (countryCode == '') { countryCode_ = "TEST_COUNTRY"; }
+    if (nickName == ''){ nickName_ = memberInfo.nickName; } // 현재 와 동일하게 해야함.
+    if (gender == '') { gender_ = memberInfo.gender; }
+    if (countryCode == '') { countryCode_ = memberInfo.countryCode; }
 
     const memberNumHash = window.sessionStorage.getItem("memberHash")
 
@@ -158,6 +166,8 @@ export default function EditBasicInfo() {
     const result = await EditMemberInfo(fmd);
     if(result == 200){
       alert("Success on edit");
+      window.location.href="/"; // 여기서 myPage 로 이동하면 css 가 깨진다?
+      return 0;
     }
     else{
       alert("Edit failed");
@@ -169,8 +179,7 @@ export default function EditBasicInfo() {
       <Form>
         {/* 사진 업로드 */}
         <Form.Group controlId="formFile" className="mb-3">
-          <img src={pfImg || memberInfo.pf_image} alt="profile" width="100" height="130"></img>
-          <Form.Label>Profile img upload</Form.Label>
+          <img src={pfImgPr} alt="profile" width="100" height="130"></img>
           <Form.Control accept="image/jpg, image/png, image/jpeg" onChange={onChangeProfilImg} type="file" />
         </Form.Group>
 
@@ -187,7 +196,8 @@ export default function EditBasicInfo() {
           <Form.Label>Contury</Form.Label>
           <Select 
             options={options} 
-            value={{ label: countryLabel || memberInfo.countryCode }}
+            value={{ label: countryLabel || countryDefault }} // 값이 안찍힘 버그임 모르겠음,,,,,
+            // value={{ label: countryLabel || memberInfo.countryCode }}
             onChange={changeHandler} >
           </Select>
         </Form.Group>
