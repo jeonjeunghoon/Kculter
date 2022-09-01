@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getPlaceApi(url, keyHash, type) {
+export async function getPlaceApi(url, type, keyHash) {
 	return await axios.get(url + "?keyhash=" + keyHash + "&type=" + type)
 	.then(function(res) {
 		return res;

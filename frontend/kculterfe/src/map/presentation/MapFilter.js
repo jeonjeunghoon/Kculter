@@ -12,7 +12,52 @@ import {
 import {
 	modifySessionItem,
 } from '../container/handleSessionStorage';
-import { getKculterData } from '../container/getKculterData';
+import {
+	getKculterData
+} from '../container/getData';
+
+async function fetchSelected(list, e, isKpop, kculter, setKculter) {
+	const found = list.find(obj => obj.hash == e.target.value);
+	if (isKpop === true) {
+		modifySessionItem(e.target.value, 1, found.name);
+	} else {
+		modifySessionItem(e.target.value, 2, found.name);
+	}
+	await getKculterData(kculter, setKculter, Number(window.sessionStorage.getItem("type")), window.sessionStorage.getItem("keyHash"));
+}
+
+async function fetchList(isKpop, setList) {
+	let kList = [];
+	if (isKpop) {
+		getKpopList()
+		.then(function(res) {
+			res.map(item => {
+				kList.push({
+					hash: item.keyHash,
+					name: item.name,
+				});
+			})
+			setList(() => kList);
+		})
+		.catch(function(error) {
+			console.log(error);
+		})
+	} else {
+		getCultureList()
+		.then(function(res) {
+			res.map(item => {
+				kList.push({
+					hash: item.keyHash,
+					name: item.name,
+				});
+			})
+			setList(() => kList);
+		})
+		.catch(function(error) {
+			console.log(error);
+		})
+	}
+}
 
 function MapFilter(props) {
 	const [isKpop, setIsKpop] = useState(true);
@@ -20,56 +65,20 @@ function MapFilter(props) {
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
-		const fetchData = async() => {
-			let kList = [];
-			if (isKpop) {
-				getKpopList()
-				.then(function(res) {
-					res.map(item => {
-						kList.push({
-							hash: item.keyHash,
-							name: item.name,
-						});
-					})
-					setList(kList);
-				})
-				.catch(function(error) {
-					console.log(error);
-				})
-			} else {
-				getCultureList()
-				.then(function(res) {
-					res.map(item => {
-						kList.push({
-							hash: item.keyHash,
-							name: item.name,
-						});
-					})
-					setList(kList);
-				})
-				.catch(function(error) {
-					console.log(error);
-				})
-			}
-		}
-		fetchData();
+		fetchList(isKpop, setList);
 	}, [isKpop]);
 
   return(
 		<div className='map-filter-container'>
 			<FilterToggle
+				setKculter={props.setKculter}
 				setIsKpop={setIsKpop}
 				setPlaceholder={setPlaceholder}
 			/>
   		<select className='filter'
 				onChange={(e) => {
-					const fetchData = async() => {
-						const found = list.find(obj => obj.hash == e.target.value);
-						modifySessionItem(e.target.value, 1, found.name);
-						await getKculterData(props.setData, window.sessionStorage.getItem("keyHash"), Number(window.sessionStorage.getItem("type")), props.data.reduxConcert);
-					}
 					if (e.target.value !== "placeholder") {
-						fetchData();
+						fetchSelected(list, e, isKpop, props.kculter, props.setKculter);
 					}
 				}}
 				style={{

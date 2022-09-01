@@ -6,8 +6,8 @@ import {
 	useJsApiLoader
 } from '@react-google-maps/api';
 import {
-	getKculterData,
-} from './container/getKculterData'
+	getData,
+} from './container/getData'
 import {
 	useSelector,
 } from 'react-redux';
@@ -24,26 +24,30 @@ function MapPage() {
 		libraries: lib,
 	});
 	const reduxConcert = useSelector(state => state.mapConcert);
-	const [data, setData] = useState({
+	const reduxCourse = useSelector(state => state.course);
+	const [kculter, setKculter] = useState({
 		isLoaded: false,
 		center: {
 			lat: 37.5509895,
 			lng: 126.9908991,
 		},
-		kculter: null,
-		concert: null,
-		kculterProps: {
+		data: {
+			place: null,
+			pin: null,
+		},
+		kProps: {
 			keyHash: window.sessionStorage.getItem("keyHash"),
 			type: Number(window.sessionStorage.getItem("type")),
 		},
-		reduxConcert: reduxConcert,
+		concert: reduxConcert,
+		mypage: null,
 	});
 	
 	useEffect(() => {
 		const fetchData = async() => {
-			await getKculterData(setData, data.kculterProps.keyHash, data.kculterProps.type, data.reduxConcert)
+			await getData(kculter, setKculter)
 			.then(() => {
-				setData(prev => ({
+				setKculter(prev => ({
 					...prev,
 					isLoaded: isLoaded,
 				}));
@@ -53,10 +57,10 @@ function MapPage() {
 	}, [isLoaded])
 
 	return (
-		data.isLoaded &&
+		kculter.isLoaded &&
 		<MapRender
-			data={data}
-			setData={setData}
+			kculter={kculter}
+			setKculter={setKculter}
 		/>
 	);
 }
