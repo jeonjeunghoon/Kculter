@@ -100,9 +100,11 @@ public class MemberServiceTest {
     @Test
     void testUpdateMember(){
         //given
-        Member member = new Member(1, "", "", "nickName", "KR", 0, "male", "test");
+        Member member = new Member(2, "", "", "nickName", "KR", 0, "male", "test");
         //when
         int result = ms.updateMember(member);
+        Member temp = ms.getMemberInfo(2);
+        logger.info(temp.toString());
         //then
         assertEquals(result, 1);
     }
