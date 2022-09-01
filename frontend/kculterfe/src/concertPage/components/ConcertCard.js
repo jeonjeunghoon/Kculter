@@ -5,6 +5,7 @@ import './ConcertCardContent.css'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { MAP_IN_CONCERT } from '../../redux/reducer';
+import cardInfo from '../data/cardInfo.json';
 import '../../index.css';
 
 function CardItem(item) {
@@ -48,9 +49,10 @@ function CardItem(item) {
 							<h2>{item.title}</h2>
 							<p></p>
 							<div className='concert_date'>concert date: {item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}</div>
-							<div className='concert_explain'>{item.explain}</div>
+							<div className='concert_explain'>{cardInfo.explain}</div>
 						</div>
 						<div className='body_r_end'>
+							<a href='https://tickets.interpark.com/goods/22008400'>link</a>
 							<Link to="/MapPage">
             	       <Button onClick={() => {
 											dispatch({
