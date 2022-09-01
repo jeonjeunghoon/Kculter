@@ -19,18 +19,6 @@ function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 	window.sessionStorage.setItem("title", title);
 	window.sessionStorage.setItem("type", type);
 
-	// const [pin, setPin] = useState([]);
-
-	// useEffect(() => {
-	// 	getPin(type, keyHash)
-	// 	.then(resPin => {
-	// 		setPin(resPin);
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err)
-	// 	})
-	// }, []);
-
 	return (
 		<>
 			<a className={styles.cardLink} onClick={handleShow}>
@@ -43,7 +31,7 @@ function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 					</div>
 					<div className={styles.card_content}>
 						<div className={styles.card_content_pin}>
-							<img src={pin.imageUrl} />
+							{pin && <img src={pin.imageUrl} alt='pin' />}
 						</div>
 						<div className={styles.card_content_spot}>
 							<p>{num_spot}</p>
@@ -64,7 +52,7 @@ function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 				<Modal.Body className={styles.modal_body}>
 					<div className={styles.modal_title}>
 						{title}
-						<img src={pin.imageUrl} alt='pin' />
+						{pin && <img src={pin.imageUrl} alt='pin' />}
 					</div>
 					<div className={styles.modal_info}>
 						<div className={styles.modal_spot_num}>
