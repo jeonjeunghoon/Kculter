@@ -3,17 +3,17 @@ package com.prac.react.model.dto;
 public class FrontMember {
     private String memberHash;
     private String memberName;
-    private String pf_image;
+    private String pfUrl;
     private String mgHash;
 
     public FrontMember() {
     }
 
 
-    public FrontMember(String memberHash, String memberName, String pf_image, String mgHash) {
+    public FrontMember(String memberHash, String memberName, String pfUrl, String mgHash) {
         this.memberHash = memberHash;
         this.memberName = memberName;
-        this.pf_image = pf_image;
+        this.pfUrl = pfUrl;
         this.mgHash = mgHash;
     }
 
@@ -33,12 +33,12 @@ public class FrontMember {
         this.memberName = memberName;
     }
 
-    public String getPf_image() {
-        return this.pf_image;
+    public String getPfUrl() {
+        return this.pfUrl;
     }
 
-    public void setPf_image(String pf_image) {
-        this.pf_image = pf_image;
+    public void setPfUrl(String pfUrl) {
+        this.pfUrl = pfUrl;
     }
 
     public String getMgHash() {
@@ -54,7 +54,7 @@ public class FrontMember {
         return "{" +
             " memberHash='" + getMemberHash() + "'" +
             ", memberName='" + getMemberName() + "'" +
-            ", pf_image='" + getPf_image() + "'" +
+            ", pf_image='" + getPfUrl() + "'" +
             ", mgHash='" + getMgHash() + "'" +
             "}";
     }

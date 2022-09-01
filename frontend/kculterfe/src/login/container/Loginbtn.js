@@ -31,7 +31,7 @@ function Loginbtn (props) {
           console.log("Hi welcome to Kculter");
           window.sessionStorage.setItem("memberHash",result.memberHash);
           window.sessionStorage.setItem("memberName",result.memberName);
-          window.sessionStorage.setItem("pf_image",result.pf_image);
+          window.sessionStorage.setItem("pfUrl",result.pfUrl);
           window.sessionStorage.setItem("mgHash",result.mgHash);
           window.location.href= "/";
         }

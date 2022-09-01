@@ -11,20 +11,20 @@
 	</select>
 	<!--inserting member info-->
 	<insert id="insertMember" parameterType="Member">
-		insert into member(memberNum,email,pwd,nickName,countryCode,age,gender,pf_image) 
-		values(null,#{email},#{pwd},#{nickName},#{countryCode},#{age},#{gender},#{pf_image})
+		insert into member(memberNum,email,pwd,nickName,countryCode,age,gender,pfUrl) 
+		values(null,#{email},#{pwd},#{nickName},#{countryCode},#{age},#{gender},#{pfUrl})
 	</insert>
 	<!--login with email and pwd-->
 	<select id="login" parameterType="Member" resultType="Member">
-		select memberNum, email, nickName, pf_image, mg from member where email=#{email} and pwd=#{pwd} and `status` = true
+		select memberNum, email, nickName, pfUrl, mg from member where email=#{email} and pwd=#{pwd} and `status` = true
 	</select>
 	<!--getting member info by keyNum-->
 	<select id="getMemberInfo" parameterType="int" resultType="Member">
-		select nickName, countryCode,gender,pf_image from member where memberNum=#{memberKeyNum}
+		select nickName, countryCode,gender,pfUrl from member where memberNum=#{memberKeyNum}
 	</select>
 	<!--updating member info by keyNum-->
 	<update id="updateMember" parameterType="Member">
-		update member set nickName=#{nickName}, countryCode=#{countryCode}, gender=#{gender},pf_image=#{pf_image} where memberNum=#{memberNum}
+		update member set nickName=#{nickName}, countryCode=#{countryCode}, gender=#{gender},pfUrl=#{pfUrl} where memberNum=#{memberNum}
 	</update>
 	<!--checking member pwd-->
 	<select id="checkPwd" parameterType="Member" resultType="integer">
