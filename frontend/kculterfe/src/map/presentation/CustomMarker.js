@@ -13,6 +13,8 @@ function CustomMarker(props) {
 	useEffect(() => {
 		if (props.place) {
 			setPlace(() => props.place);
+		}
+		if (props.pin.imageUrl) {
 			const icon = new window.google.maps.MarkerImage(
 				props.pin.imageUrl,
 				null,
@@ -22,7 +24,7 @@ function CustomMarker(props) {
 			);
 			setIcon(() => icon);
 		}
-	}, [props.place])
+	}, [props.place]);
 
 	return (
 		place &&

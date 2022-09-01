@@ -14,7 +14,7 @@
 
 .concert_modal_body_r {
 	display: grid;
-	grid-template-rows: 1fr 1fr;
+	grid-template-rows: 1fr auto;
 	margin-left: 1rem;
 }
 
@@ -22,6 +22,10 @@
 	font-size: xx-large;
 	font-style: bold;
 	margin-top: -20px;
+}
+
+.concert_explain {
+	white-space: pre-wrap;
 }
 
 .body_r_end {

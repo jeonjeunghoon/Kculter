@@ -46,7 +46,7 @@ function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 							<img src={pin.imageUrl} />
 						</div>
 						<div className={styles.card_content_spot}>
-							<p>{num_spot }</p>
+							<p>{num_spot}</p>
 							<img src='spot.png' />
 						</div>
 					</div>

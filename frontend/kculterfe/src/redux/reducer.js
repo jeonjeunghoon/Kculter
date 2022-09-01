@@ -23,7 +23,7 @@ const initState = {
 	concertSelected: false,
 	dashboardSelected: true,
 	settingSelected: false,
-	mapConcert: [{
+	mapConcert: {
 		keyHash: 0,
 		title: "",
 		starName: "",
@@ -31,7 +31,7 @@ const initState = {
 		explain: "",
 		lat: 0,
 		lng: 0,
-	}],
+	},
 }
 
 // 액션 추가 여기

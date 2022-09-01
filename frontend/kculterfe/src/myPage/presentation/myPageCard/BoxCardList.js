@@ -5,7 +5,6 @@ import { getCourseList } from '../../container/GetCours';
 function BoxCardList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
-	const [isEmpty, setIsEmpty] = useState(false);
 	
 	useEffect(() => {
 		getCourseList()
@@ -15,10 +14,6 @@ function BoxCardList() {
 		.catch(err => {
 			console.log(err);
 		});
-		if (!data) {
-			console.log("hi")
-			setIsEmpty(true);
-		}
 	}, []);
 
 	return (

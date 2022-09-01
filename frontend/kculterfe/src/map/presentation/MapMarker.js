@@ -12,7 +12,8 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
-	const course = useSelector(state => state.course);
+	const coursePlace = useSelector(state => state.course);
+	const coursePin = "";
 	const [nearData, setNearData] = useState(null);
 
 	useEffect(() => {
@@ -25,6 +26,8 @@ function MapMarker(props) {
 			{/* KCULTER 마커 */}
 			{
 				props.kculter &&
+				props.kculter.place &&
+				props.kculter.pin &&
 				<CustomMarker
 					place={props.kculter.place}
 					pin={props.kculter.pin}
@@ -37,23 +40,10 @@ function MapMarker(props) {
 			}
 			{/* 코스 마커 */}
 			{
-				props.course &&
+				coursePlace &&
 				<CustomMarker
-					place={course}
-					pin={props.coursePin}
-					title={"COURSE"}
-					markerHandler={handleCustomMarker}
-					setCenter={props.setCenter}
-					setZoom={props.setZoom}
-					dispatch={props.dispatch}
-				/>
-			}
-			{/* MyPage 마커 */}
-			{
-				props.mayPagePlace &&
-				<CustomMarker
-					place={props.myPagePlace}
-					pin={props.coursePin}
+					place={coursePlace}
+					pin={coursePin}
 					title={"COURSE"}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
@@ -86,19 +76,6 @@ function MapMarker(props) {
 					/>
 				:
 				<></>
-			}
-			{/* Concert 마커 */}
-			{
-				props.concert &&
-				<CustomMarker
-					place={props.concert.place}
-					pin={props.concert.pin}
-					title={props.concert.starName}
-					markerHandler={handleCustomMarker}
-					setCenter={props.setCenter}
-					setZoom={props.setZoom}
-					dispatch={props.dispatch}
-				/>
 			}
 		</div>
 	);

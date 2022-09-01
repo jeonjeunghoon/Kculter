@@ -22,11 +22,11 @@ import MapFilter from './MapFilter'
 import staypin from '../test.png';
 
 function MapRender(props) {
-	console.log(props.data);
+	console.log(props.kculter);
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);
-	const [center, setCenter] = useState(props.data.center);
+	const [center, setCenter] = useState(props.kculter.center);
 	const [zoom, setZoom] = useState(12);
 	const options = {
 		mapTypeControl: false,
@@ -80,20 +80,16 @@ function MapRender(props) {
 
 				{/* 필터 */}
 				<MapFilter
-					data={props.data}
-					setData={props.setData}
-					list={["a", "b", "c"]}
+					kculter={props.kculter}
+					setKculter={props.setKculter}
 				/>
 
 				{/* 마커 */}
 				<MapMarker
-					kculter={props.data.kculter}
+					kculter={props.kculter.data}
 					near={near}
-					concert={props.concert}
-					myPagePlace={props.myPagePlace}
 					stayPin={{imageUrl: staypin}}
 					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
-					coursePin={""}
 					isStay={isStay}
 					setCenter={setCenter}
 					setZoom={setZoom}

@@ -20,6 +20,10 @@
 	float: left;
 }
 
+@media (max-width: 950px) {
+	.SearchBar { justify-content: center; }
+}
+
 @media (min-width: 800px) {
 	.CardContainer { grid-template-columns: repeat(3, 1fr); }
 }
