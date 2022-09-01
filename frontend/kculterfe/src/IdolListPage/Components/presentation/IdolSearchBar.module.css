@@ -1,6 +1,6 @@
 
 .no_submit{
-	background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+	background-image: url("https://i.imgur.com/VbBlOIf.png");
 	background-size: 1rem;
 	background-repeat: no-repeat;
 	background-position: 10px center;
@@ -12,15 +12,18 @@ input[type=search] {
 	height: 2.5rem;
 	border-radius: 2rem;
 	padding-left: 2rem;
-	padding-bottom: 0.2rem;
+	padding-bottom: 0.1rem;
 	outline: none;
 	border-color: #0074ff;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	background-color: white;
+	font-family: 'Noto Sans CJK KR';
+	color: black;
 }
 
 input[type=search]::placeholder{
+	font-family: 'Noto Sans CJK KR';
 	color: black;
 }
 
