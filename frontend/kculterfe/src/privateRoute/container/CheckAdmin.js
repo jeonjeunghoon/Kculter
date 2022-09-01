@@ -4,14 +4,17 @@ export function checkAdmin() {
 
     const memberHash = window.sessionStorage.getItem("memberHash");
     const mgHash = window.sessionStorage.getItem("mgHash");
-    const mg = decrypt(mgHash);
-
-    if(!((!!memberHash) && !(!!mg))){
+    if(mgHash == null && memberHash == null){
         alert("No Authority to access");
         return false;
     }else{
-        return true;
+        const mg = decrypt(mgHash);
+        if(mg == 1){
+            alert("Welcome Manager!!");
+            return true;
+        }else{
+            alert("No Authority to access");
+            return false;
+        }
     }
-    
-
 }

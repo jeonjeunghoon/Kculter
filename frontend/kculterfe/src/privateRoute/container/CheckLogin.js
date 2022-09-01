@@ -1,10 +1,10 @@
-const isMember = () => {
-    const keyHash = window.sessionStorage.getItem("memberHash")
-    if(!!keyHash){
+export function isMember() {
+
+    const memberHash = window.sessionStorage.getItem("memberHash");
+    if(memberHash == null){
+        alert("Please Login First");
         return false;
     }else{
         return true;
     }
-  };
-  
-export default isMember;
+}
