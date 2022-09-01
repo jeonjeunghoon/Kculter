@@ -1,7 +1,7 @@
 import cryptoJs from 'crypto-js';
 
 const secretKey = process.env.REACT_APP_AES_SECRET_KEY; //비밀키
-const iv = 'abcdefghijklmnop' // 16자리 iv
+const iv = 'AlyjNGZKzkfEsasZ' // 16자리 iv
 
 // 복호화
 export function decrypt(encryptedText){
