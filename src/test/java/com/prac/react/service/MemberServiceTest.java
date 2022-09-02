@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.prac.react.model.dto.Member;
 import com.prac.react.security.Encryption;
 
-@SpringBootTest //DBκΉμ§€ ν…μ¤νΈν•λ” ν†µν•© ν…μ¤νΈλ¥Ό ν•λ ¤λ©΄ μ‚¬μ©ν•΄μ•Όν•  μ–΄λ…Έν…μ΄μ…
-@Transactional //ν…μ¤νΈ μƒν™©μ—μ„ μ‚½μ…λμ–΄μ§€λ” λ°μ΄ν„°λ¥Ό λ΅¤λ°±ν•κΈ° μ„ν•΄μ„ μ‚¬μ©ν•λ” μ–΄λ…Έν…μ΄μ…
+@SpringBootTest //DBκΉμ?? ?…?¤?Έ?•?” ?†µ?•© ?…?¤?Έλ¥? ?•? ¤λ©? ?‚¬?©?•΄?•Ό?•  ?–΄?…Έ?…?΄?…
+@Transactional //?…?¤?Έ ?ƒ?™©?—?„ ?‚½?…??–΄μ§??” ?°?΄?„°λ¥? λ΅¤λ°±?•κΈ? ?„?•΄?„ ?‚¬?©?•?” ?–΄?…Έ?…?΄?…
 public class MemberServiceTest {
 
     @Autowired MemberService ms;
@@ -23,14 +23,14 @@ public class MemberServiceTest {
     Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 
     // @Test
-    // @DisplayName("νΉμ • μ•„μ΄λ””μ μ λ¬΄λ¥Ό ν™•μΈν•λ” ν…μ¤νΈ") 
+    // @DisplayName("?Ή? • ?•„?΄?””? ? λ¬΄λ?? ?™•?Έ?•?” ?…?¤?Έ") 
     // void testCheckMember() {
     //     //given
-    //     //μƒλ΅μ΄ λ©¤λ²„λ΅ μ„μλ΅ μΈμ¤ν„΄μ¤λ¥Ό μƒμ„±ν•λ‹¤.
-    //     Member mb = new Member(0,"hankgood95@gmail.com","μ΄μ±μ¬",false);
+    //     //?ƒλ΅μ΄ λ©¤λ²„λ΅? ?„?λ΅? ?Έ?¤?„΄?¤λ¥? ?ƒ?„±?•?‹¤.
+    //     Member mb = new Member(0,"hankgood95@gmail.com","?΄?±?¬",false);
 
     //     //when
-    //     //μ΄μ‚¬λ μ•„μ΄λ””λ΅ μ‹¤μ λ΅ μ΅΄μ¬ν•λ”μ§€ μ²΄ν¬λ¥Ό ν•λ‹¤.
+    //     //?΄?‚¬? ?•„?΄?””λ΅? ?‹¤? λ΅? μ΅΄μ¬?•?”μ§? μ²΄ν¬λ¥? ?•?‹¤.
     //     int check = ms.checkMember(mb.getEmail());
 
     //     //then

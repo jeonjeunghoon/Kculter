@@ -1,12 +1,14 @@
 import axios from 'axios';
 import {hashPwd} from '../../login/presentation/Encryptpwd'
 
-export async function  ChangeNewPwd(newPwd) {
-    const hash = hashPwd(sessionStorage.getItem("memberHash")+newPwd);
+export async function  CheckPwd(pwd) {
+
+    const hash = hashPwd(sessionStorage.getItem("memberHash")+pwd);
+
     let result;
-    return await axios.put("/member/pwd",null,{ //put method 에서 header는 세번째 인자로 들어가야 한다.
+    return await axios.get("/member/pwd",{
         headers: {
-            Authorization:hash
+            Authorization: hash,
         }
     })
     .then(function(res){
@@ -14,6 +16,7 @@ export async function  ChangeNewPwd(newPwd) {
         return result;        
     })
     .catch(function(error){
+        console.log(error);
         result = 500;
         return result;
     })

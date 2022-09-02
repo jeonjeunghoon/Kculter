@@ -37,10 +37,17 @@ public class EncryptionTest {
     @Test
     void testAesEncrypt(){
         //given
-        int key = 0;
+        int key = 1;
         String keyString = Integer.toString(key);
         //when
         String encrypt = ec.aesEncrypt(keyString);
+        String pwd = "ed0119";
+        String plus = encrypt+pwd;
+        logger.info(plus);
+        String hash = plus.substring(0,plus.lastIndexOf("=")+1);
+        String pwd2 = plus.substring(plus.lastIndexOf("=")+1);
+        logger.info(hash);
+        logger.info(pwd2);
         //then
         logger.info("Encrypt : "+encrypt);
 
