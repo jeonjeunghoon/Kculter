@@ -20,7 +20,6 @@ function MyInfo() {
           {/* 저장한 경로 리스트 */}
           { viewMyMap ? <BasicInfoPage/> : <PwdInfoPage/> }
       </div>
-
   )
 }
 

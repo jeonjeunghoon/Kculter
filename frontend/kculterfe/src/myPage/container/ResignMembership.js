@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-export async function getMemberInfo() {
+export async function resignMembership() {
     let list;
-    //await 한 값을 보내준다.
-    const memberHash = window.sessionStorage.getItem("memberHash")
 
-    return await axios.get('/member', {
+    const memberHash = window.sessionStorage.getItem("memberHash")
+    
+    //await 한 값을 보내준다.
+    return await axios.post('/member/secession', {
         headers: {
             Authorization: memberHash,
         },
@@ -16,6 +17,7 @@ export async function getMemberInfo() {
         return list;
     })
     .catch(function(error){
-        alert("서버 통신 실패");
+        console.log(error);
+        return 401;
     });
 }

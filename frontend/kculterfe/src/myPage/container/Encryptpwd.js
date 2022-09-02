@@ -1,4 +1,3 @@
-import React from 'react';
 import cryptoJS from 'crypto-js'
 
 export function hashPwd(info) {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import './MyInfo.css';
 import '../../../login/presentation/Signup.css';
@@ -23,6 +23,21 @@ export default function EditPwdInfo() {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [pwdMessage, setPwdMessage] = useState('');
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+
+  // 현재 비밀번호 받기
+  useEffect(() => {
+    getCurrentPwd()
+    .then(resData => {
+      setCurrentPwd(resData);
+      console.log(resData);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },[]);
+
+
+
 
   const checkCurrentPassword = (e) => {
     const value = e.target.value;
