@@ -5,7 +5,6 @@ import common from "./sidebarCommonData.json"
 
 export default function SidebarProfile() {
 	const nickname = window.sessionStorage.getItem("nickname");
-	console.log(nickname);
 	if (nickname) {
 		return (
 			<>
