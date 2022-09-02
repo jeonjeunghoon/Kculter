@@ -52,26 +52,30 @@ function CardItem(item) {
 							<div className='concert_explain'>{cardInfo.explain}</div>
 						</div>
 						<div className='body_r_end'>
-							<a href='https://tickets.interpark.com/goods/22008400'>link</a>
-							<Link to="/MapPage">
-            	       <Button onClick={() => {
-											dispatch({
-												type: MAP_IN_CONCERT,
-												data: {
-													keyHash: item.starHash,
-													concertName: item.title,
-													starName: item.starName,
-													img: item.img,
-													explain: item.explain,
-													lat: item.lat,
-													lng: item.lng,
-												}
-											})
-										 }}>
-											go to map
-										 </Button>
-            	</Link>
-					</div>
+							<div className='reserve_btn'>
+								<Button href='https://tickets.interpark.com/goods/22008400' target='_blank'>go to reserve</Button>
+							</div>
+							<div className='map_btn'>
+								<Link to="/MapPage">
+									<Button onClick={() => {
+															dispatch({
+																type: MAP_IN_CONCERT,
+																data: {
+																	keyHash: item.starHash,
+																	concertName: item.title,
+																	starName: item.starName,
+																	img: item.img,
+																	explain: item.explain,
+																	lat: item.lat,
+																	lng: item.lng,
+																}
+															})
+														}}>
+															go to map
+									</Button>
+								</Link>
+							</div>
+						</div>
 					</div>
 				</Modal.Body>
 				{/* <Modal.Footer>
