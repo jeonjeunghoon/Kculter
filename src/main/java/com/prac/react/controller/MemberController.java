@@ -180,18 +180,18 @@ public class MemberController {
         logger.info("Checking pwd!!!");
         String decrypt = encrypt.aesDecrypt(autho);
 
-        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
+        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")+1); //0부터 = 되기 전까지를 가져옴
         String memberNum = encrypt.aesDecrypt(memberNumHash);
-        logger.info("MemberNum : "+encrypt.aesDecrypt(memberNum));
+        logger.info("MemberNum : "+memberNum);
         String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
         logger.info("Pwd : "+pwd);
 
         Member member = new Member();
         member.setMemberNum(Integer.parseInt(memberNum));
         member.setPwd(encrypt.shaEncryption(pwd));
-
+        logger.info("Check Pwd member : "+member.toString());
         Integer result = ms.checkPwd(member);
-        if (result == null){
+        if (result == 0){
             logger.warn("No pwd found");
             return 401; //인증 실패
         }else{
@@ -204,11 +204,12 @@ public class MemberController {
     @PutMapping("/pwd")
     public int updatePwd(@RequestHeader("Authorization") String autho){
         logger.info("Changing pwd!!!");
+
         String decrypt = encrypt.aesDecrypt(autho);
 
-        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
+        String memberNumHash = decrypt.substring(0,decrypt.lastIndexOf("=")+1);
         String memberNum = encrypt.aesDecrypt(memberNumHash);
-        logger.info("MemberNum : "+encrypt.aesDecrypt(memberNum));
+        logger.info("MemberNum : "+memberNum);
         String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
         logger.info("Pwd : "+pwd);
 
@@ -221,6 +222,7 @@ public class MemberController {
             logger.error("Update failure");
             return 500; //서버
         }else{
+            logger.info("Update success");
             return 200; //성공
         }
     }

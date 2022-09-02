@@ -102,7 +102,6 @@ const onChangePasswordConfirm = (e) => {
   else if (password === passwordConfirmCurrent) {
     setPasswordConfirmMessage('OK :)');
     setIsPasswordConfirm(true);
-    setPassword(hashPwd(password));
   }else{
     setPasswordConfirmMessage('The password is different')
     setIsPasswordConfirm(false)    
@@ -190,10 +189,6 @@ const cancel = () => {
   onHide();
 }
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  axios.post("api 주소", {pw: password}).then(res => console.log(res.data))
-}
   return(
   <Container>
     <Modal
@@ -220,9 +215,7 @@ const handleSubmit = (e) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <form onSubmit={handleSubmit}>
               <Form.Control type="password" placeholder="Password" onChange={checkPassword}/>
-              </form>
               <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
             </Form.Group>
 

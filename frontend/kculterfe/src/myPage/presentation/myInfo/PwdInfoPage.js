@@ -1,36 +1,32 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import './MyInfo.css';
+import '../../../login/presentation/Signup.css';
 // import crypto from 'crypto-js';
 import axios from 'axios';
 import { ChangeNewPwd } from '../../container/ChangeNewPwd';
+import { CheckPwd } from '../../container/CheckPwd';
 import { hashPwd }  from '../../container/Encryptpwd';
 
 export default function EditPwdInfo() {
-  const [NewPwd, setNewPwd] = useState(''); //비밀번호
-  const [isCurrentPwd, setIsCurrentPwd] = useState(false);
-  const [isNewPwd, setIsNewPwd] = useState(false);
-  const [isNewPwdConfirm, setIsNewPwdConfirm] = useState(false);
+  const [NewPwd, setNewPwd] = useState(''); //신비밀번호
+  const [isCurrentPwd, setIsCurrentPwd] = useState(false); //구비밀번호
+
+  //버튼 비활성화
+  const [confirmBt,setConfirmBt] = useState(false);
+  const [confirmPwd,setConfirmPwd] = useState(true);
+
+  //오류 메시지
+  const [cfPwdStyle,setCfPwdStyle] = useState(false);
+  const [verifyMessage, setVerMessage] = useState('');
+  const [isPwd, setIsPwd] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [pwdMessage, setPwdMessage] = useState('');
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
 
   const checkCurrentPassword = (e) => {
-    //  8 ~ 10자 영문, 숫자 조합
-    let regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,50}$/
-    // 형식에 맞는 경우 true 리턴
-    const pwdRegex = e.target.value;
-      if(pwdRegex === ""){
-        setIsCurrentPwd(false);
-      }
-      else if (!regExp.test(pwdRegex)) {
-        setIsCurrentPwd(false);
-      }
-      // 현재 패스워드와 비교해서 맞는지 확인.
-      // else if (regExp != currentPwd) {
-      //   setPwdMessage('Please enter a correct password.');
-      //   setIsPwd(false);
-      // }
-      else {
-        setIsCurrentPwd(true);
-      }
+    const value = e.target.value;
+    setIsCurrentPwd(value);
   }
 
   const checkNewPassword = (e) => {
@@ -38,52 +34,63 @@ export default function EditPwdInfo() {
     let regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,50}$/
     // 형식에 맞는 경우 true 리턴
     const pwdRegex = e.target.value;
-      if(pwdRegex === ""){
-        setIsNewPwd(false);
-      }
-      else if (!regExp.test(pwdRegex)) {
-        setIsNewPwd(false);
-      }
-      else if (pwdRegex == isNewPwd) {
-        setNewPwd("");
-        setIsNewPwd(false);
-      }
-      else {
-        setNewPwd(pwdRegex);
-        setIsNewPwd(true);
-      }
+    if(pwdRegex === ""){
+      setPwdMessage("");
+      setIsPwd(false);
+    }
+    else if (!regExp.test(pwdRegex)) {
+      setPwdMessage('Must contain number, lowercase letter,\n specialcharecter(!@#$%^*+=-),\n and should be minimum 8 characters');
+      setIsPwd(false);
+    }
+    else
+    {
+      setNewPwd(pwdRegex);
+      setPwdMessage('OK :)');
+      setIsPwd(true);
+    }
   }
 
   const onChangePasswordConfirm = (e) => {
-    const NewPwdConfirm = e.target.value
-    if(NewPwdConfirm === ""){
-      setIsNewPwdConfirm(false)
+    const passwordConfirmCurrent = e.target.value
+    if(passwordConfirmCurrent === ""){
+      setPasswordConfirmMessage('')
+      setIsPasswordConfirm(false)
     }
-    else if (NewPwd === NewPwdConfirm) {
-      setIsNewPwdConfirm(true);
-      setNewPwd(hashPwd(NewPwd));
+    else if (NewPwd === passwordConfirmCurrent) {
+      setPasswordConfirmMessage('OK :)');
+      setIsPasswordConfirm(true);
+      setNewPwd(NewPwd); //그냥 비밀번호로 세팅
     }else{
-      setIsNewPwdConfirm(false)    
+      setPasswordConfirmMessage('The password is different')
+      setIsPasswordConfirm(false)    
     }
   }
 
   const newPasswordConfirm = async () =>{
-    if (NewPwd == "") { alert("put password"); }
-    else if (isCurrentPwd == false) { alert("please check current password"); }
-    else if (isNewPwdConfirm == false) { alert("please check New password"); }
-    else {
-      const result = await ChangeNewPwd(NewPwd);
-      if(result == 1) {
-        alert("Success on change new password");
-      }else{
-        alert("New password change failed");
-      }
+    const result = await ChangeNewPwd(NewPwd);
+    if(result == 200){
+      alert("Password update success");
+      window.location.reload();
+    }else{
+      alert("Password update fail \nPlease contact to hankgood958@gmail.com");
+      window.location.reload();
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post("/member").then(res => console.log(res.data)) // 기존 비밀번호 받아와야 함
+  const checkPwd = async () =>{
+    const result = await CheckPwd(isCurrentPwd);
+    if(result == 200){
+      //200이면 이제 잘 받아왔으니 OK 띄워주고 disabled를 풀어줘야 함
+      setVerMessage("OK");
+      setConfirmPwd(false);
+      setCfPwdStyle(true);
+      setConfirmBt(true);
+      
+    }else{
+      setVerMessage("Wrong password");
+      setConfirmPwd(true);
+      setCfPwdStyle(false);
+    }
   }
 
   return (
@@ -91,25 +98,27 @@ export default function EditPwdInfo() {
         {/* 현재 비밀번호 */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Current Password</Form.Label>
-        <form onSubmit={handleSubmit}>
-          <Form.Control type="password" placeholder="Current Password" onChange={checkCurrentPassword}/>
-        </form>
+        <Form.Control disabled={confirmBt} type="password" placeholder="Current Password" onChange={checkCurrentPassword}/>
+        <span className={`message ${cfPwdStyle ? 'success' : 'error'}`}>{verifyMessage}</span>
+        <button disabled={confirmBt} style={{color:'white'}} className="close-btn" onClick={checkPwd}>confirm</button>
       </Form.Group>
 
       {/* 새로운 비밀번호 */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>New Password</Form.Label>
-        <Form.Control type="password" placeholder="New Password" onChange={checkNewPassword}/>
+        <Form.Control disabled={confirmPwd} type="password" placeholder="New Password" onChange={checkNewPassword}/>
+        <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
       </Form.Group>
 
       {/* 새로운 비밀번호 확인 */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Confirm New Password</Form.Label>
-        <Form.Control type="password" placeholder="Confirm New Password" onChange={onChangePasswordConfirm}/>
+        <Form.Control disabled={confirmPwd} type="password" placeholder="Confirm New Password" onChange={onChangePasswordConfirm}/>
+        <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
       </Form.Group>
 
       {/* 비밀번호 변경 버튼으로 해야 할듯? */}
-      <button className="close-btn" onClick={newPasswordConfirm}>confirm</button>
+      <button style={{color:'white'}} disabled={!(cfPwdStyle&&isPasswordConfirm)} className="close-btn" onClick={newPasswordConfirm}>confirm</button>
     </Container>
   )
 }
