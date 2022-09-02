@@ -40,6 +40,7 @@ function MapPage() {
 			type: Number(window.sessionStorage.getItem("type")),
 		},
 		concert: reduxConcert,
+		course: reduxCourse,
 		mypage: null,
 	});
 	
