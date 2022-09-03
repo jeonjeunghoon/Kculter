@@ -4,7 +4,7 @@ import {
 } from './getInfo';
 
 export async function getMypageData(kculter, setKculter) {
-
+	
 }
 	
 export async function getConcertData(kculter, setKculter) {
@@ -53,9 +53,15 @@ export async function getKculterData(kculter, setKculter, type, keyHash) {
 		}));
 	}
 }
+
+export async function getCourseData(kculter, setKculter) {
 	
+}
+
 export async function getData(kculter, setKculter) {
-	if (kculter.concert.keyHash) {
+	if (kculter.course.length > 0) {
+		await getCourseData(kculter, setKculter);
+	}	else if (kculter.concert.keyHash) {
 		await getConcertData(kculter, setKculter);
 	}	else if (kculter.mypage) {
 		await getMypageData(kculter, setKculter);
