@@ -4,6 +4,7 @@ import {
 } from './handleOnMarker';
 import {
 	CLEAR_COURSE,
+	CLEAR_MAP_CONCERT,
 	CLEAR_PLACE
 } from '../../redux/reducer';
 
@@ -12,6 +13,10 @@ export function handleOnUnmount(map, setMap, dispatch) {
 	dispatch({
 		type: CLEAR_COURSE,
 		data: [],
+	})
+	dispatch({
+		type: CLEAR_MAP_CONCERT,
+		data: {},
 	})
 	dispatch({
 		type: CLEAR_PLACE,
@@ -92,11 +97,17 @@ export function handleOnDragEndGM(map, url, setNear) {
 					return (item);
 				})
 				res.data = data;
-				setNear(() => res);
+				setNear(prev => ({
+					...prev,
+					place: res.data,
+				}));
   		})
   		.catch(function(error){
 				console.log(error, "서버 통신 실패");
-				setNear(() => null);
+				setNear(prev => ({
+					...prev,
+					place: null,
+				}));
   		})
 		}
 	});

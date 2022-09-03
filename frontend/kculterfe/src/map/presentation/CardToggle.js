@@ -8,12 +8,20 @@ function CardToggle(props) {
 					backgroundColor:"red",
 				}}
 				onClick={() => {
-					props.setIsStay(() => true)
+					props.setNear(prev => ({
+						...prev,
+						isStay: true,
+					}));
 				}}
 			>
 			</button>
 			<button className='tour-toggle'
-				onClick={() => props.setIsStay(() => false)}
+				onClick={() => {
+					props.setNear(prev => ({
+						...prev,
+						isStay: false,
+					}));
+				}}
 			>
 			</button>
 		</div>

@@ -22,7 +22,6 @@ function Header(props) {
 			case '/MapPage':
 				setTitle((title) => "Map");
 				setImg((img) => "https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png");
-				sideClose();
 				break;
 			case '/Mypage':
 				setTitle((title) => "My Page");
@@ -48,7 +47,6 @@ function Header(props) {
 
 	useEffect(() => {
 		props.handleOpen(isOpen);
-		console.log(isOpen);
 	}, [isOpen])
 
 	return (
