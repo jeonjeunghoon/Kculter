@@ -6,6 +6,7 @@ import CardList from './CardList';
 import { useDispatch } from 'react-redux';
 import { MODIFY_COURSE } from '../../../redux/reducer';
 import { CLICK_PLACE } from '../../../redux/reducer';
+import { DeleteCourse } from '../../container/DeleteCourse';
 
 function BoxCardItem({ props }) {
 	const dispatch = useDispatch();
@@ -23,6 +24,18 @@ function BoxCardItem({ props }) {
             data: place
         })
     }
+
+    const DeleteCourseBtn = () => {
+        DeleteCourse(props.courseHash)
+		.then(() => {
+			alert("Success on delete")
+		})
+		.catch(err => {
+            alert("Can not delete")
+			console.log(err);
+		});
+    }
+
 	return (
 		<>
             <div className='box-card-item'>
@@ -39,10 +52,10 @@ function BoxCardItem({ props }) {
                     </div>
                 </div>
                 <div className='right'>
-                    <div className="date">
-                        <span className="date-span">
-                            { props.courseNum }
-                        </span>
+                    <div className="delete-btn">
+                        <button onClick={DeleteCourseBtn}>
+                            X
+                        </button>
                     </div>
                     <CardList props={ props.course } />
                 </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/MainNavbar.css';
+import '../styles/MyPageNav.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
 

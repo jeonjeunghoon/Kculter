@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import BasicInfoPage from './BasicInfoPage';
-import PwdInfoPage from './PwdInfoPage';
+import BasicInfoPage from './myInfo/BasicInfoPage';
+import PwdInfoPage from './myInfo/PwdInfoPage';
 
 function MyInfo() {
   // 페이지 렌더링

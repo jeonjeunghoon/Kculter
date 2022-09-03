@@ -8,10 +8,10 @@ import { EditMemberInfo } from '../../container/EditMemberInfo';
 import { getMemberInfo } from '../../container/GetMemberInfo';
 
 export default function EditBasicInfo() {
-  const [nickName, setNickName] = useState(''); //닉네임
-  const [countryCode, setCountryCode] = useState('') //나라
-  const [countryLabel, setCountryLabel] = useState('') //나라
-  const [countryDefault, setCountryDefault] = useState('') //나라
+  const [nickName, setNickName] = useState(''); // 닉네임
+  const [countryCode, setCountryCode] = useState('') // 나라 코드
+  const [countryLabel, setCountryLabel] = useState('') // 나라 이름
+  const [countryDefault, setCountryDefault] = useState('') // 나라 초기값
   const [gender,setGender] = useState('');
   const [pfImg, setPfImg] = useState('');
   const [pfImgPr, setPfImgPr] = useState('');
@@ -31,7 +31,6 @@ export default function EditBasicInfo() {
   const [nickNameAvail,setNickNameAvail] = useState(false);
 
   /*체크 버튼 disabled만들기 위해 */
-  // const [emailBtDis,setEmailBtDis] = useState(true);
   const [NickNameBtDis, setNicNameBtDis] = useState(true);
   const [checkDefaultGender, setCheckDefaultGender] = useState(false);
 
@@ -52,6 +51,7 @@ export default function EditBasicInfo() {
 
         // 값이 안찍힘 진짜 왜이라냐~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // useState 값을 set 으로 변경하면 렌더링이 되야 하나? 약간 그 순서가 있는듯 아직 모르겠, 여기 안에 넣어서 해결!!!!
+        // 동기 비동기 문제
       const code = resData.countryCode;
       setCountryDefault(countryList().getLabel(code));
     })
@@ -107,11 +107,6 @@ export default function EditBasicInfo() {
 
   //닉네임 중복검사
   const nicknamedupli = async () => {
-    if (nickName == "hyujo") {
-      alert("This same nick name is available.");
-      setNickNameAvail(true);
-      return ;
-    }
     const result = await checkNick(nickName);
     if(result > 0){
       alert("This nick name is not available.");
@@ -151,9 +146,6 @@ export default function EditBasicInfo() {
       gender : gender_,
     }
 
-    console.log(formData) // 잘 찍히는지 확인
-    // console.log(pfImg) // 잘 찍히는지 확인
-
     const fmd = new FormData();
     const jsonForm = JSON.stringify(formData);
     const blobForm = new Blob([jsonForm],{
@@ -166,7 +158,7 @@ export default function EditBasicInfo() {
     const result = await EditMemberInfo(fmd);
     if(result == 200){
       alert("Success on edit");
-      window.location.href="/"; // 여기서 myPage 로 이동하면 css 가 깨진다?
+      window.location.reload(); // 여기서 "/myPage" 로 이동하면 css 가 깨진다? 리로드 하면 괘찮
       return 0;
     }
     else{
@@ -196,8 +188,7 @@ export default function EditBasicInfo() {
           <Form.Label>Contury</Form.Label>
           <Select 
             options={options} 
-            value={{ label: countryLabel || countryDefault }} // 값이 안찍힘 버그임 모르겠음,,,,,
-            // value={{ label: countryLabel || memberInfo.countryCode }}
+            value={{ label: countryLabel || countryDefault }}
             onChange={changeHandler} >
           </Select>
         </Form.Group>
@@ -206,7 +197,6 @@ export default function EditBasicInfo() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Gender</Form.Label>
           <div className="select-gender">
-            {/* checked{gender === 'female'} 이렇게 넣어주면 초기값 완성 */}
             <input type='radio' id = "select" name='gender' value='female' checked={checkDefaultGender ? false : true} onClick={(e) => { 
               setGender(e.target.value); setGenderAvail(true); setCheckDefaultGender(false)}} /> {/* checked 초기값 줄 때 추후 리팩토링의 여지가 있다. */}
             <label for ="select">여성</label>

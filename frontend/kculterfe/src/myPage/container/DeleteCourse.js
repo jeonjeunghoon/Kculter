@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-export async function ResignMembership() {
+export async function DeleteCourse([props]) {
     let result;
 
-    const memberHash = window.sessionStorage.getItem("memberHash")
-
     //await 한 값을 보내준다.
-    return await axios.put('/member/secession', {
+    return await axios.put('/course', {
         headers: {
-            Authorization: memberHash,
+            Authorization: props.courseHash,
         },
         responseType: 'json'
     })

@@ -6,7 +6,7 @@ export async function  CheckPwd(pwd) {
     const hash = hashPwd(sessionStorage.getItem("memberHash")+pwd);
 
     let result;
-    return await axios.get("/member/pwd",{
+    return await axios.get("/member/pwd", {
         headers: {
             Authorization: hash,
         }

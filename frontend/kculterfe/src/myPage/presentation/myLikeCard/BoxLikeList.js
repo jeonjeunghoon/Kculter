@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Row } from 'react-bootstrap';
 import BoxLikeItem from './BoxLikeItem';
 import { getLikeList } from '../../container/GetLikeList';
-import '../../styles/BoxLikeList.css';
+import '../../styles/LikeListPage.css';
 
 function BoxLikeList() {
 	// DB서버에서 course 데이터 받기.

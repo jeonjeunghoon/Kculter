@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/LikeListCard.css"
+import "../../styles/LikeListPage.css"
 
 function BoxLikeItem({ props }) {
 	return (

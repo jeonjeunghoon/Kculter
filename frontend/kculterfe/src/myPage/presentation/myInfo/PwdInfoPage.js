@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import './MyInfo.css';
 import '../../../login/presentation/Signup.css';
-// import crypto from 'crypto-js';
-import axios from 'axios';
 import { ChangeNewPwd } from '../../container/ChangeNewPwd';
 import { CheckPwd } from '../../container/CheckPwd';
-import { hashPwd }  from '../../container/Encryptpwd';
+import { ResignMembership } from '../../container/ResignMembership';
+import { Modal } from 'react-bootstrap';
 
 export default function EditPwdInfo() {
   const [NewPwd, setNewPwd] = useState(''); //신비밀번호
-  const [isCurrentPwd, setIsCurrentPwd] = useState(false); //구비밀번호
+  const [CurrentPwd, setCurrentPwd] = useState(false); // 구비밀번호
 
   //버튼 비활성화
   const [confirmBt,setConfirmBt] = useState(false);
@@ -24,24 +23,18 @@ export default function EditPwdInfo() {
   const [pwdMessage, setPwdMessage] = useState('');
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
 
-  // 현재 비밀번호 받기
-  useEffect(() => {
-    getCurrentPwd()
-    .then(resData => {
-      setCurrentPwd(resData);
-      console.log(resData);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  },[]);
+  // 회원탈퇴 modal state
+  const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
+  // 회원탈퇴 체크박스(탈퇴하기전 체크)
+  const [bChecked, setbChecked] = useState(false);
 
-
-
+  // 지금 패스워드 체크
   const checkCurrentPassword = (e) => {
     const value = e.target.value;
-    setIsCurrentPwd(value);
+    setCurrentPwd(value);
   }
 
   const checkNewPassword = (e) => {
@@ -92,8 +85,24 @@ export default function EditPwdInfo() {
     }
   }
 
+  // 회원탈퇴 체크
+  const checkHandler = ({ target }) => {
+    setbChecked(!bChecked);
+  };
+
+  // 회원탈퇴 버튼
+  const resignConfirm = async () =>{
+    const result = await ResignMembership(NewPwd);
+    if(result == 200){
+      alert("Resign success");
+      window.location.reload();
+    }else{
+      alert("Resign fail \nPlease contact to hankgood958@gmail.com");
+    }
+  }
+
   const checkPwd = async () =>{
-    const result = await CheckPwd(isCurrentPwd);
+    const result = await CheckPwd(CurrentPwd);
     if(result == 200){
       //200이면 이제 잘 받아왔으니 OK 띄워주고 disabled를 풀어줘야 함
       setVerMessage("OK");
@@ -132,8 +141,30 @@ export default function EditPwdInfo() {
         <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
       </Form.Group>
 
-      {/* 비밀번호 변경 버튼으로 해야 할듯? */}
+      {/* 비밀번호 변경 버튼 */}
       <button style={{color:'white'}} disabled={!(cfPwdStyle&&isPasswordConfirm)} className="close-btn" onClick={newPasswordConfirm}>confirm</button>
+
+      {/* 회원 탈퇴 버튼 */}
+      <div>
+        <button style={{color:'white'}} className="close-btn" onClick={handleShow}>Resign membership</button>
+      </div>
+
+      <Modal className={""} show={show} onHide={handleClose}>
+          회원 탈퇴
+        <Modal.Body>
+          회원 탈퇴할시 사항들
+        </Modal.Body>
+        <Modal.Footer>
+          <input type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)} />회원탈퇴
+          <button disabled={!bChecked} onClick={resignConfirm}>
+            회원탈퇴 버튼
+          </button>
+          <button onClick={handleClose}>
+            Cancel
+          </button>
+        </Modal.Footer>
+      </Modal>
+
     </Container>
   )
 }
