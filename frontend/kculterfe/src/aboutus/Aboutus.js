@@ -21,14 +21,14 @@ function Aboutus(){
   return(
     <div className="about-con">
       <img src={aboutbackgrond}></img>
-      
       <div className="about-top">
       <MainNavbar className='MainNav'/>
       </div>
           <img id="main-logo" src={klogo} data-aos="zoom-in"
           data-aos-duration="2000"
           />
-            <div className="about-kculter" data-aos="fade-up"
+            <div className="about-kculter"
+             data-aos="fade-up"
             data-aos-duration="2000"
             data-aos-delay="1000"
             >
@@ -52,6 +52,7 @@ function Aboutus(){
         data-aos-duration="2000"
         data-aos-delay="1400"
        />
+       {/*
        <div className="whoweare"
        data-aos="fade-right"
        data-aos-duration="2000"
@@ -68,6 +69,7 @@ function Aboutus(){
           <span id="WE">We</span>
           <span>Are</span>
        </div> 
+       
        <span className="location-service"
          data-aos="fade-up"
          data-aos-duration="2000"
@@ -86,11 +88,20 @@ It helps you experience not only K-pop singers <br></br>but also representative 
          data-aos="fade-left"
          data-aos-duration="2000"
        >
+        {/*  
           <p>
           Mark places related <br></br>to kpop stars<br></br> on the map
           </p>
           <img src={kpin} ></img>
        </div>
+       <div>
+       If you select idol from the idol list, the location pin displays music video locations, pictorials, and recommended restaurants for a specific idol star
+       <span>KPOP</span>
+        <span id="location">Location</span>
+        <span>Pin</span>
+       </div>
+       */}
+       
 </div>
   )
 }
