@@ -1,0 +1,203 @@
+.login-logo img {
+  height: 5rem;
+}
+
+.chevron {
+}
+@keyframes bounce {
+  70% {
+    transform: translateY(0%);
+  }
+  80% {
+    transform: translateY(-15%);
+  }
+  90% {
+    transform: translateY(0%);
+  }
+  95% {
+    transform: translateY(-7%);
+  }
+  97% {
+    transform: translateY(0%);
+  }
+  99% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media all and (max-width: 812px) {
+  .about-con {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    height: 1000vh;
+  }
+
+  #nav-last {
+    font-size: 13px;
+    margin-bottom: 70px;
+    display: flex;
+    left: 70%;
+    position: relative;
+  }
+
+  #travel {
+    font-size: 20px;
+    font-weight: 500;
+    color: #0759fc;
+  }
+
+  .mainbtn {
+    top: 70vh;
+    left: 30vw;
+  }
+
+  .about-kculter {
+    color: #ffff;
+    position: absolute;
+    top: 300px;
+    font-size: 10px;
+    margin-left: 140px;
+  }
+
+  #main-logo {
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    width: 200px;
+    height: 100px;
+  }
+  .about-top {
+    position: fixed;
+  }
+
+  #kpop {
+    color: #ff59f6;
+    font-size: 20px;
+    margin: 0px 10px;
+  }
+  .mainbtn2 {
+    position: absolute;
+    top: 540px;
+    left: 37%;
+    position: fixed;
+  }
+  .main-start {
+    padding: 1px 30px;
+    font-size: 15px;
+  }
+  .chevron {
+    position: absolute;
+    top: 600px;
+    left: 175px;
+    color: #ff59f6;
+    size: 20px;
+    animation: bounce 1.5s ease infinite;
+  }
+
+  .navbar-logo img {
+    height: 3rem;
+  }
+
+  .nav-links {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    font-size: 15px;
+  }
+
+  .nav-item {
+    height: 80px;
+  }
+
+  .nav-menu {
+  }
+
+  .korean {
+    position: relative;
+    right: 40px;
+    font-size: 20px;
+  }
+
+  .about-con img {
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 812px) {
+  .about-con {
+    position: relative;
+    display: flex;
+    height: 10000px;
+    font-family: "Poppins", sans-serif;
+  }
+  .mainbtn {
+    top: 70vh;
+    left: 30vw;
+  }
+
+  #travel {
+    font-size: 40px;
+    font-weight: 900;
+    color: #0759fc;
+    margin-left: 100px;
+  }
+
+  .korean {
+    position: absolute;
+    light: 100px;
+  }
+
+  .about-kculter {
+    color: #ffff;
+    position: absolute;
+    top: 430px;
+    left: 280px;
+    font-size: 40px;
+    padding: 0px 200px;
+  }
+
+  .about-top {
+    position: fixed;
+    top: 15px;
+    left: 10px;
+  }
+
+  #main-logo {
+    position: absolute;
+    left: 480px;
+    top: 200px;
+    width: 430px;
+    height: 230px;
+  }
+
+  #kpop {
+    color: #ff59f6;
+    font-size: 40px;
+    margin: 0px 10px;
+    margin-right: 10px;
+  }
+  .mainbtn2 {
+    position: absolute;
+    top: 640px;
+    left: 630px;
+    position: fixed;
+  }
+
+  .chevron {
+    position: absolute;
+    top: 700px;
+    left: 700px;
+    color: #ff59f6;
+    animation: bounce 1.5s ease infinite;
+  }
+
+  .about-con img {
+    width: 100%;
+  }
+}

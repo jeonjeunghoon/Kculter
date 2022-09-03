@@ -31,11 +31,7 @@ function LoginPage(){
         window.location.reload();
     }
 
-    const onKeyPress = (e) => {
-        if(e.key == 'Enter'){
-          alert('dd');
-        }
-    }
+ 
 
     return(
        <>
@@ -58,7 +54,6 @@ function LoginPage(){
                     type='password'
                     placeholder='Password'
                     onChange={e=> setPwd(e.target.value)}
-                    onKeyPress={onKeyPress}
                     />
                 <Loginbtn email={email} pwd={pwd}>LOGIN</Loginbtn>
                 </div>
