@@ -51,19 +51,14 @@
 }
 
 @media all and (max-width: 812px) {
-  .navbar-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
   .nav-menu {
     display: grid;
     grid-template-columns: repeat(4, auto);
     list-style: none;
     text-align: center;
-    width: 20vw;
-    margin-top: 43%;
-    padding: 0px 50px;
+    width: 30vw;
+    justify-content: end;
+    margin-top: 22%;
   }
 
   .nav-item {

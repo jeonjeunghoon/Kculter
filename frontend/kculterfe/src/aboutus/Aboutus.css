@@ -131,7 +131,7 @@
   .about-con {
     position: relative;
     display: flex;
-    height: 10000px;
+    height: 3000px;
     font-family: "Poppins", sans-serif;
   }
   .mainbtn {
@@ -223,4 +223,40 @@
   line-height: 100px;
   font-weight: bold;
   left: 380px;
+}
+
+.location-service {
+  position: absolute;
+  top: 1550px;
+  font-size: 30px;
+  left: 360px;
+  color: #fff;
+}
+
+#location-kpop {
+  color: #ff59f6;
+}
+
+.location-p {
+  position: absolute;
+  top: 1300px;
+  left: 750px;
+  color: #fff;
+}
+
+.kpop-pin {
+  position: absolute;
+  top: 2000px;
+  color: #fff;
+  font-size: 40px;
+  left: 343px;
+  font-weight: bold;
+}
+
+.kpop-pin img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 300px;
+  bottom: 120px;
 }
