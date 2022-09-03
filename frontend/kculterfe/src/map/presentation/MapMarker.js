@@ -12,6 +12,15 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
+	const reduxCourse = useSelector(state => state.course);
+	const [course, setCourse] = useState(props.course);
+
+	useEffect(() => {
+		setCourse(prev => ({
+			...prev,
+			place: reduxCourse,
+		}));
+	}, [reduxCourse]);
 	return (
 		<div>
 			{/* KCULTER 마커 */}
@@ -32,7 +41,7 @@ function MapMarker(props) {
 			{
 				props.course.place &&
 				<CustomMarker
-					place={props.course.place}
+					place={course.place}
 					pin={props.course.pin}
 					title={"COURSE"}
 					markerHandler={handleCustomMarker}
