@@ -19,7 +19,7 @@ function MainPage() {
               <MainNavbar className='MainNav'/>
               </div>
             <div className='mainbtn-2'>
-                <Link to="Aboutus">aa</Link>
+                <Link to="Aboutus">About Us </Link>
             </div>
         <div className='mainbtn'>
            <Button/>
