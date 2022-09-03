@@ -14,7 +14,7 @@ function CustomMarker(props) {
 		if (props.place) {
 			setPlace(() => props.place);
 		}
-		if (props.pin.imageUrl) {
+		if (props.pin && props.pin.imageUrl) {
 			const icon = new window.google.maps.MarkerImage(
 				props.pin.imageUrl,
 				null,

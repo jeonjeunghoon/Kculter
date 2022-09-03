@@ -9,6 +9,7 @@ import {
 	getData,
 } from './container/getData'
 import {
+	useDispatch,
 	useSelector,
 } from 'react-redux';
 import MapRender from './presentation/MapRender';
@@ -17,6 +18,7 @@ import './style/MapPage.css';
 const lib = ['places'];
 
 function MapPage() {
+	const dispatch = useDispatch();
 	const { isLoaded } = useJsApiLoader({
 		id: 'map-page',
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
@@ -40,13 +42,15 @@ function MapPage() {
 			type: Number(window.sessionStorage.getItem("type")),
 		},
 		concert: reduxConcert,
-		course: reduxCourse,
-		mypage: null,
+		course: {
+			place: reduxCourse,
+			pin: "",
+		},
 	});
 	
 	useEffect(() => {
 		const fetchData = async() => {
-			await getData(kculter, setKculter)
+			await getData(kculter, setKculter, dispatch)
 			.then(() => {
 				setKculter(prev => ({
 					...prev,

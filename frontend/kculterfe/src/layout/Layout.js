@@ -22,9 +22,9 @@ const Layout = () => {
 	return (
 		<div className={open ? 'layout open' : 'layout close'}>
 			{location.pathname == "/IdolListPage" && <IdolListSideNav pageidx={0} items={idolListItem}/>}
-			{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem}/>}
+			{location.pathname == "/MapPage" && <MapSideNav pageidx={1} handleOpen={handleOpen} />}
 			{location.pathname == "/Mypage" && <MySideNav pageidx={2} items={myPageItem}/>}
-			<Header handleOpen={handleOpen}/>
+			<Header handleOpen={handleOpen} />
 			<Outlet />
 		</div>
 	);
