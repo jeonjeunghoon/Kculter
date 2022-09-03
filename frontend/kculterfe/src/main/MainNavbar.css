@@ -21,7 +21,6 @@
     margin-top: 40px;
     height: 80px;
     padding-bottom: 30px;
-    margin-left: 80px;
   }
   .nav-menu {
     display: grid;
@@ -52,12 +51,19 @@
 }
 
 @media all and (max-width: 812px) {
-  .nav-menu {
-    padding: 0px 0px;
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
-
-  #nav-last {
-    margin-right: 170px;
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    list-style: none;
+    text-align: center;
+    width: 20vw;
+    margin-top: 43%;
+    padding: 0px 50px;
   }
 
   .nav-item {

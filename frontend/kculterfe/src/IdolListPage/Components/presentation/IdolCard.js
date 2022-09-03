@@ -56,8 +56,8 @@ function IdolCard( {keyHash, type, path_photo, title, num_spot, explain, pin}) {
 					</div>
 					<div className={styles.modal_info}>
 						<div className={styles.modal_spot_num}>
+							<p>{num_spot}</p>
 							<img src='spot.png' alt='spot'/>
-							<p>{num_spot} Spots</p>
 						</div>
 					</div>
 					<div className={styles.modal_paragraph}>

@@ -8,17 +8,30 @@
   left: 0px;
 }
 
-.mainbtn {
-  position: absolute;
-  top: 575px;
-  left: 70vw;
-}
-
 .mainbtn-2 {
   position: absolute;
-  top: 500px;
-  left: 50vw;
+  top: 650px;
+  left: 10vw;
   cursor: pointer;
+  padding: 1px 37px;
+  border: solid 2px #ff59f6;
+  font-size: 23px;
+  color: #ff59f6;
+  border: none;
+  background-color: transparent;
+  border: solid 2px #ff59f6;
+}
+
+.mainbtn-2 a {
+  color: #ff59f6;
+  text-decoration: none;
+}
+
+.mainbtn-2:hover {
+  border: solid 2px #0759fc;
+}
+.mainbtn-2 a:hover {
+  color: #0759fc;
 }
 
 @media all and (max-width: 812px) {
@@ -49,4 +62,10 @@
     background-size: cover;
     height: 100vh;
   }
+}
+
+.mainbtn {
+  position: absolute;
+  top: 650px;
+  left: 23vw;
 }
