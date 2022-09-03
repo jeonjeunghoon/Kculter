@@ -128,7 +128,8 @@
 @media all and (min-width: 812px) {
   .about-con {
     display: flex;
-    height: 3000px;
+    height: 9000px;
+    width: 9000px;
     font-family: "Poppins", sans-serif;
     width: 100%;
     flex-direction: column;
@@ -170,8 +171,6 @@
     position: absolute;
     top: 200px;
     width: 430px;
-    margin-left: auto;
-    margin-right: auto;
     height: 230px;
     align-self: center;
   }
@@ -186,14 +185,12 @@
     position: absolute;
     display: block;
     top: 83%;
-    position: fixed;
     align-self: center;
   }
 
   .chevron {
     position: absolute;
     top: 730px;
-    left: 700px;
     color: #ff59f6;
     animation: bounce 1.5s ease infinite;
     align-self: center;
@@ -201,40 +198,47 @@
 
   .about-con img {
     width: 100%;
+    height: 100%;
+  }
+
+  .whoweare {
+    color: #fff;
+    position: absolute;
+    top: 1000px;
+    font-size: 120px;
+    line-height: 100px;
+    font-weight: bold;
+    width: 430px;
+    display: block;
+    align-self: center;
+    z-index: 1;
+  }
+  #WE {
+    display: block;
   }
 }
 
-.whoweare {
-  color: #fff;
-  position: absolute;
-  top: 1200px;
-  font-size: 120px;
-  line-height: 100px;
-  font-weight: bold;
-  left: 360px;
-  z-index: 1;
-}
-
-#WE {
+#aa {
   display: block;
 }
 
 .whoweare2 {
   color: rgba(6, 89, 252, 0.3);
   position: absolute;
-  top: 1200px;
+  top: 1000px;
   font-size: 120px;
   line-height: 100px;
   font-weight: bold;
-  left: 380px;
+  align-self: center;
 }
 
 .location-service {
   position: absolute;
-  top: 1550px;
+  top: 1350px;
   font-size: 30px;
-  left: 360px;
   color: #fff;
+  align-self: center;
+  display: block;
 }
 
 #location-kpop {
@@ -244,25 +248,50 @@
 .location-p {
   position: absolute;
   top: 1300px;
-  left: 750px;
+  align-self: center;
   color: #fff;
+  right: 160px;
+  display: block;
 }
 
 .kpop-pin {
   position: absolute;
-  top: 2000px;
+  top: 1800px;
   color: #fff;
-  left: 343px;
-  font-size: 80px;
-  line-height: 80px;
+  font-size: 50px;
+  line-height: 50px;
   font-weight: bold;
+  align-self: center;
+  z-index: 1;
+  display: block;
+}
+
+.kpop-pin2 {
+  position: absolute;
+  top: 1800px;
+  color: rgba(6, 89, 252, 0.3);
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  align-self: center;
+}
+
+.logo {
+  position: absolute;
+  top: 1400px;
+  align-self: center;
+}
+
+.logo img {
+  margin: 0px 3px;
+  width: 50px;
+  height: 50px;
 }
 
 .kpop-pin img {
-  position: relative;
+  display: block;
   width: 100px;
   height: 100px;
-  left: 300px;
   bottom: 120px;
 }
 
