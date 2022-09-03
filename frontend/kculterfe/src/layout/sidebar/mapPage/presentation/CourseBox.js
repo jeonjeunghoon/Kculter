@@ -66,6 +66,13 @@ function CourseBox({ place }) {
 						>
 							SUBMIT
 						</button>
+						<button
+							onClick={() => {
+								setModalIsOpen(false);
+							}}
+						>
+							EXIT
+						</button>
 					</form>
 				</Modal>
     </div>

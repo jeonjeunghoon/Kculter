@@ -2,8 +2,6 @@
   height: 5rem;
 }
 
-.chevron {
-}
 @keyframes bounce {
   70% {
     transform: translateY(0%);
@@ -34,6 +32,7 @@
     display: flex;
     justify-content: flex-start;
     height: 1000vh;
+    width: 100%;
   }
 
   #nav-last {
@@ -117,7 +116,6 @@
   }
 
   .korean {
-    position: relative;
     right: 40px;
     font-size: 20px;
   }
@@ -129,10 +127,11 @@
 
 @media all and (min-width: 812px) {
   .about-con {
-    position: relative;
     display: flex;
-    height: 10000px;
+    height: 3000px;
     font-family: "Poppins", sans-serif;
+    width: 100%;
+    flex-direction: column;
   }
   .mainbtn {
     top: 70vh;
@@ -143,21 +142,21 @@
     font-size: 40px;
     font-weight: 900;
     color: #0759fc;
-    margin-left: 100px;
   }
 
   .korean {
-    position: absolute;
-    light: 100px;
+    align-self: center;
   }
 
   .about-kculter {
     color: #ffff;
     position: absolute;
+    display: block;
     top: 430px;
-    left: 280px;
     font-size: 40px;
     padding: 0px 200px;
+    align-self: center;
+    text-align: center;
   }
 
   .about-top {
@@ -167,11 +166,14 @@
   }
 
   #main-logo {
+    display: block;
     position: absolute;
-    left: 480px;
     top: 200px;
     width: 430px;
+    margin-left: auto;
+    margin-right: auto;
     height: 230px;
+    align-self: center;
   }
 
   #kpop {
@@ -182,9 +184,10 @@
   }
   .mainbtn2 {
     position: absolute;
+    display: block;
     top: 83%;
-    left: 630px;
     position: fixed;
+    align-self: center;
   }
 
   .chevron {
@@ -193,6 +196,7 @@
     left: 700px;
     color: #ff59f6;
     animation: bounce 1.5s ease infinite;
+    align-self: center;
   }
 
   .about-con img {
@@ -223,4 +227,45 @@
   line-height: 100px;
   font-weight: bold;
   left: 380px;
+}
+
+.location-service {
+  position: absolute;
+  top: 1550px;
+  font-size: 30px;
+  left: 360px;
+  color: #fff;
+}
+
+#location-kpop {
+  color: #ff59f6;
+}
+
+.location-p {
+  position: absolute;
+  top: 1300px;
+  left: 750px;
+  color: #fff;
+}
+
+.kpop-pin {
+  position: absolute;
+  top: 2000px;
+  color: #fff;
+  left: 343px;
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: bold;
+}
+
+.kpop-pin img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 300px;
+  bottom: 120px;
+}
+
+#location {
+  display: block;
 }

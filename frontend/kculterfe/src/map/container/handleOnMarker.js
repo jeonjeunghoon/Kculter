@@ -7,7 +7,7 @@ function useFocusOn(place, setCenter, setZoom, dispatch) {
 		lat: place.lat,
 		lng: place.lng
 	}));
-	setZoom(() => 15);
+	setZoom(() => 17);
 	dispatch({
 		type: CLICK_PLACE,
 		data: place
