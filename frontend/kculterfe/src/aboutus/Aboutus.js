@@ -51,6 +51,22 @@ function Aboutus(){
         data-aos-duration="2000"
         data-aos-delay="1400"
        />
+       <div className="whoweare"
+       data-aos="fade-right"
+       data-aos-duration="2000"
+       >
+          <span>Who</span>
+          <span id="WE">We</span>
+          <span>Are</span>
+       </div> 
+       <div className="whoweare2"
+       data-aos="fade-right"
+       data-aos-duration="2000"
+       >
+          <span>Who</span>
+          <span id="WE">We</span>
+          <span>Are</span>
+       </div> 
 </div>
   )
 }

@@ -40,19 +40,20 @@
     font-size: 13px;
     margin-bottom: 70px;
     display: flex;
-    left: 70%;
     position: relative;
+  }
+
+  .nav-menu {
+    position: relative;
+    /* left: 43px; */
+    left: 35px;
+    top: 3px;
   }
 
   #travel {
     font-size: 20px;
     font-weight: 500;
     color: #0759fc;
-  }
-
-  .mainbtn {
-    top: 70vh;
-    left: 30vw;
   }
 
   .about-kculter {
@@ -82,7 +83,7 @@
   .mainbtn2 {
     position: absolute;
     top: 540px;
-    left: 37%;
+    left: 25%;
     position: fixed;
   }
   .main-start {
@@ -113,9 +114,6 @@
 
   .nav-item {
     height: 80px;
-  }
-
-  .nav-menu {
   }
 
   .korean {
@@ -184,14 +182,14 @@
   }
   .mainbtn2 {
     position: absolute;
-    top: 640px;
+    top: 83%;
     left: 630px;
     position: fixed;
   }
 
   .chevron {
     position: absolute;
-    top: 700px;
+    top: 730px;
     left: 700px;
     color: #ff59f6;
     animation: bounce 1.5s ease infinite;
@@ -200,4 +198,29 @@
   .about-con img {
     width: 100%;
   }
+}
+
+.whoweare {
+  color: #fff;
+  position: absolute;
+  top: 1200px;
+  font-size: 120px;
+  line-height: 100px;
+  font-weight: bold;
+  left: 360px;
+  z-index: 1;
+}
+
+#WE {
+  display: block;
+}
+
+.whoweare2 {
+  color: rgba(6, 89, 252, 0.3);
+  position: absolute;
+  top: 1200px;
+  font-size: 120px;
+  line-height: 100px;
+  font-weight: bold;
+  left: 380px;
 }
