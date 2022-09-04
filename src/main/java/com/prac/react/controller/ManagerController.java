@@ -177,8 +177,11 @@ public class ManagerController{
     public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("Concert insert : "+concert.toString());
 
-        //암호화된 연예인 키값을 복호화 해서 설정
-        concert.setStarKey(Integer.parseInt(encryption.aesDecrypt(concert.getStarHash())));
+        if(concert.getStarHash() != null || concert.getStarHash() != ""){//연예인 키값이 들어가있다면 진입
+            //암호화된 연예인 키값을 복호화 해서 설정
+            concert.setStarKey(Integer.parseInt(encryption.aesDecrypt(concert.getStarHash()))); 
+        }
+        
 
         String url = "";
         url = sfu.uploadtoS3(mpf, "/concert");
