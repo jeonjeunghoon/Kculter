@@ -88,9 +88,10 @@ public class ManagerController{
         //해당 연예인의 키값을 받아온다.
         int celebKeyNum = celebS.getCelebKeyNumByName(celeb.getName());
         //해당 연예인의 이름이 있는 concertNum을 가져온다.
-        int concertNum = concertS.getConcertNumbyCelebName(celeb.getName());
+        Integer concertNum = concertS.getConcertNumbyCelebName(celeb.getName());
         //해당 연예인의 이름이 concerts table에 있다면 진입
         if(concertNum > 0){
+            //콘서트 넘버와 연예인 넘버를 가지고 해당 콘서트의 연예인 넘버를 수정한다.
             int concertResult = concertS.updateCelebNum(celebKeyNum,concertNum);
             if(concertResult > 0){
                 logger.info("Updated celebNum at concert info");
@@ -130,7 +131,7 @@ public class ManagerController{
                 place.setKpop("/"+kpopKey+"/"); //placekpop을 /키넘버/ 이렇게 저장을 함 근데 문제는 뭐냐
                 logger.info("culture : "+ place.getCulture());
                 logger.info("kpop : "+ kpopKey);
-            }else{
+            }else{ //culture 일때 진입
                 logger.info("type : "+ place.getPlaceType());
                 place.setKpop("");
                 String cultureKey = encryption.aesDecrypt(place.getCulture());
@@ -146,12 +147,15 @@ public class ManagerController{
                 logger.error("Place insert error");
                 return 500;
             }
+            result = 200;
         }else{ //얘는 기존에 있는 장소에서 따로 추가하는것이니 placeNum만 있을것이다.
 
             logger.info("Place info exist, updating insert process");
 
             //따라서 얘는 기존의 Place에서 culture 혹은 kpop에서 추가된 내용만 얹어주면된다. 상황을 예를 들어서 설명을 하겠다.
-
+            //기존의 placeNum을 암호화된 상태로 보내주니까 복호화 해야 한다.
+            int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getPlaceHash()));
+            place.setPlaceNum(placeNum);
             /*
              * 만약 키값이 3인 kpop이 기존에 키값이 3인 장소에 본인과 관련있는 장소로 하고 싶을땐 아래와 같이 입력이 된다
              * placeNum(3) - kpop :  /1/2/3 
@@ -160,14 +164,16 @@ public class ManagerController{
             place.setKpop(encryption.aesDecrypt(place.getKpop()));
             place.setCulture(encryption.aesDecrypt(place.getCulture()));
 
-            if(ms.checkDuplicate(place)>0){
+            if(ms.checkDuplicate(place)>0){ //장소가 해당유형으로 이미 존재하는 경우
                 logger.info("Already have place data");
                 result = 201; //201 : 이미 존재하는 데이터입니다.
-            }else{
+            }else{ //장소가 해당 유형으로 존재하지 않는 경우
                 result = ms.updatePlace(place);
                 if(result <= 0){
                     logger.error("Place update failure");
+                    result = 500;
                 }
+                result = 200;
             }
         }
         return result;
@@ -190,8 +196,9 @@ public class ManagerController{
         if(result <= 0){
             logger.error("Concert insert error");
             return 500;
+        }else{
+            return 200;
         }
-        return result;
     }
 
     @PostMapping("/pin")
@@ -209,7 +216,8 @@ public class ManagerController{
         if(result <= 0){
             logger.error("Pin insert error");
             return 500;
+        }else{
+            return 200;
         }
-        return result;
     }
 }
