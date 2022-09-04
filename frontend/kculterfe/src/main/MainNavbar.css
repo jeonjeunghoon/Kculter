@@ -12,10 +12,6 @@
   max-width: 1500px;
 }
 
-.navbar-logo img {
-  height: 5rem;
-}
-
 @media all and (min-width: 812px) {
   .nav-item {
     margin-top: 40px;
@@ -63,5 +59,9 @@
 
   .nav-item {
     display: block;
+  }
+
+  .navbar-logo img {
+    height: 3rem;
   }
 }
