@@ -19,13 +19,13 @@ function GetListData(props){
                     alert("입력된 Kpop 스타가 없습니다. \n Kpop 스타부터 입력하세요");
                     window.location.href="/manager/kpop"
                 }else{
-                    axios.get('/places')
+                    axios.get('/places') //모든 장소를 가져온다.
                     .then(function(res){
                         places = res.data;
-                        navigate(props.url,{ //경로는 /signup으로 보내고
+                        navigate(props.url,{ //경로는
                             state : { //데이터로는 
-                                list : list,
-                                places : places
+                                list : list, //연예인 리스트랑
+                                places : places //장소 리스트를 가지고 넘어간다.
                             }
                         });
                     })
