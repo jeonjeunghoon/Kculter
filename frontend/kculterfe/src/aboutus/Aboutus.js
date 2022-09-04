@@ -5,6 +5,9 @@ import kpin from '../src_asset/nctpin.png'
 import kpin2 from '../src_asset/hanbokpin.png'
 import kpin3 from '../src_asset/blackpin.png'
 import kpin4 from '../src_asset/twipin.png'
+import kmap from '../src_asset/map.png'
+import klist from '../src_asset/list.png'
+
 
 
 import './Aboutus.css';
@@ -15,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {FaChevronDown} from "react-icons/fa";
 import { Button } from '../main/Button';
 import MainNavbar from '../main/MainNavbar';
+import { map } from 'lodash';
 
 function Aboutus(){
 
@@ -125,12 +129,20 @@ It helps you experience not only K-pop singers <br></br>but also representative 
           Mark places related <br></br>to kpop stars<br></br> on the map
           </span>
           </div>
-       <div>
-       If you select idol from the idol list, the location pin displays music video locations, pictorials, and recommended restaurants for a specific idol star
-       <span>KPOP</span>
-        <span id="location">Location</span>
-        <span>Pin</span>
-  
+
+      <div className="form2-img1"
+         data-aos="fade-left"
+         data-aos-duration="2000">
+        <img src={kmap}></img>
+
+      </div>
+       <div className="form2-a"
+          data-aos="fade-left"
+          data-aos-duration="2000">
+       <span id="k-map">Map</span>
+
+       If you select idol from the idol list, <br></br>the location pin displays music video locations, pictorials, <br></br>and recommended restaurants for a specific idol star<br></br>
+    
        </div>
        </div>
 
