@@ -298,3 +298,30 @@
 #location {
   display: block;
 }
+
+.form2-a {
+  position: absolute;
+  top: 2600px;
+  color: #fff;
+  align-self: center;
+  display: block;
+  right: 200px;
+}
+
+.form2-img1 {
+  position: absolute;
+  top: 2500px;
+  align-self: flex-start;
+  right: 700px;
+}
+
+.form2-img1 img {
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+}
+
+#k-map {
+  font-size: 100px;
+  display: block;
+}
