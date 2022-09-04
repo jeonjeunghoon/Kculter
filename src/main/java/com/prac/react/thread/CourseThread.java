@@ -65,7 +65,7 @@ public class CourseThread implements Runnable{
             cw.setCourseName(course.getCourseName());
 
             String memberHash  = encrypt.aesEncrypt(Integer.toString(memberNum)); //멤버번호 암호화
-            cw.setMemeberHash(memberHash);
+            cw.setMemberHash(memberHash);
             cw.setCourseNum(course.getCourseNum());
 
             //callBack 메소드 호출

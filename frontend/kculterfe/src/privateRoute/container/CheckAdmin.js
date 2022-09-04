@@ -1,4 +1,4 @@
-import { decrypt } from "./Descrypt";
+import { decrypt } from "./DecryptAes";
 
 export function checkAdmin() {
 
