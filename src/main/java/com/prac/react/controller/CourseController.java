@@ -70,7 +70,7 @@ public class CourseController {
 			}
 		}
 
-		int memberNum = Integer.parseInt(encryption.aesDecrypt(cw.getMemeberHash()));
+		int memberNum = Integer.parseInt(encryption.aesDecrypt(cw.getMemberHash()));
 
 		Course course = new Course(0,cw.getCourseName(),places,memberNum);
 		logger.info("Course : "+ course.toString());
