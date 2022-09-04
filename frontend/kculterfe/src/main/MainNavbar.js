@@ -43,7 +43,7 @@ function MainNavbar() {
 
     return (
     
-           <nav className='navbar'>
+        <nav className='navbar'>
            <div className='navbar-container'>
                <Link to="/" className ='navbar-logo' >
                    <img src={logo}></img>

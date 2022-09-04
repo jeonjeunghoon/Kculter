@@ -1,67 +1,65 @@
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1.2rem;
+  width: 100vw;
 }
-
 .navbar-container {
-  display: flex;
-  align-items: center;
+  width: 100vw;
   height: 80px;
-  max-width: 1500px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
 }
-
 .navbar-logo img {
-  height: 5rem;
+  height: 30px;
+  width: auto;
+  object-fit: contain;
 }
-
-@media all and (min-width: 812px) {
-  .nav-item {
-    margin-top: 40px;
-    height: 80px;
-    padding-bottom: 30px;
-  }
-  .nav-menu {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-gap: 10px;
-    list-style: none;
-    text-align: center;
-    width: 85vw;
-    justify-content: end;
-    margin-right: 2rem;
-  }
+.nav-menu {
+  display: grid;
+  justify-content: end;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  max-width: 85vw;
+  margin-right: 2rem;
 }
-
+.nav-item {
+  margin-top: 40px;
+  height: 80px;
+  padding-bottom: 30px;
+}
 .nav-links {
   color: #fff;
   display: flex;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
-  padding: 20px;
+  padding: 1vw;
   height: 100%;
   font-size: 23px;
 }
-
 .nav-links:hover {
   color: #ff59f6;
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
-
+/* mobile layout for width less than 812px*/
 @media all and (max-width: 812px) {
-  .nav-menu {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    list-style: none;
-    text-align: center;
-    width: 30vw;
-    justify-content: end;
-    margin-top: 22%;
+  .navbar-container{
+    grid-template-columns: 1fr 2fr;
   }
-
+  .navbar-logo{
+    justify-self: left;
+  }
+  .nav-menu {
+    max-width: 50vw;
+    justify-self: right;
+    margin-top: 1vh;
+    margin-right: 1vw;
+  }
   .nav-item {
     display: block;
+    margin-left: 1vw;
+    margin-right: 1.5rem;
   }
 }
