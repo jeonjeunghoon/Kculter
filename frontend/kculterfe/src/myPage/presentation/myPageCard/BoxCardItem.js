@@ -28,8 +28,8 @@ function BoxCardItem({ props }) {
     const DeleteCourseBtn = () => {
         DeleteCourse(props.courseHash)
 		.then(res => {
-            console.log(res);
 			alert("Success on delete")
+            window.sessionStorage.reload();
 		})
 		.catch(err => {
             alert("Can not delete")

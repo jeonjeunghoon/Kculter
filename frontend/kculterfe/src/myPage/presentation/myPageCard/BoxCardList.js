@@ -5,7 +5,9 @@ import { getCourseList } from '../../container/GetCours';
 function BoxCardList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
-	
+
+	console.log("myPage 렌더링 확인");
+
 	useEffect(() => {
 		getCourseList()
 		.then(resData => {

@@ -1,8 +1,3 @@
-#my-body button {
-    border: 0;
-    /* color: gray; */
-}
-
 /* 수정, 삭제 버튼 */
 @media all and (min-width:768px) {
     #my-body .box-btn {
