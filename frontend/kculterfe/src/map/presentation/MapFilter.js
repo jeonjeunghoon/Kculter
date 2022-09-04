@@ -90,38 +90,37 @@ function MapFilter(props) {
 				setIsKpop={setIsKpop}
 			/>
 
-  		<select className='filter'
-				value={value}
-				onChange={(e) => {
-					if (e.target.value !== "0") {
-						fetchSelected(list, e, isKpop, props.setKculter, dispatch);
+			<div className="filter-wrapper">
+  			<select className='filter'
+					value={value}
+					onChange={(e) => {
+						if (e.target.value !== "0") {
+							fetchSelected(list, e, isKpop, props.setKculter, dispatch);
+						}
+					}}
+					style={{
+						width: "240px",
+						height: "32px",
+						border: "1px solid transparent",
+						borderRadius: "3px",
+						fontSize: "14px",
+					}}
+				>
+					{
+						list &&
+						list.map((item, index) => {
+							return (
+								<option
+								key={index}
+								value={item.hash}
+								>
+									{item.name}
+								</option>
+							);
+						})
 					}
-				}}
-				style={{
-					width: "240px",
-					height: "32px",
-					border: "1px solid transparent",
-					borderRadius: "3px",
-					fontSize: "14px",
-				}}
-			>
-				
-				{
-					list &&
-					list.map((item, index) => {
-						return (
-							<option
-							key={index}
-							value={item.hash}
-							>
-								{item.name}
-							</option>
-						);
-					})
-				}
-
-  		</select>
-
+  			</select>
+			</div>
 		</div>
   );
 }

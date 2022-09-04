@@ -93,8 +93,8 @@
 
 .map-filter-container {
   position: absolute;
-  display: flex;
-  top: 20px;
+  /* display: flex; */
+  top: 30px;
   right: 30px;
 }
 
@@ -108,6 +108,18 @@
   height: 30px;
 }
 
+.filter-wrapper {
+	border-radius: 13px;
+	width: 200px;
+	height: 32px;
+	display:inline-block;
+  overflow:hidden;
+  background:#cccccc;
+  border:1px solid #cccccc;
+	box-shadow: 5px 5px 10px gray;
+	border: 1px solid transparent;
+}
+
 .filter {
-  box-shadow: 5px 5px 10px gray;
+  outline: none;
 }
