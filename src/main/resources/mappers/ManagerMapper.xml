@@ -19,8 +19,8 @@
 	</insert>
 	<!--inserting concert info-->	
 	<insert id="insertConcert" parameterType="Concert">
-		insert into concerts (concertNum,lat,startDate,starKey,status,endDate,`explain`,imageUrl,lng,concertName,starName) 
-		values (null, #{lat}, #{startDate},#{starKey},null,#{endDate},#{explain},#{imageUrl},#{lng},#{concertName},#{starName})		
+		insert into concerts (concertNum,lat,startDate,starKey,status,endDate,`explain`,imageUrl,lng,concertName,starName,placeName) 
+		values (null, #{lat}, #{startDate},#{starKey},null,#{endDate},#{explain},#{imageUrl},#{lng},#{concertName},#{starName},#{placeName})		
 	</insert>
 	<!--adding kpop star into place info-->
 	<update id="updatePlaceKpop" parameterType="Place">
