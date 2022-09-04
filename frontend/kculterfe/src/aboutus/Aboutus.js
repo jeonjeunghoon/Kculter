@@ -57,11 +57,13 @@ function Aboutus(){
           data-aos-delay="1200">
           <Button/>
           </div>
+          
        <FaChevronDown className="chevron" size="40"
         data-aos="fade-up"
         data-aos-duration="2000"
         data-aos-delay="1400"
        />
+        {/* 
           <div className="whoweare"
           data-aos="fade-right"
           data-aos-duration="2000"
@@ -79,22 +81,13 @@ function Aboutus(){
           <span>Are</span>
           
           </div>
-          <div className="logo"
-          data-aos="fade-up"
-          data-aos-duration="2500"
-          >
-            <img src={kpin} size="20"></img>
-            <img src={kpin2}></img>
-            <img src={kpin3}></img>
-            <img src={kpin4}></img>
-
-          </div>
+       
 
           <span className="location-service"
             data-aos="fade-up"
             data-aos-duration="2000"
-          ><span id="location-kpop">케이팝</span> 팬들을 위한 위치서비스</span>
-
+          >Travel Service for<span id="location-kpop">KPOP</span>fans</span>
+         
           <div className="location-p"
                 data-aos="fade-left"
                 data-aos-duration="2000"
@@ -130,20 +123,39 @@ It helps you experience not only K-pop singers <br></br>but also representative 
           </span>
           </div>
 
-      <div className="form2-img1"
+      <div className="form2-img2"
          data-aos="fade-left"
          data-aos-duration="2000">
-        <img src={kmap}></img>
+        <img src={klist}></img>
 
       </div>
-       <div className="form2-a"
+    
+      <div className="form2-list"
           data-aos="fade-left"
           data-aos-duration="2000">
-       <span id="k-map">Map</span>
+       <span id="k-map">List</span>
 
        If you select idol from the idol list, <br></br>the location pin displays music video locations, pictorials, <br></br>and recommended restaurants for a specific idol star<br></br>
     
        </div>
+
+       <div className="form2-img1"
+         data-aos="fade-left"
+         data-aos-duration="2000">
+        <img src={kmap}></img>
+      </div>
+
+       <div className="form2-map"
+          data-aos="fade-left"
+          data-aos-duration="2000">
+
+      
+       <span id="k-map">Map</span>
+
+       맵 에 대한 설명 <br></br>the location pin displays music video locations, pictorials, <br></br>and recommended restaurants for a specific idol star<br></br>
+    
+       </div>
+        */}
        </div>
 
   )
