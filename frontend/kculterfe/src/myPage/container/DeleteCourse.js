@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function DeleteCourse([props]) {
+export async function DeleteCourse( props ) {
     let result;
 
     //await 한 값을 보내준다.

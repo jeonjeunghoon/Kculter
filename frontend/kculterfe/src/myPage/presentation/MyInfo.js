@@ -13,7 +13,7 @@ function MyInfo() {
           {/* 저장한 경로와 좋아요 리스트 선택 경로 네비 */}
           <div className="body-navbar">
               <button onClick={() => { setLikeList(true); setBtnLikeColor('gray'); setBtnPageColor('blue') }
-              } style={{ color:btnPageColor }}>Basic Info</button>
+              } style={{ color:btnPageColor }}>Edit Profile</button>
               <button onClick={() => { setLikeList(false); setBtnLikeColor('blue'); setBtnPageColor('gray') }
               } style={{ color:btnLikeColor }}>Security</button>
           </div>

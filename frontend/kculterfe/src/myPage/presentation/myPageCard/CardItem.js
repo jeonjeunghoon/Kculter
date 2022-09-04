@@ -17,9 +17,7 @@ function CardItem({ props }) {
             data: place
         })
     }
-	// window.sessionStorage.setItem("keyHash", keyHash);
-	// window.sessionStorage.setItem("title", title);
-	// window.sessionStorage.setItem("type", type);
+
 	return (
 		<>
 			<div className="my-5">

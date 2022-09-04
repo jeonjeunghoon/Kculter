@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import styled from 'styled-components';
 import { Form, Container } from 'react-bootstrap';
 import './MyInfo.css';
 import { checkNick } from '../../container/NickCheck';
@@ -38,10 +39,9 @@ export default function EditBasicInfo() {
     getMemberInfo()
     .then(resData => {
       setMemberInfo(resData)
-      const pfUrl = window.sessionStorage.getItem("pfUrl")
-      setPfImg(pfUrl);
+      setPfImgPr(resData.pfUrl);
 
-      // gender 파악
+      // gender 체크
       if (resData.gender == "female") {
         setCheckDefaultGender(false);
       }
@@ -65,7 +65,7 @@ export default function EditBasicInfo() {
     e.preventDefault();
     const imgUrl = e.target.files[0];
     const imgUrlPr = e.target.files[0];
-    var reader = new FileReader();
+    var reader = new FileReader(); // fakepath 보안을 피하기 위해
 
     if (imgUrl == null) {
       setPfImageAvail(false);
@@ -77,6 +77,7 @@ export default function EditBasicInfo() {
     reader.onloadend = function(e) {
       setPfImageAvail(true);
       setPfImg(imgUrl);
+      window.sessionStorage.setItem("pfUrl" ,imgUrl);
       setPfImgPr(e.target.result);
     }
   }
@@ -167,25 +168,30 @@ export default function EditBasicInfo() {
   }
 
   return (
-    <Container id="my-info">
+    <InfoContainer id="my-info">
       <Form>
         {/* 사진 업로드 */}
-        <Form.Group controlId="formFile" className="mb-3">
-          <img src={pfImgPr} alt="profile" width="100" height="130"></img>
+        <Form.Group className='mb-4'>
+          <InfoText>Photo</InfoText>
+          <div className='text-center'>
+            <PfImg src={pfImgPr}></PfImg>
+          </div>
           <Form.Control accept="image/jpg, image/png, image/jpeg" onChange={onChangeProfilImg} type="file" />
         </Form.Group>
 
         {/* 닉네임 */}
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Nick-Name</Form.Label>
+        <Form.Group className="mb-4" controlId="formBasicEmail">
+          <InfoText>Nick-Name</InfoText>
           <Form.Control type="text" placeholder="Enter Your NickName" onChange={onChangeNickName} defaultValue={memberInfo.nickName} />
           <span className={`message ${isNickName ? 'success' : 'error'}`}>{nickNameMessage}</span>
-          <button type="button" disabled={NickNameBtDis} onClick={nicknamedupli} id='btn-check'>Check</button>
+          <div className='text-center'>
+            <CheckButton type="button" disabled={NickNameBtDis} onClick={nicknamedupli}>Check</CheckButton>
+          </div>
         </Form.Group>
 
         {/* 나라 */}
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Contury</Form.Label>
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <InfoText>Contury</InfoText>
           <Select 
             options={options} 
             value={{ label: countryLabel || countryDefault }}
@@ -194,25 +200,68 @@ export default function EditBasicInfo() {
         </Form.Group>
 
         {/* 성별 */}
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Gender</Form.Label>
-          <div className="select-gender">
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <InfoText>Gender</InfoText>
+          <SelectGender className="select-gender">
             <input type='radio' id = "select" name='gender' value='female' checked={checkDefaultGender ? false : true} onClick={(e) => { 
               setGender(e.target.value); setGenderAvail(true); setCheckDefaultGender(false)}} /> {/* checked 초기값 줄 때 추후 리팩토링의 여지가 있다. */}
             <label for ="select">여성</label>
             <input type='radio' id = "select2" name='gender' value='male' checked={checkDefaultGender ? true : false} onClick={(e) => { 
               setGender(e.target.value); setGenderAvail(true); setCheckDefaultGender(true)}}/>
             <label for="select2">남성</label>
-          </div>
+          </SelectGender>
         </Form.Group>
       </Form>
 
       {/* Edit 버튼 */}
-      <button className="cp-btn" 
-        disabled={!(nickNameAvail||countryCodeAvail||genderAvail||pfImageAvail)} 
-        onClick={editMember}>
-          Edit
-      </button>
-    </Container>
+      <div className='text-center'>
+        <button className="cp-btn" 
+          disabled={!(nickNameAvail||countryCodeAvail||genderAvail||pfImageAvail)} 
+          onClick={editMember}>
+            Edit
+        </button>
+      </div>
+    </InfoContainer>
   )
 }
+
+// CSS (styled component 사용)
+
+const blue = '#1755d1';
+const pink = '#f4029b';
+
+const InfoContainer = styled.div`
+  margin: 5rem 30rem 10rem 30rem;
+  border: 5px solid ${blue};
+  padding: 1rem;
+  background: white;
+  @media all and (max-width: 768px) {
+    margin: 1rem 1rem 1rem 1rem;
+  }
+`
+
+const InfoText = styled.div`
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1px;
+`
+
+const PfImg = styled.img.attrs({ alt: 'profile' })`
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+`
+const SelectGender = styled.div`
+  text-align: center;
+`
+
+const CheckButton = styled.button`
+  font-size: 10px;
+  border: none;
+  background-color: ${blue};
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 3px 5px;
+  color: red;
+`

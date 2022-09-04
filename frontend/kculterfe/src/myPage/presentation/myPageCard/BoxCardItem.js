@@ -27,7 +27,8 @@ function BoxCardItem({ props }) {
 
     const DeleteCourseBtn = () => {
         DeleteCourse(props.courseHash)
-		.then(() => {
+		.then(res => {
+            console.log(res);
 			alert("Success on delete")
 		})
 		.catch(err => {

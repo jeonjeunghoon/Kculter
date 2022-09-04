@@ -15,7 +15,6 @@ function BoxLikeList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data); // 데이터 체크
 	}, []);
 
 	return (

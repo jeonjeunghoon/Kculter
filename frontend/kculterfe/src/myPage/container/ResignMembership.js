@@ -6,7 +6,7 @@ export async function ResignMembership() {
     const memberHash = window.sessionStorage.getItem("memberHash")
 
     //await 한 값을 보내준다.
-    return await axios.put('/member/secession', {
+    return await axios.put('/member/secession',null, {
         headers: {
             Authorization: memberHash,
         },

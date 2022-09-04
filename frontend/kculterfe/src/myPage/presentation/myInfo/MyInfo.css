@@ -78,19 +78,8 @@
   white-space: pre-line;
 }
 
-/* 이거도 필요 없? */
-/* #my-info .select-gender {
-  padding: 12px 17px;
-  right: 100px;
-} */
-
-/* 필요 없을 듯? */
-/* #my-info .select-gender input[type="radio"] {
-  display: none;
-} */
-
 #my-info .select-gender input[type="radio"] + label {
-  display: inline-block;
+  /* display: inline-block; */
   cursor: pointer;
   height: 23px;
   width: 90px;
