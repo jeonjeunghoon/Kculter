@@ -29,15 +29,18 @@ export function handleOnClickSave(setModalIsOpen, courseList) {
 	setModalIsOpen(true);
 }
 
-export function handleOnSubmit(e, courseList, setCourseList, courseName, memberNum, setModalIsOpen, dispatch) {
+export function handleOnSubmit(e, courseList, setCourseList, courseName, memberHash, setModalIsOpen, dispatch) {
 	e.preventDefault();
+	setModalIsOpen(false);
+	if (!memberHash) {
+		alert("Please login first");
+		return ;
+	}
 	const jsonData = JSON.stringify({
-		memberNum: memberNum,
-		courseNum: 0,
+		memberHash: memberHash,
 		courseName: courseName,
 		course: courseList,
 	});
-	setModalIsOpen(false);
 	axios.post('/course/', jsonData, {
 		headers:{
 			'Content-Type':'application/json'

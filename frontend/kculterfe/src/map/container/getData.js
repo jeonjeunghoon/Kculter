@@ -25,7 +25,7 @@ export async function getCourseData(kculter, setKculter, dispatch) {
 		name: kculter.course.place[0].name,
 		lat: kculter.course.place[0].lat,
 		lng: kculter.course.place[0].lng,
-		placeNum: kculter.course.place[0].placeNum,
+		placeHash: kculter.course.place[0].placeHash,
 		placeType: kculter.course.place[0].placeType,
 		status: kculter.course.place[0].status,
 	}
@@ -89,6 +89,7 @@ export async function getKculterData(setKculter, type, keyHash, dispatch) {
 	const place = await getPlaceApi("/place/", pramType, keyHash);
 	const pin = await getPinApi("/pin/", pramType, keyHash);
 	if (place && pin && place.data && pin.data) {
+		console.log(place);
 		setKculter(prev => ({
 			...prev,
 			center: {
@@ -111,7 +112,7 @@ export async function getKculterData(setKculter, type, keyHash, dispatch) {
 			name: place.data[0].name,
 			lat: place.data[0].lat,
 			lng: place.data[0].lng,
-			placeNum: place.data[0].placeNum,
+			placeHash: place.data[0].placeHash,
 			placeType: place.data[0].placeType,
 			status: place.data[0].status,
 		}

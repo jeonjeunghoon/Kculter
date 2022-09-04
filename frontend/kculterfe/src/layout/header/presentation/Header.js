@@ -70,7 +70,7 @@ function Header(props) {
 						/>
 					</button>
 				</Link>
-				<i class="bi bi-list" onClick={() => {
+				<i className="bi bi-list" onClick={() => {
 						setOpen(!isOpen);
 					}}/>
 			</div>
