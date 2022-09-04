@@ -18,12 +18,12 @@ public class Concert {
     private int status; // 상태 1: 저장 2: 삭제
     private String starName; //연예인 이름
     private String placeName;
+    private String buySite;
 
 
     public Concert() {}
 
-
-    public Concert(int concertNum, String concertHash, String concertName, String explain, Date startDate, Date endDate, double lat, double lng, int starKey, String starHash, String imageUrl, int status, String starName, String placeName) {
+    public Concert(int concertNum, String concertHash, String concertName, String explain, Date startDate, Date endDate, double lat, double lng, int starKey, String starHash, String imageUrl, int status, String starName, String placeName, String buySite) {
         this.concertNum = concertNum;
         this.concertHash = concertHash;
         this.concertName = concertName;
@@ -38,8 +38,8 @@ public class Concert {
         this.status = status;
         this.starName = starName;
         this.placeName = placeName;
+        this.buySite = buySite;
     }
-
 
     public int getConcertNum() {
         return this.concertNum;
@@ -153,6 +153,13 @@ public class Concert {
         this.placeName = placeName;
     }
 
+    public String getBuySite() {
+        return this.buySite;
+    }
+
+    public void setBuySite(String buySite) {
+        this.buySite = buySite;
+    }
 
     @Override
     public String toString() {
@@ -171,7 +178,9 @@ public class Concert {
             ", status='" + getStatus() + "'" +
             ", starName='" + getStarName() + "'" +
             ", placeName='" + getPlaceName() + "'" +
+            ", buySite='" + getBuySite() + "'" +
             "}";
     }
+
 
 }
