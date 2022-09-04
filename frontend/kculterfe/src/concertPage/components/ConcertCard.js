@@ -13,7 +13,7 @@ function CardItem(item) {
 	const handleShow = () => setShow(true);
 	const handleClose = () => setShow(false);
 	const dispatch = useDispatch();
-
+	
 	return (
 		<>
 			<a className='cardLink' onClick={handleShow}>

@@ -3,13 +3,12 @@ import './ConcertSearchBar.css';
 import PropTypes from 'prop-types'
 import { Form } from 'react-bootstrap';
 
-function ConcertSearchBar({search, onChange}) {
+function ConcertSearchBar({search, handleSearch}) {
 	return (
 		<div className="ConcertSearchBarContainer">
-			{/* <input type="text" placeholder="SEARCH" onChange={onChange} /> */}
 			<Form>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
-					<Form.Control placeholder="SEARCH" onChange={onChange} />
+					<Form.Control placeholder="SEARCH" onChange={handleSearch} />
      			</Form.Group>
 			</Form>
 		
