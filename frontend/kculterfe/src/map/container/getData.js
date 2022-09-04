@@ -89,7 +89,6 @@ export async function getKculterData(setKculter, type, keyHash, dispatch) {
 	const place = await getPlaceApi("/place/", pramType, keyHash);
 	const pin = await getPinApi("/pin/", pramType, keyHash);
 	if (place && pin && place.data && pin.data) {
-		console.log(place);
 		setKculter(prev => ({
 			...prev,
 			center: {

@@ -9,14 +9,12 @@ function FilterToggle(props) {
 				}}
 				onClick={() => {
 					props.setIsKpop(() => true);
-					props.setPlaceholder(() => "Select k-pop stars!")
 				}}
 			>
 			</button>
 			<button className='culture-toggle'
 				onClick={() => {
 					props.setIsKpop(() => false);
-					props.setPlaceholder(() => "Select culture place!!");
 				}}
 			>
 			</button>
