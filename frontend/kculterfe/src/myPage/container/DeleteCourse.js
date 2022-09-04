@@ -4,11 +4,10 @@ export async function DeleteCourse( props ) {
     let result;
 
     //await 한 값을 보내준다.
-    return await axios.put('/course', {
+    return await axios.delete('/course',{
         headers: {
-            Authorization: props.courseHash,
-        },
-        responseType: 'json'
+            CourseHash: props.courseHash,
+        }
     })
     .then(function(res){
         result = res.data;
