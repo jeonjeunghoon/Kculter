@@ -32,6 +32,10 @@ async function fetchList(isKpop, setList) {
 	if (isKpop) {
 		getKpopList()
 		.then(function(res) {
+			kList.push({
+				hash: 0,
+				name: "Select k-pop stars",
+			});
 			res.map(item => {
 				kList.push({
 					hash: item.keyHash,
@@ -46,6 +50,10 @@ async function fetchList(isKpop, setList) {
 	} else {
 		getCultureList()
 		.then(function(res) {
+			kList.push({
+				hash: 0,
+				name: "Select culture place",
+			});
 			res.map(item => {
 				kList.push({
 					hash: item.keyHash,
@@ -62,24 +70,30 @@ async function fetchList(isKpop, setList) {
 
 function MapFilter(props) {
 	const [isKpop, setIsKpop] = useState(true);
-	const [placeholder, setPlaceholder] = useState("Select k-pop stars!");
 	const [list, setList] = useState([]);
+	const [value, setValue] = useState(undefined);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		fetchList(isKpop, setList);
+		setValue(() => "");
 	}, [isKpop]);
+	useEffect(() => {
+		setValue(() => undefined);
+	}, [value])
 
   return(
 		<div className='map-filter-container'>
+
 			<FilterToggle
 				setKculter={props.setKculter}
 				setIsKpop={setIsKpop}
-				setPlaceholder={setPlaceholder}
 			/>
+
   		<select className='filter'
+				value={value}
 				onChange={(e) => {
-					if (e.target.value !== "placeholder") {
+					if (e.target.value !== "0") {
 						fetchSelected(list, e, isKpop, props.setKculter, dispatch);
 					}
 				}}
@@ -91,23 +105,23 @@ function MapFilter(props) {
 					fontSize: "14px",
 				}}
 			>
-  		  <option
-					value="placeholder"
-				>
-					{placeholder}
-				</option>
-				{list &&
-				list.map((item, index) => {
-					return (
-						<option
-						key={index}
-						value={item.hash}
-						>
-							{item.name}
-						</option>
-					);
-				})}
+				
+				{
+					list &&
+					list.map((item, index) => {
+						return (
+							<option
+							key={index}
+							value={item.hash}
+							>
+								{item.name}
+							</option>
+						);
+					})
+				}
+
   		</select>
+
 		</div>
   );
 }

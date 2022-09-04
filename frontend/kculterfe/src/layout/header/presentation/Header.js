@@ -16,6 +16,7 @@ function Header(props) {
 	const [title, setTitle] = useState(null);
 	const [isOpen, setOpen] = useState(true);
 	const sideClose = () => setOpen(false);
+	const handleOpen = (e) => setOpen(e);
 
 	useEffect(() => {
 		switch (location.pathname) {
@@ -52,7 +53,7 @@ function Header(props) {
 	return (
 		<header>
 			<div className='left'>
-				<OffCanvasSidebar isOpen={isOpen} sideClose={sideClose}/>
+				<OffCanvasSidebar isOpen={isOpen} sideClose={sideClose} handleOpen={handleOpen}/>
 				<img
 					src={img}
 					alt='logo'
@@ -70,7 +71,8 @@ function Header(props) {
 						/>
 					</button>
 				</Link>
-				<i class="bi bi-list" onClick={() => {
+				<i className="bi bi-list"
+					onClick={() => {
 						setOpen(!isOpen);
 					}}/>
 			</div>

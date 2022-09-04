@@ -1,6 +1,7 @@
 import {
 	CLICK_PLACE
 } from "../../redux/reducer";
+import stayLogo from '../../src_asset/stay_logo.png';
 
 function useFocusOn(place, setCenter, setZoom, dispatch) {
 	setCenter(() => ({
@@ -17,7 +18,7 @@ function useFocusOn(place, setCenter, setZoom, dispatch) {
 export function handleCard(data, head, setCenter, setZoom, dispatch) {
 	const place = {
 		head: head,
-		imageUrl: data.imageUrl,
+		imageUrl: stayLogo,
 		address: data.addr1,
 		culture: "",
 		explain: "",
@@ -26,7 +27,7 @@ export function handleCard(data, head, setCenter, setZoom, dispatch) {
 		name: data.title,
 		lat: Number(data.mapy),
 		lng: Number(data.mapx),
-		placeNum: 0,
+		placeHash: 0,
 		placeType: 0,
 		status: 0,
 	}
@@ -45,7 +46,7 @@ export function handleCustomMarker(data, head, setCenter, setZoom, dispatch, pin
 		name: data.name,
 		lat: data.lat,
 		lng: data.lng,
-		placeNum: data.placeNum,
+		placeHash: data.placeHash,
 		placeType: data.placeType,
 		status: data.status,
 	}
@@ -64,7 +65,7 @@ export function handleGoogleMarkerAndSearch(data, head, setCenter, setZoom, disp
 		name: data.name,
 		lat: 0,
 		lng: 0,
-		placeNum: 0,
+		placeHash: 0,
 		placeType: 0,
 		status: 0,
 	}

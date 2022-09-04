@@ -12,6 +12,7 @@ function MapSideNav(props) {
 	const place = useSelector(state => state.place);
 
 	useEffect(() => {
+		props.handleOpen(true);
 	}, [place]);
 
 	return (
