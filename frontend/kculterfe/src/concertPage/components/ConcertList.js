@@ -27,12 +27,10 @@ function ConcertList() {
 	}, []);
 
 	const filterTitle = data.filter((p) => {
-		console.log(p.concertName);
 		return p.concertName.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 
 	const selectedConcert = filterTitle.filter((p) => {
-		console.log(p.starHash);
 		return p.starName.replace(" ", "").toLocaleLowerCase().includes(select.toLocaleLowerCase());
 	});
 
