@@ -4,12 +4,15 @@ import ConcertCard from './ConcertCard';
 import { getConcertList } from '../container/GetConcertListData';
 import ConcertSearchBar from './ConcertSearchBar';
 import IdolSelect from './IdolSelect';
-import items from '../data/card.json';
 
 function ConcertList() {
 	const [search, setSearch] = useState("");
-	const onChange = (e) => {
+	const [select, setSelect] = useState("");
+	const handleSearch = (e) => {
 		setSearch(e.target.value)
+	}
+	const handleSelect = (e) => {
+		setSelect(e.target.value)
 	}
 
 	const [data, setData] = useState([]);
@@ -21,25 +24,30 @@ function ConcertList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data);
 	}, []);
 
 	const filterTitle = data.filter((p) => {
+		console.log(p.concertName);
 		return p.concertName.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
+	});
+
+	const selectedConcert = filterTitle.filter((p) => {
+		console.log(p.starHash);
+		return p.starName.replace(" ", "").toLocaleLowerCase().includes(select.toLocaleLowerCase());
 	});
 
 	return (
 		<div className='ConcertListBody'>
 			<div className='Filter'>
 				<div className="ConcertSearchBar">
-					<ConcertSearchBar value={search} onChange={onChange} />
+					<ConcertSearchBar value={search} handleSearch={handleSearch} />
 				</div>
 				<div className='IdolSelect'>
-					<IdolSelect/>
+					<IdolSelect value={select} handleSelect={handleSelect}/>
 				</div>
 			</div>
 			<div className="CardContainer">
-				{ filterTitle.map((concertData, index) => 
+				{ selectedConcert.map((concertData, index) => 
 						<div className='CardDiv'
 							key={index}
 						>
