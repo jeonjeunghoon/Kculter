@@ -40,9 +40,6 @@ function ConcertList() {
 				<div className="ConcertSearchBar">
 					<ConcertSearchBar value={search} handleSearch={handleSearch} />
 				</div>
-				<div className='IdolSelect'>
-					<IdolSelect value={select} handleSelect={handleSelect}/>
-				</div>
 			</div>
 			<div className="CardContainer">
 				{ selectedConcert.map((concertData, index) => 
@@ -61,6 +58,7 @@ function ConcertList() {
 							starHash = {concertData.starHash} // 스타 해쉬
 							img = {concertData.imageUrl}		// 이미지 url
 							starName = {concertData.starName}	// 연예인 이름
+							buySite = {concertData.buySite}		// 예약 링크
 							/>
 						</div>
 					)}
