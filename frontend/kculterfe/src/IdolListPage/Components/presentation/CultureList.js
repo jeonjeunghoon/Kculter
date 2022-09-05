@@ -58,8 +58,7 @@ function CultureList({}) {
 					type={2}
 					title={cultureCard.name.replace(/\n/g, " ")}
 					path_photo={cultureCard.fileUrl}
-					num_like={cultureCard.likeCount}
-					num_spot={cultureCard.likeCount}
+					num_spot={cultureCard.spot}
 					explain={cultureCard.explain}
 					/>
 				</div>) }

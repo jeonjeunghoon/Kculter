@@ -27,47 +27,46 @@ function Aboutus(){
   })
   return(
     <div className={styles.background}>
-
-    <div className={styles.aboutCon}>
-      {/* <img src={aboutbackgrond}></img> */}
-      <div className={styles.aboutTop}>
-      <MainNavbar />
-      </div>
-      <div className={styles.gridContainer}>
-          <div className={styles.mainLogo}>
-              <img src={klogo} data-aos="zoom-in"
+      <div className={styles.aboutCon}>
+        {/* <img src={aboutbackgrond}></img> */}
+        <div className={styles.aboutTop}>
+        <MainNavbar />
+        </div>
+        <div className={styles.gridContainer}>
+            <div className={styles.mainLogo}>
+                <img src={klogo} data-aos="zoom-in"
+                data-aos-duration="2000"
+                />
+            </div>
+            <div className={styles.aboutKculter}
+              data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="1000"
+            >
+                <span id={styles.travel}>
+                Travel Helper 
+                </span><br></br>
+                <div className={styles.korean}>
+                  <span id={styles.tokorea}>to Korea for</span>
+                  <span id={styles.kpop}>KPOP</span> 
+                  <span>Fans</span>
+                </div>
+            </div>
+            <div>
+              <FaChevronDown className={styles.chevron} size="40"
+              data-aos="fade-up"
               data-aos-duration="2000"
+              data-aos-delay="1400"
               />
-          </div>
-          <div className={styles.aboutKculter}
-            data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="1000"
-          >
-              <span id={styles.travel}>
-              Travel Helper 
-              </span><br></br>
-              <div className={styles.korean}>
-                <span id={styles.tokorea}>to Korea for</span>
-                <span id={styles.kpop}>KPOP</span> 
-                <span>Fans</span>
-              </div>
-          </div>
-          <div>
-            <FaChevronDown className={styles.chevron} size="40"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-delay="1400"
-            />
-          </div>
-          <div className={styles.mainbtn2}
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-delay="1200">
-            <Button/>
-          </div>
+            </div>
+            <div className={styles.mainbtn2}
+              data-aos="fade-up"
+              data-aos-duration="2000"
+              data-aos-delay="1200">
+              <Button/>
+            </div>
+        </div>
       </div>
-
         {/* 
           <div className="whoweare"
           data-aos="fade-right"
@@ -161,7 +160,6 @@ It helps you experience not only K-pop singers <br></br>but also representative 
     
        </div>
         */}
-       </div>
     </div>
   )
 }
