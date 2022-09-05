@@ -22,8 +22,45 @@
   top: 70%;
   transform: translate(-50%);
   margin-left: 70px;
-  width: 30px;
-  height: 30px;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+.stay-toggle {
+	border-radius: 8px;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 10px gray;
+  width: 50px;
+  height: 60px;
+	border: none;
+	padding: 0;
+	margin-right: 10px;
+}
+
+.stay-toggle img {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.tour-toggle {
+	border-radius: 8px;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 10px gray;
+  width: 50px;
+  height: 60px;
+	border: none;
+	padding: 0;
+}
+
+.tour-toggle img {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.card-toggle p {
+	margin: 0;
 }
 
 .map-card .arrow {
@@ -79,10 +116,12 @@
   width: 200px;
   height: 32px;
   border: 1px solid transparent;
-  border-radius: 13px;
+	font-family: inherit;
+  border-radius: 8px;
   box-shadow: 5px 5px 10px gray;
   font-size: 14px;
   text-overflow: ellipses;
+	padding-left: 10px;
 }
 
 .search-box {
@@ -93,33 +132,69 @@
 
 .map-filter-container {
   position: absolute;
-  /* display: flex; */
   top: 30px;
   right: 30px;
 }
 
+.filter {
+	appearance : none;
+	-o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+	font-family: inherit;
+	width: 200px;
+	height: 32px;
+	border-radius: 8px;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 10px gray;
+	font-size: 14px;
+	text-overflow: ellipses;
+	padding-left: 10px;
+	padding-right: 25px;
+	background: url('../drop-down.png') no-repeat 95% 50%/15px auto;
+	background-color: white;
+}
+
+.filter-toggle {
+	display: flex;
+  justify-content: end;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
 .kpop-toggle {
-  width: 30px;
-  height: 30px;
+	border-radius: 8px;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 10px gray;
+  width: 50px;
+  height: 60px;
+	border: none;
+	padding: 0;
+	margin-right: 10px;
+}
+
+.kpop-toggle img {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
 }
 
 .culture-toggle {
-  width: 30px;
-  height: 30px;
-}
-
-.filter-wrapper {
-	border-radius: 13px;
-	width: 200px;
-	height: 32px;
-	display:inline-block;
-  overflow:hidden;
-  background:#cccccc;
-  border:1px solid #cccccc;
+	border-radius: 8px;
+	border: 1px solid #cccccc;
 	box-shadow: 5px 5px 10px gray;
-	border: 1px solid transparent;
+  width: 50px;
+  height: 60px;
+	border: none;
+	padding: 0;
 }
 
-.filter {
-  outline: none;
+.culture-toggle img {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.filter-toggle p {
+	margin: 0;
 }

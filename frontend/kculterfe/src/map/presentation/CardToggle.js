@@ -1,12 +1,10 @@
 import React from 'react';
+import kpop from '../../src_asset/stay_logo.png';
 
 function CardToggle(props) {
 	return (
 		<div className="card-toggle">
 			<button className='stay-toggle'
-				style={{
-					backgroundColor:"red",
-				}}
 				onClick={() => {
 					props.setNear(prev => ({
 						...prev,
@@ -14,6 +12,13 @@ function CardToggle(props) {
 					}));
 				}}
 			>
+				<img
+					src={kpop}
+					alt='filter'
+				/>
+				<p>
+					Stay
+				</p>
 			</button>
 			<button className='tour-toggle'
 				onClick={() => {
@@ -23,6 +28,13 @@ function CardToggle(props) {
 					}));
 				}}
 			>
+				<img
+					src={kpop}
+					alt='filter'
+				/>
+				<p>
+					Tour
+				</p>
 			</button>
 		</div>
 	);

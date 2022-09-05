@@ -19,7 +19,7 @@ import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import MapFilter from './MapFilter'
 
-import staypin from '../test.png';
+import staypin from '../../src_asset/stay_logo.png';
 
 function MapRender(props) {
 	const dispatch = useDispatch();

@@ -19,7 +19,10 @@ function Search({ setCenter, setZoom, dispatch }) {
 		>
 			<div className="search-box">
 			<div className="input-holder">
-			    <input className='autocomplete-input' type="text" placeholder="Search place"/>
+			    <input className='autocomplete-input'
+						type="text"
+						placeholder="Search place"
+					/>
 			</div>
 			</div>
 		</Autocomplete>
