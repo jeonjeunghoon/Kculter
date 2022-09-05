@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/MyPageNav.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 function MyPageBody() {
     const [viewMyMap, setLikeList] = useState(true)
@@ -23,26 +23,26 @@ function MyPageBody() {
     )
 }
 
-const blue = '#1755d1';
+// css
+const blue = '#3172F6';
 
 const NavBtn = styled.button`
     margin-right: 2rem;
     margin-left: 2rem;
-    color: ${(props) => (props.select ? blue : 'gray')};
     border: 0px;
-    // border-bottom: 8px solid blue;
-    // ${props => {
-    //     if (props.select == true) {
-    //         `
-    //         color: blue;
-    //         border-bottom: 8px solid blue;
-    //         `
-    //     }
-    //     else {
-    //         `
-    //         color: gray;
-    //         `
-    }}};
+    ${props => {
+        if (props.select === true) {
+            return`
+            color: ${blue};
+            border-bottom: 8px solid ${blue};
+            `
+        }
+        else {
+            return`
+            color: gray;
+            `
+    }
+    }};
 `
 
 export default MyPageBody;
