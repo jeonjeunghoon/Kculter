@@ -3,7 +3,7 @@ import kpop from "../../src_asset/stay_logo.png"
 
 function FilterToggle(props) {
 	return (
-		<div className="filter-toggle">
+		<div className="filter-toggle-container">
 			<button className="kpop-toggle"
 				onClick={() => {
 					props.setIsKpop(() => true);

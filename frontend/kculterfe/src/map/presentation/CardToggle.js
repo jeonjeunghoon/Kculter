@@ -3,7 +3,7 @@ import kpop from '../../src_asset/stay_logo.png';
 
 function CardToggle(props) {
 	return (
-		<div className="card-toggle">
+		<div className="card-toggle-container">
 			<button className='stay-toggle'
 				onClick={() => {
 					props.setNear(prev => ({
