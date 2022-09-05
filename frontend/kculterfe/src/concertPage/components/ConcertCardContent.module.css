@@ -1,3 +1,7 @@
+.modal {
+	--bs-modal-padding: none !important;
+}
+
 @media all and (min-width: 992px) {
 	.concert_modal_body {
 		display: grid;
@@ -18,10 +22,8 @@
 	margin-left: 1rem;
 }
 
-.concert_title {
-	font-size: xx-large;
-	font-style: bold;
-	margin-top: -20px;
+.card_item_title {
+	margin-top: 1rem;
 }
 
 .concert_explain {
@@ -30,13 +32,26 @@
 }
 
 .body_r_end {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr auto;
 	align-items: flex-end;
 	justify-content: end;
 }
 
+.body_r_end_l {
+	display: flex;
+}
+
 .reserve_btn {
-	margin-right: 10px;
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+}
+
+.close_btn {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 1rem;
+	margin-right: 1rem;
 }
 
 .modal_concert_img {

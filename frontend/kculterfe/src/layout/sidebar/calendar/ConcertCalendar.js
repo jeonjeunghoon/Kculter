@@ -11,7 +11,7 @@ export default function ConcertCalendar() {
 	return (
 		<>
 			<div className="calendar_container">
-				<Calendar defaultView="month" onChange={onChange} value={value}/>
+				<Calendar defaultView="month" minDetail="month" onChange={onChange} value={value}/>
 			</div>
 		</>
 	)
