@@ -4,12 +4,13 @@
 }
   .navbarContainer {
 	width: 100vw;
-	height: 80px;
+	height: 50px;
 	display: grid;
 	grid-template-columns: 280px 1fr;
   }
   .navbarLogo {
 	align-self: center;
+	height: 80px;
   }
   .navbarLogo img {
 	width: 100%;
@@ -38,7 +39,7 @@
 	text-decoration: none;
 	padding: 1vw;
 	height: 100%;
-	font-size: 23px;
+	font-size: 2rem;
   }
   .navLinks:hover {
 	color: #ff59f6;
@@ -56,13 +57,16 @@
 	.navMenu {
 	  max-width: 50vw;
 	  justify-self: right;
-	  margin-top: 1vh;
+	  margin-top: 10px;
 	  margin-right: 1vw;
 	}
 	.navItem {
 	  display: block;
 	  margin-left: 1vw;
 	  margin-right: 1.5rem;
+	}
+	.navLinks{
+		font-size: 1rem;
 	}
   }
   
