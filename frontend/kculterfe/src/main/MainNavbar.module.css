@@ -19,6 +19,7 @@
   .navMenu {
 	display: grid;
 	justify-content: end;
+	align-items: center;
 	grid-template-columns: repeat(2, auto);
 	grid-gap: 10px;
 	list-style: none;
@@ -53,17 +54,19 @@
 	}
 	.navbarLogo{
 	  justify-self: left;
+	  align-items: baseline;
 	}
 	.navMenu {
 	  max-width: 50vw;
 	  justify-self: right;
-	  margin-top: 10px;
+	  margin-top: 20px;
 	  margin-right: 1vw;
 	}
 	.navItem {
 	  display: block;
 	  margin-left: 1vw;
 	  margin-right: 1.5rem;
+	  margin-top: 0;
 	}
 	.navLinks{
 		font-size: 1rem;
