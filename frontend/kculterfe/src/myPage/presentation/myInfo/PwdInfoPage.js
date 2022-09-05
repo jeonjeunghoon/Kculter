@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
-import './MyInfo.css';
-import '../../../login/presentation/Signup.css';
 import { ChangeNewPwd } from '../../container/ChangeNewPwd';
 import { CheckPwd } from '../../container/CheckPwd';
 import { ResignMembership } from '../../container/ResignMembership';
 import { Modal } from 'react-bootstrap';
+import InfoContainer from '../common/InfoContainer';
+import ColorButton from '../common/ColorButton';
+import styled from 'styled-components';
 
 export default function EditPwdInfo() {
   const [NewPwd, setNewPwd] = useState(''); //신비밀번호
   const [CurrentPwd, setCurrentPwd] = useState(false); // 구비밀번호
 
-  //버튼 비활성화
-  const [confirmBt,setConfirmBt] = useState(false);
-  const [confirmPwd,setConfirmPwd] = useState(true);
-
   //오류 메시지
   const [cfPwdStyle,setCfPwdStyle] = useState(false);
-  const [verifyMessage, setVerMessage] = useState('');
   const [isPwd, setIsPwd] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [pwdMessage, setPwdMessage] = useState('');
@@ -54,6 +50,7 @@ export default function EditPwdInfo() {
     {
       setNewPwd(pwdRegex);
       setPwdMessage('OK :)');
+      setCfPwdStyle(true);
       setIsPwd(true);
     }
   }
@@ -75,6 +72,12 @@ export default function EditPwdInfo() {
   }
 
   const newPasswordConfirm = async () =>{
+    if (await checkPwd() != 200) {
+      return ;
+    }
+    if (isPasswordConfirm == false) {
+      alert("Check confirm new password")
+    }
     const result = await ChangeNewPwd(NewPwd);
     if(result == 200){
       alert("Password update success");
@@ -105,66 +108,73 @@ export default function EditPwdInfo() {
     const result = await CheckPwd(CurrentPwd);
     if(result == 200){
       //200이면 이제 잘 받아왔으니 OK 띄워주고 disabled를 풀어줘야 함
-      setVerMessage("OK");
-      setConfirmPwd(false);
-      setCfPwdStyle(true);
-      setConfirmBt(true);
+      return result;
       
     }else{
-      setVerMessage("Wrong password");
-      setConfirmPwd(true);
-      setCfPwdStyle(false);
+      alert("Check current password")
+      return result;
     }
   }
 
   return (
-    <Container id="my-info">
-        {/* 현재 비밀번호 */}
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Current Password</Form.Label>
-        <Form.Control disabled={confirmBt} type="password" placeholder="Current Password" onChange={checkCurrentPassword}/>
-        <span className={`message ${cfPwdStyle ? 'success' : 'error'}`}>{verifyMessage}</span>
-        <button disabled={confirmBt} style={{color:'white'}} className="close-btn" onClick={checkPwd}>confirm</button>
-      </Form.Group>
+    <>
+      <InfoContainer id="my-info">
+          {/* 현재 비밀번호 */}
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <InfoText>Current Password</InfoText>
+          <Form.Control type="password" placeholder="Current Password" onChange={checkCurrentPassword}/>
+        </Form.Group>
 
-      {/* 새로운 비밀번호 */}
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>New Password</Form.Label>
-        <Form.Control disabled={confirmPwd} type="password" placeholder="New Password" onChange={checkNewPassword}/>
-        <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
-      </Form.Group>
+        {/* 새로운 비밀번호 */}
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <InfoText>New Password</InfoText>
+          <Form.Control type="password" placeholder="New Password" onChange={checkNewPassword}/>
+          <text className={`message ${isPwd ? 'success' : 'error'} display-linebreak`}>{pwdMessage}</text>
+        </Form.Group>
 
-      {/* 새로운 비밀번호 확인 */}
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm New Password</Form.Label>
-        <Form.Control disabled={confirmPwd} type="password" placeholder="Confirm New Password" onChange={onChangePasswordConfirm}/>
-        <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
-      </Form.Group>
+        {/* 새로운 비밀번호 확인 */}
+        <Form.Group className="mb-4" controlId="formBasicPassword">
+          <InfoText>Confirm New Password</InfoText>
+          <Form.Control type="password" placeholder="Confirm New Password" onChange={onChangePasswordConfirm}/>
+          <span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>
+        </Form.Group>
 
-      {/* 비밀번호 변경 버튼 */}
-      <button style={{color:'white'}} disabled={!(cfPwdStyle&&isPasswordConfirm)} className="close-btn" onClick={newPasswordConfirm}>confirm</button>
+        {/* 비밀번호 변경 버튼 */}
+        <div className="text-center">
+          <button style={{color:'white'}} disabled={!(cfPwdStyle&&isPasswordConfirm)} className="close-btn" onClick={newPasswordConfirm}>New password confirm</button>
+        </div>
 
+      </InfoContainer>
       {/* 회원 탈퇴 버튼 */}
-      <div>
-        <button style={{color:'white'}} className="close-btn" onClick={handleShow}>Resign membership</button>
+      <div className="text-center m-5">
+        <ColorButton disabled='true' text={'Resign membership'} onClick={handleShow}></ColorButton>
       </div>
-
+      
+      {/* 회원탈퇴 Modal 창 */}
       <Modal className={""} show={show} onHide={handleClose}>
-          회원 탈퇴
         <Modal.Body>
-          회원 탈퇴할시 사항들
+          After deleting account, you cannot use ‘K-culter Login’ to sign-in other sites.
         </Modal.Body>
         <Modal.Footer>
-          <input type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)} />회원탈퇴
-          <button disabled={!bChecked} onClick={resignConfirm}>
-            회원탈퇴 버튼
-          </button>
-          <button onClick={handleClose}>
+          <input type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)} />I check all instructions and agree.
+          <ColorButton color={pink} check={bChecked} text={'Resign'} disabled={bChecked} onClick={resignConfirm}>
+          </ColorButton>
+          <ColorButton color={blue} check='true' disabled='true' text={'Cancel'} onClick={handleClose}>
             Cancel
-          </button>
+          </ColorButton>
         </Modal.Footer>
       </Modal>
-
-    </Container>
+    </>
   )
 }
+
+// css
+
+const blue = '#1755d1';
+const pink = '#f4029b';
+
+const InfoText = styled.div`
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1px;
+`

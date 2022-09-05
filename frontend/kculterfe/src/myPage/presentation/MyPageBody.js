@@ -1,48 +1,20 @@
 import React, { useState } from 'react';
-import '../styles/MyPageNav.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
-import styled, { css } from 'styled-components';
+import MyPageNavbar from './common/MyPageNavbar';
 
 function MyPageBody() {
     const [viewMyMap, setLikeList] = useState(true)
-    const [myPage, setMyPage] = useState(true)
-    const [likePage, setLikePage] = useState(false)
 
     console.log("메인 바디");
     return (
         <div id='my-body'>
             {/* 저장한 경로와 좋아요 리스트 선택 경로 네비 */}
-            <div className="body-navbar">
-                <NavBtn select={myPage} onClick={() => {setLikeList(true); setMyPage(true); setLikePage(false)}}>My map</NavBtn>
-                <NavBtn select={likePage} onClick={() => {setLikeList(false); setMyPage(false); setLikePage(true)}}>Like list</NavBtn>
-            </div>
+            <MyPageNavbar setLikeList={setLikeList} firstPageName="My map" secondPageName="Like list"/>
             {/* 저장한 경로 리스트 */}
             { viewMyMap ? <BoxCardList/> : <BoxLikeList/> }
         </div>
     )
 }
-
-const blue = '#1755d1';
-
-const NavBtn = styled.button`
-    margin-right: 2rem;
-    margin-left: 2rem;
-    color: ${(props) => (props.select ? blue : 'gray')};
-    border: 0px;
-    // border-bottom: 8px solid blue;
-    // ${props => {
-    //     if (props.select == true) {
-    //         `
-    //         color: blue;
-    //         border-bottom: 8px solid blue;
-    //         `
-    //     }
-    //     else {
-    //         `
-    //         color: gray;
-    //         `
-    }}};
-`
 
 export default MyPageBody;

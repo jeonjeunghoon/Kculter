@@ -42,6 +42,7 @@ public class PlaceController {
             return null;
         }
 
+        //모든 장소정보의 placeNum을 해쉬한다.
         for(Place place : placeList){
             String placeNumHash = encryption.aesEncrypt(Integer.toString(place.getPlaceNum()));
             place.setPlaceHash(placeNumHash);

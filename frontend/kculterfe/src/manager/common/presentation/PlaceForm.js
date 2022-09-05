@@ -20,8 +20,8 @@ function PlaceForm(props){
     const [address, setAddress] = useState();
     const [file,setFile] = useState();
 
-    const list = location.state.list;
-    const places = location.state.places
+    const list = location.state.list; //kpop 리스트 or culture 리스트
+    const places = location.state.places //모든 장소 리스트
 
     //유효성 검사하기 위해 만든 변수들
     const [nameDis, setNameDis] = useState(false);
