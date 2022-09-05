@@ -58,7 +58,7 @@ function IdolList({}) {
 						type={1}
 						title={idolcard.name.replace(/\n/g, " ")}
 						path_photo={idolcard.fileUrl}
-						num_spot={idolcard.likeCount}
+						num_spot={idolcard.spot}
 						explain={idolcard.explain}
 						pin={idolcard.pin}
 						/>
