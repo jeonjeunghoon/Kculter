@@ -38,12 +38,12 @@ function BoxCardItem({ props, dayNum }) {
 		.then(() => {
 			alert("Success on delete")
             setShow(false);
-            window.sessionStorage.reload(); // 여기 페이지 재 렌더링이 잘 안된다?
+            window.location.reload(); // 여기 페이지 재 렌더링이 잘 안된다?
 		})
 		.catch(err => {
             alert("Can not delete")
             setShow(false);
-            // window.sessionStorage.reload();
+            window.location.reload();
 			console.log(err);
 		});
     }
