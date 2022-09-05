@@ -52,6 +52,7 @@ function StoreData(props){
                 }
             })
             .catch(function(error){
+                alert("서버 저장 실패!");
                 console.log(error);
             })
 
@@ -76,6 +77,7 @@ function StoreData(props){
                     }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
                 
@@ -97,6 +99,7 @@ function StoreData(props){
                     }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }else if(url.includes('concert')){ //콘서트 추가라면 진입
@@ -119,6 +122,7 @@ function StoreData(props){
                     }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }else if(url.includes('pin')){ //핀추가라면 진입
@@ -141,6 +145,7 @@ function StoreData(props){
                     }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }
