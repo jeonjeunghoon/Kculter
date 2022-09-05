@@ -146,7 +146,7 @@ export default function EditPwdInfo() {
 
       </InfoContainer>
       {/* 회원 탈퇴 버튼 */}
-      <div className="text-center">
+      <div className="text-center m-5">
         <ColorButton disabled='true' text={'Resign membership'} onClick={handleShow}></ColorButton>
       </div>
       
