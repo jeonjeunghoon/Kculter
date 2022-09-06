@@ -21,18 +21,18 @@ public class S3FileUploadServiceTest {
     
     Logger logger = LoggerFactory.getLogger(S3FileUploadServiceTest.class);
 
-    @Test
-    @DisplayName("s3 import 테스트")
-    void testUploadtoS3() throws IOException{
-        //given
-        //임의의 파일을 만든다.
-        MockMultipartFile image = new MockMultipartFile("file", "사진업로드.png", "image/jpeg", new FileInputStream("/Users/hyunjinjo/Desktop/사진업로드.png"));
+    // @Test
+    // @DisplayName("s3 import 테스트")
+    // void testUploadtoS3() throws IOException{
+    //     //given
+    //     //임의의 파일을 만든다.
+    //     MockMultipartFile image = new MockMultipartFile("file", "사진업로드.png", "image/jpeg", new FileInputStream("/Users/hyunjinjo/Desktop/사진업로드.png"));
 
-        //when 
-        String url = sfuf.uploadtoS3(image, "/culture-img");
+    //     //when 
+    //     String url = sfuf.uploadtoS3(image, "/culture-img");
         
-        //then
-        logger.info("url : "+url);
+    //     //then
+    //     logger.info("url : "+url);
 
-    }  
+    // }  
 }
