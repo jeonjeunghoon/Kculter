@@ -30,6 +30,7 @@
 		grid-template-columns: 20% 80%;
 		position: relative;
 		color: white;
+		box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 0.3);
 	}
 }
 
@@ -39,6 +40,7 @@
 		position: relative;
 		color: white;
 		margin: auto;
+		box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 0.3);
 	}
 }
 
@@ -92,6 +94,7 @@
 		width: 9rem;
 		margin-left: 80px;
 		position: relative;
+		box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
 	}
 }
 
@@ -100,6 +103,7 @@
 		width: 9rem;
 		margin-left: 40px;
 		position: relative;
+		box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
 	}
 }
 
@@ -114,14 +118,14 @@
 /* 카드 view more 호버 기능 */
 #my-body .body-card .body-card-hover {
 	width: 9em;
-	height: 8.6em;
+	height: 8.7em;
 	position: absolute;
 	opacity: 0;
 }
 
 #my-body .body-card .body-card-hover:hover {
 	width: 9em;
-	height: 10em;
+	height: 10.2em;
 	background: #f4029b;
 	position: absolute;
 	cursor: pointer;
