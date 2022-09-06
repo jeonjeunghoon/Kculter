@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import { Offcanvas } from 'react-bootstrap';
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from 'react-redux';
 import MapSideNav from '../mapPage/presentation/MapSideNav';
 import IdolListSideNav from '../idolListPage/Sidebar';
 import MySideNav from '../myPage/Sidebar';
@@ -14,10 +15,14 @@ import './offCanvasSidebar.css';
 
 
 function OffCanvasSidebar(props) {
+	const place = useSelector(state => state.place);
 	const location = useLocation();
 	const isSm = useMediaQuery({
 		query : "(max-width:512px)"
 	});
+	useEffect(() => {
+		props.handleOpen(true);
+	}, [place]);
 	
 	return (
 		<>
