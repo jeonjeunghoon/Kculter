@@ -18,13 +18,13 @@ function OffCanvasSidebar(props) {
 	const isSm = useMediaQuery({
 		query : "(max-width:512px)"
 	});
-
+	
 	return (
 		<>
 			<Offcanvas className='custom' show={ props.isOpen && isSm } onHide={props.sideClose}>
 				<div className='inCanvas'>
 					{location.pathname == "/IdolListPage" && <IdolListSideNav pageidx={0} items={idolListItem}/>}
-					{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem}/>}
+					{location.pathname == "/MapPage" && <MapSideNav pageidx={1} items={mapItem} handleOpen={props.handleOpen}/>}
 					{location.pathname == "/Mypage" && <MySideNav pageidx={2} items={myPageItem}/>}
 				</div>
 			</Offcanvas>

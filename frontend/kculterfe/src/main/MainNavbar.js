@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
-import './MainNavbar.css';
+import styles from './MainNavbar.module.css';
 import { Button } from './Button';
 import logo from '../src_asset/logo.png';
 import {CLEAR_MEMBER} from "../redux/reducer";
@@ -14,8 +14,6 @@ function MainNavbar() {
   const [mypage,setMypage] = useState(false);
   const result = sessionStorage.getItem("memberHash");
   
-
-
   useEffect(()=>{
     if(result == undefined){
       setStatus("login");     
@@ -43,17 +41,17 @@ function MainNavbar() {
 
     return (
     
-           <nav className='navbar'>
-           <div className='navbar-container'>
-               <Link to="/" className ='navbar-logo' >
+        <nav className={styles.navbar}>
+           <div className={styles.navbarContainer}>
+               <Link to="/" className ={styles.navbarLogo} >
                    <img src={logo}></img>
                </Link>
-               <ul className='nav-menu'>
-                       <li className='nav-item'>
-                       { mypage ? <Link to="Mypage" className="nav-links">MYPAGE</Link> : null }                   
+               <ul className={styles.navMenu}>
+                       <li className={styles.navItem}>
+                       { mypage ? <Link to="Mypage" className={styles.navLinks}>MYPAGE</Link> : null }                   
                        </li>
-                       <li className='nav-item' id="nav-last">
-                      <Link to ='' onClick={checkLogin} className='nav-links'>
+                       <li className={styles.navItem}>
+                      <Link to ='' onClick={checkLogin} className={styles.navLinks}>
                         {login}
                       </Link> 
                        </li>

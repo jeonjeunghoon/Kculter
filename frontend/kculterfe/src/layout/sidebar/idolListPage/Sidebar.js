@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import common from "../sidebarCommonData.json"
 import { useDispatch } from "react-redux";
@@ -6,15 +6,13 @@ import { SIDE_SET_CONCERT, SIDE_SET_IDOL, SIDE_SET_ATTR } from "../../../redux/r
 import './sidebar.css';
 import { useSelector } from 'react-redux';
 import SidebarProfile from '../SidebarProfile';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import ConcertCalendar from '../calendar/ConcertCalendar';
 
 export default function Sidebar(props) {
 	const dispatch = useDispatch();
 	const idolSelect = useSelector(state => state.idolSelected);
 	const attrSelect = useSelector(state => state.attrSelected);
 	const concertSelect = useSelector(state => state.concertSelected);
-	const [value, onChange] = useState(new Date());
 
 	return (
 		<div className="sidebar">
@@ -41,7 +39,7 @@ export default function Sidebar(props) {
 				{ props.items[2].title }
 			</div>
 			<div className='concert_calender'>
-				{concertSelect && <Calendar onChange={onChange} value={value}/>}
+				{concertSelect && <ConcertCalendar/>}
 			</div>
 		</div>
 	)

@@ -19,10 +19,9 @@ import MapMarker from './MapMarker';
 import MapCard from './MapCard';
 import MapFilter from './MapFilter'
 
-import staypin from '../test.png';
+import staypin from '../../src_asset/stay_logo.png';
 
 function MapRender(props) {
-	console.log(props.kculter);
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);
@@ -44,18 +43,35 @@ function MapRender(props) {
 		},
 	};
 
-	const [isStay, setIsStay] = useState(true);
-	const [url, setUrl] = useState("/near/stay?lat=");
-	const [near, setNear] = useState(null);
+	const [near, setNear] = useState({
+		place: null,
+		stayPin: { imageUrl: staypin },
+		tourPin: { imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png" },
+		isStay: true,
+		url: "/near/stay?lat=",
+	});
 	useEffect(() => {
-		if (isStay === true) {
-			setUrl(() => "/near/stay?lat=");
+		if (near.isStay === true) {
+			setNear(prev => ({
+				...prev,
+				url: "/near/stay?lat=",
+			}));
 			handleOnDragEndGM(map, "/near/stay?lat=", setNear);
-		} else if (isStay === false) {
-			setUrl(() => "/near/tour?lat=");
+		} else if (near.isStay === false) {
+			setNear(prev => ({
+				...prev,
+				url: "/near/tour?lat=",
+			}));
 			handleOnDragEndGM(map, "/near/tour?lat=", setNear);
 		}
-	}, [isStay]);
+	}, [near.isStay]);
+	
+	useEffect(() => {
+		setCenter(() => ({
+			lat: props.kculter.center.lat,
+			lng: props.kculter.center.lng,
+		}));
+	}, [props.kculter.center]);
 
 	return (
 		<div className='map-container'>
@@ -65,10 +81,10 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={map => handleOnLoad(map, setMap, url, setNear)}
+				onLoad={map => handleOnLoad(map, setMap, near.url, setNear)}
 				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
-				onDragEnd={() => handleOnDragEndGM(map, url, setNear)}
+				onDragEnd={() => handleOnDragEndGM(map, near.url, setNear)}
 			>
 
 				{/* 검색창 */}
@@ -88,9 +104,7 @@ function MapRender(props) {
 				<MapMarker
 					kculter={props.kculter.data}
 					near={near}
-					stayPin={{imageUrl: staypin}}
-					tourPin={{imageUrl: "https://toppng.com/uploads/preview/mountain-png-transparent-free-images-clip-art-mountain-logo-11562903198rqfbyusjl7.png"}}
-					isStay={isStay}
+					course={props.kculter.course}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}
@@ -99,8 +113,7 @@ function MapRender(props) {
 				{/* 카드 */}
 				<MapCard
 					near={near}
-					isStay={isStay}
-					setIsStay={setIsStay}
+					setNear={setNear}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}

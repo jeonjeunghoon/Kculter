@@ -9,10 +9,10 @@ const initState = {
 		fileUrl: "",
 		kpop: "",
 		name: "",
-		memberNum: 0,
+		memberHash: 0,
 		lat: 0,
 		lng: 0,
-		placeNum: 0,
+		placeHash: 0,
 		placeType: 0,
 		status: 0,
 	},
@@ -49,6 +49,7 @@ export const CLEAR_PLACE = 'CLEAR_PLACE';
 export const SET_KCULTER_PLACE = 'SET_KCULTER_PLACE';
 export const SET_PIN = 'SET_PIN';
 export const MAP_IN_CONCERT = 'MAP_IN_CONCERT';
+export const CLEAR_MAP_CONCERT = 'CLEAR_MAP_CONCERT';
 
 // reducer
 export default function reducer(state = initState, action) {
@@ -120,6 +121,11 @@ export default function reducer(state = initState, action) {
 				pin: action.data,
 			}
 		case MAP_IN_CONCERT:
+			return {
+				...state,
+				mapConcert: action.data,
+			}
+		case CLEAR_MAP_CONCERT:
 			return {
 				...state,
 				mapConcert: action.data,

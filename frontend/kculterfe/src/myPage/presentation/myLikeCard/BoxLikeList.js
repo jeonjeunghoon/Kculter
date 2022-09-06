@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { Row } from 'react-bootstrap';
 import BoxLikeItem from './BoxLikeItem';
 import { getLikeList } from '../../container/GetLikeList';
-import '../../styles/BoxLikeList.css';
+import '../../styles/LikeListPage.css';
 
 function BoxLikeList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
+
+	console.log("Like List 렌더링 확인")
+
 	useEffect(() => {
 		getLikeList()
 		.then(resData => {
@@ -15,7 +18,6 @@ function BoxLikeList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data); // 데이터 체크
 	}, []);
 
 	return (

@@ -4,6 +4,7 @@ import {
 } from './handleOnMarker';
 import {
 	CLEAR_COURSE,
+	CLEAR_MAP_CONCERT,
 	CLEAR_PLACE
 } from '../../redux/reducer';
 
@@ -12,6 +13,10 @@ export function handleOnUnmount(map, setMap, dispatch) {
 	dispatch({
 		type: CLEAR_COURSE,
 		data: [],
+	})
+	dispatch({
+		type: CLEAR_MAP_CONCERT,
+		data: {},
 	})
 	dispatch({
 		type: CLEAR_PLACE,
@@ -70,34 +75,31 @@ export function handleOnDragEndGM(map, url, setNear) {
 	if (!map || !url) {
 		return;
 	}
-	const google = window.google;
-	const geocoder = new google.maps.Geocoder();
-	geocoder.geocode({ location: map.getCenter() }, (result, status) => {
-		if (status !== google.maps.GeocoderStatus.OK) {
-			alert(status);
-		}
-		if (status === google.maps.GeocoderStatus.OK) {
-			axios.get(url + map.getCenter().lat() + '&lng=' + map.getCenter().lng())
-			.then(function(res){
-				const data = res.data.map((item) => {
-					const end = item.title.indexOf('(');
-					if (end !== -1) {
-						item.title = item.title.slice(0, end - 1);
-					}
-					const obj = {
-						lat: Number(item.mapy),
-						lng: Number(item.mapx)
-					}
-					Object.assign(item, obj);
-					return (item);
-				})
-				res.data = data;
-				setNear(() => res);
-  		})
-  		.catch(function(error){
-				console.log(error, "서버 통신 실패");
-				setNear(() => null);
-  		})
-		}
-	});
+	axios.get(url + map.getCenter().lat() + '&lng=' + map.getCenter().lng())
+	.then(function(res){
+		const data = res.data.map((item) => {
+			const end = item.title.indexOf('(');
+			if (end !== -1) {
+				item.title = item.title.slice(0, end - 1);
+			}
+			const obj = {
+				lat: Number(item.mapy),
+				lng: Number(item.mapx)
+			}
+			Object.assign(item, obj);
+			return (item);
+		})
+		res.data = data;
+		setNear(prev => ({
+			...prev,
+			place: res.data,
+		}));
+  })
+  .catch(function(error){
+		console.log(error, "서버 통신 실패");
+		setNear(prev => ({
+			...prev,
+			place: null,
+		}));
+  })
 };

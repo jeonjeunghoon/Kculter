@@ -39,10 +39,20 @@ function StoreData(props){
             })
             .then(function(res){
                 console.log(res);
-                alert("서버 저장 완료!");
-                window.location.href="/manager";
+                const result = res.data;
+                if(result === 201){
+                    alert("해당 장소는 이미 kpop 혹은 culture 관련 장소로 등록되어 있습니다.");
+                    window.location.reload();
+                }else if(result ==- 500){
+                    alert("서버에 저장이 안됐습니다. 서버 로그와 함께 관계자에게 문의하세요.");
+                    window.location.reload();
+                }else{
+                    alert("서버 저장 완료!");
+                    window.location.href="/manager";
+                }
             })
             .catch(function(error){
+                alert("서버 저장 실패!");
                 console.log(error);
             })
 
@@ -57,11 +67,17 @@ function StoreData(props){
                     }
                 })
                 .then(function(res){
-                    console.log(res);
-                    alert("서버 저장 완료!");
-                    window.location.reload();
+                    const result = res.data;
+                    if(result === 200){
+                        alert("서버 저장 완료!");
+                        window.location.reload();
+                    }else{
+                        alert("서버 저장 실패!");
+                        window.location.reload();
+                    }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
                 
@@ -73,11 +89,17 @@ function StoreData(props){
                     }
                 })
                 .then(function(res){
-                    console.log(res);
-                    alert("서버 저장 완료!");
-                    window.location.href="/manager";
+                    const result = res.data;
+                    if(result === 200){
+                        alert("서버 저장 완료!");
+                        window.location.reload();
+                    }else{
+                        alert("서버 저장 실패!");
+                        window.location.reload();
+                    }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }else if(url.includes('concert')){ //콘서트 추가라면 진입
@@ -90,11 +112,17 @@ function StoreData(props){
                     }
                 })
                 .then(function(res){
-                    console.log(res);
-                    alert("서버 저장 완료")
-                    window.location.reload();
+                    const result = res.data;
+                    if(result === 200){
+                        alert("서버 저장 완료!");
+                        window.location.reload();
+                    }else{
+                        alert("서버 저장 실패!");
+                        window.location.reload();
+                    }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }else if(url.includes('pin')){ //핀추가라면 진입
@@ -107,11 +135,17 @@ function StoreData(props){
                     }
                 })
                 .then(function(res){
-                    console.log(res);
-                    alert("서버 저장 완료")
-                    window.location.reload();
+                    const result = res.data;
+                    if(result === 200){
+                        alert("서버 저장 완료!");
+                        window.location.reload();
+                    }else{
+                        alert("서버 저장 실패!");
+                        window.location.reload();
+                    }
                 })
                 .catch(function(error){
+                    alert("서버 저장 실패!");
                     console.log(error);
                 })
             }

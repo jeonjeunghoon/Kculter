@@ -29,15 +29,18 @@ export function handleOnClickSave(setModalIsOpen, courseList) {
 	setModalIsOpen(true);
 }
 
-export function handleOnSubmit(e, courseList, setCourseList, courseName, memberNum, setModalIsOpen, dispatch) {
+export function handleOnSubmit(e, courseList, setCourseList, courseName, memberHash, setModalIsOpen, dispatch) {
 	e.preventDefault();
+	setModalIsOpen(false);
+	if (!memberHash) {
+		alert("Please login first");
+		return ;
+	}
 	const jsonData = JSON.stringify({
-		memberNum: memberNum,
-		courseNum: 0,
+		memberHash: memberHash,
 		courseName: courseName,
 		course: courseList,
 	});
-	setModalIsOpen(false);
 	axios.post('/course/', jsonData, {
 		headers:{
 			'Content-Type':'application/json'
@@ -51,8 +54,10 @@ export function handleOnSubmit(e, courseList, setCourseList, courseName, memberN
 				data: newCourseList,
 			})
 			setModalIsOpen(() => false);
+			alert("코스 저장 완료!");
 		})
 		.catch(function(error){
 			console.log(error, "서버 통신 실패");
+			alert("코스 저장 실패");
 	})
 }

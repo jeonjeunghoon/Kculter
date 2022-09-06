@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import '../styles/MainNavbar.css';
 import BoxLikeList from './myLikeCard/BoxLikeList';
 import BoxCardList from './myPageCard/BoxCardList';
+import MyPageNavbar from './common/MyPageNavbar';
 
 function MyPageBody() {
     const [viewMyMap, setLikeList] = useState(true)
-    const [btnPageColor, setBtnPageColor] = useState('blue')
-    const [btnLikeColor, setBtnLikeColor] = useState('gray')
 
+    console.log("메인 바디");
     return (
         <div id='my-body'>
             {/* 저장한 경로와 좋아요 리스트 선택 경로 네비 */}
-            <div className="body-navbar">
-                <button onClick={() => {setLikeList(true); setBtnLikeColor('gray'); setBtnPageColor('blue')}
-                } style={{ color:btnPageColor }}>My map</button>
-                <button onClick={() => {setLikeList(false); setBtnLikeColor('blue'); setBtnPageColor('gray')}
-                } style={{ color:btnLikeColor }}>Like list</button>
-            </div>
+            <MyPageNavbar setLikeList={setLikeList} firstPageName="My map" secondPageName="Like list"/>
             {/* 저장한 경로 리스트 */}
             { viewMyMap ? <BoxCardList/> : <BoxLikeList/> }
         </div>

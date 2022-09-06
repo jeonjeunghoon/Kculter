@@ -82,3 +82,22 @@
 	margin: 0;
 	padding: 0;
 }
+
+/* Box Like 리스트 */
+@media all and (min-width:768px) {
+	#box-like-list {
+		height: 76vh;
+		width: 95%;
+		overflow: auto;
+		margin-left: 3.2rem;
+	}
+}
+
+@media all and (max-width:767px) {
+	#box-like-list {
+		width: 20rem;
+		margin: auto;
+		overflow-y: auto;
+		min-height: 70vh;
+	}
+}

@@ -31,6 +31,8 @@ function ConcertForm(props){
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
     const [starKeyNum,setStarKey] = useState("");
+    const [placeName,setPlaceName] = useState("");
+    const [buySite,setBuySite] = useState("");
 
     //유효성 검사하기 위해서 사용하는 변수
     const [starDis,setStarDis] = useState(false);
@@ -41,6 +43,8 @@ function ConcertForm(props){
     const [edDis, setEdDis] = useState(false);
     const [latDis, setLatDis] = useState(false);
     const [lngDis, setLngDis] = useState(false);
+    const [placeNameDis,setPlaceNameDis] = useState(false);
+    const [buySiteDis,setBuySiteDis] = useState(false);
 
     //기존 가수 선택했을시에 disabled 시켜주기 위해서 사용한 변수
     const [nameX,setNameX] = useState(false);
@@ -55,6 +59,8 @@ function ConcertForm(props){
         lat : lat,
         lng : lng,
         starHash : starKeyNum,
+        placeName : placeName,
+        buySite : buySite
     }
 
     //container component로 보낼 객체
@@ -63,7 +69,15 @@ function ConcertForm(props){
         file : file,
         dataType : 'notplace' //장소추가인지 아닌지 확인하기 위해
     }
- 
+    const changedPlaceName = (e) => {
+        const check = e.target.value;
+        if(check !== ""){
+            setPlaceNameDis(true);
+        }else{
+            setPlaceNameDis(false);
+        }
+        setPlaceName(check);        
+    }
     //위도 변경됐을떄
     const changedLat = (e) => {
         const check = e.target.value;
@@ -153,6 +167,18 @@ function ConcertForm(props){
             setEdDis(false);
         }
     }
+
+    //콘서트 예매링크 등록
+    const changedBuySite = (e) => {
+        const check = e.target.value
+        if(check !== ""){
+            setBuySiteDis(true);
+        }else{
+            setBuySiteDis(false);
+        }
+        setBuySite(e.target.value);
+    }
+
     //콘서트 사진 변경됐을때
     const changedFile = (e) => {
         const check = e.target.value;
@@ -206,6 +232,11 @@ function ConcertForm(props){
                 <Form.Control style={{width : '30%'}} as="textarea" rows={3} onChange={changedExp}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formDec">
+                <Form.Label>{props.label} 장소 이름(구글과 같아야하고 영문)</Form.Label>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: placeNameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} onChange={changedPlaceName}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formDec">
                 <Form.Label>{props.label} 위도</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: latDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
                 <Form.Control style={{width : '30%'}} onChange={changedLat}/>
@@ -223,6 +254,11 @@ function ConcertForm(props){
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: edDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
                 <DatePicker selected={endDate} onChange={changedEd} />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formDec">
+                <Form.Label>{props.label} 예메 링크</Form.Label>
+                <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: buySiteDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
+                <Form.Control style={{width : '30%'}} onChange={changedBuySite}/>
+            </Form.Group>
             <br/>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>{props.label} 사진</Form.Label>
@@ -230,7 +266,7 @@ function ConcertForm(props){
                 <Form.Control style={{width : '30%'}} type="file" onChange={changedFile}/>
             </Form.Group>
             {/*API 호출을 담당할 Container Component 호출*/}
-            <StoreData disabled={(starDis&&nameDis&&expDis&&sdDis&&edDis&&fileDis&&latDis&&lngDis)} sendData={sendData}></StoreData>
+            <StoreData disabled={(starDis&&nameDis&&expDis&&sdDis&&edDis&&fileDis&&latDis&&lngDis&&placeNameDis)} sendData={sendData}></StoreData>
       </Form>
     );
 }

@@ -13,7 +13,6 @@ import IdolListPage from './IdolListPage/IdolListPage';
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
 import ForgotPwd from './login/presentation/ForgotPwd';
-import Aboutus from './aboutus/Aboutus';
 import ManagerRoute from './privateRoute/ManagerRoute';
 import PrivateRoute from './privateRoute/PrivateRoute';
 function App() {

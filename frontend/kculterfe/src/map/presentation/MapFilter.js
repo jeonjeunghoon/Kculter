@@ -15,15 +15,16 @@ import {
 import {
 	getKculterData
 } from '../container/getData';
+import { useDispatch } from 'react-redux';
 
-async function fetchSelected(list, e, isKpop, kculter, setKculter) {
+async function fetchSelected(list, e, isKpop, setKculter, dispatch) {
 	const found = list.find(obj => obj.hash == e.target.value);
 	if (isKpop === true) {
 		modifySessionItem(e.target.value, 1, found.name);
 	} else {
 		modifySessionItem(e.target.value, 2, found.name);
 	}
-	await getKculterData(kculter, setKculter, Number(window.sessionStorage.getItem("type")), window.sessionStorage.getItem("keyHash"));
+	await getKculterData(setKculter, Number(window.sessionStorage.getItem("type")), window.sessionStorage.getItem("keyHash"), dispatch);
 }
 
 async function fetchList(isKpop, setList) {
@@ -31,6 +32,10 @@ async function fetchList(isKpop, setList) {
 	if (isKpop) {
 		getKpopList()
 		.then(function(res) {
+			kList.push({
+				hash: 0,
+				name: "Select k-pop stars",
+			});
 			res.map(item => {
 				kList.push({
 					hash: item.keyHash,
@@ -45,6 +50,10 @@ async function fetchList(isKpop, setList) {
 	} else {
 		getCultureList()
 		.then(function(res) {
+			kList.push({
+				hash: 0,
+				name: "Select culture place",
+			});
 			res.map(item => {
 				kList.push({
 					hash: item.keyHash,
@@ -61,51 +70,47 @@ async function fetchList(isKpop, setList) {
 
 function MapFilter(props) {
 	const [isKpop, setIsKpop] = useState(true);
-	const [placeholder, setPlaceholder] = useState("Select k-pop stars!");
 	const [list, setList] = useState([]);
+	const [value, setValue] = useState(undefined);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		fetchList(isKpop, setList);
+		setValue(() => "");
 	}, [isKpop]);
+	useEffect(() => {
+		setValue(() => undefined);
+	}, [value])
 
   return(
 		<div className='map-filter-container'>
+			<select className='filter'
+				value={value}
+				onChange={(e) => {
+					if (e.target.value !== "0") {
+						fetchSelected(list, e, isKpop, props.setKculter, dispatch);
+					}
+				}}
+			>
+				{
+					list &&
+					list.map((item, index) => {
+						return (
+							<option
+							key={index}
+							value={item.hash}
+							>
+								{item.name}
+							</option>
+						);
+					})
+				}
+			</select>
+
 			<FilterToggle
 				setKculter={props.setKculter}
 				setIsKpop={setIsKpop}
-				setPlaceholder={setPlaceholder}
 			/>
-  		<select className='filter'
-				onChange={(e) => {
-					if (e.target.value !== "placeholder") {
-						fetchSelected(list, e, isKpop, props.kculter, props.setKculter);
-					}
-				}}
-				style={{
-					width: "240px",
-					height: "32px",
-					border: "1px solid transparent",
-					borderRadius: "3px",
-					fontSize: "14px",
-				}}
-			>
-  		  <option
-					value="placeholder"
-				>
-					{placeholder}
-				</option>
-				{list &&
-				list.map((item, index) => {
-					return (
-						<option
-						key={index}
-						value={item.hash}
-						>
-							{item.name}
-						</option>
-					);
-				})}
-  		</select>
 		</div>
   );
 }

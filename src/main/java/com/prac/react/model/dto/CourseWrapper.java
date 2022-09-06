@@ -6,7 +6,7 @@ public class CourseWrapper {
     private List<Place> course;
     private String courseName;
     private int memberNum;
-    private String memeberHash;
+    private String memberHash;
     private int courseNum;
     private String courseHash;
 
@@ -45,12 +45,12 @@ public class CourseWrapper {
         this.memberNum = memberNum;
     }
 
-    public String getMemeberHash() {
-        return this.memeberHash;
+    public String getMemberHash() {
+        return this.memberHash;
     }
 
-    public void setMemeberHash(String memeberHash) {
-        this.memeberHash = memeberHash;
+    public void setMemberHash(String memberHash) {
+        this.memberHash = memberHash;
     }
 
     public int getCourseNum() {
@@ -76,7 +76,7 @@ public class CourseWrapper {
             " course='" + getCourse() + "'" +
             ", courseName='" + getCourseName() + "'" +
             ", memberNum='" + getMemberNum() + "'" +
-            ", memeberHash='" + getMemeberHash() + "'" +
+            ", memeberHash='" + getMemberHash() + "'" +
             ", courseNum='" + getCourseNum() + "'" +
             ", courseHash='" + getCourseHash() + "'" +
             "}";

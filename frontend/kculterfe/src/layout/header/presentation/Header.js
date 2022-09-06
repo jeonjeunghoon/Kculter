@@ -16,13 +16,13 @@ function Header(props) {
 	const [title, setTitle] = useState(null);
 	const [isOpen, setOpen] = useState(true);
 	const sideClose = () => setOpen(false);
+	const handleOpen = (e) => setOpen(e);
 
 	useEffect(() => {
 		switch (location.pathname) {
 			case '/MapPage':
 				setTitle((title) => "Map");
 				setImg((img) => "https://i.pinimg.com/originals/7f/b0/c9/7fb0c94c6252c18e16ec4bde430cdf2b.png");
-				sideClose();
 				break;
 			case '/Mypage':
 				setTitle((title) => "My Page");
@@ -48,13 +48,12 @@ function Header(props) {
 
 	useEffect(() => {
 		props.handleOpen(isOpen);
-		console.log(isOpen);
 	}, [isOpen])
 
 	return (
 		<header>
 			<div className='left'>
-				<OffCanvasSidebar isOpen={isOpen} sideClose={sideClose}/>
+				<OffCanvasSidebar isOpen={isOpen} sideClose={sideClose} handleOpen={handleOpen}/>
 				<img
 					src={img}
 					alt='logo'
@@ -72,7 +71,8 @@ function Header(props) {
 						/>
 					</button>
 				</Link>
-				<i class="bi bi-list" onClick={() => {
+				<i className="bi bi-list"
+					onClick={() => {
 						setOpen(!isOpen);
 					}}/>
 			</div>

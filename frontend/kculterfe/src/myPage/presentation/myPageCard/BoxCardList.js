@@ -3,9 +3,12 @@ import BoxCardItem from './BoxCardItem';
 import { getCourseList } from '../../container/GetCours';
 
 function BoxCardList() {
+	let dayNum = 1;
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
-	
+
+	console.log("myPage 렌더링 확인");
+
 	useEffect(() => {
 		getCourseList()
 		.then(resData => {
@@ -18,7 +21,7 @@ function BoxCardList() {
 
 	return (
 		<div className="box-list">
-			{ data&&data.map((course, index) => <BoxCardItem key={index} props={course} {...course} />) || <div>여기에 코스를 추가하라는 메시지를 넣어야 한다.</div> }
+			{ data&&data.map((course, index) => <BoxCardItem key={index} props={course} dayNum={dayNum++} {...course} />) || <div>Please add course.</div> }
 		</div>
 	)
 }

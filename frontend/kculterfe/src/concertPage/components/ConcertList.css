@@ -2,10 +2,10 @@
 	background-color: #eeeeee;
 }
 
-.Filter {
+/* .Filter {
 	display: grid;
 	grid-template-columns: 1fr auto;
-}
+} */
 
 .ConcertSearchBar{
 	display:flex;

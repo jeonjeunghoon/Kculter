@@ -15,7 +15,7 @@ import {
 } from '../container/handleMapSideNav';
 
 function CourseBox({ place }) {
-	const memberNum = window.sessionStorage.getItem("memberNum");
+	const memberHash = window.sessionStorage.getItem("memberHash");
 	const dispatch = useDispatch();
 	const reduxCourseList = useSelector(state => state.course);
 	const [courseList, setCourseList] = useState([])
@@ -25,6 +25,10 @@ function CourseBox({ place }) {
 	useEffect(() => {
 		setCourseList(() => reduxCourseList);
 	}, [courseList]);
+
+	useEffect(() => {
+		console.log(memberHash);
+	}, [memberHash]);
 
 	return (
 		<div className="course">
@@ -53,7 +57,7 @@ function CourseBox({ place }) {
 					ariaHideApp={false}
 				>
 					<form 
-						onSubmit={e => handleOnSubmit(e, courseList, setCourseList, courseName, memberNum, setModalIsOpen, dispatch)}
+						onSubmit={e => handleOnSubmit(e, courseList, setCourseList, courseName, memberHash, setModalIsOpen, dispatch)}
 					>
 						<input
 						type="text"
@@ -65,6 +69,13 @@ function CourseBox({ place }) {
 							type="submit"
 						>
 							SUBMIT
+						</button>
+						<button
+							onClick={() => {
+								setModalIsOpen(false);
+							}}
+						>
+							EXIT
 						</button>
 					</form>
 				</Modal>

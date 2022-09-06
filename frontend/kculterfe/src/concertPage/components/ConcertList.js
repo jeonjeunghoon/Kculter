@@ -4,12 +4,15 @@ import ConcertCard from './ConcertCard';
 import { getConcertList } from '../container/GetConcertListData';
 import ConcertSearchBar from './ConcertSearchBar';
 import IdolSelect from './IdolSelect';
-import items from '../data/card.json';
 
 function ConcertList() {
 	const [search, setSearch] = useState("");
-	const onChange = (e) => {
+	const [select, setSelect] = useState("");
+	const handleSearch = (e) => {
 		setSearch(e.target.value)
+	}
+	const handleSelect = (e) => {
+		setSelect(e.target.value)
 	}
 
 	const [data, setData] = useState([]);
@@ -21,25 +24,25 @@ function ConcertList() {
 		.catch(err => {
 			console.log(err);
 		});
-		console.log(data);
 	}, []);
 
 	const filterTitle = data.filter((p) => {
 		return p.concertName.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase());
 	});
 
+	const selectedConcert = filterTitle.filter((p) => {
+		return p.starName.replace(" ", "").toLocaleLowerCase().includes(select.toLocaleLowerCase());
+	});
+
 	return (
 		<div className='ConcertListBody'>
 			<div className='Filter'>
 				<div className="ConcertSearchBar">
-					<ConcertSearchBar value={search} onChange={onChange} />
-				</div>
-				<div className='IdolSelect'>
-					<IdolSelect/>
+					<ConcertSearchBar value={search} handleSearch={handleSearch} />
 				</div>
 			</div>
 			<div className="CardContainer">
-				{ filterTitle.map((concertData, index) => 
+				{ selectedConcert.map((concertData, index) => 
 						<div className='CardDiv'
 							key={index}
 						>
@@ -55,6 +58,7 @@ function ConcertList() {
 							starHash = {concertData.starHash} // 스타 해쉬
 							img = {concertData.imageUrl}		// 이미지 url
 							starName = {concertData.starName}	// 연예인 이름
+							buySite = {concertData.buySite}		// 예약 링크
 							/>
 						</div>
 					)}

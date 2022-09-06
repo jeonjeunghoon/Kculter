@@ -17,9 +17,12 @@ function Search({ setCenter, setZoom, dispatch }) {
 			onLoad={autocomplete => setInput(() => autocomplete)}
 			onPlaceChanged={() => handleOnPlaceChangedAutocomplete(input, setCenter, setZoom, dispatch)}
 		>
-			<div class="search-box">
-			<div class="input-holder">
-			    <input className='autocomplete-input' type="text" placeholder="Search place"/>
+			<div className="search-box">
+			<div className="input-holder">
+			    <input className='autocomplete-input'
+						type="text"
+						placeholder="Search place"
+					/>
 			</div>
 			</div>
 		</Autocomplete>

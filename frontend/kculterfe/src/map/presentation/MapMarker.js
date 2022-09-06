@@ -12,22 +12,21 @@ import {
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
-	const coursePlace = useSelector(state => state.course);
-	const coursePin = "";
-	const [nearData, setNearData] = useState(null);
+	const reduxCourse = useSelector(state => state.course);
+	const [course, setCourse] = useState(props.course);
 
 	useEffect(() => {
-		if (props.near) {
-			setNearData(() => props.near.data);
-		}
-	}, [props.near])
+		setCourse(prev => ({
+			...prev,
+			place: reduxCourse,
+		}));
+	}, [reduxCourse]);
 	return (
 		<div>
 			{/* KCULTER 마커 */}
 			{
 				props.kculter &&
 				props.kculter.place &&
-				props.kculter.pin &&
 				<CustomMarker
 					place={props.kculter.place}
 					pin={props.kculter.pin}
@@ -40,10 +39,10 @@ function MapMarker(props) {
 			}
 			{/* 코스 마커 */}
 			{
-				coursePlace &&
+				props.course.place &&
 				<CustomMarker
-					place={coursePlace}
-					pin={coursePin}
+					place={course.place}
+					pin={props.course.pin}
 					title={"COURSE"}
 					markerHandler={handleCustomMarker}
 					setCenter={props.setCenter}
@@ -53,11 +52,11 @@ function MapMarker(props) {
 			}
 			{/* Near 마커 */}
 			{
-				props.near ?
-					props.isStay ?
+				props.near.place ?
+					props.near.isStay ?
 					<CustomMarker
-						place={nearData}
-						pin={props.stayPin}
+						place={props.near.place}
+						pin={props.near.stayPin}
 						title={"STAY"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}
@@ -66,8 +65,8 @@ function MapMarker(props) {
 					/>
 					:
 					<CustomMarker
-						place={nearData}
-						pin={props.tourPin}
+						place={props.near.place}
+						pin={props.near.tourPin}
 						title={"TOUR"}
 						markerHandler={handleCard}
 						setCenter={props.setCenter}

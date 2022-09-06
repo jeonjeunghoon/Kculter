@@ -1,16 +1,33 @@
-import React from 'react';
-import './idolListPage/sidebar.css';
+import React, { useState, useEffect } from 'react';
+import './SidebarProfile.css';
 import { Link } from 'react-router-dom';
-import common from "./sidebarCommonData.json"
+import { getMemberInfo } from './container/GetMemberInfo';
+import { useSelector } from 'react-redux';
 
 export default function SidebarProfile() {
-	const nickname = window.sessionStorage.getItem("nickname");
-	if (nickname) {
+	const [memberInfo, setMemberInfo] = useState([]);
+	const isLogin = sessionStorage.getItem("memberHash");
+
+	if (isLogin) {
+		useEffect(() => {
+			getMemberInfo()
+			.then(resData => {
+			setMemberInfo(resData)
+			})
+			.catch(err => {
+			console.log(err);
+			})
+		},[]);
+	}
+	
+	if (isLogin) {
 		return (
 			<>
 				<Link to='/Mypage' className='link-to-mypage'>
-					<i className="bi-person-circle"></i>
-					<div className="name">{nickname}</div>
+					<div className='pf_img_container'>
+						<img className='pf_img' src={memberInfo.pfUrl} alt="hi"></img>
+					</div>
+					<div className="name">{memberInfo.nickName}</div>
 				</Link>
 			</>
 		)

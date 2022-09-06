@@ -68,7 +68,7 @@ public class ManagerServiceTest {
     @Test
     void testInsertConcert(){
         //given
-        Concert concert = new Concert(0, "테스트", "test", new Date(), new Date(), 123, 37, 1, "test", 0,"");
+        Concert concert = new Concert(0, "", "test", "test", new Date(), new Date(), 0, 0, 0, "test", "test", 0, "test", "test","test");
 
          //when
          int result = ms.insertConcert(concert);

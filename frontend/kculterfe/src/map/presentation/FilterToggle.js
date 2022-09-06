@@ -1,24 +1,34 @@
 import React from "react";
+import kpop from "../../src_asset/stay_logo.png"
 
 function FilterToggle(props) {
 	return (
-		<div className="filter-toggle">
-			<button className='kpop-toggle'
-				style={{
-					backgroundColor:"red",
-				}}
+		<div className="filter-toggle-container">
+			<button className="kpop-toggle"
 				onClick={() => {
 					props.setIsKpop(() => true);
-					props.setPlaceholder(() => "Select k-pop stars!")
 				}}
 			>
+				<img
+					src={kpop}
+					alt='filter'
+				/>
+				<p>
+					K-pop
+				</p>
 			</button>
-			<button className='culture-toggle'
+			<button className="culture-toggle"
 				onClick={() => {
 					props.setIsKpop(() => false);
-					props.setPlaceholder(() => "Select culture place!!");
 				}}
 			>
+				<img
+					src={kpop}
+					alt='filter'
+				/>
+				<p>
+					Culture
+				</p>
 			</button>
 		</div>
 	);

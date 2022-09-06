@@ -46,13 +46,13 @@
 @media all and (min-width:768px)
 {
 	#my-body .box-card-item .left {
-		background-color: blue;
+		background-color: #3172F6;
 	}
 }
 
 @media all and (max-width:767px) {
 	#my-body .box-card-item .left {
-		background-color: blue;
+		background-color: #3172F6;
 		padding-bottom: 1rem;
 	}
 }
@@ -83,6 +83,7 @@
 	display: flex;
 	justify-content: flex-start;
 	overflow-y: auto; /* 스크롤 수평방향으로 만듬 */
+	height: 89%; /* Deletebtn 높이를 줄여서 밑에 수평바 위치 맞추기 위해 */
 }
 
 /* body card */
@@ -110,19 +111,6 @@
 	color: black;
 }
 
-/* 날짜 표시 */
-#my-body .date {
-	text-align: right;
-	padding-top: 20px;
-	margin-right: 20px;
-}
-
-#my-body .date-span {
-	border: 1px solid rgba(128, 128, 128, 0.401);
-	color: blue;
-	padding: 6px;
-}
-
 /* 카드 view more 호버 기능 */
 #my-body .body-card .body-card-hover {
 	width: 9em;
@@ -134,7 +122,7 @@
 #my-body .body-card .body-card-hover:hover {
 	width: 9em;
 	height: 10em;
-	background: fuchsia;
+	background: #f4029b;
 	position: absolute;
 	cursor: pointer;
 	opacity: 0.8;

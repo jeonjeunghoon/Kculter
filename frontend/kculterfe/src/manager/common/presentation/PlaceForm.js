@@ -20,8 +20,8 @@ function PlaceForm(props){
     const [address, setAddress] = useState();
     const [file,setFile] = useState();
 
-    const list = location.state.list;
-    const places = location.state.places
+    const list = location.state.list; //kpop 리스트 or culture 리스트
+    const places = location.state.places //모든 장소 리스트
 
     //유효성 검사하기 위해 만든 변수들
     const [nameDis, setNameDis] = useState(false);
@@ -204,7 +204,7 @@ function PlaceForm(props){
                 <ShowList disabled={false} changed={selectedPlace} list={places}></ShowList>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formName">
-                <Form.Label id="label1">{props.label} 이름</Form.Label>
+                <Form.Label id="label1">{props.label} 이름(구글과 같아야 하고 영문)</Form.Label>
                 <div id="nameCheck"style={{color : 'red',fontSize:'20px', display: nameDis ? 'none' : 'inline-block', marginLeft:'10px', alignItems:'center'}}>*</div>
                 <Form.Control disabled={nameX} style={{width:'30%'}} onChange={changedName}/> {/*onChage됐을때 useState를 통해서 변수 값을 변경함*/}
             </Form.Group>

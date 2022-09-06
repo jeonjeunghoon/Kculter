@@ -45,24 +45,24 @@ function MapCard(props) {
 	const sliderRef = useRef();
 
 	useEffect(() => {
-		if (props.near && props.near.data) {
-			if (props.near.data.length < settings.slidesToShow) {
-				settings.slidesToShow = props.near.length;
+		if (props.near.place) {
+			if (props.near.place.length < settings.slidesToShow) {
+				settings.slidesToShow = props.near.place.length;
 			}
 			settings.responsive.map((item) => {
-				if (props.near.data.length < item.settings.slidesToShow) {
-					item.settings.slidesToShow = props.near.data.length;
+				if (props.near.place.length < item.settings.slidesToShow) {
+					item.settings.slidesToShow = props.near.place.length;
 				}
 			})
 		}
 	}, [])
 
 	return (
-		props.near
+		props.near.place
 		?
 		<div className='map-card-container'>
 			<CardToggle
-				setIsStay={props.setIsStay}
+				setNear={props.setNear}
 			/>
 			<div className='map-card'>
 				<CustomArrowPrev
@@ -73,10 +73,9 @@ function MapCard(props) {
 					ref={sliderRef}
 					{ ...settings }
 				>
-					{props.near &&
-					props.near.data &&
-					props.near.data.map((item, index) => {
-						const head = props.isStay ? "STAY" : "TOUR";
+					{props.near.place &&
+					props.near.place.map((item, index) => {
+						const head = props.near.isStay ? "STAY" : "TOUR";
 						const image = item.firstimage ? item.firstimage : "";
 						return (
 							<Cards
