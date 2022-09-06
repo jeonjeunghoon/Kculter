@@ -81,3 +81,9 @@
 	width: 1rem;
 	margin-right: 1rem;
 }
+
+.card-date {
+	color: gray;
+	text-align: center;
+	margin-bottom: 1rem;
+}

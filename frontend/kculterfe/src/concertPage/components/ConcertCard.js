@@ -23,9 +23,8 @@ function CardItem(item) {
 					</div>
 					<div className="card-content">
 						<div className='pin'>
-							<div className="like-num">
-								<p> Likes</p>
-								<img src='heart.png' />
+							<div className="card-date">
+								{item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}
 							</div>
 						</div>
 					</div>
