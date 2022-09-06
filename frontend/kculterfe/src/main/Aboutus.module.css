@@ -1,0 +1,123 @@
+.loginLogo img {
+  height: 5rem;
+}
+
+@keyframes bounce {
+  70% {
+    transform: translateY(0%);
+  }
+  80% {
+    transform: translateY(-15%);
+  }
+  90% {
+    transform: translateY(0%);
+  }
+  95% {
+    transform: translateY(-7%);
+  }
+  97% {
+    transform: translateY(0%);
+  }
+  99% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: #00024a;
+}
+.aboutTop {
+  position: fixed;
+  top: 15px;
+  left: 10px;
+}
+.mainLogo {
+  display: block;
+  margin-top: 200px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+.mainLogo img {
+  width: 70vw;
+  height: auto;
+  max-height: 30vh;
+  object-fit: contain;
+}
+.aboutCon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+  background-image: url("../src_asset/aboutbackground.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+}
+.mainbtn {
+  align-self: center;
+  top: 70vh;
+  left: 30vw;
+}
+.aboutKculter {
+  color: #ffff;
+  display: block;
+  font-size: 3rem;
+  padding: 0px 200px;
+  align-self: center;
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+#travel {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #0759fc;
+}
+.korean {
+  align-self: center;
+}
+#kpop {
+  color: #ff59f6;
+  font-size: 4rem;
+  margin: 0px 10px;
+  margin-right: 10px;
+}
+.mainbtn2 {
+  display: block;
+  align-self: center;
+  margin-top: auto;
+}
+
+.chevron {
+  color: #ff59f6;
+  animation: bounce 1.5s ease infinite;
+  align-self: center;
+}
+
+/* mobile layout for width less than 812px*/
+@media all and (max-width: 812px) {
+  .aboutKculter {
+    font-size: 1rem;
+    padding: 0;
+  }
+  #kpop {
+    font-size: 2rem;
+  }
+  #travel {
+    font-size: 2rem;
+  }
+}

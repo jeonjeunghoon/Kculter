@@ -13,7 +13,6 @@ import IdolListPage from './IdolListPage/IdolListPage';
 import ManagerMain from './manager/ManagerMain';
 import NotFound from './notfound/NotFound';
 import ForgotPwd from './login/presentation/ForgotPwd';
-import Aboutus from './aboutus/Aboutus';
 import ManagerRoute from './privateRoute/ManagerRoute';
 import PrivateRoute from './privateRoute/PrivateRoute';
 function App() {
@@ -24,7 +23,6 @@ function App() {
 					<Route path="/manager/*" element={<ManagerMain/>}></Route>
 				</Route> {/*manager 파일안에 중첩라우팅을 넣었습니다.*/}
 				<Route path="/" element={<MainPage/>}></Route>
-				<Route path="/Aboutus" element={<Aboutus/>}></Route>
 				<Route path="/login" element={<Login/>}/>
 				<Route path="/login/forgotpwd" element={<ForgotPwd/>}/>
 				<Route path="/signup" element={<SignUpPage/>}/>	
