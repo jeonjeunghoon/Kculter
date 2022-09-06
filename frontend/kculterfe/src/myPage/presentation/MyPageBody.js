@@ -5,8 +5,7 @@ import MyPageNavbar from './common/MyPageNavbar';
 
 function MyPageBody() {
     const [viewMyMap, setLikeList] = useState(true)
-
-    console.log("메인 바디");
+    
     return (
         <div id='my-body'>
             {/* 저장한 경로와 좋아요 리스트 선택 경로 네비 */}

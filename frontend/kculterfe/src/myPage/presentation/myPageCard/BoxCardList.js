@@ -7,16 +7,14 @@ function BoxCardList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
 
-	console.log("myPage 렌더링 확인");
-
 	useEffect(() => {
-		getCourseList()
-		.then(resData => {
-			setData(resData)
-		})
-		.catch(err => {
-			console.log(err);
-		});
+			getCourseList()
+			.then(resData => {
+				setData(resData)
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}, []);
 
 	return (

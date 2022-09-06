@@ -8,16 +8,14 @@ function BoxLikeList() {
 	// DB서버에서 course 데이터 받기.
 	const [data, setData] = useState([]);
 
-	console.log("Like List 렌더링 확인")
-
 	useEffect(() => {
-		getLikeList()
-		.then(resData => {
-			setData(resData)
-		})
-		.catch(err => {
-			console.log(err);
-		});
+			getLikeList()
+			.then(resData => {
+				setData(resData)
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}, []);
 
 	return (
