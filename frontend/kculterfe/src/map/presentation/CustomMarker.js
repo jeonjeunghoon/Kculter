@@ -20,7 +20,7 @@ function CustomMarker(props) {
 				null,
 				null,
 				null,
-				new window.google.maps.Size(30, 30),
+				new window.google.maps.Size(40, 40),
 			);
 			setIcon(() => icon);
 		}

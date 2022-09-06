@@ -4,7 +4,7 @@ function Head(props) {
 	return (
 		<div className="head">
 			<img src={props.imageUrl}></img>
-			<h3>{props.head}</h3>
+			<p>{props.head}</p>
 		</div>
 	);
 }

@@ -87,7 +87,8 @@ function MapCard(props) {
 								setCenter={props.setCenter}
 								setZoom={props.setZoom}
 								dispatch={props.dispatch}
-							/>);
+							/>
+							);
 						}
 					)}
 				</Slider>
