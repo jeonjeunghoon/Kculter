@@ -81,7 +81,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={map => handleOnLoad(map, setMap, near.url, setNear)}
+				onLoad={map => handleOnLoad(map, setMap, props.kculter.concert, google, setCenter, setZoom, dispatch, near.url, setNear)}
 				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
 				onDragEnd={() => handleOnDragEndGM(map, near.url, setNear)}

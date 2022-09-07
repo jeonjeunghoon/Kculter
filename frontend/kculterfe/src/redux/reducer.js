@@ -25,10 +25,6 @@ const initState = {
 	settingSelected: false,
 	mapConcert: {
 		keyHash: 0,
-		title: "",
-		starName: "",
-		img: "",
-		explain: "",
 		lat: 0,
 		lng: 0,
 	},
