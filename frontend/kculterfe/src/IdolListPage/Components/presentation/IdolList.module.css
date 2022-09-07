@@ -30,9 +30,14 @@
 }
 
 @media (min-width: 1000px) {
+	.SearchBar {
+		margin-left: 3rem;
+	}
 	.CardContainer {
 		grid-template-columns: repeat(4, 1fr); 
-		padding-left: 5%;
-		padding-right: 5%;
+		padding-right: 3rem;
+	}
+	.CardDiv {
+		margin-left: 3rem;
 	}
 }
