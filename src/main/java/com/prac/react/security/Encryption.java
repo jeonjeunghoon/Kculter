@@ -22,81 +22,81 @@ public class Encryption {
 
 	Logger logger = LoggerFactory.getLogger(Encryption.class);
 
-	public Encryption(){}
+	public Encryption() {
+	}
 
 	@Autowired
-	public Encryption(SecretKey sk){
+	public Encryption(SecretKey sk) {
 		this.sk = sk;
 	}
 
 	public String shaEncryption(String pwd) {
 		try {
-			//salt를 더해서 sha256 함 그럼 DB 털려도 비번은 절대 모름ㅋ
-			String pwdSalt = sk.getSecretKey()+pwd;
-			//try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
+			// salt를 더해서 sha256 함 그럼 DB 털려도 비번은 절대 모름ㅋ
+			String pwdSalt = sk.getSecretKey() + pwd;
+			// try catch로 하는 이유는 해당 알고리즘이 존재하지 않는 에러를 잡기위해서이다.
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(pwdSalt.getBytes());
 			byte byteData[] = md.digest();
-			
-			StringBuffer sb = new StringBuffer();//이건 문자열을 추가하거나 변경할때 주로 사용하는 클래스이다.
-			
-			for(int i = 0; i<byteData.length;i++) {
-				sb.append(Integer.toString((byteData[i] & 0xff)+0x100,16).substring(1));
+
+			StringBuffer sb = new StringBuffer();// 이건 문자열을 추가하거나 변경할때 주로 사용하는 클래스이다.
+
+			for (int i = 0; i < byteData.length; i++) {
+				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
 			}
-			
+
 			StringBuffer hexString = new StringBuffer();
-			
-			for(int i = 0; i<byteData.length;i++) {
+
+			for (int i = 0; i < byteData.length; i++) {
 				String hex = Integer.toHexString(0xff & byteData[i]);
-				if(hex.length() == 1) {
+				if (hex.length() == 1) {
 					hexString.append('0');
 				}
 				hexString.append(hex);
 			}
-			
-			
-			//위의 과정들을 거쳐서 이메일을 sha256으로 변환해주는 역할을 해준다.
+
+			// 위의 과정들을 거쳐서 이메일을 sha256으로 변환해주는 역할을 해준다.
 			return hexString.toString();
-			
+
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException();
-		} 
+		}
 	}
 
-		//암호화
-		public String aesEncrypt(String key) {
-			try {
-				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-				cipher.init(Cipher.ENCRYPT_MODE, 
-							new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
-							new IvParameterSpec(iv.getBytes()));
-				
-				return new String(Base64.getEncoder().encode(cipher.doFinal(key.getBytes("UTF-8"))));
-			} catch(Exception e) {
-				logger.error(e.toString());
-				return key;
-			}
-		}		
+	// 암호화
+	public String aesEncrypt(String key) {
+		try {
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.ENCRYPT_MODE,
+					new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
+					new IvParameterSpec(iv.getBytes()));
 
-		// 복호화
-		public String aesDecrypt(String encryptedText) {
-			//http 통신을 하면서 기존에 +가 공백으로 처리되어서 넘어온다 따라서 공백을 +로 다시 돌려줘야한다.
-			encryptedText = encryptedText.replace(" ", "+");
-			logger.info("autho : "+encryptedText);
-			try {
-				Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-				cipher.init(Cipher.DECRYPT_MODE,
-							new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
-							new IvParameterSpec(iv.getBytes()));
-				
-				return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText.getBytes("UTF-8"))));
-			} catch(Exception e) {
-				logger.error("Exception occur : "+e.toString());
-				return encryptedText;
-			}
+			return new String(Base64.getEncoder().encode(cipher.doFinal(key.getBytes("UTF-8"))));
+		} catch (Exception e) {
+			logger.error(e.toString());
+			return key;
 		}
+	}
 
-		
+	// 복호화
+	public String aesDecrypt(String encryptedText) {
+		// http 통신을 하면서 기존에 +가 공백으로 처리되어서 넘어온다 따라서 공백을 +로 다시 돌려줘야한다.
+		encryptedText = encryptedText.replace(" ", "+");
+		logger.info("autho : " + encryptedText);
+		logger.info("secretKey : " + sk.getSecretKey());
+		try {
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			cipher.init(Cipher.DECRYPT_MODE,
+					new SecretKeySpec(sk.getSecretKey().getBytes(), "AES"),
+					new IvParameterSpec(iv.getBytes()));
+
+			return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedText.getBytes("UTF-8"))));
+		} catch (Exception e) {
+			logger.error("Exception occur : " + e.toString());
+			return encryptedText;
+		}
+	}
+
 }

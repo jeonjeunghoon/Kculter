@@ -32,7 +32,7 @@
 }
 .aboutTop {
   position: fixed;
-  top: 15px;
+  top: 0px;
   left: 10px;
 }
 .mainLogo {
@@ -81,6 +81,7 @@
   text-align: center;
   justify-content: center;
   align-items: flex-start;
+  line-height: 80px;
 }
 #travel {
   font-size: 4rem;
@@ -89,17 +90,18 @@
 }
 .korean {
   align-self: center;
+  margin-bottom:0px;
 }
 #kpop {
   color: #ff59f6;
   font-size: 4rem;
-  margin: 0px 10px;
-  margin-right: 10px;
+  margin: 0px 20px;
 }
 .mainbtn2 {
   display: block;
   align-self: center;
-  margin-top: auto;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .chevron {

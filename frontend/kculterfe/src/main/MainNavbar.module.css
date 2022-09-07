@@ -13,7 +13,7 @@
   height: 80px;
 }
 .navbarLogo img {
-  width: 100%;
+  width: 80%;
   object-fit: contain;
 }
 .navMenu {
@@ -28,9 +28,10 @@
   margin-right: 2rem;
 }
 .navItem {
-  margin-top: 40px;
+  margin-top: 30px;
   height: 80px;
   padding-bottom: 30px;
+  margin-right: 10px;
 }
 .navLinks {
   color: #fff;
@@ -40,7 +41,8 @@
   text-decoration: none;
   padding: 1vw;
   height: 100%;
-  font-size: 2rem;
+  font-size: 1.3rem;
+  margin-top: 10px;
 }
 .navLinks:hover {
   color: #ff59f6;
@@ -69,6 +71,16 @@
     margin-top: 0;
   }
   .navLinks {
+    font-size: 1rem;
+  }
+  .navLinks {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 1vw;
+    height: 100%;
     font-size: 1rem;
   }
 }
