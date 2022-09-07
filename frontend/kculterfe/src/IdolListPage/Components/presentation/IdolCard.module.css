@@ -169,6 +169,9 @@ h3,p{
 }
 
 @media (max_width: 950px) {
+	.modal {
+		width: 50%;
+	}
 	.modal_body {
 		flex-direction: column;
 	}

@@ -40,7 +40,7 @@ function MainPage(){
             >
                 <span id={styles.travel}>
                 Travel Helper 
-                </span><br></br>
+                </span>
                 <div className={styles.korean}>
                   <span id={styles.tokorea}>to Korea for</span>
                   <span id={styles.kpop}>KPOP</span> 
