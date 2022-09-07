@@ -115,11 +115,17 @@
   .aboutKculter {
     font-size: 1rem;
     padding: 0;
+    line-height: 40px;
   }
   #kpop {
     font-size: 2rem;
   }
   #travel {
     font-size: 2rem;
+  }
+  .korean {
+    align-self: center;
+    margin-bottom:0px;
+    font-size:1.5rem;
   }
 }
