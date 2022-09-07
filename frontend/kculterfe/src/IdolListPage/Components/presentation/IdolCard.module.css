@@ -93,7 +93,7 @@ h3,p{
 .modal_header{
 	overflow: hidden;
 	position: relative;
-	height: 30rem;
+	height: 300px;
 	display: block;
 	justify-content: center;
 }
@@ -107,7 +107,7 @@ h3,p{
 	margin: auto;
 	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 
 .modal_body {
@@ -169,9 +169,7 @@ h3,p{
 }
 
 @media (max_width: 950px) {
-	.modal {
-		width: 50%;
-	}
+
 	.modal_body {
 		flex-direction: column;
 	}
