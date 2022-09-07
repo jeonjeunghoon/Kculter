@@ -30,5 +30,9 @@
 }
 
 @media (min-width: 1000px) {
-	.CardContainer { grid-template-columns: repeat(4, 1fr); }
+	.CardContainer {
+		grid-template-columns: repeat(4, 1fr); 
+		padding-left: 5%;
+		padding-right: 5%;
+	}
 }
