@@ -11,7 +11,7 @@ import "aos/dist/aos.css";
 import aboutbackgrond from '../src_asset/aboutbackground.png';
 import klogo from '../src_asset/aboutlogo.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {FaChevronDown} from "react-icons/fa";
+import {FaCaretUp} from "react-icons/fa";
 
 function MainPage(){
 
@@ -42,7 +42,7 @@ function MainPage(){
                 Travel Helper 
                 </span>
                 <div className={styles.korean}>
-                  <span id={styles.tokorea}>to Korea for</span>
+                  <span id={styles.tokorea}>To Korea For</span>
                   <span id={styles.kpop}>KPOP</span> 
                   <span>Fans</span>
                 </div>
@@ -54,6 +54,11 @@ function MainPage(){
               data-aos-delay="1200">
               <Button/>
             </div>
+            <FaCaretUp className={styles.chevron} size="40"
+              data-aos="fade-right"
+              data-aos-duration="3000"
+              data-aos-delay="1900"
+             />
         </div>
       </div>
         {/* 
