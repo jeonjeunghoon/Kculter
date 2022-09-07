@@ -35,8 +35,9 @@ export async function getCourseData(kculter, setKculter, dispatch) {
 	});
 }
 	
-export async function getConcertData(kculter, setKculter, dispatch) {
+export async function getConcertData(kculter, setKculter) {
 	const pin = await getPinApi("/pin/", "kpop", kculter.concert.keyHash);
+	
 	setKculter(prev => ({
 		...prev,
 		center: {
@@ -44,39 +45,9 @@ export async function getConcertData(kculter, setKculter, dispatch) {
 			lng: kculter.concert.lng
 		},
 		data: {
-			place: [{
-				keyHash: kculter.concert.keyHash,
-				head: kculter.concert.starName,
-				name: kculter.concert.concertName,
-				fileUrl: kculter.concert.img,
-				explain: kculter.concert.explain,
-				lat: kculter.concert.lat,
-				lng: kculter.concert.lng,
-			}],
 			pin: pin.data,
 		},
 	}));
-	let imageUrl = "";
-	console.log(pin.data);
-	if (pin.data) {
-		imageUrl = pin.data.imageUrl;
-	} else {
-		imageUrl = "";
-	}
-	const placeToRedux = {
-		head: kculter.concert.starName,
-		imageUrl: imageUrl,
-		// address: kculter.concert..address,
-		explain: kculter.concert.explain,
-		fileUrl: kculter.concert.img,
-		name: kculter.concert.concertName,
-		lat: kculter.concert.lat,
-		lng: kculter.concert.lng,
-	}
-	dispatch({
-		type: CLICK_PLACE,
-		data: placeToRedux,
-	});
 }
 
 export async function getKculterData(setKculter, type, keyHash, dispatch) {

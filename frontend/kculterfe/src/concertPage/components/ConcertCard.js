@@ -61,10 +61,6 @@ function CardItem(item) {
 																	type: MAP_IN_CONCERT,
 																	data: {
 																		keyHash: item.starHash,
-																		concertName: item.title,
-																		starName: item.starName,
-																		img: item.img,
-																		explain: item.explain,
 																		lat: item.lat,
 																		lng: item.lng,
 																	}
