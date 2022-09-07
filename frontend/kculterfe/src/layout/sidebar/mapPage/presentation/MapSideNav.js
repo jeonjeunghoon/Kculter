@@ -1,5 +1,4 @@
 import React, {
-	useState,
 	useEffect,
 } from 'react';
 import { useSelector } from 'react-redux';
@@ -10,6 +9,7 @@ import '../map-sidebar.css';
 
 function MapSideNav(props) {
 	const place = useSelector(state => state.place);
+	const concert = useSelector(state => state.mapConcert);
 
 	useEffect(() => {
 		props.handleOpen(true);
@@ -39,9 +39,13 @@ function MapSideNav(props) {
 						address={place.address}
 						explain={place.explain}
 					/>
-					<CourseBox
-						place={place}
-					/>
+					{
+						!concert.lat &&
+						!concert.lng &&
+						<CourseBox
+							place={place}
+						/>
+					}
 				</div>
 			}
 		</div>

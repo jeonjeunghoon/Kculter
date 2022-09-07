@@ -26,10 +26,6 @@ function CourseBox({ place }) {
 		setCourseList(() => reduxCourseList);
 	}, [courseList]);
 
-	useEffect(() => {
-		console.log(memberHash);
-	}, [memberHash]);
-
 	return (
 		<div className="course">
 			<h5>Course</h5>

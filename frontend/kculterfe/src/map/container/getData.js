@@ -36,17 +36,18 @@ export async function getCourseData(kculter, setKculter, dispatch) {
 }
 	
 export async function getConcertData(kculter, setKculter) {
-	const pin = await getPinApi("/pin/", "kpop", kculter.concert.keyHash);
+	const pin = await getPinApi("/pin/", "kpop", kculter.concertProps.keyHash);
 	
 	setKculter(prev => ({
 		...prev,
 		center: {
-			lat: kculter.concert.lat,
-			lng: kculter.concert.lng
+			lat: kculter.concertProps.lat,
+			lng: kculter.concertProps.lng
 		},
-		data: {
-			pin: pin.data,
-		},
+		concert: {
+			place: null,
+			pin: pin,
+		}
 	}));
 }
 
@@ -96,7 +97,7 @@ export async function getKculterData(setKculter, type, keyHash, dispatch) {
 export async function getData(kculter, setKculter, dispatch) {
 	if (kculter.course.place.length > 0) {
 		await getCourseData(kculter, setKculter, dispatch);
-	}	else if (kculter.concert.keyHash) {
+	}	else if (kculter.concertProps.keyHash) {
 		await getConcertData(kculter, setKculter, dispatch);
 	} else {
 		await getKculterData(setKculter, kculter.kProps.type, kculter.kProps.keyHash, dispatch);

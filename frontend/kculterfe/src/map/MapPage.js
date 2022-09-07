@@ -41,7 +41,11 @@ function MapPage() {
 			keyHash: window.sessionStorage.getItem("keyHash"),
 			type: Number(window.sessionStorage.getItem("type")),
 		},
-		concert: reduxConcert,
+		concertProps: reduxConcert,
+		concert: {
+			place: null,
+			pin: null,
+		},
 		course: {
 			place: reduxCourse,
 			pin: "",

@@ -1,3 +1,4 @@
+import { Marker } from '@react-google-maps/api';
 import React, {
 	useState,
 	useEffect,
@@ -9,6 +10,9 @@ import {
 	handleCustomMarker,
 	handleCard,
 } from '../container/handleOnMarker';
+import {
+	getConcertPlaceData,
+} from '../container/handleGM'
 import CustomMarker from './CustomMarker';
 
 function MapMarker(props) {
@@ -75,6 +79,20 @@ function MapMarker(props) {
 					/>
 				:
 				<></>
+			}
+			{/* Concert 마커 */}
+			{
+				props.concert.lat &&
+				props.concert.lng &&
+				<Marker
+					position={{
+						lat: props.concert.lat,
+						lng: props.concert.lng
+					}}
+					onClick={() => {
+						getConcertPlaceData(props.concert, props.map, props.google, props.setCenter, props.setZoom, props.dispatch);
+					}}
+				/>
 			}
 		</div>
 	);

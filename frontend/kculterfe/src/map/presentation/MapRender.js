@@ -81,7 +81,7 @@ function MapRender(props) {
 				options={options}
 				center={center}
 				zoom={zoom}
-				onLoad={map => handleOnLoad(map, setMap, props.kculter.concert, google, setCenter, setZoom, dispatch, near.url, setNear)}
+				onLoad={map => handleOnLoad(map, setMap, props.kculter.concertProps, google, setCenter, setZoom, dispatch, near.url, setNear)}
 				onUnmount={() => handleOnUnmount(map, setMap, dispatch)}
 				onClick={e => handleOnClickGM(map, e, google, setCenter, setZoom, dispatch)}
 				onDragEnd={() => handleOnDragEndGM(map, near.url, setNear)}
@@ -102,9 +102,12 @@ function MapRender(props) {
 
 				{/* 마커 */}
 				<MapMarker
+					map={map}
+					google={google}
 					kculter={props.kculter.data}
 					near={near}
 					course={props.kculter.course}
+					concert={props.kculter.concertProps}
 					setCenter={setCenter}
 					setZoom={setZoom}
 					dispatch={dispatch}

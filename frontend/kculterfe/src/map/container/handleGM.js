@@ -7,7 +7,6 @@ import {
 	CLEAR_MAP_CONCERT,
 	CLEAR_PLACE
 } from '../../redux/reducer';
-import { getConcertPlace } from './getData';
 
 export function handleOnUnmount(map, setMap, dispatch) {
 	setMap(() => map);
@@ -39,35 +38,39 @@ export function handleOnUnmount(map, setMap, dispatch) {
 	})
 }
 
-function getConcertPlaceData(concert, map, google, setCenter, setZoom, dispatch) {
-	if (concert.lat === 0 && concert.lng === 0) {
+export function getConcertPlaceData(concert, map, google, setCenter, setZoom, dispatch) {
+	if (!concert.lat && !concert.lng) {
 		return;
 	}
-	// 플레이스 id 얻기
-	const placeId = "";
-	// 플레이스 detail 얻기
-	const service = new window.google.maps.places.PlacesService(map);
-	const request = {
-		placeId: placeId,
-		fields: [
-			"formatted_address",
-			"international_phone_number",
-			"name",
-			"photos",
-			"geometry"
-		],
-	};
-	service.getDetails(request, (placeData, status) => {
-		if (
-			status === google.maps.places.PlacesServiceStatus.OK &&
-			placeData &&
-			placeData.geometry &&
-			placeData.geometry.location
-			) {
-				handleGoogleMarkerAndSearch(placeData, "PLACE", setCenter, setZoom, dispatch);
-			}
+	axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + concert.lat + "," + concert.lng + "&radius=10&key=AIzaSyACbIPocp-CLvcsG7CyYmV69q1Vp6k7vf0")
+	.then(res => {
+		const placeId = res.data.results[0].place_id;
+		const service = new window.google.maps.places.PlacesService(map);
+		const request = {
+			placeId: placeId,
+			fields: [
+				"formatted_address",
+				"international_phone_number",
+				"name",
+				"photos",
+				"geometry"
+			],
+		};
+		service.getDetails(request, (placeData, status) => {
+			if (
+				status === google.maps.places.PlacesServiceStatus.OK &&
+				placeData &&
+				placeData.geometry &&
+				placeData.geometry.location
+				) {
+					handleGoogleMarkerAndSearch(placeData, "PLACE", setCenter, setZoom, dispatch);
+				}
 		})
-	}
+	})
+	.catch(error => {
+		console.log(error);
+	})
+}
 	
 	export function handleOnLoad(map, setMap, concert, google, setCenter, setZoom, dispatch, url, setNear) {
 	setMap(() => map);
