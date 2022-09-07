@@ -94,7 +94,7 @@ public class CourseServiceTest {
     @Test
     void testDeleteCourse(){
         //given
-        int courseNum = 2;
+        int courseNum = 10;
         
         //when
         int result = cs.deleteCourse(courseNum);
