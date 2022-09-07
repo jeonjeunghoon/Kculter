@@ -26,6 +26,7 @@
 	text-align: center;
 	font-size: 40px;
 	color: #0074ff;
+	margin-bottom: 1rem;
 }
 
 .sidebar i.bi-chevron-left {
@@ -61,4 +62,9 @@
 .sidebar-item.plain i{
 	display: inline-block;
 	width: 1.7em;
+}
+
+.concert_calender {
+	margin-top: 1rem;
+	height: auto;
 }

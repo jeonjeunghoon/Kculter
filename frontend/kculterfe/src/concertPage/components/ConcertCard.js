@@ -19,13 +19,13 @@ function CardItem(item) {
 				<div className="card-container">
 					<div className="image-container">
 						<img src={item.img} />
-						<div className="image-title">{item.title}</div>
 					</div>
 					<div className="card-content">
-						<div className='pin'>
-							<div className="card-date">
-								{item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}
-							</div>
+						<h6 className='card-title'>
+							{item.title}
+						</h6>
+						<div className="card-date">
+							{item.startDate.split('T')[0]} ~ {item.endDate.split('T')[0]}
 						</div>
 					</div>
 				</div>

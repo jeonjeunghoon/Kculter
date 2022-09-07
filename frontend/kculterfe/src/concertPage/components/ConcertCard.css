@@ -3,7 +3,6 @@
 	display: grid;
 	width: 1fr;
 	overflow: hidden;
-	box-shadow:0px 0px 15px -5px;
 	transition: 0.3s;
 	animation: ease-in-out;
 	background-color: white;
@@ -17,7 +16,6 @@
 
 .image-container {
 	display: inline;
-	width: 100%;
 	position: relative;
 	background-color: black;
 	color: white;
@@ -44,46 +42,24 @@
 	opacity: 0.95;
 }
 
-.image-title{
-	/* font-family: 'Noto Sans CJK KR'; */
-	/* font-size: xx-large; */
-	font-size: large;
-	font-weight: 800;
-	text-align: center;
-	margin: auto;
-	position: absolute;
-	bottom: 0;
-	color: white;
+.card-content {
+	min-width: 0;
 }
 
-.card-content{
-	display: flex;
-	flex-direction: column;
-	justify-content: space_around;
-}
-
-.card-content *{
-	margin: 0.3rem;
-	text-align: center;
-	display: flex;
-	justify-content: right;
-	align-items: center;
-}
-
-.pin {
-	width: 100%;
+.card-title {
 	display: block;
-	flex-direction: row;
-	margin: auto;
-}
-
-.card-content img {
-	width: 1rem;
+	margin-top: 0.8rem;
+	margin-left: 1rem;
 	margin-right: 1rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	word-break: break-word;
 }
 
 .card-date {
 	color: gray;
-	text-align: center;
+	margin-top: 0.5rem;
+	margin-left: 1rem;
 	margin-bottom: 1rem;
 }

@@ -3,6 +3,7 @@
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
+    overflow: auto;
     grid-template-rows: 1fr 10fr;
   }
 }
@@ -12,6 +13,7 @@
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
+    overflow: scroll;
     grid-template-columns: 300px 1fr;
     grid-template-rows: 1fr 10fr;
   }
@@ -20,6 +22,7 @@
     background-color: rgba(238, 238, 238);
     display: grid;
     height: 100vh;
+    overflow: auto;
     grid-template-rows: 1fr 10fr;
   }
 
