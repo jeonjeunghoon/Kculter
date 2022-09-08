@@ -105,78 +105,18 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.11.0</version>
-                <!-- frontend-maven-plugin Version -->
-                <configuration>
-                    <workingDirectory>frontend/kculterfe</workingDirectory>
-                    <!-- React JS 가 설치된 디렉토리 -->
-                    <installDirectory>target</installDirectory>
-                    <!-- war & jar 가 생성되는 메이븐 빌드의 타겟 디렉토리 -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                            <!-- node & npm 설치 -->
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v15.14.0</nodeVersion>
-                            <!-- 설치할 nodeJs 의 버전 -->
-                            <npmVersion>7.7.6</npmVersion>
-                            <!-- 설치할 npm 의 버전 -->
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <!-- npm install 로 package.json 의 모듈을 설치한다. -->
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm run build</id>
-                        <!-- React Js Build -->
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>run build</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <!-- 리소스 생성 -->
-                        <configuration>
-                            <target>
-                                <copy todir="${project.build.directory}/classes/public">
-                                    <!-- 복사할 디렉토리 설정 -->
-                                    <fileset dir="${project.basedir}/frontend/kculterfe/build"/>
-                                    <!-- 가져올 디렉토리 및 파일 -->
-                                </copy>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                            <!-- 복사 실행 -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>2.19.1</version>
+			    <configuration>
+			        <testFailureIgnore>true</testFailureIgnore>
+			    </configuration>
+			</plugin>
             <!-- Pour contourner un bug à la génération par Spring-boot 2.4.x : 
             Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources (default-resources) on project application-etude: Input length = 1 -->               
             <plugin>
