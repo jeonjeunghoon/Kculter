@@ -3,6 +3,8 @@ import React, {
 	useState,
 } from 'react';
 import {
+	DirectionsRenderer,
+	DirectionsService,
 	GoogleMap,
 } from '@react-google-maps/api';
 import {
@@ -12,7 +14,7 @@ import {
 	handleOnUnmount,
 } from '../container/handleGM';
 import {
-	useDispatch,
+	useDispatch, useSelector,
 } from 'react-redux';
 import Search from './Search';
 import MapMarker from './MapMarker';
@@ -21,7 +23,20 @@ import MapFilter from './MapFilter'
 
 import staypin from '../../src_asset/stay_logo.png';
 
+export function directionsCallback(res) {
+	console.log(res)
+
+	if (res !== null) {
+		if (res.status === 'OK') {
+			console.log(res);
+		} else {
+			console.log('res: ', res)
+		}
+	}
+}
+
 function MapRender(props) {
+	const direction = useSelector(state => state.courseList);
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);
@@ -121,6 +136,33 @@ function MapRender(props) {
 					setZoom={setZoom}
 					dispatch={dispatch}
 				/>
+
+				{/* 길찾기 */}
+				{
+					direction.length > 0 &&
+					<DirectionsService
+        	  // required
+        	  options={{
+        	    origin: { lat: direction[0].lat, lng:direction[0].lng },
+							waypoints: [],
+        	    destination: { lat: direction[direction.length - 1].lat, lng:direction[direction.length - 1].lng },
+        	    travelMode: 'TRANSIT',
+        	  }}
+        	  // required
+        	  callback={(res) => directionsCallback(res)}
+        	  // optional
+        	  onLoad={directionsService => {
+        	    console.log('DirectionsService onLoad directionsService: ', directionsService)
+        	  }}
+        	  // optional
+        	  onUnmount={directionsService => {
+        	    console.log('DirectionsService onUnmount directionsService: ', directionsService)
+        	  }}
+        	/>
+				}
+				{/* 길찾기 렌더링 */}
+				{/* <DirectionsRenderer
+				/> */}
 			</GoogleMap>
 		</div>
 	)
