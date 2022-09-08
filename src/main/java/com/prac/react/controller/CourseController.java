@@ -46,7 +46,7 @@ public class CourseController {
 		for(Place place : placesList){
 			logger.info("Place Info : " + place.toString());
 
-			if(place.getPlaceHash() == ""){
+			if(place.getPlaceHash() == "0"){
 				//placeNum이 없는 애들은 map에서 고른애들이다. 따라서 우리 DB에 있을수도 있고 없을수도 있다.
 				//따라서 우리는 장소이름과 경도와 위도가 DB에 없다면 추가를 할것이다.
 				// select placeNum from places where name = 이름 && lat = 위도 && lng = 경도
