@@ -12,7 +12,7 @@ import {
 	handleOnUnmount,
 } from '../container/handleGM';
 import {
-	useDispatch,
+	useDispatch, useSelector,
 } from 'react-redux';
 import Search from './Search';
 import MapMarker from './MapMarker';
@@ -22,6 +22,7 @@ import MapFilter from './MapFilter'
 import staypin from '../../src_asset/stay_logo.png';
 
 function MapRender(props) {
+	const direction = useSelector(state => state.courseList);
 	const dispatch = useDispatch();
 	const google = window.google;
 	const [map, setMap] = useState(null);

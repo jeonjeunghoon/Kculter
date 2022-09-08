@@ -75,6 +75,22 @@
   padding-bottom: 10px;
 }
 
+.course .course-head {
+	display: flex;
+	justify-content:space-around;
+	margin-bottom: 10px;
+}
+
+.course .course-head p {
+	font-size: 30px;
+	font-style: bold;
+	margin: 0;
+}
+
+.course .course-head button {
+	margin: 0;
+}
+
 .course-card {
   display: flex;
   border-radius: 4px;
