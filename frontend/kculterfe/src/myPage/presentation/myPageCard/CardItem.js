@@ -51,7 +51,7 @@ function CardItem({ props, index, end }) {
 					</Card.Body>
 				</Card>
 				<PathDesignCircle>
-					o
+					<NumText DesignNum={index}>{index}</NumText>
 					<PathDesignLine check={displayFlag} />
 				</PathDesignCircle>
 			</CardDiv>
@@ -61,12 +61,39 @@ function CardItem({ props, index, end }) {
 
 // css
 
+const NumText = styled.span`
+	color: white;
+	font-weight: 700;
+	margin-top: 0;
+	background-color: #f4029b;
+	border-radius: 50%;
+	padding: 1px 5.3px;
+	// ${props => {
+    //     if (props.DesignNum === 0) {
+    //         return`
+	// 			margin-left: 143.5px;
+    //         `
+    //     }
+	// 	else if (props.DesignNum === 1) {
+	// 		return `
+	// 			margin-left: 145.5px;
+	// 		`
+	// 	}
+    //     else {
+    //         return`
+    //         	margin-left: 144.5px;
+    //         `
+    // }
+    }};
+`
+
 const PathDesignCircle = styled.div`
 	color: #3172F6;
 	font-size: 1.2rem;
 	font-weight: 900;
 	position: relative;
-	margin-left: 146px;
+	margin-left: 148px;
+	margin-top: 10px;
 `
 	
 	const PathDesignLine = styled.hr`
@@ -76,7 +103,6 @@ const PathDesignCircle = styled.div`
 	width: 233px;
 	margin: 13.9px 11.2px;
 	top: 0;
-	// right: -0.5px;
 	opacity: 1;
 	
 `
