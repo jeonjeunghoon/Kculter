@@ -21,15 +21,15 @@ public class EncryptionTest {
     @Test
     void testAesDecrypt() {
         //given
-        String ecrypt = "kizYM6VCcrLJqoN8PKZ4gT5EBD23JAjxZCuCWZ6eibM=";
+        String ecrypt = "0";
         //when
         String decrypt = ec.aesDecrypt(ecrypt);
         //then
-        logger.info("Decrypt 1: "+decrypt);
-        String memberNum = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
-        logger.info("MemberNum : "+ec.aesDecrypt(memberNum));
-        String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
-        logger.info("Pwd : "+pwd);
+        // logger.info("Decrypt 1: "+decrypt);
+        // String memberNum = decrypt.substring(0,decrypt.lastIndexOf("=")-1);
+        // logger.info("MemberNum : "+ec.aesDecrypt(memberNum));
+        // String pwd = decrypt.substring(decrypt.lastIndexOf("=")+1);
+        // logger.info("Pwd : "+pwd);
 
         logger.info("Devrypt : "+decrypt);
     }
