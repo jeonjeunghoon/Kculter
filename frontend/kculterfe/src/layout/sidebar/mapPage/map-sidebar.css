@@ -156,3 +156,18 @@
   background-color: #f4029b;
   font-weight: bold;
 }
+
+.direction-btn{
+  border-radius: 10px;
+  font-size: 5px;
+  position: relative;
+  left: 17px;
+  background-color: #fff;
+  border-color: #0076ff;
+  color: #0076ff;
+  font-weight: bold;
+}
+
+.modal{
+  padding: 10px 10px;
+}

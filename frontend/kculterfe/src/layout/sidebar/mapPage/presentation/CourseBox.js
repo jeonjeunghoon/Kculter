@@ -45,6 +45,7 @@ function CourseBox({ place }) {
 				</p>
 				<button
 					onClick={() => handleOnClickDirection(courseList, dispatch)}
+					className="direction-btn"
 				>
 					GET DIRECTION
 				</button>
