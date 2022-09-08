@@ -27,7 +27,7 @@ export function handleCard(data, head, setCenter, setZoom, dispatch) {
 		name: data.title,
 		lat: Number(data.mapy),
 		lng: Number(data.mapx),
-		placeHash: 0,
+		placeHash: "0",
 		placeType: 0,
 		status: 0,
 	}
@@ -65,7 +65,7 @@ export function handleGoogleMarkerAndSearch(data, head, setCenter, setZoom, disp
 		name: data.name,
 		lat: 0,
 		lng: 0,
-		placeHash: 0,
+		placeHash: "0",
 		placeType: 0,
 		status: 0,
 	}

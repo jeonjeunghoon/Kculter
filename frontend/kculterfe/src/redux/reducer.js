@@ -12,7 +12,7 @@ const initState = {
 		memberHash: 0,
 		lat: 0,
 		lng: 0,
-		placeHash: 0,
+		placeHash: "0",
 		placeType: 0,
 		status: 0,
 	},
