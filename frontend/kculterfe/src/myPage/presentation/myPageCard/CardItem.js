@@ -1,13 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { CLICK_PLACE } from '../../../redux/reducer';
 import "../../styles/MyPage.css"
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
-function CardItem({ props }) {
+function CardItem({ props, index, end }) {
+
 	const dispatch = useDispatch();
+	const [displayFlag, setDisplayFlag] = useState(true);
+	if ((index + 1) == end) {
+		useEffect(() => {
+			setDisplayFlag(false);
+		})
+	}
+
 
     const moveToMap = () => {
         let place = props
@@ -20,7 +28,7 @@ function CardItem({ props }) {
 
 	return (
 		<>
-			<div className="my-5">
+			<CardDiv>
 				<Card className="body-card">
 					{/* 카드 호버 기능 */}
 					<Link className="" to='/MapPage'>
@@ -42,9 +50,39 @@ function CardItem({ props }) {
 						</Card.Title>
 					</Card.Body>
 				</Card>
-			</div>
+				<PathDesignCircle>
+					o
+					<PathDesignLine check={displayFlag} />
+				</PathDesignCircle>
+			</CardDiv>
 		</>
 	);
 }
+
+// css
+
+const PathDesignCircle = styled.div`
+	color: #3172F6;
+	font-size: 1.2rem;
+	font-weight: 900;
+	position: relative;
+	margin-left: 146px;
+`
+	
+	const PathDesignLine = styled.hr`
+	display: ${props => props.check ? 'true' : 'none'};
+	position: absolute;
+	border: 2px solid #3172F6;
+	width: 233px;
+	margin: 13.9px 11.2px;
+	top: 0;
+	// right: -0.5px;
+	opacity: 1;
+	
+`
+
+const CardDiv = styled.div`
+	margin-top: 40px;
+`
 
 export default CardItem;

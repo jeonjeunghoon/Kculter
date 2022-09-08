@@ -29,7 +29,6 @@
 		display: grid;
 		grid-template-columns: 20% 80%;
 		position: relative;
-		color: white;
 		box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 0.3);
 	}
 }
@@ -38,7 +37,6 @@
 	#my-body .box-list .box-card-item {
 		width: 21rem; /* day 박스 크기 설정 */
 		position: relative;
-		color: white;
 		margin: auto;
 		box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 0.3);
 	}
@@ -62,8 +60,9 @@
 /* 카드 왼쪽, 위쪽(모바일) 타이틀 */
 @media all and (min-width:767px) {
 	#my-body .box-card-item .left .title {
-	margin-top: 10px;
-	margin-left: 20px;
+		margin-top: 10px;
+		margin-left: 20px;
+		color: white;
 	}
 }
 
@@ -72,6 +71,7 @@
 		margin-top: 2rem;
 		margin-left: 20px;
 		padding-top: 0.5rem;
+		color: white;
 	}
 }
 
@@ -88,7 +88,7 @@
 	height: 89%; /* Deletebtn 높이를 줄여서 밑에 수평바 위치 맞추기 위해 */
 }
 
-/* body card */
+/* 코스 안에 장소 감싸는 부분 */
 @media all and (min-width:768px) {
 	#my-body .body-card {
 		width: 9rem;
