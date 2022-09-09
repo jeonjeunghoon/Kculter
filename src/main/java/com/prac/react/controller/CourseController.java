@@ -103,22 +103,21 @@ public class CourseController {
 			logger.warn("Member course is empty");
 		}else{
 			//해당 코스의 
-			memberCourseList = cs.getMemberCourseWrapper(memberNum, courses);		
+			memberCourseList = cs.getMemberCourseWrapper(memberNum, courses);
+			
+			//memberCourseList를 불러왔지만 지금 정렬이 하나도 되어있지 않다
+			//따라서 courseNum에따라서 오름차순으로 정렬을 해야한다.
+			QuikSort qs = new QuikSort();
+			qs.quikSort(memberCourseList);
+
+			//오름 차순 정렬을한 course들의 courseNum을 암호화해야한다.
+			for(CourseWrapper cw : memberCourseList){
+				String courseHash = encryption.aesEncrypt(Integer.toString(cw.getCourseNum()));
+				cw.setCourseHash(courseHash);
+				cw.setCourseNum(0);
+			}				
 		}
-
-		//memberCourseList를 불러왔지만 지금 정렬이 하나도 되어있지 않다
-		//따라서 courseNum에따라서 오름차순으로 정렬을 해야한다.
-		QuikSort qs = new QuikSort();
-		qs.quikSort(memberCourseList);
-
-		//오름 차순 정렬을한 course들의 courseNum을 암호화해야한다.
-
-		for(CourseWrapper cw : memberCourseList){
-			String courseHash = encryption.aesEncrypt(Integer.toString(cw.getCourseNum()));
-			cw.setCourseHash(courseHash);
-			cw.setCourseNum(0);
-		}
-
+		
 		return memberCourseList;
 	}
 	@DeleteMapping("")
