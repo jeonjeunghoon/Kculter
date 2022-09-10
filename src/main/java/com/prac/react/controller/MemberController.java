@@ -26,6 +26,7 @@ import com.prac.react.service.S3FileUploadService;
 /* 이파일은 회원가입,로그인,회원정보수정 등등
  회원 정보와 관련된 일을 할때 들어올 Controller 입니다 */
 
+@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -58,7 +59,6 @@ public class MemberController {
     // }
     // }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/emaildup")
     public int checkEmail(@RequestParam("email") String email) {
         logger.info("Email : " + email);
@@ -66,7 +66,6 @@ public class MemberController {
         return result;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/nicknamedup")
     public int checkNickName(@RequestParam("nickname") String nickName) {
         logger.info("NickName : " + nickName);
@@ -74,7 +73,6 @@ public class MemberController {
         return result;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/signup")
     public int insertMember(@RequestBody Member member) {
         logger.info(member.toString());
@@ -94,7 +92,7 @@ public class MemberController {
             return 500;
         }
     }
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
+
     @GetMapping("/login")
     public FrontMember login(@RequestHeader("Authorization") String autho) {
         logger.info("Authorization : " + autho);
@@ -119,7 +117,6 @@ public class MemberController {
     }
 
     //회원번호로 회원정보 조회 api
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("")
     public Member getMemberInfo(@RequestHeader("Authorization") String autho) {
         logger.info("Member info get login start!!!");
@@ -138,7 +135,6 @@ public class MemberController {
     }
 
     //회원정보 변경 api
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PutMapping("")
     public int updateMemberInfo(@RequestPart("formValue") Member member,@RequestPart(value="file", required=false) MultipartFile mpf) throws IOException{
         logger.info("Member update Start!!!");
@@ -181,7 +177,6 @@ public class MemberController {
     }
     //비밀번호 확인 api
     //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/pwd")
     public int checkPwd(@RequestHeader("Authorization") String autho){
         logger.info("Checking pwd!!!");
@@ -208,7 +203,6 @@ public class MemberController {
 
     //비밀번호 변경 api
     //받아오는 값은 memberNum+pwd aes 해쉬한걸 가져옴
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PutMapping("/pwd")
     public int updatePwd(@RequestHeader("Authorization") String autho){
         logger.info("Changing pwd!!!");
@@ -237,7 +231,6 @@ public class MemberController {
 
     //회원 탈퇴 api
     //멤버해쉬를 header로 받아옴
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PutMapping("/secession")
     public int memberSecession(@RequestHeader("Authorization") String autho){
         logger.info("Member secession api start");
@@ -255,7 +248,6 @@ public class MemberController {
 
     //관리자 확인 api
     //멤버번호를 Authorization으로 받아옴
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/mg")
     public int checkManager(@RequestHeader("Authorization") String autho){
         logger.info("Manager checking api start");
