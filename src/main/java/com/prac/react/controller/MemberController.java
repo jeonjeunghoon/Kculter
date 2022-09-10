@@ -63,7 +63,7 @@ public class MemberController {
     public int insertMember(@RequestBody Member member) {
         logger.info(member.toString());
 
-        member.setPfUrl("https://kculter-image.s3.ap-northeast-2.amazonaws.com/user.png");
+        member.setPfUrl("https://kculter-images.s3.ap-northeast-2.amazonaws.com/user.png");
         String pwd = encrypt.aesDecrypt(member.getPwd()); // 대칭키로 복호화
         String enccryptPwd = encrypt.shaEncryption(pwd); // 복호화 한걸 sha256 암호화
         member.setPwd(enccryptPwd);
