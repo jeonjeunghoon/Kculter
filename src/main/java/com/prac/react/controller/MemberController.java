@@ -26,7 +26,7 @@ import com.prac.react.service.S3FileUploadService;
 /* 이파일은 회원가입,로그인,회원정보수정 등등
  회원 정보와 관련된 일을 할때 들어올 Controller 입니다 */
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://43.201.18.118:3000","http://kculter.com:3000","https://kculter.com:3000"})
 @RestController
 @RequestMapping("/member")
 public class MemberController {

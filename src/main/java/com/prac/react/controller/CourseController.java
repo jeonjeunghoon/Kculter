@@ -22,7 +22,7 @@ import com.prac.react.model.dto.Place;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CourseService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://43.201.18.118:3000","http://kculter.com:3000","https://kculter.com:3000"})
 @RestController
 @RequestMapping("/course")
 public class CourseController {
