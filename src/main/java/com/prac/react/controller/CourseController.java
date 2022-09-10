@@ -22,6 +22,7 @@ import com.prac.react.model.dto.Place;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CourseService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -36,7 +37,6 @@ public class CourseController {
 		this.cs = cs;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@PostMapping("")
 	public int insertCourse(@RequestBody CourseWrapper cw) {
 		List<Place> placesList = cw.getCourse();
@@ -89,7 +89,6 @@ public class CourseController {
 
 		return result;
 	}
-	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("/{memberNumhash}")
 	public List<CourseWrapper> getCourses(@PathVariable("memberNumhash")String memberNumHash) throws InterruptedException{
 
@@ -124,7 +123,6 @@ public class CourseController {
 		return memberCourseList;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@DeleteMapping("")
 	public int deleteCourse(@RequestHeader("CourseHash") String courseHash){
 		logger.info("Course Delete operation start!!!!");

@@ -16,6 +16,7 @@ import com.prac.react.model.dto.LatLng;
 import com.prac.react.model.dto.LocationBase;
 import com.prac.react.service.LocationBaseService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/near/")
 public class NearController {
@@ -30,7 +31,6 @@ public class NearController {
 	}
 
 	//근처 숙소 조회
-	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("stay")
 	public List<LocationBase> getNearStayInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
 
@@ -44,7 +44,6 @@ public class NearController {
 	}
 
 	//근처 관광지 조회
-	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("tour")
 	public List<LocationBase> getNearTourInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
 
