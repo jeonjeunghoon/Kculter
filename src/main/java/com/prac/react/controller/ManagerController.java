@@ -23,6 +23,7 @@ import com.prac.react.service.ConcertService;
 import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("manager")
 public class ManagerController{
@@ -45,7 +46,6 @@ public class ManagerController{
     }
 
     //@RequestPart는 multipart/form-data를 받기위해서 사용하는 어노테이션이다.
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/cultureinfo")
     public int insertCultureInfo(@RequestPart("formValue") Culture culture,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("문화 저장 들어옴");
@@ -71,7 +71,6 @@ public class ManagerController{
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/kpopinfo")
     public int insertKpopInfo(@RequestPart("formValue") Celebrity celeb,@RequestPart(value = "file") MultipartFile mpf) throws IOException{
         logger.info("kpop 저장 들어옴");
@@ -114,7 +113,6 @@ public class ManagerController{
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/place")
     public int insertPlace(@RequestPart("formValue") Place place,@RequestPart(value="file", required=false) MultipartFile mpf) throws IOException{
 
@@ -184,7 +182,6 @@ public class ManagerController{
         return result;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/concert")
     public int insertConcert(@RequestPart("formValue") Concert concert,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("Concert insert : "+concert.toString());
@@ -208,7 +205,6 @@ public class ManagerController{
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @PostMapping("/pin")
     public int insertPin(@RequestPart("formValue") Pin pin,@RequestPart("file") MultipartFile mpf) throws IOException{
         logger.info("Pin insert : "+ pin.toString());

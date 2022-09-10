@@ -14,6 +14,7 @@ import com.prac.react.model.dto.Culture;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CultureService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CultureController {
     Logger logger = LoggerFactory.getLogger(CultureController.class);
@@ -27,7 +28,6 @@ public class CultureController {
         this.cs = cs;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/cultures")
     public List<Culture> getCultures(){
         List<Culture> cultureList = new ArrayList<>();

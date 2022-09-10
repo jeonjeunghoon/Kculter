@@ -13,6 +13,7 @@ import com.prac.react.model.dto.Pin;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.PinService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/pin/")
 public class PinController {
@@ -27,7 +28,6 @@ public class PinController {
         this.encryption = encryption;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("kpop")
     public Pin getKpopPin(@RequestParam("keyHash")String keyHash){
         logger.info("Kpop Key : "+keyHash);
@@ -52,7 +52,6 @@ public class PinController {
         return pin;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("culture")
     public Pin getCulturePin(@RequestParam("keyHash") String keyHash){
         logger.info("Culture Key : "+keyHash);

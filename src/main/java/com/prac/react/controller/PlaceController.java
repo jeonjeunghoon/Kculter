@@ -15,6 +15,7 @@ import com.prac.react.model.dto.Place;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.PlaceService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class PlaceController {
 
@@ -30,7 +31,6 @@ public class PlaceController {
     }
     
     //Getting every place info in DB
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/places")
     public List<Place> getPlaceList(){
         List<Place> placeList = new ArrayList<>();
@@ -55,7 +55,6 @@ public class PlaceController {
     }
 
     //getting particular place info related by culture or celebrity keyNum
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("place")
     public List<Place> getKpopPlaces(@RequestParam("keyhash")String keyHash,@RequestParam("type")String type){
 

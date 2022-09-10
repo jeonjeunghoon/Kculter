@@ -14,6 +14,7 @@ import com.prac.react.model.dto.Celebrity;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CelebService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CelebController {
     Logger logger = LoggerFactory.getLogger(CelebController.class);
@@ -28,7 +29,6 @@ public class CelebController {
     }
 
     //Getting Celeb info
-    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("/celebrities")
     public List<Celebrity> getCelebrities(){
         List<Celebrity> celebList = new ArrayList<>();
