@@ -23,7 +23,7 @@ import com.prac.react.service.ConcertService;
 import com.prac.react.service.ManagerService;
 import com.prac.react.service.S3FileUploadService;
 
-@CrossOrigin(origins = {"http://localhost:3000","http://43.201.18.118:3000","http://kculter.com:3000","https://kculter.com:3000"})
+@CrossOrigin(origins = "http://kculter-lb-1250111111.ap-northeast-2.elb.amazonaws.com")
 @RestController
 @RequestMapping("manager")
 public class ManagerController{

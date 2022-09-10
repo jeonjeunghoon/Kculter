@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prac.react.service.PracService;
 
-@CrossOrigin(origins = {"http://localhost:3000","http://43.201.18.118:3000","http://kculter.com:3000","https://kculter.com:3000"})
+@CrossOrigin(origins = "http://kculter-lb-1250111111.ap-northeast-2.elb.amazonaws.com")
 @RestController
 @RequestMapping("/prac/")
 public class PracController {
