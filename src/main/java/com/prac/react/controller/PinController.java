@@ -13,7 +13,7 @@ import com.prac.react.model.dto.Pin;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.PinService;
 
-@CrossOrigin(origins = "https://kculter.com")
+@CrossOrigin(origins = "https://kculter.com:3000")
 @RestController
 @RequestMapping("/pin/")
 public class PinController {
