@@ -35,7 +35,7 @@ public class PinController {
         Pin pin = ps.getKpopPin(keyNum);
 
         if(pin == null){
-            logger.error("Getting kpop pin error");
+            logger.warn("No kpop pin error");
             return null;
         }
 
@@ -59,7 +59,7 @@ public class PinController {
         Pin pin = ps.getCulturePin(keyNum);
 
         if(pin == null){
-            logger.error("Getting culture pin error");
+            logger.warn("No culture pin error");
             return null;
         }
 
