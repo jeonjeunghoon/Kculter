@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class CourseController {
 		this.cs = cs;
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@PostMapping("")
 	public int insertCourse(@RequestBody CourseWrapper cw) {
 		List<Place> placesList = cw.getCourse();
@@ -87,6 +89,7 @@ public class CourseController {
 
 		return result;
 	}
+	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("/{memberNumhash}")
 	public List<CourseWrapper> getCourses(@PathVariable("memberNumhash")String memberNumHash) throws InterruptedException{
 
@@ -120,6 +123,8 @@ public class CourseController {
 		
 		return memberCourseList;
 	}
+
+	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@DeleteMapping("")
 	public int deleteCourse(@RequestHeader("CourseHash") String courseHash){
 		logger.info("Course Delete operation start!!!!");

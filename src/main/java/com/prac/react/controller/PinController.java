@@ -3,6 +3,7 @@ package com.prac.react.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,7 @@ public class PinController {
         this.encryption = encryption;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("kpop")
     public Pin getKpopPin(@RequestParam("keyHash")String keyHash){
         logger.info("Kpop Key : "+keyHash);
@@ -50,6 +52,7 @@ public class PinController {
         return pin;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
     @GetMapping("culture")
     public Pin getCulturePin(@RequestParam("keyHash") String keyHash){
         logger.info("Culture Key : "+keyHash);
