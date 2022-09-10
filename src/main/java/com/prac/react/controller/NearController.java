@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ public class NearController {
 	}
 
 	//근처 숙소 조회
+	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("stay")
 	public List<LocationBase> getNearStayInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
 
@@ -42,6 +44,7 @@ public class NearController {
 	}
 
 	//근처 관광지 조회
+	@CrossOrigin(origins = "http://localhost:3000, http://43.201.18.118:3000, http://kculter.com:3000")
 	@GetMapping("tour")
 	public List<LocationBase> getNearTourInfo(@RequestParam("lat") String lat, @RequestParam("lng") String lng) throws IOException {
 
