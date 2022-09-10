@@ -16,7 +16,7 @@ import com.prac.react.model.dto.LatLng;
 import com.prac.react.model.dto.LocationBase;
 import com.prac.react.service.LocationBaseService;
 
-@CrossOrigin(origins = {"http://localhost:3000","http://43.201.18.118:3000","http://kculter.com:3000","https://kculter.com:3000"})
+@CrossOrigin(origins = "http://kculter-lb-1250111111.ap-northeast-2.elb.amazonaws.com")
 @RestController
 @RequestMapping("/near/")
 public class NearController {
