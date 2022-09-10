@@ -26,7 +26,7 @@ public class S3FileUploadServiceTest {
     // void testUploadtoS3() throws IOException{
     //     //given
     //     //임의의 파일을 만든다.
-    //     MockMultipartFile image = new MockMultipartFile("file", "사진업로드.png", "image/jpeg", new FileInputStream("/Users/hyunjinjo/Desktop/사진업로드.png"));
+    //     MockMultipartFile image = new MockMultipartFile("file", "default-image.jpg", "image/jpeg", new FileInputStream("C:\\Users\\LG\\Pictures\\관광공모전\\default-image.jpg"));
 
     //     //when 
     //     String url = sfuf.uploadtoS3(image, "/culture-img");
