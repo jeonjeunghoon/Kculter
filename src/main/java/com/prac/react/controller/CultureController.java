@@ -14,7 +14,7 @@ import com.prac.react.model.dto.Culture;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CultureService;
 
-@CrossOrigin(origins = "https://kculter.com:3000")
+@CrossOrigin(origins = "https://kculter.com")
 @RestController
 public class CultureController {
     Logger logger = LoggerFactory.getLogger(CultureController.class);
