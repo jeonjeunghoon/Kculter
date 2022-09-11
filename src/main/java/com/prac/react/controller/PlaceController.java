@@ -15,7 +15,7 @@ import com.prac.react.model.dto.Place;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.PlaceService;
 
-@CrossOrigin(origins = "https://wooks-weather.com")
+@CrossOrigin(origins = "https://kculter.com")
 @RestController
 public class PlaceController {
 

@@ -26,7 +26,7 @@ import com.prac.react.service.S3FileUploadService;
 /* 이파일은 회원가입,로그인,회원정보수정 등등
  회원 정보와 관련된 일을 할때 들어올 Controller 입니다 */
 
-@CrossOrigin(origins = "https://wooks-weather.com")
+ @CrossOrigin(origins = "https://kculter.com")
 @RestController
 @RequestMapping("/member")
 public class MemberController {
