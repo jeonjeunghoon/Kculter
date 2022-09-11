@@ -16,7 +16,7 @@ import com.prac.react.model.dto.LatLng;
 import com.prac.react.model.dto.LocationBase;
 import com.prac.react.service.LocationBaseService;
 
-@CrossOrigin(origins = "https://kculter.com")
+@CrossOrigin(origins = "https://wooks-weather.com")
 @RestController
 @RequestMapping("/near/")
 public class NearController {
