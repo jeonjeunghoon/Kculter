@@ -14,7 +14,7 @@ import com.prac.react.model.dto.Celebrity;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CelebService;
 
-@CrossOrigin(origins = "https://kculter.com")
+@CrossOrigin(origins = "https://wooks-weather.com")
 @RestController
 public class CelebController {
     Logger logger = LoggerFactory.getLogger(CelebController.class);

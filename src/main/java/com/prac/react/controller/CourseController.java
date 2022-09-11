@@ -22,7 +22,7 @@ import com.prac.react.model.dto.Place;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.CourseService;
 
-@CrossOrigin(origins = "https://kculter.com")
+@CrossOrigin(origins = "https://wooks-weather.com")
 @RestController
 @RequestMapping("/course")
 public class CourseController {
