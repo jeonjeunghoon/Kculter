@@ -14,7 +14,7 @@ import com.prac.react.model.dto.Concert;
 import com.prac.react.security.Encryption;
 import com.prac.react.service.ConcertService;
 
-@CrossOrigin(origins = "https://kculter.com")
+@CrossOrigin(origins = {"https://kculter.com","http://localhost:3000"})
 @RestController
 public class ConcertController {
     Logger logger = LoggerFactory.getLogger(ConcertController.class);
