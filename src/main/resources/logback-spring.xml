@@ -1,0 +1,50 @@
+<configuration packagingData="true">
+    <timestamp key="timestamp" datePattern="yyyy-MM-dd-HH-mm-ssSSS"/>
+    
+    <!--springProperty를 이용해서 porperties 파일에 있는 키값을 가져옴-->
+    <springProperty name="AWS_ACCESS_KEY" source="cloud.aws.credentials.accessKey"/>
+    <springProperty name="AWS_SECRET_KEY" source="cloud.aws.credentials.secretKey"/>
+
+    <appender name="aws_cloud_watch_log" class="ca.pjer.logback.AwsLogsAppender">
+        <!--로그패턴-->
+        <layout>
+            <pattern>[%thread] [%date] [%level] [%file:%line] - %msg%n</pattern>
+        </layout>
+        <!--CloudWatch 로그그룹명-->
+        <logGroupName>Kculter-log</logGroupName>
+        <!--CloudWatch 로그스트립 UUID-->
+        <logStreamUuidPrefix>Kculter-log-</logStreamUuidPrefix>
+        <!--CloudWatch 리전-->
+        <logRegion>ap-northeast-2</logRegion>
+        <!--배치에 가지고 있을 이벤트 최대 개수, 50개 넘기면 cloudwatch로 전송-->
+        <maxBatchLogEvents>50</maxBatchLogEvents>
+        <!--마지막으로 플러쉬 되고 일정 시간 지나면 CloudWatch로 전송-->
+        <maxFlushTimeMillis>30000</maxFlushTimeMillis>
+        <!--로그가 전송되는 동안 코드가 계속 실행되는걸 멈추는것-->
+        <maxBlockTimeMillis>5000</maxBlockTimeMillis>
+        <!--로그 보존 기간, 0 이면 무기한-->
+        <retentionTimeDays>2</retentionTimeDays>
+        <!--위에서 가져온 키값-->
+        <accessKeyId>${AWS_ACCESS_KEY}</accessKeyId>
+        <secretAccessKey>${AWS_SECRET_KEY}</secretAccessKey>
+    </appender>
+    <!--Console에 찍는 방법-->
+    <appender name="application_log" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] [%date] [%level] [%file:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--active 된 profile 이름이 dev일때-->
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="application_log"/>
+        </root>
+    </springProfile>
+    <!--active된 profile 이름이 prod 일때-->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="application_log"/>
+            <appender-ref ref="aws_cloud_watch_log"/>
+        </root>
+    </springProfile>
+</configuration>

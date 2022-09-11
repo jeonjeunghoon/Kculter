@@ -34,6 +34,10 @@ build/
 .vscode/
 #mysql config information is hidden here
 application-config.properties
+##spring dev profile
+application-dev.properties
+##spring prod profile
+application-prod.properties
 
 ### api keys ###
 .env
