@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <!--로그를 어떻게 찍은건지에 대한 패턴-->
+    <property name="LOG_PATTERN"
+              value="${LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){blue} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <!--spring property 속성을 이용해 application-config파일 안에 있는 키값을 가져옴-->
+    <springProperty name="AWS_ACCESS_KEY" source="cloud.aws.credentials.accessKey"/>
+    <springProperty name="AWS_SECRET_KEY" source="cloud.aws.credentials.secretKey"/>
+
+    <!--로그 패턴을 출력할 appender-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+    <!--CloudWatch로 로그를 보내는 appender, ca.pjer을 활용-->
+    <appender name="aws_cloud_watch_log" class="ca.pjer.logback.AwsLogsAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+            <level>WARN</level>
+            <level>ERROR</level>
+        </filter>
+        <layout>
+            <pattern>[%thread] [%date] [%level] [%file:%line] - %msg%n</pattern>
+        </layout>
+        <!--CloudWatch 로그 그룹 이름-->
+        <logGroupName>Kculter-log</logGroupName>
+        <!--로그 스트림의 UUID-->
+        <logStreamUuidPrefix>Kculter-log-</logStreamUuidPrefix>
+        <!--CloudWatch AWS Region-->
+        <logRegion>ap-northeast-2</logRegion>
+        <!--최대 이벤트 개수 설정하는 부분, 1~10000 사이의 값만 가능 여기선 50개의 로그가 쌓이면 전송-->
+        <maxBatchLogEvents>50</maxBatchLogEvents>
+        <!--마지막 플러시가 발생된 이후 일정 시간 지나면 로그 전송됨, 이때 로그가 0이면 동기로 전송 0보다 크면 비동기로 전송-->
+        <maxFlushTimeMillis>30000</maxFlushTimeMillis>
+        <!--로그가 전송되는 동안 코드가 계속 실행되는 것을 차단하고 값을 0으로 세팅하면 전송중에 발생되는 모든 로그를 버림-->
+        <maxBlockTimeMillis>5000</maxBlockTimeMillis>
+        <!--로그 보존 기간, 0으로 세팅하면 무기한임. 한 이틀? 이 나을것 같음-->
+        <retentionTimeDays>2</retentionTimeDays>
+        <!--위에서 읽어온 IAM 계정 키값-->
+        <accessKeyId>${AWS_ACCESS_KEY}</accessKeyId>
+        <secretAccessKey>${AWS_SECRET_KEY}</secretAccessKey>
+    </appender>
+
+    <springProfile name="local,dev">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="com.amazonaws.util.EC2MetadataUtils" level="error" additivity="false">
+        </logger>
+
+        <logger name="mashup.spring.jsmr" level="debug" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <logger name="mashup.spring.jsmr" level="error" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="aws_cloud_watch_log"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="com.amazonaws.util.EC2MetadataUtils" level="error" additivity="false">
+        </logger>
+
+        <logger name="mashup.spring.jsmr" level="debug" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+    </springProfile>
+</configuration>
