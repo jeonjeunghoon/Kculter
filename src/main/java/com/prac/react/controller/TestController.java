@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "https://wooks-weather.com")
+@CrossOrigin(origins = "https://kculter.com")
 @RestController
 public class TestController {
 
