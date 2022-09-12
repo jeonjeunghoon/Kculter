@@ -48,7 +48,7 @@ public class CourseController {
 		for(Place place : placesList){
 			logger.info("Place Info : " + place.toString());
 
-			if(place.getPlaceHash().equals("0")){
+			if(place.getKeyHash().equals("0")){
 				//placeNum이 없는 애들은 map에서 고른애들이다. 따라서 우리 DB에 있을수도 있고 없을수도 있다.
 				//따라서 우리는 장소이름과 경도와 위도가 DB에 없다면 추가를 할것이다.
 				// select placeNum from places where name = 이름 && lat = 위도 && lng = 경도
@@ -67,7 +67,7 @@ public class CourseController {
 				}
 			}else{//이미 백에 저장되어 placeHash 넘어온경우
 				//placeHash 복호화 하기
-				int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getPlaceHash()));
+				int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getKeyHash()));
 				place.setPlaceNum(placeNum);
 				places += place.getPlaceNum() + "/";
 			}
