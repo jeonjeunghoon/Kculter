@@ -40,11 +40,11 @@ public class Place {
         this.placeNum = placeNum;
     }
 
-    public String getPlaceHash() {
+    public String getKeyHash() {
         return this.keyHash;
     }
 
-    public void setPlaceHash(String placeHash) {
+    public void setKeyHash(String placeHash) {
         this.keyHash = placeHash;
     }
 
@@ -132,7 +132,7 @@ public class Place {
     public String toString() {
         return "{" +
             " placeNum='" + getPlaceNum() + "'" +
-            ", placeHash='" + getPlaceHash() + "'" +
+            ", placeHash='" + getKeyHash() + "'" +
             ", placeType='" + getPlaceType() + "'" +
             ", culture='" + getCulture() + "'" +
             ", kpop='" + getKpop() + "'" +
