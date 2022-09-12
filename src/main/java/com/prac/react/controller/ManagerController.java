@@ -86,7 +86,7 @@ public class ManagerController{
         //해당 연예인의 이름이 있는 concertNum을 가져온다.
         Integer concertNum = concertS.getConcertNumbyCelebName(celeb.getName());
         //해당 연예인의 이름이 concerts table에 있다면 진입
-        if(concertNum > 0){
+        if(concertNum != null){
             //콘서트 넘버와 연예인 넘버를 가지고 해당 콘서트의 연예인 넘버를 수정한다.
             int concertResult = concertS.updateCelebNum(celebKeyNum,concertNum);
             if(concertResult > 0){
