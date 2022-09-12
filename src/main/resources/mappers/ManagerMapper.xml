@@ -32,7 +32,7 @@
 	</update>
 	<!--checking kpop place count-->
 	<select id="checkKpopPlace" parameterType="String" resultType="int">
-		select count(*) from places where kpop like CONCAT('%', #{kpop}, '%)
+		select count(*) from places where kpop like CONCAT('%', #{kpop}, '%')
 	</select>
 	<!--checking culture place count-->
 	<select id="checkCulturePlace" parameterType="String" resultType="int">
