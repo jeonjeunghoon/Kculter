@@ -116,7 +116,7 @@ public class ManagerController{
 
         //일단 여기는 장소를 입력할때 들어오는곳이잔아.
         //그럼 먼저 확인해야할것은 request로 들어온 Place의 placeNum이 있는지 먼저 확인을 해보자.
-        if(place.getPlaceHash().equals("")){ //이말인 즉슨 기존에 DB에 있는 장소가 아니라는 얘기이다.
+        if(place.getPlaceHash() == null){ //이말인 즉슨 기존에 DB에 있는 장소가 아니라는 얘기이다.
             //그럼 얘는 새로 insert 해줘야 한다.
             if(place.getPlaceType() == 1){ // kpop = 1, 즉 kpop 장소일때
                 logger.info("type : "+ place.getPlaceType());
