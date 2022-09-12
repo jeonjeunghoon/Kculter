@@ -50,7 +50,7 @@ public class CourseThread implements Runnable{
             }else{
                 //placeList에 추가
                 String placeHash = encrypt.aesEncrypt(Integer.toString(place.getPlaceNum())); //placeNum 암호화
-                place.setPlaceHash(placeHash);
+                place.setKeyHash(placeHash);
                 place.setPlaceNum(0); //placeNum 0으로
                 placeList.add(place);              
             }
