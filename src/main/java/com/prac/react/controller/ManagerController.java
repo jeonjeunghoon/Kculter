@@ -116,7 +116,7 @@ public class ManagerController{
 
         //일단 여기는 장소를 입력할때 들어오는곳이잔아.
         //그럼 먼저 확인해야할것은 request로 들어온 Place의 placeNum이 있는지 먼저 확인을 해보자.
-        if(place.getPlaceHash() == null){ //이말인 즉슨 기존에 DB에 있는 장소가 아니라는 얘기이다.
+        if(place.getKeyHash() == null){ //이말인 즉슨 기존에 DB에 있는 장소가 아니라는 얘기이다.
             //그럼 얘는 새로 insert 해줘야 한다.
             if(place.getPlaceType() == 1){ // kpop = 1, 즉 kpop 장소일때
                 logger.info("type : "+ place.getPlaceType());
@@ -151,7 +151,7 @@ public class ManagerController{
 
             //따라서 얘는 기존의 Place에서 culture 혹은 kpop에서 추가된 내용만 얹어주면된다. 상황을 예를 들어서 설명을 하겠다.
             //기존의 placeNum을 암호화된 상태로 보내주니까 복호화 해야 한다.
-            int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getPlaceHash()));
+            int placeNum = Integer.parseInt(encryption.aesDecrypt(place.getKeyHash()));
             place.setPlaceNum(placeNum);
             /*
              * 만약 키값이 3인 kpop이 기존에 키값이 3인 장소에 본인과 관련있는 장소로 하고 싶을땐 아래와 같이 입력이 된다
