@@ -76,6 +76,14 @@ public class CourseController {
 		int memberNum = Integer.parseInt(encryption.aesDecrypt(cw.getMemberHash()));
 
 		Course course = new Course(0,cw.getCourseName(),places,memberNum);
+		
+		//만약 코스 해쉬가 있다면 진입
+		if(cw.getCourseHash() != null){
+			int courseNum = Integer.parseInt(encryption.aesDecrypt(cw.getCourseHash()));
+			logger.info("CourseNum :"+courseNum);
+			course.setCourseNum(courseNum);
+		}
+
 		logger.info("Course : "+ course.toString());
 		result = cs.insertCourse(course);
 
