@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,30 +68,34 @@ public class LocationBaseService {
 		}
 		rd.close(); // BufferedReader 생성한것을 닫아줌으로써 메모리에 있는 버퍼를 비움
 		conn.disconnect(); // 연결 해제
+		try{
+			JSONObject json = new JSONObject(sb.toString());
+			JSONObject response = json.getJSONObject("response");
+			JSONObject body = response.getJSONObject("body");
+			JSONObject items = body.getJSONObject("items");
+			JSONArray item = items.getJSONArray("item");
 
-		JSONObject json = new JSONObject(sb.toString());
-		JSONObject response = json.getJSONObject("response");
-		JSONObject body = response.getJSONObject("body");
-		JSONObject items = body.getJSONObject("items");
-		JSONArray item = items.getJSONArray("item");
+			for (int i = 0; i < item.length(); i++) {
+				JSONObject obj = item.getJSONObject(i);
 
-		for (int i = 0; i < item.length(); i++) {
-			JSONObject obj = item.getJSONObject(i);
+				LocationBase lb = new LocationBase();
+				lb.setAddr1(obj.getString("addr1"));
+				lb.setAddr2(obj.getString("addr2"));
+				lb.setContenttypeid(obj.getString("contenttypeid"));
+				lb.setFirstimage(obj.getString("firstimage"));
+				lb.setFirstimage2(obj.getString("firstimage2"));
+				lb.setMapx(obj.getString("mapx"));
+				lb.setMapy(obj.getString("mapy"));
+				lb.setTel(obj.getString("tel"));
+				lb.setTitle(obj.getString("title"));
 
-			LocationBase lb = new LocationBase();
-			lb.setAddr1(obj.getString("addr1"));
-			lb.setAddr2(obj.getString("addr2"));
-			lb.setContenttypeid(obj.getString("contenttypeid"));
-			lb.setFirstimage(obj.getString("firstimage"));
-			lb.setFirstimage2(obj.getString("firstimage2"));
-			lb.setMapx(obj.getString("mapx"));
-			lb.setMapy(obj.getString("mapy"));
-			lb.setTel(obj.getString("tel"));
-			lb.setTitle(obj.getString("title"));
+				logger.info(lb.toString());
 
-			logger.info(lb.toString());
+				nearStayList.add(lb);
+			}
 
-			nearStayList.add(lb);
+		}catch(JSONException e){
+			logger.info("No LocationBaseInfo Received");
 		}
 
 		return nearStayList;
