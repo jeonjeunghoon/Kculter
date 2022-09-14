@@ -105,7 +105,7 @@
             <groupId>ca.pjer</groupId>
             <artifactId>logback-awslogs-appender</artifactId>
             <version>1.6.0</version>
-        </dependency>
+        </dependency>      
     </dependencies>
 
     <build>
